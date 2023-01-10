@@ -4,13 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { CowLoaderComponent } from './shared/loader/cow-loader.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -56,6 +54,5 @@ import { CowLoaderComponent } from './shared/loader/cow-loader.component';
     },
   ],
   bootstrap: [AppComponent],
-
 })
 export class AppModule {}

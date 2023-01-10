@@ -6,13 +6,20 @@
     height: 80vh;
 }
 
-
 .loader img {
     animation: rotation 2s infinite ease-out;
 }
 
 .loader p {
-    padding-top: 2rem;
+    padding-top: 32px;
+
+
+
+
+
+
+
+    
 }
 
 @keyframes rotation {
