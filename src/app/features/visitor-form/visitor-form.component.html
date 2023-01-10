@@ -1,0 +1,18 @@
+<form [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+  <div class="form">
+    <input placeholder="Name" formControlName="firstName" />
+    <ng-container *ngIf="reservationCtrl.controls.firstName.errors as errors">
+      <ng-container *ngIf="reservationCtrl.controls.firstName.touched">
+        <p *ngIf="errors['required']">To pole jest obowiązkowe!</p>
+      </ng-container>
+    </ng-container>
+    <input placeholder="Surname" formControlName="surname" />
+    <ng-container *ngIf="reservationCtrl.controls.surname.errors as errors">
+      <ng-container *ngIf="reservationCtrl.controls.surname.touched">
+        <p *ngIf="errors['required']">To pole jest obowiązkowe!</p>
+      </ng-container>
+    </ng-container>
+    <input placeholder="E-Mail" formControlName="email" />
+    <button>Zarezerwuj</button>
+  </div>
+</form>
