@@ -1,0 +1,27 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* this value could be change*/
+    height: 60vh;
+ 
+}
+
+
+.loader img {
+    animation: rotation 2s infinite ease-out;
+}
+
+.loader p {
+    padding-top: 1rem;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
