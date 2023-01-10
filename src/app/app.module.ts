@@ -13,7 +13,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { CowLoaderComponent } from './shared/loader/cow-loader.component';
 
 @NgModule({
-  declarations: [AppComponent, CowLoaderComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -56,5 +56,6 @@ import { CowLoaderComponent } from './shared/loader/cow-loader.component';
     },
   ],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}
