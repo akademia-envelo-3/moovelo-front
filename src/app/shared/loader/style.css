@@ -1,32 +1,24 @@
 .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
 }
 
 .loader img {
-    animation: rotation 2s infinite ease-out;
+  animation: rotation 2s infinite ease-out;
 }
 
 .loader p {
-    padding-top: 32px;
-
-
-
-
-
-
-
-    
+  padding-top: 32px;
 }
 
 @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
