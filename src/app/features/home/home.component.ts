@@ -8,7 +8,6 @@ import { RouterOutlet } from '@angular/router';
   template: `
     application shell
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

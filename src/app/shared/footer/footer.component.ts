@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-footer',
   template: `
     <div class="footer">
-      <h3>Kontakt: mootech@cowmail.com</h3>
+      <p>Kontakt: mootech@cowmail.com</p>
       <h2>Moovelo</h2>
       <p class="watermark">@2022 Mootech all rights reserved</p>
     </div>
