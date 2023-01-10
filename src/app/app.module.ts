@@ -4,16 +4,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { NavbarComponent } from './navbar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
+  providers: [
+    {
+      provide: API_URL,
+      useValue: environment.API_URL,
+    },
+    {
+      provide: IS_PRODUCTION,
+      useValue: environment.production,
+    },
+  ],
+  bootstrap: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -45,16 +55,5 @@ import { NavbarComponent } from './navbar.component';
       },
     ]),
   ],
-  providers: [
-    {
-      provide: API_URL,
-      useValue: environment.API_URL,
-    },
-    {
-      provide: IS_PRODUCTION,
-      useValue: environment.production,
-    },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

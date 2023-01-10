@@ -1,16 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   template: `
     <nav>
-      navbar works!
+      <div class="nav-logo">
+        <img src="./assets/logo.png" alt="logo aplikacji moovelo" />
+        <p>Moovelo</p>
+      </div>
+
+      <button class="btn-login">Zaloguj</button>
     </nav>
   `,
-  styles: [
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./style.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {
-
-}
+export class NavbarComponent {}

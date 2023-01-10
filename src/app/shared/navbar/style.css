@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  background-color: #f7f7f7;
+  height: 10vh;
+}
+
+:root {
+  --blue700: #1c3145;
+}
+
+.nav-logo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 8px;
+}
+
+.nav-logo img {
+  width: 25%;
+}
+
+.nav-logo p {
+  padding-left: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-login {
+  /*background-color: var(--blue700); ???*/
+  background-color: #1c3145;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  display: inline-block;
+  margin: 8px;
+  border-radius: 4px;
+}
