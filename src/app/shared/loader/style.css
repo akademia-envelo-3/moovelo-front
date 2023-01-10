@@ -3,9 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* this value could be change*/
-    height: 60vh;
- 
+    height: 80vh;
 }
 
 
@@ -14,7 +12,7 @@
 }
 
 .loader p {
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 
 @keyframes rotation {
