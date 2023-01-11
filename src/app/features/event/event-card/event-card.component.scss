@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+@import '../../../styles/palettes';
+
+.event-card {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    padding: 4px;
+    background-color: mat.get-color-from-palette($gray-palette, 500);
+    border-radius: 10px;
+}
+
+.event-card-info {
+    display: flex;
+    gap: 16px;
+}
+
+.event-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.event-card-img img {
+border-radius: 5px;
+}

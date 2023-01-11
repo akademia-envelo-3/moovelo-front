@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { EventCard } from '../../events.interfaces';
+import { EventCard } from '../event.interfaces';
 import { MatIconModule } from '@angular/material/icon';
 
 export interface GroupItem {

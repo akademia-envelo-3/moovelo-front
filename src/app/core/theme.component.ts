@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { EventCard } from '../features/events/events.interfaces';
-import { EventCardComponent } from '../features/events/shared/event-card/event-card.component';
+import { EventCard } from '../features/event/event.interfaces';
+import { EventCardComponent } from '../features/event/event-card/event-card.component';
 
 @Component({
   selector: 'app-theme',
