@@ -3,7 +3,7 @@
 
 .group-item-container {
     padding: 8px 16px;
-    position: relative;
+    // position: relative;
 }
 
 .group-item {
@@ -13,10 +13,10 @@
 }
 
 .group-item-container button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(-10%);
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    transform: translate(240px, -110px);
 }
 
 .group-name {
