@@ -1,0 +1,26 @@
+.error{border-color:#fb968d;}
+form{
+    border-radius: 20px;
+    background-color: #30475e;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 32px 16px;
+}
+input{
+    margin: 16px 0px;
+}
+button{
+    margin:16px 0px;
+}
+p{
+   text-align: center;
+    color: #fb968d;
+    margin: 0px 8px;
+
+}
+h1{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}

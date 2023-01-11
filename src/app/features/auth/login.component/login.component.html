@@ -1,0 +1,29 @@
+<h1>MOOVELO</h1>
+<form [formGroup]="loginForm">
+  <input
+    [class.error]="loginForm.controls.email.errors && loginForm.controls.email.touched"
+    formControlName="email"
+    placeholder="E-mail" />
+  <input
+    [class.error]="loginForm.controls.email.errors && loginForm.controls.email.touched"
+    type="password"
+    formControlName="password"
+    placeholder="Hasło" />
+  <ng-container *ngIf="loginForm.controls.email.errors as errors">
+    <p *ngIf="errors['maxlength']">Email nie może być dłuższy niż 100 znaków.</p>
+    <p *ngIf="errors['pattern']">"Podaj poprawny adres email według wzoru: nazwa@domena.pl</p>
+  </ng-container>
+  <p
+    *ngIf="
+      (loginForm.controls.password.errors &&
+        loginForm.controls.password.errors['required'] &&
+        loginForm.controls.password.touched) ||
+      (loginForm.controls.email.errors &&
+        loginForm.controls.email.errors['required'] &&
+        loginForm.controls.email.touched)
+    ">
+    Pola nie mogą byc puste.
+  </p>
+
+  <button (click)="checkValidationAndAuth()">Zaloguj</button>
+</form>

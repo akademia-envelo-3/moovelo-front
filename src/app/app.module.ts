@@ -10,11 +10,14 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { LoginComponent } from './features/auth/login.component/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
@@ -26,6 +29,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
           {
             path: '',
             loadChildren: () => import('./features/home/home.module'),
+            component: LoginComponent,
           },
           {
             path: 'auth',
