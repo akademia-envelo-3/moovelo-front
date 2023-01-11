@@ -1,24 +1,26 @@
+@use '@angular/material' as mat;
+@import '../../../styles/palettes';
+
 .group-item-container {
     padding: 8px 16px;
     position: relative;
 }
 
 .group-item {
-    border: 1px solid black;
+    border: 1px solid mat.get-color-from-palette($blue-palette,900);
     border-radius: 20px;
-    background-color: #F5F5F5;
+    background-color: mat.get-color-from-palette($gray-palette,500)
 }
 
 .group-item-container button {
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 6px;
 }
 
 .group-name {
-    font-size: 21px;
-    font-weight: 700;
-    border-bottom: 2px solid black;
+
+    border-bottom: 2px solid mat.get-color-from-palette($blue-palette,900);
 }
 
 .group-name, .group-desc {

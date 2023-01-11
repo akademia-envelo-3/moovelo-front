@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GroupItemComponent } from '../features/group-list/group-item/group-item.component';
+import { GroupItemComponent } from '../features/group/group-list-item/group-list-item.component';
 
 @Component({
   selector: 'app-theme',
@@ -8,8 +8,8 @@ import { GroupItemComponent } from '../features/group-list/group-item/group-item
   template: `
     <h1>Storybook-like route</h1>
     <h2>Pojedyncza grupa w liście</h2>
-    <app-group-item
-      [groupItem]="{ id: 0, name: 'Nowa grupa', description: 'Bardzo fajna nowa grupa' }"></app-group-item>
+    <app-group-list-item
+      [groupItem]="{ id: 0, name: 'Nowa grupa', description: 'Bardzo fajna nowa grupa' }"></app-group-list-item>
   `,
 })
 export default class ThemeComponent {}
