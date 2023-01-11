@@ -1,11 +1,20 @@
 @use '@angular/material' as mat;
-@import './app/styles/_palettes';
+@import './app/styles/palettes';
+@import './app/styles/typography';
 
 @include mat.core();
 
 $blue-primary: mat.define-palette($blue-palette, 500);
 $red-accent: mat.define-palette($red-palette, 500);
 $red-warn: mat.define-palette($red-warn-palette, 500);
+
+$typography-config: mat.define-typography-config(
+  $headline-1: $heading-1,
+  $headline-2: $heading-2,
+  $headline-3: $heading-3,
+  $body-1: $text-1,
+  $body-2: $text-2,
+);
 
 $moovelo-main-theme: mat.define-light-theme(
   (
@@ -14,15 +23,16 @@ $moovelo-main-theme: mat.define-light-theme(
       accent: $red-accent,
       warn: $red-warn,
     ),
+    typography: $typography-config,
   )
 );
 
 @include mat.all-component-themes($moovelo-main-theme);
 
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-size: 14px;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 0.875rem;
   color: #333;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -38,4 +48,25 @@ $moovelo-main-theme: mat.define-light-theme(
 html,
 body {
   height: 100%;
+}
+
+// FONTS
+.font-heading-1 {
+  @include mat.typography-level($typography-config, 'headline-1');
+}
+
+.font-heading-2 {
+  @include mat.typography-level($typography-config, 'headline-2');
+}
+
+.font-heading-3 {
+  @include mat.typography-level($typography-config, 'headline-3');
+}
+
+.font-text-1 {
+  @include mat.typography-level($typography-config, 'body-1');
+}
+
+.font-text-1 {
+  @include mat.typography-level($typography-config, 'body-2');
 }
