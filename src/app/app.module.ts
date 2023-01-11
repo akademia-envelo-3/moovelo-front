@@ -29,7 +29,6 @@ import { ReactiveFormsModule } from '@angular/forms';
           {
             path: '',
             loadChildren: () => import('./features/home/home.module'),
-            component: LoginComponent,
           },
           {
             path: 'auth',
