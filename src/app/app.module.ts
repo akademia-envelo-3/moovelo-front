@@ -10,6 +10,7 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { Error404Component } from './shared/error404/error404.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +39,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
           },
           {
             path: '**',
-            redirectTo: '',
+            component: Error404Component,
           },
         ],
       },
