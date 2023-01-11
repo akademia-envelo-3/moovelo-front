@@ -14,7 +14,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { VisitorFormComponent } from './features/visitor-form/visitor-form.component';
 
 @NgModule({
-  declarations: [AppComponent, VisitorFormComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
