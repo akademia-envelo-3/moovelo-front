@@ -32,6 +32,10 @@ import { noProductionGuard } from '@shared/no-production.guard';
             loadChildren: () => import('./features/auth/auth.module'),
           },
           {
+            path: 'create-event',
+            loadChildren: () => import('./features/event/create-event.module'),
+          },
+          {
             path: 'theme',
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
