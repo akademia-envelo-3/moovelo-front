@@ -1,0 +1,18 @@
+<div class="event-card">
+  <div class="event-card-info">
+    <div class="event-card-img"></div>
+    <div class="event-card-details">
+      <p class="event-card-name">{{ eventCard.eventInfo.name }}</p>
+      <p *ngIf="eventCard.eventInfo.isConfirmationRequired">Potwierdzenie wymagane</p>
+      <p *ngIf="eventCard.eventInfo.isPrivate">Wydarzenie prywatne</p>
+      <p *ngIf="eventCard.eventInfo.group">Wydarzenie grupowe</p>
+      <p class="event-card-category">Kategoria: {{ eventCard.eventInfo.category.name }}</p>
+      <p class="event-card-date">Data: {{ eventCard.eventInfo.startDate }}</p>
+      <p class="event-card-city">Miasto: {{ eventCard.eventInfo.city }}</p>
+    </div>
+  </div>
+  <ng-container *ngIf="eventCard.eventInfo.hashtags as hashtags">
+    <div class="hashtag" *ngFor="let hashtag of hashtags">{{ hashtag.value }}</div>
+  </ng-container>
+  <div class="event-card-acceptedUsers"><mat-icon>person</mat-icon> {{ eventCard.eventInfo.acceptedStatusUsers }}</div>
+</div>
