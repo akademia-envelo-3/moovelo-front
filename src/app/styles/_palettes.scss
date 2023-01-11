@@ -1,0 +1,77 @@
+$dark-primary-text: #333;
+$light-primary-text: #ffffff;
+
+$red-palette: (
+  100: #ff8c8c,
+  300: #ff7373,
+  500: #f05454,
+  700: #d63636,
+  900: #bd1c1c,
+  contrast: (
+    100: $dark-primary-text,
+    300: $dark-primary-text,
+    500: $light-primary-text,
+    700: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$blue-palette: (
+  100: #8ba8c4,
+  300: #597591,
+  500: #30475e,
+  700: #1c3145,
+  900: #102133,
+  contrast: (
+    100: $dark-primary-text,
+    300: $dark-primary-text,
+    500: $light-primary-text,
+    700: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$green-palette: (
+  100: #3fd4d0,
+  300: #25bab6,
+  500: #10a19d,
+  700: #078784,
+  900: #006e6b,
+  contrast: (
+    100: $dark-primary-text,
+    300: $dark-primary-text,
+    500: $light-primary-text,
+    700: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$gray-palette: (
+  100: #fcfcfc,
+  300: #fafafa,
+  500: #f5f5f5,
+  700: #dbdbdb,
+  900: #c7c7c7,
+  contrast: (
+    100: $dark-primary-text,
+    300: $dark-primary-text,
+    500: $light-primary-text,
+    700: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$red-warn-palette: (
+  100: #ffeaec,
+  300: #ffcbcc,
+  500: #fb968d,
+  700: #f16e62,
+  900: #f84216,
+  contrast: (
+    100: $dark-primary-text,
+    300: $dark-primary-text,
+    500: $light-primary-text,
+    700: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
