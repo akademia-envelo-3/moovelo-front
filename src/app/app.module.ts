@@ -10,9 +10,10 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { SingleEventComponent } from './features/event/single-event.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SingleEventComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -26,6 +27,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
           {
             path: '',
             loadChildren: () => import('./features/home/home.module'),
+            component: SingleEventComponent,
           },
           {
             path: 'auth',
