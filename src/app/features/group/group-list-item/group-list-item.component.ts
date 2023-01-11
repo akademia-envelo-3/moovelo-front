@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { GroupListItem } from '../group.interface';
 
 @Component({
-  selector: 'app-group-list-item',
+  selector: 'app-group-list-item[groupItem]',
   standalone: true,
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './group-list-item.component.html',
