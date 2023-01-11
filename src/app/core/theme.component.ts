@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GroupItemComponent } from '../features/group/group-list-item/group-list-item.component';
+import { GroupItemComponent } from '../features/group';
 
 @Component({
   selector: 'app-theme',
