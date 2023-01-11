@@ -7,7 +7,7 @@ import { RouterModule, Router } from '@angular/router';
   imports: [CommonModule, RouterModule],
   selector: 'app-error404',
   templateUrl: './error404.component.html',
-  styles: [],
+  styleUrls: ['./error404.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Error404Component implements OnInit {
@@ -16,7 +16,7 @@ export class Error404Component implements OnInit {
   goBack(): void {
     setTimeout(() => {
       this.router.navigateByUrl('/home');
-    }, 5000);
+    }, 6000);
   }
 
   ngOnInit(): void {

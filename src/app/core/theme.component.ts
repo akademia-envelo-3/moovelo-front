@@ -5,9 +5,6 @@ import { Error404Component } from '@shared/error404/error404.component';
   selector: 'app-theme',
   imports: [Error404Component],
   standalone: true,
-  template: `
-    <h1>Storybook-like route</h1>
-    <app-error404></app-error404>
-  `,
+  template: ` <h1>Storybook-like route</h1> `,
 })
 export default class ThemeComponent {}
