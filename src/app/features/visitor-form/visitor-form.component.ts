@@ -8,7 +8,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisitorFormComponent {
-  reservationForm = this.builder.group({
+  joinForm = this.builder.group({
     firstName: this.builder.control('', {
       validators: Validators.required,
     }),
@@ -20,18 +20,18 @@ export class VisitorFormComponent {
     }),
   });
 
-  get reservationCtrl() {
-    return this.reservationForm;
+  get joinCtrl() {
+    return this.joinForm.controls;
   }
 
   constructor(private builder: NonNullableFormBuilder) {}
 
   submitForm() {
-    this.reservationForm.markAllAsTouched();
+    this.joinForm.markAllAsTouched();
 
-    if (this.reservationForm.invalid) {
+    if (this.joinForm.invalid) {
       return;
     }
-    console.log(this.reservationForm.value);
+    console.log(this.joinForm.value);
   }
 }

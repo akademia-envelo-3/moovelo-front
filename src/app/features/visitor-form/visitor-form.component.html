@@ -1,18 +1,24 @@
-<form [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+<form [formGroup]="joinForm" (ngSubmit)="submitForm()">
   <div class="form">
     <input placeholder="Name" formControlName="firstName" />
-    <ng-container *ngIf="reservationCtrl.controls.firstName.errors as errors">
-      <ng-container *ngIf="reservationCtrl.controls.firstName.touched">
+    <ng-container *ngIf="joinCtrl.firstName.errors as errors">
+      <ng-container *ngIf="joinCtrl.firstName.touched">
         <p *ngIf="errors['required']">To pole jest obowiązkowe!</p>
       </ng-container>
     </ng-container>
     <input placeholder="Surname" formControlName="surname" />
-    <ng-container *ngIf="reservationCtrl.controls.surname.errors as errors">
-      <ng-container *ngIf="reservationCtrl.controls.surname.touched">
+    <ng-container *ngIf="joinCtrl.surname.errors as errors">
+      <ng-container *ngIf="joinCtrl.surname.touched">
         <p *ngIf="errors['required']">To pole jest obowiązkowe!</p>
       </ng-container>
     </ng-container>
     <input placeholder="E-Mail" formControlName="email" />
+    <ng-container *ngIf="joinCtrl.email.errors as errors">
+      <ng-container *ngIf="joinCtrl.email.touched">
+        <p *ngIf="errors['required']">To pole jest obowiązkowe!</p>
+        <p *ngIf="errors['email']">Proszę podać właściwy adres e-mail</p>
+      </ng-container>
+    </ng-container>
     <button>Zarezerwuj</button>
   </div>
 </form>
