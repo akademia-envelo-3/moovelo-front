@@ -1,22 +1,22 @@
 @use '@angular/material' as mat;
 @import '../../../styles/palettes';
 
-.group-item-container {
+.group-list-item-container {
     padding: 8px 16px;
-    // position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 568px;
 }
 
-.group-item {
+.group-list-item {
     border: 1px solid mat.get-color-from-palette($blue-palette,900);
     border-radius: 20px;
-    background-color: mat.get-color-from-palette($gray-palette,500)
+    background-color: mat.get-color-from-palette($gray-palette,500);
 }
 
-.group-item-container button {
-    // position: absolute;
-    // top: 0;
-    // right: 0;
-    transform: translate(240px, -110px);
+.group-list-item-container button {
+    align-self: flex-end;
+    transform: translate(0px, -120px);
 }
 
 .group-name {
