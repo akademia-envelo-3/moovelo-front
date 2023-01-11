@@ -3,16 +3,22 @@
 
 .event-card {
     display: flex;
-    width: 300px;
     flex-direction: column;
     padding: 4px;
     background-color: mat.get-color-from-palette($gray-palette, 500);
+    border: 1px solid mat.get-color-from-palette($blue-palette, 500);
     border-radius: 10px;
+    gap: 16px;
+    box-shadow: 1px 4px 4px mat.get-color-from-palette($gray-palette, 900);
+}
+
+.event-card-typ {
+    color: mat.get-color-from-palette($red-palette, 500);
 }
 
 .event-card-info {
     display: flex;
-    gap: 16px;
+    justify-content: space-around;
 }
 
 .event-card-details {
@@ -21,6 +27,20 @@
     gap: 4px;
 }
 
-.event-card-img img {
-border-radius: 5px;
+.event-card-info img {
+    border-radius: 5px;
+    align-self: center;
+}
+
+.hashtags-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 18px;
+}
+
+.hashtag {
+    border: 2px solid mat.get-color-from-palette($blue-palette, 500);
+    padding: 4px 12px;
+    border-radius: 5px;
+    color: mat.get-color-from-palette($blue-palette, 500);
 }

@@ -10,7 +10,7 @@ export interface GroupItem {
 }
 
 @Component({
-  selector: 'app-event-card',
+  selector: 'app-event-card[eventCard]',
   standalone: true,
   templateUrl: './event-card.component.html',
   imports: [CommonModule, MatIconModule],

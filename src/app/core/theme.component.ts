@@ -6,9 +6,13 @@ import { EventCardComponent } from '../features/event/event-card/event-card.comp
   selector: 'app-theme',
   imports: [EventCardComponent],
   standalone: true,
-  template: ` <h1>Storybook-like route</h1>
+  template: `
+    <h1>Storybook-like route</h1>
     <h2>Event Card Component</h2>
-    <app-event-card [eventCard]="event"></app-event-card>`,
+    <div style="padding: 8px 8px;">
+      <app-event-card [eventCard]="event"></app-event-card>
+    </div>
+  `,
 })
 export default class ThemeComponent {
   event: EventCard = {
@@ -23,10 +27,18 @@ export default class ThemeComponent {
       hashtags: [
         {
           id: 1,
-          value: 'piwo',
+          value: '#piwo',
+        },
+        {
+          id: 1,
+          value: '#piwo',
+        },
+        {
+          id: 1,
+          value: '#piwo',
         },
       ],
-      isConfirmationRequired: false,
+      isConfirmationRequired: true,
       isPrivate: true,
       group: false,
       cycleLength: 0,
