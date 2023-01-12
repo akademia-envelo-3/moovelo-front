@@ -11,13 +11,16 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { SingleEventComponent } from './features/event/single-event.component';
+import { singleEventReducer } from './features/event/store/single-event.reducer';
 
 @NgModule({
   declarations: [AppComponent, SingleEventComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({
+      singleEvent: singleEventReducer,
+    }),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     RouterModule.forRoot([
