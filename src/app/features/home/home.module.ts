@@ -10,6 +10,10 @@ import { HomeComponent } from './home.component';
         component: HomeComponent,
         children: [],
       },
+      {
+        path: 'create-event',
+        loadChildren: () => import('../../features/event/create-event.module'),
+      },
     ]),
   ],
 })
