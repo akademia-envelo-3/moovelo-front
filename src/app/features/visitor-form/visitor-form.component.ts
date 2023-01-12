@@ -1,22 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule],
   selector: 'app-visitor-form',
   templateUrl: './visitor-form.component.html',
-  styles: [],
+  styleUrls: ['./visitor-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisitorFormComponent {
   joinForm = this.builder.group({
     firstName: this.builder.control('', {
-      validators: Validators.required,
+      validators: [Validators.required, Validators.maxLength(20)],
     }),
-    surname: this.builder.control('', {
-      validators: Validators.required,
+    lastName: this.builder.control('', {
+      validators: [Validators.required, Validators.maxLength(20)],
     }),
     email: this.builder.control('', {
       validators: [Validators.required, Validators.email],
@@ -35,6 +36,5 @@ export class VisitorFormComponent {
     if (this.joinForm.invalid) {
       return;
     }
-    console.log(this.joinForm.value);
   }
 }

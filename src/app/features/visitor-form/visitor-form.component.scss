@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+@import '../../styles/palettes';
+
+.mat-mdc-raised-button {
+    border-radius: 20px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    max-width: 200px;
+    gap: 8px;
+    .form__input{
+        padding: 4px;
+        box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.12);
+        border: none;
+    }
+    .form__button{
+        background:mat.get-color-from-palette($blue-palette, 700);
+        margin:16px;
+        color: mat.get-color-from-palette($gray-palette, 100);
+        
+    }
+    .form__error{
+        border: 2px solid mat.get-color-from-palette($red-warn-palette, 500);
+        border-radius: 5px;
+    }
+    .form__error__text{
+        color: mat.get-color-from-palette($red-warn-palette, 500);
+    }
+}
