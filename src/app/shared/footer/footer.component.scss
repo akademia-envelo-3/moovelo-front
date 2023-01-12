@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+@import '../../styles/palettes';
+
+.footer {
+    border-top: 2px solid mat.get-color-from-palette($blue-palette, 900);
+    color: mat.get-color-from-palette($blue-palette, 900);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    .watermark{
+        color: mat.get-color-from-palette($gray-palette, 900);
+    }
+}
