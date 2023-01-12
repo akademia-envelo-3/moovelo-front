@@ -9,7 +9,7 @@
     align-items: center;
     padding: 8px;
     gap: 8px;
-    .watermark{
+    .footer__watermark{
         color: mat.get-color-from-palette($gray-palette, 900);
     }
 }
