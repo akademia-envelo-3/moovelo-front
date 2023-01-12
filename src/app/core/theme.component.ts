@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { EventCard } from '../features/event/event.interfaces';
-import { EventCardComponent } from '../features/event/event-card/event-card.component';
+import { EventCard, EventCardComponent } from '../features/event';
 
 @Component({
   selector: 'app-theme',
@@ -18,13 +17,17 @@ export default class ThemeComponent {
   event: EventCard = {
     id: 1,
     eventInfo: {
-      name: 'Kozacki Event',
+      name: 'Giga Koks Turbo Event',
       category: {
         id: 1,
         name: 'Piwo',
       },
       startDate: '20.01.2023',
       hashtags: [
+        {
+          id: 1,
+          value: '#piwo',
+        },
         {
           id: 1,
           value: '#piwo',
