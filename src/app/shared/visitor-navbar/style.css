@@ -2,33 +2,34 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  top: 0;
   position: sticky;
   background-color: #f7f7f7;
-  height: 10vh;
+  height: 8vh;
 }
 
 :root {
   --blue700: #1c3145;
 }
 
-.nav-logo {
+.nav__logo {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin: 8px;
 }
 
-.nav-logo img {
+.nav__logo img {
   width: 25%;
 }
 
-.nav-logo p {
+.nav__logo p {
   padding-left: 8px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.btn-login {
+.nav__btn {
   /*background-color: var(--blue700); ???*/
   background-color: #1c3145;
   border: none;
@@ -38,4 +39,8 @@ nav {
   display: inline-block;
   margin: 8px;
   border-radius: 4px;
+}
+
+main {
+  width: 20vw;
 }

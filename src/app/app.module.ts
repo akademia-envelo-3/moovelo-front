@@ -9,7 +9,7 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { NavbarComponent } from './shared/visitor-navbar/navbar.component';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
