@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EventTypeFormComponent } from './components/event-type-form/event-type-form.component';
 import { EventDetailsFormComponent } from './components/event-details-form/event-details-form.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
@@ -13,6 +14,7 @@ import { EventDetailsFormComponent } from './components/event-details-form/event
     CommonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
+    MatButtonModule,
     RouterModule.forChild([
       {
         path: '',
