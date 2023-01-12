@@ -8,11 +8,12 @@ import { HomeComponent } from './home.component';
       {
         path: '',
         component: HomeComponent,
-        children: [],
-      },
-      {
-        path: 'create-event',
-        loadChildren: () => import('../../features/event/create-event.module'),
+        children: [
+          {
+            path: 'create-event',
+            loadChildren: () => import('../../features/event/create-event.module'),
+          },
+        ],
       },
     ]),
   ],
