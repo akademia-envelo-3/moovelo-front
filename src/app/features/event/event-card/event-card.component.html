@@ -16,7 +16,7 @@
   </div>
   <ng-container *ngIf="eventCard.eventInfo.hashtags as hashtags">
     <div class="event-card__hashtags">
-      <div class="event-card__hashtag font-text-1" *ngFor="let hashtag of hashtags">{{ hashtag.value }}</div>
+      <div class="event-card__hashtag font-text-1" *ngFor="let hashtag of hashtags">#{{ hashtag.value }}</div>
     </div>
   </ng-container>
 </div>

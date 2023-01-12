@@ -26,24 +26,16 @@ export default class ThemeComponent {
       hashtags: [
         {
           id: 1,
-          value: '#piwo',
+          value: 'piwo',
         },
         {
           id: 1,
-          value: '#piwo',
-        },
-        {
-          id: 1,
-          value: '#piwo',
-        },
-        {
-          id: 1,
-          value: '#piwo',
+          value: 'GigaTurboEssaKoks',
         },
       ],
       isConfirmationRequired: true,
       isPrivate: true,
-      group: false,
+      group: true,
       cycleLength: 0,
       city: 'Warszawa',
       acceptedStatusUsers: 10,
