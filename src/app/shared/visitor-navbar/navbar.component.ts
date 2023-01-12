@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -28,24 +28,32 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  /*
-  currentPosition!: number;
-  constructor(@Inject(DOCUMENT) private _document: Document) {
-    this._document.addEventListener('scroll', this.onContentScrolled);
+  private _document: any;
+
+  constructor(private _ngZone: NgZone) {}
+
+  ngOnInit() {
+    this.processOutsideOfAngularZone();
   }
 
-  ngOnDestroy() {
-    this._document.removeEventListener('scroll', this.onContentScrolled);
-  }
+  processOutsideOfAngularZone() {
+    let currentPosition: number;
 
-  onContentScrolled = () => {
-    let scroll = window.pageYOffset;
-    if (scroll > this.currentPosition) {
-      console.log('scrollDown');
-    } else {
-      console.log('scrollUp');
-    }
-    this.currentPosition = scroll;
-  };
-  */
+    this._ngZone.runOutsideAngular(() => {
+      document.addEventListener('scroll', () => onContentScrolled());
+
+      document.removeEventListener('scroll', () => onContentScrolled());
+
+      function onContentScrolled() {
+        let scroll = window.pageYOffset;
+
+        if (scroll > currentPosition) {
+          console.log('scrollDown');
+        } else {
+          console.log('scrollUp');
+        }
+        currentPosition = scroll;
+      }
+    });
+  }
 }
