@@ -1,4 +1,4 @@
-nav {
+.nav-bar {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -6,6 +6,12 @@ nav {
   position: sticky;
   background-color: #f7f7f7;
   height: 8vh;
+  transition-duration: 300ms;
+  transform: translateY(0);
+  &--visi {
+    transform: translateY(-8vh);
+    transition-duration: 300ms;
+  }
 }
 
 :root {
@@ -17,16 +23,14 @@ nav {
   flex-wrap: wrap;
   align-items: center;
   margin: 8px;
-}
-
-.nav__logo img {
-  width: 25%;
-}
-
-.nav__logo p {
-  padding-left: 8px;
-  font-size: 16px;
-  font-weight: bold;
+  img {
+    width: 25%;
+  }
+  p {
+    padding-left: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
 
 .nav__btn {
@@ -42,5 +46,5 @@ nav {
 }
 
 main {
-  width: 20vw;
+  width: 50vw;
 }

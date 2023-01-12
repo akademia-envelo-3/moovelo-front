@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, NgZone } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   template: `
-    <nav>
+    <nav class="nav-bar">
       <div class="nav__logo">
         <img src="./assets/logo.png" alt="logo aplikacji moovelo" />
         <p>Moovelo</p>
@@ -20,10 +20,25 @@ import { ChangeDetectionStrategy, Component, NgZone } from '@angular/core';
       distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet
       consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error
       perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore
-      maiores suscipit nihil est vero ipsam error perspiciati
+      maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciatis animi, et a quo
+      voluptatem nesciunt exercitationem itaque harum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor
+      sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero
+      ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi
+      dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciatiLorem ipsum
+      dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est
+      vero ipsam error perspiciatis animi, et a quo voluptatem nesciunt exercitationem itaque harum. Lorem ipsum dolor
+      sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero
+      ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi
+      dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum
+      dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est
+      vero ipsam error perspiciati
     </main>
   `,
-  styleUrls: ['./style.css'],
+  styleUrls: ['./style.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
@@ -37,6 +52,7 @@ export class NavbarComponent {
     let currentPosition: number;
 
     this._ngZone.runOutsideAngular(() => {
+      const navbar = document.querySelector('.nav-bar');
       document.addEventListener('scroll', () => onContentScrolled());
 
       document.removeEventListener('scroll', () => onContentScrolled());
@@ -45,9 +61,9 @@ export class NavbarComponent {
         const scroll = window.pageYOffset;
 
         if (scroll > currentPosition) {
-          console.log('scrollDown');
+          navbar?.classList.add('nav-bar--visi');
         } else {
-          console.log('scrollUp');
+          navbar?.classList.remove('nav-bar--visi');
         }
         currentPosition = scroll;
       }
