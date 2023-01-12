@@ -86,3 +86,9 @@ body {
 .font-text-2 {
   @include mat.typography-level($typography-config, 'body-2');
 }
+
+// Material slide toggle component
+
+.mdc-switch__track::before {
+  background-color: mat.get-color-from-palette($red-palette, 300) !important;
+}
