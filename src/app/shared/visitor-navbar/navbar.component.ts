@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -28,8 +27,6 @@ import { ChangeDetectionStrategy, Component, Inject, NgZone } from '@angular/cor
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  private _document: any;
-
   constructor(private _ngZone: NgZone) {}
 
   ngOnInit() {
@@ -45,7 +42,7 @@ export class NavbarComponent {
       document.removeEventListener('scroll', () => onContentScrolled());
 
       function onContentScrolled() {
-        let scroll = window.pageYOffset;
+        const scroll = window.pageYOffset;
 
         if (scroll > currentPosition) {
           console.log('scrollDown');
