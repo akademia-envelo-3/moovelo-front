@@ -83,6 +83,6 @@ body {
   @include mat.typography-level($typography-config, 'body-1');
 }
 
-.font-text-1 {
+.font-text-2 {
   @include mat.typography-level($typography-config, 'body-2');
 }
