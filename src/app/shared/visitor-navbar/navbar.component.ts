@@ -5,38 +5,12 @@ import { ChangeDetectionStrategy, Component, NgZone } from '@angular/core';
   template: `
     <nav class="nav-bar">
       <div class="nav__logo">
-        <img src="./assets/logo.png" alt="logo aplikacji moovelo" />
+        <img src="./assets/cow-grey.png" alt="logo aplikacji moovelo" />
         <p>Moovelo</p>
       </div>
 
       <button class="nav__btn">Zaloguj</button>
     </nav>
-
-    <main>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit
-      nihil est vero ipsam error perspiciatis animi, et a quo voluptatem nesciunt exercitationem itaque harum. Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil
-      est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga
-      distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error
-      perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore
-      maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciatis animi, et a quo
-      voluptatem nesciunt exercitationem itaque harum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero
-      ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi
-      dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciatiLorem ipsum
-      dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est
-      vero ipsam error perspiciatis animi, et a quo voluptatem nesciunt exercitationem itaque harum. Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero
-      ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi
-      dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est vero ipsam error perspiciati Lorem ipsum
-      dolor sit amet consectetur adipisicing elit. Accusantium fuga distinctio sequi dolore maiores suscipit nihil est
-      vero ipsam error perspiciati
-    </main>
   `,
   styleUrls: ['./style.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
