@@ -12,11 +12,12 @@ import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { LoginComponent } from './features/auth/login.component/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
+    MatButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({}),
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           {
             path: '',
             loadChildren: () => import('./features/home/home.module'),
+            component: LoginComponent,
           },
           {
             path: 'auth',

@@ -1,26 +1,41 @@
-.error{border-color:#fb968d;}
-form{
+@use '@angular/material' as mat;
+@import '../../../styles/palettes';
+
+.error {
+    border-color: mat.get-color-from-palette($red-warn-palette, 500);
+}
+
+form {
     border-radius: 20px;
-    background-color: #30475e;
+    background-color:mat.get-color-from-palette($blue-palette, 500);
     display:flex;
     align-items: center;
     flex-direction: column;
     margin: 32px 16px;
 }
-input{
+
+input {
     margin: 16px 0px;
 }
-button{
-    margin:16px 0px;
-}
-p{
-   text-align: center;
-    color: #fb968d;
-    margin: 0px 8px;
 
+button {
+    margin:16px 0px;
+    background:mat.get-color-from-palette($blue-palette, 700);
 }
-h1{
+
+p {
+    text-align: center;
+    color:mat.get-color-from-palette($red-warn-palette, 500);
+    margin: 0px 8px;
+}
+
+h1 {
     display:flex;
     align-items: center;
     flex-direction: column;
 }
+
+.login:not(:disabled) {
+    color:mat.get-color-from-palette($gray-palette, 300)
+}
+    
