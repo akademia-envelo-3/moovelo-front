@@ -2,19 +2,21 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { EventFormProvider } from '../../event-form-provider';
 
-interface EventForm {
+export interface EventForm {
   eventTypeForm: FormGroup<EventTypeForm>;
   eventDetailsForm: FormGroup<EventDetailsForm>;
 }
 
-interface EventTypeForm {
-  isConfirmationRequired: FormControl<boolean>;
-  limitedPlaces: FormControl<number>;
+export interface EventTypeForm {
+  isExternal: FormControl<boolean>;
   isPrivate: FormControl<boolean>;
+  isGroup: FormControl<boolean>;
 }
 
-interface EventDetailsForm {
+export interface EventDetailsForm {
   group: FormControl<null | number>;
+  isConfirmationRequired: FormControl<boolean>;
+  limitedPlaces: FormControl<number>;
   name: FormControl<string>;
   category: FormControl<string[]>;
   startDate: FormControl<string>;
@@ -46,12 +48,14 @@ export class CreateEventComponent extends EventFormProvider {
   private createForm() {
     return this.builder.group<EventForm>({
       eventTypeForm: this.builder.group({
-        isConfirmationRequired: this.builder.control(false),
-        limitedPlaces: this.builder.control(0),
+        isExternal: this.builder.control(false),
         isPrivate: this.builder.control(false),
+        isGroup: this.builder.control(false),
       }),
       eventDetailsForm: this.builder.group({
         group: this.builder.control<number | null>(null),
+        limitedPlaces: this.builder.control(0),
+        isConfirmationRequired: this.builder.control(false),
         name: this.builder.control(''),
         category: this.builder.control<string[]>([]),
         startDate: this.builder.control(''),

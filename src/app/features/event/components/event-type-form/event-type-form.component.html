@@ -1,10 +1,19 @@
 <form class="event-type-form" [formGroup]="eventTypeForm">
   <div class="event-type-form__toggle-container">
-    <h3 class="event-type-form__title font-heading-3">Czy twoje wydarzenie jest tylko dla osób zaproszonych?</h3>
-    <mat-slide-toggle color="primary" class=""></mat-slide-toggle>
+    <h3 class="event-type-form__title font-heading-3">{{ questions[page] }}</h3>
+    <mat-slide-toggle *ngIf="page === 0" color="primary" formControlName="isPrivate"></mat-slide-toggle>
+    <mat-slide-toggle *ngIf="page === 1" color="primary" formControlName="isGroup"></mat-slide-toggle>
+    <mat-slide-toggle *ngIf="page === 2" color="primary" formControlName="isExternal"></mat-slide-toggle>
   </div>
   <div class="event-type-form__button-container">
-    <button class="event-type-form__button" mat-flat-button color="primary">Wróć</button>
-    <button class="event-type-form__button" mat-flat-button color="primary">Dalej</button>
+    <button
+      class="event-type-form__button"
+      [ngClass]="{ 'event-type-form__button--hidden': !page }"
+      mat-flat-button
+      color="primary"
+      (click)="previousPage()">
+      Wróć
+    </button>
+    <button class="event-type-form__button" mat-flat-button color="primary" (click)="nextPage()">Dalej</button>
   </div>
 </form>
