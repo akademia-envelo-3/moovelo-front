@@ -21,6 +21,11 @@ import { MatButtonModule } from '@angular/material/button';
         component: CreateEventComponent,
         children: [
           {
+            path: '',
+            redirectTo: 'event-type',
+            pathMatch: 'full',
+          },
+          {
             path: 'event-type',
             component: EventTypeFormComponent,
           },
