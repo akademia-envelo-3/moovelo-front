@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+@import '../../../../styles/palettes';
+
+.event-type-form {
+  margin-top: 64px;
+  width: 100%;
+}
+
+.event-type-form__toggle-container {
+  background-color: mat.get-color-from-palette($gray-palette, 700);
+  min-height: 156px;
+  width: 100%;
+  max-width: 700px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.event-type-form__title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 16px;
+}
