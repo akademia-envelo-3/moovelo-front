@@ -3,7 +3,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { emailValidatorRegex } from './emailValidatorPattern';
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl: './login-form.component.html',
   styleUrls: ['./login.component.scss'],
 
   changeDetection: ChangeDetectionStrategy.OnPush,

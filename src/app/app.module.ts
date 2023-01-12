@@ -10,7 +10,7 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { LoginComponent } from './features/auth/login.component/login.component';
+import { LoginComponent } from './features/auth/login.component/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 @NgModule({
