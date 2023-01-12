@@ -30,7 +30,6 @@ import { MatButtonModule } from '@angular/material/button';
           {
             path: '',
             loadChildren: () => import('./features/home/home.module'),
-            component: LoginComponent,
           },
           {
             path: 'auth',
