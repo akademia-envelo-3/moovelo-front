@@ -1,0 +1,9 @@
+<div class="group-list">
+  <p class="font-heading-3">Lista Grup</p>
+  <div class="group-list__filtr font-text-1">Filtruj</div>
+  <ng-container *ngIf="groupList$ | async as groups; else loading">
+    <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
+  </ng-container>
+  <ng-template #loading> ...Loading</ng-template>
+  <button class="group-list__button" mat-raised-button color="primary">Stwórz grupę</button>
+</div>

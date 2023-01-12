@@ -8,7 +8,12 @@ import { HomeComponent } from './home.component';
       {
         path: '',
         component: HomeComponent,
-        children: [],
+        children: [
+          {
+            path: 'groups',
+            loadChildren: () => import('../group/group-list/group-list.module'),
+          },
+        ],
       },
     ]),
   ],
