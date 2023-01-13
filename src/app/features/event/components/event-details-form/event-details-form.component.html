@@ -4,44 +4,67 @@
     <mat-form-field color="primary">
       <mat-label>Title</mat-label>
       <input matInput formControlName="name" />
+      <mat-error *ngIf="nameCtrl.touched && nameCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['minlength'] as minLength"
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}</ng-container
+        >
+        <ng-container *ngIf="errors['maxlength'] as maxLength"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}</ng-container
+        >
+      </mat-error>
     </mat-form-field>
   </div>
-  <div class="confirmation-toggle">
-    <mat-label class="confirmation-toggle__label">Potwierdzenie obowiązkowe</mat-label>
+  <div class="toggle">
+    <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
     <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
   </div>
-  <fieldset class="details-form__fieldset">
-    <mat-form-field color="primary">
-      <mat-label>Data</mat-label>
-      <input matInput formControlName="startDate" />
+  <div class="toggle" *ngIf="isConfirmationRequiredCtrl.value">
+    <mat-label class="toggle__label">Ogranicznona liczba miejsc</mat-label>
+    <mat-slide-toggle color="primary" formControlName="isLimitedPlaces"></mat-slide-toggle>
+  </div>
+  <fieldset class="fieldset">
+    <mat-form-field *ngIf="isLimitedPlacesCtrl.value" color="primary">
+      <mat-label>Liczba osób</mat-label>
+      <input matInput formControlName="limitedPlaces" type="number" />
+      <mat-error *ngIf="limitedPlacesCtrl.touched && limitedPlacesCtrl.errors as errors">
+        <ng-container *ngIf="errors['min']">L. osób musi być większa od 0</ng-container>
+      </mat-error>
     </mat-form-field>
 
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="fieldset__input">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Godzina</mat-label>
       <input matInput formControlName="hour" />
     </mat-form-field>
 
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Kod pocztowy</mat-label>
       <input matInput formControlName="postCode" />
     </mat-form-field>
 
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Miasto</mat-label>
       <input matInput formControlName="city" />
     </mat-form-field>
 
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Ulica</mat-label>
       <input matInput formControlName="street" />
     </mat-form-field>
 
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Number domu</mat-label>
       <input matInput formControlName="streetNumber" />
     </mat-form-field>
 
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Lokal</mat-label>
       <input matInput formControlName="apartmentNumber" />
     </mat-form-field>
@@ -50,6 +73,7 @@
     <h3 class="font-heading-3">Opis wydarzenia</h3>
     <mat-form-field color="primary" appearance="fill" class="details-form__description">
       <textarea
+        formControlName="description"
         matInput
         placeholder="Dodaj opis..."
         cdkTextareaAutosize

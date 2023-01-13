@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { EventTypeFormComponent } from './components/event-type-form/event-type-form.component';
 import { EventDetailsFormComponent } from './components/event-details-form/event-details-form.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
@@ -17,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatSlideToggleModule,
     MatButtonModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forChild([
       {
         path: '',

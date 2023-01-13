@@ -15,6 +15,9 @@ export class EventDetailsFormComponent {
   constructor() {
     this.eventTypeForm = this.eventFormProvider.getForm().get('eventTypeForm') as FormGroup<EventTypeForm>;
     this.eventDetailsForm = this.eventFormProvider.getForm().get('eventDetailsForm') as FormGroup<EventDetailsForm>;
+    this.eventDetailsForm.valueChanges.subscribe(r => {
+      console.log(this.nameCtrl.errors);
+    });
   }
 
   eventTypeForm: FormGroup<EventTypeForm>;
@@ -23,5 +26,21 @@ export class EventDetailsFormComponent {
   get title() {
     const value = this.eventTypeForm.value;
     return `${value.isPrivate ? 'prywatne' : value.isGroup ? 'grupowe' : value.isInternal ? 'firmowe' : 'zewnętrzne'}`;
+  }
+
+  get isConfirmationRequiredCtrl() {
+    return this.eventDetailsForm.controls.isConfirmationRequired;
+  }
+
+  get nameCtrl() {
+    return this.eventDetailsForm.controls.name;
+  }
+
+  get isLimitedPlacesCtrl() {
+    return this.eventDetailsForm.controls.isLimitedPlaces;
+  }
+
+  get limitedPlacesCtrl() {
+    return this.eventDetailsForm.controls.limitedPlaces;
   }
 }

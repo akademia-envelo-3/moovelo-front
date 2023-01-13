@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { EventFormProvider } from '../../event-form-provider';
 
 export interface EventForm {
@@ -17,6 +17,7 @@ export interface EventDetailsForm {
   group: FormControl<null | number>;
   isConfirmationRequired: FormControl<boolean>;
   limitedPlaces: FormControl<number>;
+  isLimitedPlaces: FormControl<boolean>;
   name: FormControl<string>;
   category: FormControl<string[]>;
   startDate: FormControl<string>;
@@ -54,9 +55,14 @@ export class CreateEventComponent extends EventFormProvider {
       }),
       eventDetailsForm: this.builder.group({
         group: this.builder.control<number | null>(null),
-        limitedPlaces: this.builder.control(0),
+        limitedPlaces: this.builder.control(0, {
+          validators: [Validators.min(1)],
+        }),
+        isLimitedPlaces: this.builder.control(false),
         isConfirmationRequired: this.builder.control(false),
-        name: this.builder.control(''),
+        name: this.builder.control('', {
+          validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
+        }),
         category: this.builder.control<string[]>([]),
         startDate: this.builder.control(''),
         hour: this.builder.control(''),
