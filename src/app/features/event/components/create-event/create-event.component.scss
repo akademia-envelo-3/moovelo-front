@@ -4,21 +4,4 @@
 .create-event {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.create-event__heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 125px;
-  width: 100%;
-  background-color: mat.get-color-from-palette($blue-palette, 300);
-  border-bottom: 1px solid mat.get-color-from-palette($blue-palette, 900);
-}
-
-.create-event__title {
-  color: mat.get-color-from-palette($gray-palette, 500);
-  text-align: center;
-  width: 256px;
 }

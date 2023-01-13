@@ -1,16 +1,21 @@
 @use '@angular/material' as mat;
-@import '../../../../styles/palettes';
+@use '../../../../styles/palettes' as palette;
 
 .event-type-form {
-  margin-top: 64px;
   width: 100%;
 }
 
+.event-type-form__title {
+  text-align: center;
+  width: 256px;
+}
+
 .event-type-form__toggle-container {
-  background-color: mat.get-color-from-palette($gray-palette, 700);
+  background-color: mat.get-color-from-palette(palette.$gray-palette, 700);
   min-height: 156px;
   width: 100%;
-  max-width: 700px;
+  //max-width: 700px;
+  margin-top: 64px;
   padding: 16px;
   display: flex;
   align-items: center;
@@ -18,7 +23,7 @@
   flex-direction: column;
 }
 
-.event-type-form__title {
+.event-type-form__question {
   width: 100%;
   max-width: 700px;
   text-align: center;
