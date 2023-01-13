@@ -28,7 +28,7 @@ export class LoginComponent {
     return this.loginForm.controls.password;
   }
   get emailCtrl() {
-    return this.loginForm.controls.password;
+    return this.loginForm.controls.email;
   }
 
   checkValidationAndAuth = () => {

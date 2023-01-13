@@ -1,41 +1,43 @@
 @use '@angular/material' as mat;
-@import '../../../styles/palettes';
-
+@use '../../../styles/palettes' as palette;
 .error {
-    border-color: mat.get-color-from-palette($red-warn-palette, 500);
+    border-color: mat.get-color-from-palette(palette.$red-warn-palette, 500);
 }
 
-form {
+.form {
     border-radius: 20px;
-    background-color:mat.get-color-from-palette($blue-palette, 500);
+    background-color:mat.get-color-from-palette(palette.$blue-palette, 500);
     display:flex;
     align-items: center;
     flex-direction: column;
     margin: 32px 16px;
+    &__input {
+        margin: 16px 0px;
+        display: flex;
+        flex-direction: column;
+    }
+    &__warning {
+        text-align: center;
+        color:mat.get-color-from-palette(palette.$red-warn-palette, 500);
+        margin: 0px 8px;
+    }
 }
 
-input {
-    margin: 16px 0px;
-}
+
 
 button {
     margin:16px 0px;
-    background:mat.get-color-from-palette($blue-palette, 700);
+    background:mat.get-color-from-palette(palette.$blue-palette, 700);
 }
 
-p {
-    text-align: center;
-    color:mat.get-color-from-palette($red-warn-palette, 500);
-    margin: 0px 8px;
-}
 
-h1 {
+.header {
     display:flex;
     align-items: center;
     flex-direction: column;
 }
 
 .login:not(:disabled) {
-    color:mat.get-color-from-palette($gray-palette, 300)
+    color:mat.get-color-from-palette(palette.$gray-palette, 300);
 }
     
