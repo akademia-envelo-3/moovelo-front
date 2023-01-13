@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { SingleEventService } from './single-event.service';
 
 @Component({
   selector: 'app-single-event',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./singleEvent.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SingleEventComponent {}
+export class SingleEventComponent {
+  private singleEventService = inject(SingleEventService);
+}

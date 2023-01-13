@@ -12,7 +12,11 @@ import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { SingleEventComponent } from './features/event/single-event.component';
 import { singleEventReducer } from './features/event/store/single-event.reducer';
+import { SingleEventStateInterface } from './features/event/single-event.interface';
 
+export interface AppState {
+  SingleEvent: SingleEventStateInterface;
+}
 @NgModule({
   declarations: [AppComponent, SingleEventComponent],
   imports: [
