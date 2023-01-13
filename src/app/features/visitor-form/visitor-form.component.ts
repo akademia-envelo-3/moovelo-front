@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { emailValidatorRegex } from './emailValidatorPattern';
 
 @Component({
   standalone: true,
@@ -20,7 +21,7 @@ export class VisitorFormComponent {
       validators: [Validators.required, Validators.maxLength(20)],
     }),
     email: this.builder.control('', {
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required, Validators.maxLength(30), Validators.pattern(emailValidatorRegex)],
     }),
   });
 
