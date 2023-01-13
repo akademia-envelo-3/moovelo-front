@@ -11,7 +11,7 @@ export interface EventCardInfo {
   isConfirmationRequired: boolean;
   isPrivate: boolean;
   group: boolean;
-  cycleLength?: number;
+  isCyclic: boolean;
   city: string;
   acceptedStatusUsers: number;
 }

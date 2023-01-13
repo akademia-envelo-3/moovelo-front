@@ -9,6 +9,7 @@
       </p>
       <p class="event-details__type font-text-1" *ngIf="eventCard.eventInfo.isPrivate">Wydarzenie prywatne</p>
       <p class="event-details__type font-text-1" *ngIf="eventCard.eventInfo.group">Wydarzenie grupowe</p>
+      <p class="event-details__type font-text-1" *ngIf="eventCard.eventInfo.isCyclic">Wydarzenie cykliczne</p>
       <p class="font-text-1">Kategoria: {{ eventCard.eventInfo.category.name }}</p>
       <p class="font-text-1">Data: {{ eventCard.eventInfo.startDate }}</p>
       <div class="font-text-1">Miasto: {{ eventCard.eventInfo.city }}</div>
