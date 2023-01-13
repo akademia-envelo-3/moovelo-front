@@ -22,15 +22,15 @@ import { MatButtonModule } from '@angular/material/button';
         children: [
           {
             path: '',
-            redirectTo: 'event-type',
+            redirectTo: 'type',
             pathMatch: 'full',
           },
           {
-            path: 'event-type',
+            path: 'type',
             component: EventTypeFormComponent,
           },
           {
-            path: 'event-details',
+            path: 'details',
             component: EventDetailsFormComponent,
           },
         ],

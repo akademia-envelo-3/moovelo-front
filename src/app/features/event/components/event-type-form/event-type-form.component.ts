@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventFormProvider } from '../../event-form-provider';
 import { EventTypeForm } from '../create-event/create-event.component';
 
@@ -11,6 +12,8 @@ import { EventTypeForm } from '../create-event/create-event.component';
 })
 export class EventTypeFormComponent {
   private eventFormProvider = inject(EventFormProvider);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   page = 0;
   questions = [
@@ -25,21 +28,21 @@ export class EventTypeFormComponent {
 
   eventTypeForm: FormGroup<EventTypeForm>;
 
-  get isPrivate() {
+  private get isPrivate() {
     return this.eventTypeForm.value.isPrivate;
   }
 
-  get isGroup() {
+  private get isGroup() {
     return this.eventTypeForm.value.isGroup;
   }
 
-  get isExternal() {
+  private get isExternal() {
     return this.eventTypeForm.value.isExternal;
   }
 
   nextPage() {
     if (this.isPrivate || this.isGroup || this.isExternal || this.page >= 2) {
-      console.log('navigate next');
+      this.router.navigate(['../details'], { relativeTo: this.route });
     } else {
       this.page++;
     }
