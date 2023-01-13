@@ -1,8 +1,8 @@
 <div class="event-card">
   <div class="event-card__info">
-    <img src="../../../../assets/image 3.png" alt="event image" />
+    <img class="info__event-img" src="assets/eventCard.png" alt="event image" />
     <div class="info__event-details">
-      <p class="font-heading-3">{{ eventCard.eventInfo.name }}</p>
+      <h3 class="font-heading-3">{{ eventCard.eventInfo.name }}</h3>
       <p class="font-text-1">Uczestników: {{ eventCard.eventInfo.acceptedStatusUsers }}</p>
       <p class="event-details__type font-text-1" *ngIf="eventCard.eventInfo.isConfirmationRequired">
         Potwierdzenie wymagane

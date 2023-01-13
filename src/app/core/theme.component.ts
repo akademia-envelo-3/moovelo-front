@@ -29,7 +29,7 @@ export default class ThemeComponent {
           value: 'piwo',
         },
         {
-          id: 1,
+          id: 2,
           value: 'GigaTurboEssaKoks',
         },
       ],
