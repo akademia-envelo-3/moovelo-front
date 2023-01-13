@@ -9,6 +9,7 @@
     background-color: mat.get-color-from-palette($gray-palette, 300);
     padding: 16px;
     color: mat.get-color-from-palette($blue-palette, 500);
+    margin-bottom: 16px;
 }
 
 .group-list__button {
