@@ -1,5 +1,61 @@
-<form>
+<form class="details-form main-container" [formGroup]="eventDetailsForm">
   <div class="blue-container">
-    <h2 class="font-heading-2">Dodaj wydarzenie</h2>
+    <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
+    <mat-form-field color="primary">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
   </div>
+  <div class="confirmation-toggle">
+    <mat-label class="confirmation-toggle__label">Potwierdzenie obowiązkowe</mat-label>
+    <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
+  </div>
+  <fieldset class="details-form__fieldset">
+    <mat-form-field color="primary">
+      <mat-label>Data</mat-label>
+      <input matInput formControlName="startDate" />
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>Godzina</mat-label>
+      <input matInput formControlName="hour" />
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>Kod pocztowy</mat-label>
+      <input matInput formControlName="postCode" />
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>Miasto</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>Ulica</mat-label>
+      <input matInput formControlName="street" />
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>Number domu</mat-label>
+      <input matInput formControlName="streetNumber" />
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>Lokal</mat-label>
+      <input matInput formControlName="apartmentNumber" />
+    </mat-form-field>
+  </fieldset>
+  <div class="blue-container">
+    <h3 class="font-heading-3">Opis wydarzenia</h3>
+    <mat-form-field color="primary" appearance="fill" class="details-form__description">
+      <textarea
+        matInput
+        placeholder="Dodaj opis..."
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="15"></textarea>
+    </mat-form-field>
+  </div>
+  <button mat-flat-button color="primary">Zatwierdź</button>
 </form>

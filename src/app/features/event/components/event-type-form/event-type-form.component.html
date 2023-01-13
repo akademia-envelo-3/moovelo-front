@@ -7,7 +7,7 @@
       <h3 class="event-type-form__question font-heading-3">{{ questions[page] }}</h3>
       <mat-slide-toggle *ngIf="page === 0" color="primary" formControlName="isPrivate"></mat-slide-toggle>
       <mat-slide-toggle *ngIf="page === 1" color="primary" formControlName="isGroup"></mat-slide-toggle>
-      <mat-slide-toggle *ngIf="page === 2" color="primary" formControlName="isExternal"></mat-slide-toggle>
+      <mat-slide-toggle *ngIf="page === 2" color="primary" formControlName="isInternal"></mat-slide-toggle>
     </div>
     <div class="event-type-form__button-container">
       <button

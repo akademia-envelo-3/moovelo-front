@@ -8,7 +8,7 @@ export interface EventForm {
 }
 
 export interface EventTypeForm {
-  isExternal: FormControl<boolean>;
+  isInternal: FormControl<boolean>;
   isPrivate: FormControl<boolean>;
   isGroup: FormControl<boolean>;
 }
@@ -48,7 +48,7 @@ export class CreateEventComponent extends EventFormProvider {
   private createForm() {
     return this.builder.group<EventForm>({
       eventTypeForm: this.builder.group({
-        isExternal: this.builder.control(false),
+        isInternal: this.builder.control(false),
         isPrivate: this.builder.control(false),
         isGroup: this.builder.control(false),
       }),

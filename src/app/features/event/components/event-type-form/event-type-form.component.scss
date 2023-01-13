@@ -14,7 +14,6 @@
   background-color: mat.get-color-from-palette(palette.$gray-palette, 700);
   min-height: 156px;
   width: 100%;
-  //max-width: 700px;
   margin-top: 64px;
   padding: 16px;
   display: flex;
@@ -37,6 +36,7 @@
   justify-content: space-between;
   margin-top: 64px;
   padding: 0 8px;
+  margin: 15px;
 }
 
 .event-type-form__button--hidden {

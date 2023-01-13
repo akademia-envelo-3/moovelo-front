@@ -36,12 +36,12 @@ export class EventTypeFormComponent {
     return this.eventTypeForm.value.isGroup;
   }
 
-  private get isExternal() {
-    return this.eventTypeForm.value.isExternal;
+  private get isInternal() {
+    return this.eventTypeForm.value.isInternal;
   }
 
   nextPage() {
-    if (this.isPrivate || this.isGroup || this.isExternal || this.page >= 2) {
+    if (this.isPrivate || this.isGroup || this.isInternal || this.page >= 2) {
       this.router.navigate(['../details'], { relativeTo: this.route });
     } else {
       this.page++;
