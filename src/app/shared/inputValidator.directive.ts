@@ -5,7 +5,7 @@ import { NgControl } from '@angular/forms';
   standalone: true,
   selector: '[error][formControlName], [error][formControl]',
 })
-export class InputValidatorDirective {
+export class AppInputValidatorDirective {
   constructor(private control: NgControl) {}
   @HostBinding('class.error') get valid() {
     return this.control.errors && this.control.touched ? true : false;

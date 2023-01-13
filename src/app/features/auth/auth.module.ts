@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { InputValidatorDirective } from '@shared/inputValidator.directive';
+import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { LoginComponent } from './login.component/login-form.component';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { LoginComponent } from './login.component/login-form.component';
   imports: [
     CommonModule,
     MatInputModule,
-    InputValidatorDirective,
+    AppInputValidatorDirective,
     MatButtonModule,
     ReactiveFormsModule,
     RouterModule.forChild([

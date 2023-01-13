@@ -10,11 +10,11 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { InputValidatorDirective } from '@shared/inputValidator.directive';
+import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    InputValidatorDirective,
+    AppInputValidatorDirective,
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({}),

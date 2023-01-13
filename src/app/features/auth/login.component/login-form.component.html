@@ -14,7 +14,7 @@
   <ng-container *ngIf="loginForm.controls.email.errors as errors">
     <p color="primary" class="form__warning" *ngIf="errors['maxlength']">Email nie może być dłuższy niż 100 znaków.</p>
     <p color="primary" class="form__warning" *ngIf="errors['pattern']">
-      "Podaj poprawny adres email według wzoru: nazwa@domena.pl
+      Podaj poprawny adres email według wzoru: nazwa@domena.pl
     </p>
   </ng-container>
   <p
