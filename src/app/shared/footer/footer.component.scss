@@ -1,15 +1,18 @@
 @use '@angular/material' as mat;
-@import '../../styles/palettes';
+@use '../../styles/palettes' as palettes;
 
 .footer {
-    border-top: 2px solid mat.get-color-from-palette($blue-palette, 900);
-    color: mat.get-color-from-palette($blue-palette, 900);
+    border-top: 2px solid mat.get-color-from-palette(palettes.$blue-palette, 900);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 8px;
     gap: 8px;
     .footer__watermark{
-        color: mat.get-color-from-palette($gray-palette, 900);
+        color: mat.get-color-from-palette(palettes.$gray-palette, 900);
+    }
+    a {
+        text-decoration: none;
+        color: mat.get-color-from-palette(palettes.$blue-palette, 900);
     }
 }
