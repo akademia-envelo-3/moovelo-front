@@ -15,16 +15,16 @@ import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/cor
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  _ngZone = inject(NgZone);
+  private ngZone = inject(NgZone);
 
   ngOnInit() {
-    this.processOutsideOfAngularZone();
+    this.scrollDetection();
   }
 
-  processOutsideOfAngularZone() {
+  scrollDetection() {
     let currentPosition: number;
 
-    this._ngZone.runOutsideAngular(() => {
+    this.ngZone.runOutsideAngular(() => {
       const navbar = document.querySelector('.nav-bar');
       document.addEventListener('scroll', () => onContentScrolled());
 
@@ -34,9 +34,9 @@ export class NavbarComponent {
         const scroll = window.pageYOffset;
 
         if (scroll > currentPosition) {
-          navbar?.classList.add('nav-bar--visi');
+          navbar?.classList.add('nav-bar--visible');
         } else {
-          navbar?.classList.remove('nav-bar--visi');
+          navbar?.classList.remove('nav-bar--visible');
         }
         currentPosition = scroll;
       }

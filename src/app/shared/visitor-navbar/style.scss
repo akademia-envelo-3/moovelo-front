@@ -11,7 +11,7 @@
   height: 8vh;
   transition-duration: 300ms;
   transform: translateY(0);
-  &--visi {
+  &--visible {
     transform: translateY(-8vh);
     transition-duration: 300ms;
   }
