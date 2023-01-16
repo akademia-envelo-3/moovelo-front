@@ -1,65 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import patterns from '@shared/regex-patterns';
-import { EventFormProvider } from '../../event-form-provider';
-
-export interface EventForm {
-  eventTypeForm: FormGroup<EventTypeForm>;
-  eventDetailsForm: FormGroup<EventDetailsForm>;
-}
-
-export interface EventTypeForm {
-  isInternal: FormControl<boolean>;
-  isPrivate: FormControl<boolean>;
-  isGroup: FormControl<boolean>;
-}
-
-export interface EventDetailsForm {
-  group: FormControl<null | number>;
-  isConfirmationRequired: FormControl<boolean>;
-  limitedPlaces: FormControl<number>;
-  isLimitedPlaces: FormControl<boolean>;
-  name: FormControl<string>;
-  category: FormControl<string[]>;
-  startDate: FormControl<string>;
-  hour: FormControl<string>;
-  postCode: FormControl<string>;
-  city: FormControl<string>;
-  street: FormControl<string>;
-  streetNumber: FormControl<string>;
-  apartmentNumber: FormControl<string>;
-  description: FormControl<string>;
-  hashtags: FormControl<string[]>;
-}
-
-export const isHourInThePastValidator: ValidatorFn = (control: AbstractControl) => {
-  const today = new Date();
-  const startDateRaw = control.get('startDate')?.value as string | undefined;
-  const hour = control.get('hour')?.value as string | undefined;
-  if (startDateRaw && hour) {
-    const startDate = new Date(startDateRaw);
-    if (startDate.toDateString() === today.toDateString()) {
-      const hourSplitted = hour.split(':');
-      return today.getHours() < +hourSplitted[0] ||
-        (today.getHours() === +hourSplitted[0] && today.getMinutes() < +hourSplitted[1])
-        ? null
-        : { isHourInThePast: true };
-    }
-  }
-  return null;
-};
+import { EventForm } from '../create-event.interface';
+import { EventFormProvider } from '../event-form-provider';
+import { isHourInThePastValidator } from '../validators/isHourInThePastValidator';
 
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
-  styleUrls: ['./create-event.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: EventFormProvider, useExisting: CreateEventComponent }],
 })
@@ -81,9 +29,12 @@ export class CreateEventComponent extends EventFormProvider {
       eventDetailsForm: this.builder.group(
         {
           group: this.builder.control<number | null>(null),
-          limitedPlaces: this.builder.control(0, {
-            validators: [Validators.required, Validators.min(1)],
-          }),
+          limitedPlaces: this.builder.control(
+            { value: 1, disabled: true },
+            {
+              validators: [Validators.required, Validators.min(1), Validators.max(10000)],
+            }
+          ),
           isLimitedPlaces: this.builder.control(false),
           isConfirmationRequired: this.builder.control(false),
           name: this.builder.control('', {

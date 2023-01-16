@@ -11,7 +11,7 @@ import { HomeComponent } from './home.component';
         children: [
           {
             path: 'create-event',
-            loadChildren: () => import('../../features/event/create-event.module'),
+            loadChildren: () => import('../create-event/create-event.module'),
           },
         ],
       },

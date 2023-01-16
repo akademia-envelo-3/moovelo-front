@@ -1,4 +1,4 @@
-<form class="details-form main-container" [formGroup]="eventDetailsForm">
+<form class="details-form main-container" [formGroup]="eventDetailsForm" (ngSubmit)="handleSubmit()">
   <div class="blue-container">
     <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
     <mat-form-field color="primary">
@@ -20,7 +20,7 @@
     <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
   </div>
   <div class="toggle" *ngIf="isConfirmationRequiredCtrl.value">
-    <mat-label class="toggle__label">Ogranicznona liczba miejsc</mat-label>
+    <mat-label class="toggle__label">Ograniczona liczba miejsc</mat-label>
     <mat-slide-toggle color="primary" formControlName="isLimitedPlaces"></mat-slide-toggle>
   </div>
   <fieldset class="fieldset">
@@ -38,6 +38,7 @@
       <input matInput [matDatepicker]="picker" [min]="today" formControlName="startDate" />
       <mat-error *ngIf="startDateCtrl.errors as errors">
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['matDatepickerMin']">Data nie może być w przeszłości.</ng-container>
       </mat-error>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -133,5 +134,5 @@
       <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
     </mat-form-field>
   </div>
-  <p mat-flat-button color="primary" (click)="handleClick()">Zatwierdź</p>
+  <button mat-flat-button color="primary">Zatwierdź</button>
 </form>

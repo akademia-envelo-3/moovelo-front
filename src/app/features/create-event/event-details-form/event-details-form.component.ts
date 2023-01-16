@@ -1,16 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AbstractControl, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
-import { EventFormProvider } from '../../event-form-provider';
-import { EventTypeForm, EventDetailsForm } from '../create-event/create-event.component';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-export class HourErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: AbstractControl<any, any> | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    if (form?.hasError('isHourInThePast')) return true;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { EventFormProvider } from '../event-form-provider';
+import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
+import { Subject, takeUntil } from 'rxjs';
+import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 
 @Component({
   selector: 'app-event-details-form',
@@ -18,8 +11,9 @@ export class HourErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./event-details-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventDetailsFormComponent {
+export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private eventFormProvider = inject(EventFormProvider);
+  private unsubscribe$ = new Subject<void>();
 
   constructor() {
     this.eventTypeForm = this.eventFormProvider.getForm().get('eventTypeForm') as FormGroup<EventTypeForm>;
@@ -32,22 +26,20 @@ export class EventDetailsFormComponent {
   hourMatcher = new HourErrorStateMatcher();
 
   ngOnInit() {
-    this.isLimitedPlacesCtrl.valueChanges.subscribe(value => {
-      if (value) {
-        this.limitedPlacesCtrl.enable();
-      } else {
-        this.limitedPlacesCtrl.disable();
-      }
+    this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe(value => {
+      value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
-  }
-
-  handleClick() {
-    console.log(this.postCodeCtrl.errors);
   }
 
   get title() {
     const value = this.eventTypeForm.value;
     return `${value.isPrivate ? 'prywatne' : value.isGroup ? 'grupowe' : value.isInternal ? 'firmowe' : 'zewnętrzne'}`;
+  }
+
+  handleSubmit() {
+    console.log(this.startDateCtrl.errors);
+    this.eventDetailsForm.markAllAsTouched();
+    if (this.eventDetailsForm.invalid) return;
   }
 
   get isConfirmationRequiredCtrl() {
@@ -96,5 +88,10 @@ export class EventDetailsFormComponent {
 
   get descriptionCtrl() {
     return this.eventDetailsForm.controls.description;
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
