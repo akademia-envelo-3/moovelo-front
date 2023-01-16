@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NavbarScrollService } from './navbar-scroll.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,42 +12,21 @@ import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/cor
       <div class="nav__icons">
         <mat-icon
           aria-hidden="false"
-          aria-label="menu"
+          aria-label="notyfikacje"
           fontIcon="notifications"
           class="nav__icons__notifications"></mat-icon>
         <mat-icon aria-hidden="false" aria-label="menu" class="nav__icons__menu" fontIcon="menu"></mat-icon>
       </div>
+      <div class="nav__menu"></div>
     </nav>
   `,
   styleUrls: ['./style.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  _ngZone = inject(NgZone);
+  private navbarScroll = inject(NavbarScrollService);
 
   ngOnInit() {
-    this.processOutsideOfAngularZone();
-  }
-
-  processOutsideOfAngularZone() {
-    let currentPosition: number;
-
-    this._ngZone.runOutsideAngular(() => {
-      const navbar = document.querySelector('.nav-bar');
-      document.addEventListener('scroll', () => onContentScrolled());
-
-      document.removeEventListener('scroll', () => onContentScrolled());
-
-      function onContentScrolled() {
-        const scroll = window.pageYOffset;
-
-        if (scroll > currentPosition) {
-          navbar?.classList.add('nav-bar--visi');
-        } else {
-          navbar?.classList.remove('nav-bar--visi');
-        }
-        currentPosition = scroll;
-      }
-    });
+    this.navbarScroll.processOutsideOfAngularZone();
   }
 }
