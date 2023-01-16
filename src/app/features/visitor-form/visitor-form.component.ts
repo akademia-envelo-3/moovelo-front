@@ -38,8 +38,6 @@ export class VisitorFormComponent {
 
     if (this.joinForm.invalid) {
       return;
-    } else {
-      console.log(this.joinForm.value);
     }
   }
 }
