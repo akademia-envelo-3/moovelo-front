@@ -1,37 +1,28 @@
 <form [formGroup]="joinForm" (ngSubmit)="submitForm()" class="form font-text-1">
-  <input
-    placeholder="Imię"
-    formControlName="firstName"
-    class="form__input font-text-1"
-    [class.form__error]="joinCtrl.firstName.errors && joinCtrl.firstName.touched" />
-  <ng-container *ngIf="joinCtrl.firstName.errors as errors">
-    <ng-container *ngIf="joinCtrl.firstName.touched">
-      <p *ngIf="errors['required']" class="form__error__text font-text-1">To pole jest obowiązkowe!</p>
-      <p *ngIf="errors['maxlength']" class="form__error__text font-text-1">Zbyt długi tekst</p>
-    </ng-container>
-  </ng-container>
-  <input
-    placeholder="Nazwisko"
-    formControlName="lastName"
-    class="form__input font-text-1"
-    [class.form__error]="joinCtrl.lastName.errors && joinCtrl.lastName.touched" />
-  <ng-container *ngIf="joinCtrl.lastName.errors as errors">
-    <ng-container *ngIf="joinCtrl.lastName.touched">
-      <p *ngIf="errors['required']" class="form__error__text font-text-1">To pole jest obowiązkowe!</p>
-      <p *ngIf="errors['maxlength']" class="form__error__text font-text-1">Zbyt długi tekst</p>
-    </ng-container>
-  </ng-container>
-  <input
-    placeholder="E-Mail"
-    formControlName="email"
-    class="form__input font-text-1"
-    [class.form__error]="joinCtrl.email.errors && joinCtrl.email.touched" />
-  <ng-container *ngIf="joinCtrl.email.errors as errors">
-    <ng-container *ngIf="joinCtrl.email.touched">
-      <p *ngIf="errors['required']" class="form__error__text font-text-1">To pole jest obowiązkowe!</p>
-      <p *ngIf="errors['pattern']" class="form__error__text font-text-1">Proszę podać właściwy adres e-mail</p>
-      <p *ngIf="errors['maxlength']" class="form__error__text font-text-1">Zbyt długi tekst</p>
-    </ng-container>
-  </ng-container>
+  <mat-form-field color="primary" class=".form__input">
+    <mat-label>Imię</mat-label>
+    <input matInput type="firstName" formControlName="name" class="font-text-1" />
+    <mat-error *ngIf="joinCtrl.name.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="primary" class=".form__input">
+    <mat-label>Nazwisko</mat-label>
+    <input matInput type="lastName" formControlName="lastName" class="font-text-1" />
+    <mat-error *ngIf="joinCtrl.lastName.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="primary" class=".form__input">
+    <mat-label>E-mail</mat-label>
+    <input matInput type="email" formControlName="email" class="font-text-1" />
+    <mat-error *ngIf="joinCtrl.email.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+      <ng-container *ngIf="errors['pattern']">Proszę podać właściwy adres e-mail!</ng-container>
+    </mat-error>
+  </mat-form-field>
+
   <button mat-raised-button class="form__button">Zarezerwuj</button>
 </form>

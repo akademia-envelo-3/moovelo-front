@@ -11,7 +11,6 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-// import { VisitorFormComponent } from './features/visitor-form/visitor-form.component';
 
 @NgModule({
   declarations: [AppComponent],
