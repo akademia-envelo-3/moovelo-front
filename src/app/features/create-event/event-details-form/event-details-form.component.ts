@@ -37,7 +37,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   }
 
   handleSubmit() {
-    console.log(this.startDateCtrl.errors);
     this.eventDetailsForm.markAllAsTouched();
     if (this.eventDetailsForm.invalid) return;
   }
