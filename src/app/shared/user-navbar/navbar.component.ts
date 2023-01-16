@@ -15,16 +15,42 @@ import { NavbarScrollService } from './navbar-scroll.service';
           aria-label="notyfikacje"
           fontIcon="notifications"
           class="nav__icons__notifications"></mat-icon>
-        <mat-icon aria-hidden="false" aria-label="menu" class="nav__icons__menu" fontIcon="menu"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="menu"
+          class="nav__icons__menu"
+          [fontIcon]="menu ? 'clearSharp' : 'menu'"
+          (click)="showMenu()"></mat-icon>
       </div>
-      <div class="nav__menu"></div>
     </nav>
+    <div [ngClass]="menu ? 'nav__menu' : 'nav__menu--hide'">
+      <ul class="nav__menu__list">
+        <li>Wydarzenia</li>
+      </ul>
+      <ul class="nav__menu__list">
+        <li>Moje Wydarzenia</li>
+      </ul>
+      <ul class="nav__menu__list">
+        <li>Wydarzenia</li>
+      </ul>
+      <ul class="nav__menu__list">
+        <li>Wydarzenia</li>
+      </ul>
+      <ul class="nav__menu__list">
+        <li>Wydarzenia</li>
+      </ul>
+    </div>
   `,
   styleUrls: ['./style.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
+  menu = false;
   private navbarScroll = inject(NavbarScrollService);
+
+  showMenu() {
+    this.menu = !this.menu;
+  }
 
   ngOnInit() {
     this.navbarScroll.processOutsideOfAngularZone();
