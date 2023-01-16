@@ -77,4 +77,24 @@ export class EventDetailsFormComponent {
   get postCodeCtrl() {
     return this.eventDetailsForm.controls.postCode;
   }
+
+  get cityCtrl() {
+    return this.eventDetailsForm.controls.city;
+  }
+
+  get streetCtrl() {
+    return this.eventDetailsForm.controls.street;
+  }
+
+  get streetNumberCtrl() {
+    return this.eventDetailsForm.controls.streetNumber;
+  }
+
+  get apartmentNumberCtrl() {
+    return this.eventDetailsForm.controls.apartmentNumber;
+  }
+
+  get descriptionCtrl() {
+    return this.eventDetailsForm.controls.description;
+  }
 }

@@ -100,12 +100,20 @@ export class CreateEventComponent extends EventFormProvider {
             validators: [Validators.required, Validators.pattern(patterns.postCode)],
           }),
           city: this.builder.control('', {
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
           }),
-          street: this.builder.control(''),
-          streetNumber: this.builder.control(''),
-          apartmentNumber: this.builder.control(''),
-          description: this.builder.control(''),
+          street: this.builder.control('', {
+            validators: [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
+          }),
+          streetNumber: this.builder.control('', {
+            validators: [Validators.required, Validators.maxLength(10)],
+          }),
+          apartmentNumber: this.builder.control('', {
+            validators: [Validators.maxLength(5)],
+          }),
+          description: this.builder.control('', {
+            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4000)],
+          }),
           hashtags: this.builder.control<string[]>([]),
         },
         { validators: isHourInThePastValidator }

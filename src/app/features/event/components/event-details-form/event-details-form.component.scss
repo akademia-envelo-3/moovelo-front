@@ -8,6 +8,11 @@
   &__title {
     row-gap: 16px;
   }
+
+  &__description {
+    max-width: 450px;
+    width: 100%;
+  }
 }
 
 .toggle {

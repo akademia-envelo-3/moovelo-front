@@ -56,29 +56,59 @@
       <mat-label>Kod pocztowy</mat-label>
       <mat-hint>np. 00-000</mat-hint>
       <input matInput formControlName="postCode" />
-      <mat-error *ngIf="startDateCtrl.errors as errors">
+      <mat-error *ngIf="postCodeCtrl.errors as errors">
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['pattern']">Kod pocztowy jest w złym formacie.</ng-container>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Miasto</mat-label>
       <input matInput formControlName="city" />
+      <mat-error *ngIf="cityCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['minlength'] as minLength"
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+        >
+        <ng-container *ngIf="errors['maxlength'] as maxLength"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+        >
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Ulica</mat-label>
       <input matInput formControlName="street" />
+      <mat-error *ngIf="streetCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['minlength'] as minLength"
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+        >
+        <ng-container *ngIf="errors['maxlength'] as maxLength"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+        >
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Numer domu</mat-label>
       <input matInput formControlName="streetNumber" />
+      <mat-error *ngIf="streetNumberCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['maxlength'] as maxLength"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+        >
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Lokal</mat-label>
       <input matInput formControlName="apartmentNumber" />
+      <mat-error *ngIf="apartmentNumberCtrl.errors as errors">
+        <ng-container *ngIf="errors['maxlength'] as maxLength"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+        >
+      </mat-error>
     </mat-form-field>
   </fieldset>
   <div class="blue-container">
@@ -91,6 +121,16 @@
         cdkTextareaAutosize
         cdkAutosizeMinRows="5"
         cdkAutosizeMaxRows="15"></textarea>
+      <mat-error *ngIf="descriptionCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['minlength'] as minLength"
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+        >
+        <ng-container *ngIf="errors['maxlength'] as maxLength"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+        >
+      </mat-error>
+      <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
     </mat-form-field>
   </div>
   <p mat-flat-button color="primary" (click)="handleClick()">Zatwierdź</p>
