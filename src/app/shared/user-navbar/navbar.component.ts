@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   template: `
     <nav class="nav-bar">
       <div class="nav__logo">
-        <img src="./assets/cow-grey.png" alt="logo aplikacji moovelo" />
-        <p>Moovelo</p>
+        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav__logo__image" />
+        <p class="nav__logo__padding">Moovelo</p>
       </div>
 
       <button class="nav__btn">Zaloguj</button>
@@ -16,7 +16,7 @@ import { ChangeDetectionStrategy, Component, NgZone } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  constructor(private _ngZone: NgZone) {}
+  _ngZone = inject(NgZone);
 
   ngOnInit() {
     this.processOutsideOfAngularZone();
