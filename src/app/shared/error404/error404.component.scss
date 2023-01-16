@@ -4,14 +4,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .error__text{
+    &__text{
         text-align: center;
     }
-    .error__logo {
+    &__logo {
         display: flex;
         justify-content: center;
         padding: 32px;
-        .error__logo__image{
+        &__image{
             max-width: 274px;
         }
     }
