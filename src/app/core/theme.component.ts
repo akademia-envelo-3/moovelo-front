@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { EventCard, EventCardComponent } from '../features/event';
+import { GroupItemComponent } from '../features/group';
+import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 
 @Component({
   selector: 'app-theme',
-  imports: [EventCardComponent],
+  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent],
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
