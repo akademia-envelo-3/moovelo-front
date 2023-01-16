@@ -9,6 +9,13 @@ import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
+    <h2>Loader</h2>
+    <app-cow-loader></app-cow-loader>
+
+    <h2>Pojedyncza grupa w liście</h2>
+    <app-group-list-item
+      [groupItem]="{ id: 0, name: 'Nowa grupa', description: 'Bardzo fajna nowa grupa' }"></app-group-list-item>
+
     <h2>Event Card Component</h2>
     <div style="padding: 8px 8px;">
       <app-event-card [eventCard]="event"></app-event-card>
