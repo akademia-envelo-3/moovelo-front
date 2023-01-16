@@ -15,6 +15,11 @@ export class EventTypeFormComponent {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
+  constructor() {
+    this.eventTypeForm = this.eventFormProvider.getForm().get('eventTypeForm') as FormGroup<EventTypeForm>;
+  }
+
+  eventTypeForm: FormGroup<EventTypeForm>;
   page = 0;
   questions = [
     'Czy twoje wydarzenie jest tylko dla osób zaproszonych?',
@@ -22,11 +27,9 @@ export class EventTypeFormComponent {
     'Czy twoje wydarzenie ma być tylko dla osób z firmy?',
   ];
 
-  constructor() {
-    this.eventTypeForm = this.eventFormProvider.getForm().get('eventTypeForm') as FormGroup<EventTypeForm>;
+  ngOnInit() {
+    this.eventTypeForm.reset();
   }
-
-  eventTypeForm: FormGroup<EventTypeForm>;
 
   private get isPrivate() {
     return this.eventTypeForm.value.isPrivate;
