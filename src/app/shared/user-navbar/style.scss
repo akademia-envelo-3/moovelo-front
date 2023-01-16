@@ -3,7 +3,7 @@
 
 .nav-bar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   top: 0;
   position: sticky;
@@ -32,13 +32,11 @@
   }
 }
 
-.nav__btn {
-  background-color: mat.get-color-from-palette(palette.$blue-palette, 700);
-  border: none;
-  color: mat.get-color-from-palette(palette.$gray-palette, 100);
-  padding: 8px 16px;
-  text-align: center;
-  display: inline-block;
-  margin: 8px;
-  border-radius: 4px;
+.nav__icons {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  &__notifications {
+    margin-right: 16px;
+  }
 }

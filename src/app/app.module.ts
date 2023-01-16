@@ -10,6 +10,7 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { NavbarComponent } from './shared/user-navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -26,6 +27,7 @@ import { NavbarComponent } from './shared/user-navbar/navbar.component';
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
+    MatIconModule,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

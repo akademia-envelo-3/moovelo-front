@@ -8,8 +8,14 @@ import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/cor
         <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav__logo__image" />
         <p class="nav__logo__padding">Moovelo</p>
       </div>
-
-      <button class="nav__btn">Zaloguj</button>
+      <div class="nav__icons">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="menu"
+          fontIcon="notifications"
+          class="nav__icons__notifications"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="menu" class="nav__icons__menu" fontIcon="menu"></mat-icon>
+      </div>
     </nav>
   `,
   styleUrls: ['./style.scss'],
