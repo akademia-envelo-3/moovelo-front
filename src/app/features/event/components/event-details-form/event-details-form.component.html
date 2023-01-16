@@ -2,15 +2,15 @@
   <div class="blue-container">
     <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
     <mat-form-field color="primary">
-      <mat-label>Title</mat-label>
+      <mat-label>Nazwa wydarzenia</mat-label>
       <input matInput formControlName="name" />
-      <mat-error *ngIf="nameCtrl.touched && nameCtrl.errors as errors">
+      <mat-error *ngIf="nameCtrl.errors as errors">
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
         <ng-container *ngIf="errors['minlength'] as minLength"
-          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}</ng-container
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
         >
         <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}</ng-container
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
         >
       </mat-error>
     </mat-form-field>
@@ -27,26 +27,38 @@
     <mat-form-field *ngIf="isLimitedPlacesCtrl.value" color="primary">
       <mat-label>Liczba osób</mat-label>
       <input matInput formControlName="limitedPlaces" type="number" />
-      <mat-error *ngIf="limitedPlacesCtrl.touched && limitedPlacesCtrl.errors as errors">
-        <ng-container *ngIf="errors['min']">L. osób musi być większa od 0</ng-container>
+      <mat-error *ngIf="limitedPlacesCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['min']">L. osób musi być większa od 0.</ng-container>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="picker" />
+      <input matInput [matDatepicker]="picker" [min]="today" formControlName="startDate" />
+      <mat-error *ngIf="startDateCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+      </mat-error>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Godzina</mat-label>
-      <input matInput formControlName="hour" />
+      <input matInput formControlName="hour" type="time" [errorStateMatcher]="hourMatcher" />
+      <mat-error *ngIf="eventDetailsForm.hasError('isHourInThePast')">Godzina nie może być w przeszłości.</mat-error>
+      <mat-error *ngIf="hourCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Kod pocztowy</mat-label>
+      <mat-hint>np. 00-000</mat-hint>
       <input matInput formControlName="postCode" />
+      <mat-error *ngIf="startDateCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
@@ -60,7 +72,7 @@
     </mat-form-field>
 
     <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Number domu</mat-label>
+      <mat-label>Numer domu</mat-label>
       <input matInput formControlName="streetNumber" />
     </mat-form-field>
 
@@ -81,5 +93,5 @@
         cdkAutosizeMaxRows="15"></textarea>
     </mat-form-field>
   </div>
-  <button mat-flat-button color="primary">Zatwierdź</button>
+  <p mat-flat-button color="primary" (click)="handleClick()">Zatwierdź</p>
 </form>
