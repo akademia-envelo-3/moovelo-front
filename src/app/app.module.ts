@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
