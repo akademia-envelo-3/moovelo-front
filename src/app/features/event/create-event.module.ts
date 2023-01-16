@@ -10,6 +10,7 @@ import { EventDetailsFormComponent } from './components/event-details-form/event
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
@@ -47,5 +48,6 @@ import { MatNativeDateModule } from '@angular/material/core';
       },
     ]),
   ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export default class CreateEventModule {}
