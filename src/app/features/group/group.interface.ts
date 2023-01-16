@@ -3,3 +3,8 @@ export interface GroupListItem {
   name: string;
   description: string;
 }
+
+export interface GroupListError {
+  isError: boolean;
+  errorStatus: number;
+}

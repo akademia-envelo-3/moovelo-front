@@ -11,5 +11,6 @@ import { GroupListService } from './group-list.service';
 export class GroupListComponent {
   private groupListService = inject(GroupListService);
 
+  error$ = this.groupListService.error$;
   groupList$ = this.groupListService.getAllGroups();
 }

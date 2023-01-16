@@ -1,9 +1,19 @@
 <div class="group-list">
   <div class="group-list__filtr font-text-1">Filtruj</div>
   <p class="font-heading-3">Lista Grup</p>
-  <ng-container *ngIf="groupList$ | async as groups; else loading">
+  <ng-container *ngIf="groupList$ | async as groups; else loadingOrError">
     <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
+    <button class="group-list__button" mat-raised-button color="primary">Stwórz grupę</button>
   </ng-container>
-  <ng-template #loading>...Loading</ng-template>
-  <button class="group-list__button" mat-raised-button color="primary">Stwórz grupę</button>
+  <ng-template #loadingOrError>
+    <ng-container *ngIf="error$ | async as error">
+      <ng-container *ngIf="error.isError; else loading">
+        Coś poszło nie tak. Status błędu: {{ error.errorStatus }}
+      </ng-container>
+      <ng-template #loading>
+        <app-cow-loader></app-cow-loader>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+  <!-- <button class="group-list__button" mat-raised-button color="primary">Stwórz grupę</button> -->
 </div>
