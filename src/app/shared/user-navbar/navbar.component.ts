@@ -10,29 +10,29 @@ import users from './users.config';
   imports: [CommonModule, MatIconModule],
   template: `
     <nav class="nav-bar">
-      <div class="nav__logo">
-        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav__logo__image" />
-        <p class="nav__logo__padding">Moovelo</p>
+      <div class="nav-bar__logo">
+        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav-bar__image" />
+        <p class="nav-bar__padding">Moovelo</p>
       </div>
-      <div class="nav__icons">
+      <div class="nav-icons">
         <mat-icon
           aria-hidden="false"
           aria-label="notyfikacje"
           fontIcon="notifications"
-          class="nav__icons__notifications"></mat-icon>
+          class="nav-icons__notifications"></mat-icon>
         <mat-icon
           aria-hidden="false"
           aria-label="menu"
-          class="nav__icons__menu"
+          class="nav-icons__menu"
           [fontIcon]="menu ? 'clearSharp' : 'menu'"
           (click)="showMenu()"></mat-icon>
       </div>
     </nav>
-    <div [ngClass]="menu ? 'nav__menu' : 'nav__menu--hide'">
-      <ul class="nav__menu__list" *ngFor="let listValue of navbarList">
+    <div [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
+      <ul class="nav-menu__list" *ngFor="let listValue of navbarList">
         <li>{{ listValue }}</li>
       </ul>
-      <div [ngClass]="menu ? 'nav__menu__blur' : ''" (click)="showMenu()"></div>
+      <div [ngClass]="menu ? 'nav-menu--bluring' : ''" (click)="showMenu()"></div>
     </div>
   `,
   styleUrls: ['./style.scss'],
