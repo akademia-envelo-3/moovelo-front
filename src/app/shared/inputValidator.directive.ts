@@ -1,4 +1,4 @@
-import { Directive, HostBinding } from '@angular/core';
+import { Directive, HostBinding, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({
@@ -6,7 +6,7 @@ import { NgControl } from '@angular/forms';
   selector: '[error][formControlName], [error][formControl]',
 })
 export class AppInputValidatorDirective {
-  constructor(private control: NgControl) {}
+  control = inject(NgControl);
   @HostBinding('class.error') get valid() {
     return this.control.errors && this.control.touched ? true : false;
   }

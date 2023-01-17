@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { emailValidatorRegex } from './emailValidatorPattern';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login-form.component.html',
@@ -31,10 +32,10 @@ export class LoginComponent {
     return this.loginForm.controls.email;
   }
 
-  checkValidationAndAuth = () => {
+  checkValidationAndAuth() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
       return;
     }
-  };
+  }
 }
