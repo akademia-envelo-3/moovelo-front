@@ -28,13 +28,14 @@ import users from './users.config';
       <ul class="nav__menu__list" *ngFor="let listValue of navbarList">
         <li>{{ listValue }}</li>
       </ul>
+      <div [ngClass]="menu ? 'nav__menu__blur' : ''" (click)="showMenu()"></div>
     </div>
   `,
   styleUrls: ['./style.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  userState = 'admin';
+  private userState = 'user';
   menu = false;
   navbarList: Array<string> = [];
   private navbarScroll = inject(NavbarScrollService);
