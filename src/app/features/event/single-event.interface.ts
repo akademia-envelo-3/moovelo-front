@@ -24,7 +24,7 @@ export interface group {
 }
 
 export interface SingleEventStateInterface {
-  eventId: string;
+  id: string;
   eventInfo: EventInfo;
 }
 export interface category {

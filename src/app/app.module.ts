@@ -14,7 +14,7 @@ import { singleEventReducer } from './features/event/store/single-event.reducer'
 import { SingleEventStateInterface } from './features/event/single-event.interface';
 
 export interface AppState {
-  SingleEvent: SingleEventStateInterface;
+  singleEvent: SingleEventStateInterface;
 }
 @NgModule({
   declarations: [AppComponent, SingleEventComponent],

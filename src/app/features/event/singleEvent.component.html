@@ -1,1 +1,32 @@
-<p>Worsk</p>
+<ng-container *ngIf="eventInfo$ | async as eventInfo">
+  <ng-container *ngIf="eventInfo.group">
+    <p>Grupa {{ eventInfo.group.name }}</p>
+  </ng-container>
+  <ng-container *ngIf="eventInfo.isPrivate"><p>wydarzenie prywatne</p> </ng-container>
+  <ng-container *ngIf="eventInfo.isConfirmationRequired"><p>ZAPIS OBOWIĄZKOWY</p> </ng-container>
+  <ng-container *ngIf="eventInfo.limitedPlaces"
+    >Liczba dostępnych miejsc: {{ eventInfo.limitedPlaces - eventInfo.eventParticipationStats.accepted }}
+  </ng-container>
+  <p>{{ eventInfo.name }}</p>
+  <div class="category_picture">
+    <img alt="kategoria piwo" src="../../../assets/eventpicture.png" />
+  </div>
+  <ng-container *ngIf="eventInfo.cycleLenght"><p>wydarzenie cykliczne</p> </ng-container>
+  <button>{{ eventInfo.eventParticipationStats.accepted }}</button>
+  <button>{{ eventInfo.eventParticipationStats.pending }}</button>
+  <button>{{ eventInfo.eventParticipationStats.rejected }}</button>
+  <p>Adres: {{ eventInfo.location.city }}</p>
+  <p>Data: {{ eventInfo.startDate }}</p>
+  <p>Godzina: {{ eventInfo.hour }}</p>
+  <p>Kategoria: {{ eventInfo.category.name }}</p>
+  <button>?</button>
+  <button>?</button>
+  <button>?</button>
+  <ng-container *ngIf="eventInfo.isPrivate">
+    <button><a>skopiuj link</a></button>
+  </ng-container>
+  <p>{{ eventInfo.description }}</p>
+  <ol>
+    <li *ngFor="let hashtags of eventInfo.hashtags">{{ hashtags.value }}</li>
+  </ol>
+</ng-container>

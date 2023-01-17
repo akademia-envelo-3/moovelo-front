@@ -1,6 +1,6 @@
 import { SingleEventStateInterface } from '../single-event.interface';
 export const initialSingleEventState: SingleEventStateInterface = {
-  eventId: '',
+  id: '',
   eventInfo: {
     isConfirmationRequired: true,
     limitedPlaces: 0,

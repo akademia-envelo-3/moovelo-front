@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest } from 'rxjs';
-import { AppState } from 'src/app/app.module';
 import { SingleEventStateInterface } from './single-event.interface';
+import { SingleEventActions } from './store/single-event.actions';
+
 @Injectable({
   providedIn: 'root',
 })
 export class SingleEventService {
-  private store = inject<Store<AppState>>(Store);
+  private store = inject<Store<SingleEventStateInterface>>(Store);
   private http = inject(HttpClient);
-  // constructor() {}
-
   getSingleEvent(eventId: string) {
-    combineLatest([this.http.get<SingleEventStateInterface>(`http://localhost:3000/events/${eventId}`)]);
+    this.http.get<SingleEventStateInterface>(`http://localhost:3000/events/1`).subscribe(singleEvent => {
+      console.log(singleEvent);
+      this.store.dispatch(SingleEventActions.fetch_single_event(singleEvent));
+    });
   }
 }
