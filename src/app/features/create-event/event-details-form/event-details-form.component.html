@@ -59,7 +59,7 @@
       <input matInput formControlName="postCode" />
       <mat-error *ngIf="postCodeCtrl.errors as errors">
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['pattern']">Kod pocztowy jest w złym formacie.</ng-container>
+        <ng-container *ngIf="errors['pattern']">Podaj kod pocztowy w formacie XX-XXX np. 09-400</ng-container>
       </mat-error>
     </mat-form-field>
 
