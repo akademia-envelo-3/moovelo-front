@@ -4,11 +4,11 @@ import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/cor
   selector: 'app-navbar',
   template: `
     <nav class="nav-bar">
-      <div class="nav__logo">
-        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav__logo__image" />
-        <p class="nav__logo__padding">Moovelo</p>
+      <div class="nav-bar__logo">
+        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav-bar__image" />
+        <p class="nav-bar__padding">Moovelo</p>
       </div>
-      <button class="nav__btn">Zaloguj</button>
+      <button class="nav-bar__btn">Zaloguj</button>
     </nav>
   `,
   styleUrls: ['./style.scss'],

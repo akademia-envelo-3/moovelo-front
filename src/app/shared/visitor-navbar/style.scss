@@ -11,34 +11,37 @@
   height: 8vh;
   transition-duration: 300ms;
   transform: translateY(0);
+
   &--visible {
     transform: translateY(-8vh);
     transition-duration: 300ms;
   }
-}
 
-.nav__logo {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 8px;
+  &__logo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 8px;
+  }
+
   &__image {
     width: 25%;
   }
+
   &__padding {
     padding-left: 8px;
     font-size: 16px;
     font-weight: bold;
   }
-}
 
-.nav__btn {
-  background-color: mat.get-color-from-palette(palette.$blue-palette, 700);
-  border: none;
-  color: mat.get-color-from-palette(palette.$gray-palette, 100);
-  padding: 8px 16px;
-  text-align: center;
-  display: inline-block;
-  margin: 8px;
-  border-radius: 4px;
+  &__btn {
+    background-color: mat.get-color-from-palette(palette.$blue-palette, 700);
+    border: none;
+    color: mat.get-color-from-palette(palette.$gray-palette, 100);
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    margin: 8px;
+    border-radius: 4px;
+  }
 }
