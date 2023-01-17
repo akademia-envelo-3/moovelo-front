@@ -8,7 +8,7 @@ import { GroupListError } from '../group.interface';
 export class GroupListService {
   private http = inject(HttpClient);
   private groupUrl = 'http://localhost:3000/groups';
-  private error$$ = new BehaviorSubject<GroupListError>({ isError: false, errorStatus: 0 });
+  private error$$ = new BehaviorSubject<GroupListError>({ isError: false, errorStatus: 404 });
 
   get error$() {
     return this.error$$.asObservable();
