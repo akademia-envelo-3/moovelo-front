@@ -1,18 +1,53 @@
 import { Component } from '@angular/core';
-import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
+import { EventCard, EventCardComponent } from '../features/event';
 import { GroupItemComponent } from '../features/group';
+import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 
 @Component({
   selector: 'app-theme',
+  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent],
   standalone: true,
-  imports: [GroupItemComponent, CowLoaderComponent],
   template: `
     <h1>Storybook-like route</h1>
-    <app-cow-loader> </app-cow-loader>
+    <h2>Loader</h2>
+    <app-cow-loader></app-cow-loader>
 
     <h2>Pojedyncza grupa w liście</h2>
     <app-group-list-item
       [groupItem]="{ id: 0, name: 'Nowa grupa', description: 'Bardzo fajna nowa grupa' }"></app-group-list-item>
+
+    <h2>Event Card Component</h2>
+    <div style="padding: 8px 8px;">
+      <app-event-card [eventCard]="event"></app-event-card>
+    </div>
   `,
 })
-export default class ThemeComponent {}
+export default class ThemeComponent {
+  event: EventCard = {
+    id: 1,
+    eventInfo: {
+      name: 'Giga Koks Turbo Event',
+      category: {
+        id: 1,
+        name: 'Piwo',
+      },
+      startDate: '20.01.2023',
+      hashtags: [
+        {
+          id: 1,
+          value: 'piwo',
+        },
+        {
+          id: 2,
+          value: 'GigaTurboEssaKoks',
+        },
+      ],
+      isConfirmationRequired: false,
+      isPrivate: false,
+      group: false,
+      isCyclic: true,
+      city: 'Warszawa',
+      acceptedStatusUsers: 10,
+    },
+  };
+}
