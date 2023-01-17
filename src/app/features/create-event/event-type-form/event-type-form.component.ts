@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventTypeForm } from '../create-event.interface';
+import { EventForm, EventTypeForm } from '../create-event.interface';
 import { EventFormProvider } from '../event-form-provider';
 
 @Component({
@@ -11,12 +11,12 @@ import { EventFormProvider } from '../event-form-provider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventTypeFormComponent implements OnInit {
-  private eventFormProvider = inject(EventFormProvider);
+  private eventFormProvider = inject<EventFormProvider<EventForm>>(EventFormProvider);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   constructor() {
-    this.eventTypeForm = this.eventFormProvider.getForm().get('eventTypeForm') as FormGroup<EventTypeForm>;
+    this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
   }
 
   eventTypeForm: FormGroup<EventTypeForm>;
@@ -52,6 +52,7 @@ export class EventTypeFormComponent implements OnInit {
   }
 
   previousPage() {
+    this.eventTypeForm.reset();
     this.page--;
   }
 }

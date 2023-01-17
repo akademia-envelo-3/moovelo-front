@@ -11,7 +11,7 @@ import { isHourInThePastValidator } from '../validators/isHourInThePastValidator
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: EventFormProvider, useExisting: CreateEventComponent }],
 })
-export class CreateEventComponent extends EventFormProvider {
+export class CreateEventComponent extends EventFormProvider<EventForm> {
   private builder = inject(NonNullableFormBuilder);
   private eventForm = this.createForm();
 
