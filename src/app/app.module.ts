@@ -37,7 +37,6 @@ export interface AppState {
           {
             path: '',
             loadChildren: () => import('./features/home/home.module'),
-            component: SingleEventComponent,
           },
           {
             path: 'auth',
