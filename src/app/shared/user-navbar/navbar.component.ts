@@ -55,14 +55,13 @@ export class NavbarComponent {
   decideRole() {
     if (this.userState === 'user') {
       this.navbarList = [users['user'].titles, users['user'].routes];
-      console.log(this.navbarList);
     } else {
-      // this.navbarList = users['admin'].titles;
+      this.navbarList = [users['admin'].titles, users['admin'].routes];
     }
   }
 
   ngOnInit() {
-    this.navbarScroll.processOutsideOfAngularZone();
+    this.navbarScroll.scrollDetection();
     this.decideRole();
   }
 }

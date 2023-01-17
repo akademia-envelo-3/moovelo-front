@@ -6,7 +6,7 @@ import { inject, Injectable, NgZone } from '@angular/core';
 export class NavbarScrollService {
   private ngZone = inject(NgZone);
 
-  processOutsideOfAngularZone() {
+  scrollDetection() {
     let currentPosition: number;
 
     this.ngZone.runOutsideAngular(() => {
