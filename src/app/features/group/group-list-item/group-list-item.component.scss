@@ -1,26 +1,26 @@
 @use '@angular/material' as mat;
-@import '../../../styles/palettes';
+@use '../../../styles/palettes' as palette;
 
 .group-list-item {
     padding: 8px 16px;
     display: flex;
     flex-direction: column;
     max-width: 568px;
-}
 
-.group-list-item__button {
-    align-self: flex-end;
-    transform: translate(0px, -120px);
-}
+    &__button {
+        align-self: flex-end;
+        transform: translate(0px, -120px);
+    }
 
-.group-list-item__group-info {
-    border: 1px solid mat.get-color-from-palette($blue-palette,900);
-    border-radius: 20px;
-    background-color: mat.get-color-from-palette($gray-palette,500);
+    &__group-info  {
+        border: 1px solid mat.get-color-from-palette(palette.$blue-palette,900);
+        border-radius: 20px;
+        background-color: mat.get-color-from-palette(palette.$gray-palette,500);
+    }
 }
 
 .group-info__name {
-    border-bottom: 2px solid mat.get-color-from-palette($blue-palette,900);
+    border-bottom: 2px solid mat.get-color-from-palette(palette.$blue-palette,900);
 }
 
 .group-info__desc, .group-info__name {
