@@ -1,9 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { NavbarScrollService } from './navbar-scroll.service';
 import users from './users.config';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
+  imports: [CommonModule, MatIconModule],
   template: `
     <nav class="nav-bar">
       <div class="nav__logo">

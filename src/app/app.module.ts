@@ -13,7 +13,7 @@ import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent],
   providers: [
     {
       provide: API_URL,
@@ -28,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     BrowserModule,
     MatIconModule,
+    NavbarComponent,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
