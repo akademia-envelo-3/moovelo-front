@@ -19,9 +19,9 @@ export class NavbarScrollService {
         const scroll = window.pageYOffset;
 
         if (scroll > currentPosition) {
-          navbar?.classList.add('nav-bar--visi');
+          navbar?.classList.add('nav-bar--visible');
         } else {
-          navbar?.classList.remove('nav-bar--visi');
+          navbar?.classList.remove('nav-bar--visible');
         }
         currentPosition = scroll;
       }
