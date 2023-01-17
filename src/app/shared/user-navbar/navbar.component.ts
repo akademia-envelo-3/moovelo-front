@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarScrollService } from './navbar-scroll.service';
 import users from './users.config';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, RouterModule],
   template: `
     <nav class="nav-bar">
       <div class="nav-bar__logo">
@@ -29,10 +30,12 @@ import users from './users.config';
       </div>
     </nav>
     <div [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
-      <ul class="nav-menu__list" *ngFor="let listValue of navbarList">
-        <li>{{ listValue }}</li>
+      <ul class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
+        <li>
+          <a class="nav-menu__link" routerLink="/{{ navbarList[1][i] }}">{{ value }} </a>
+        </li>
       </ul>
-      <div [ngClass]="menu ? 'nav-menu--bluring' : ''" (click)="showMenu()"></div>
+      <div [ngClass]="menu ? 'nav-menu--blur' : ''" (click)="showMenu()"></div>
     </div>
   `,
   styleUrls: ['./style.scss'],
@@ -41,7 +44,8 @@ import users from './users.config';
 export class NavbarComponent {
   private userState = 'user';
   menu = false;
-  navbarList: Array<string> = [];
+  navbarList: string[][] = [[]];
+
   private navbarScroll = inject(NavbarScrollService);
 
   showMenu() {
@@ -50,9 +54,10 @@ export class NavbarComponent {
 
   decideRole() {
     if (this.userState === 'user') {
-      this.navbarList = users['user'];
+      this.navbarList = [users['user'].titles, users['user'].routes];
+      console.log(this.navbarList);
     } else {
-      this.navbarList = users['admin'];
+      // this.navbarList = users['admin'].titles;
     }
   }
 

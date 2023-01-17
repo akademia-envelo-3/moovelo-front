@@ -29,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     MatIconModule,
     NavbarComponent,
+    RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
