@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, NgZone } from '@angular/cor
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./style.scss'],
+  styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
