@@ -8,10 +8,10 @@
     align-items: center;
     padding: 8px;
     gap: 8px;
-    .footer__watermark{
+    &__watermark{
         color: mat.get-color-from-palette(palettes.$gray-palette, 900);
     }
-    a {
+    &__mail {
         text-decoration: none;
         color: mat.get-color-from-palette(palettes.$blue-palette, 900);
     }
