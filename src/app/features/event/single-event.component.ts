@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SingleEventService } from './single-event.service';
 import { Store } from '@ngrx/store';
-import { SingleEventStateInterface } from './single-event.interface';
-import { tap } from 'rxjs';
 import { AppState } from 'src/app/app.module';
 
 @Component({

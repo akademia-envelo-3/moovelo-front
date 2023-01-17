@@ -12,6 +12,8 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { SingleEventComponent } from './features/event/single-event.component';
 import { singleEventReducer } from './features/event/store/single-event.reducer';
 import { SingleEventStateInterface } from './features/event/single-event.interface';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface AppState {
   singleEvent: SingleEventStateInterface;
@@ -21,6 +23,8 @@ export interface AppState {
   imports: [
     BrowserModule,
     HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
     StoreModule.forRoot({
       singleEvent: singleEventReducer,
     }),

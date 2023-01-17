@@ -1,32 +1,88 @@
 <ng-container *ngIf="eventInfo$ | async as eventInfo">
-  <ng-container *ngIf="eventInfo.group">
-    <p>Grupa {{ eventInfo.group.name }}</p>
-  </ng-container>
-  <ng-container *ngIf="eventInfo.isPrivate"><p>wydarzenie prywatne</p> </ng-container>
-  <ng-container *ngIf="eventInfo.isConfirmationRequired"><p>ZAPIS OBOWIĄZKOWY</p> </ng-container>
-  <ng-container *ngIf="eventInfo.limitedPlaces"
-    >Liczba dostępnych miejsc: {{ eventInfo.limitedPlaces - eventInfo.eventParticipationStats.accepted }}
-  </ng-container>
-  <p>{{ eventInfo.name }}</p>
-  <div class="category_picture">
-    <img alt="kategoria piwo" src="../../../assets/eventpicture.png" />
+  <div class="event">
+    <ng-container *ngIf="eventInfo.group">
+      <div class="event__group-private-label">
+        <div class="event__group-private-label__text">
+          <p class="font-text-1">
+            Grupa
+            <br />
+            {{ eventInfo.group.name | titlecase }}
+          </p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="eventInfo.isPrivate"
+      ><div class="event__group-private-label">
+        <div class="event__group-private-label__text">
+          <div class="event__group-private-label__text__icons">
+            <p class="font-text-1">
+              Wydarzenie <br />
+              prywatne
+            </p>
+            <mat-icon fontIcon="lock" class="event__white-icon"></mat-icon>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <h1 class="$heading-1">{{ eventInfo.name | titlecase }}</h1>
+    <ng-container *ngIf="eventInfo.isConfirmationRequired">
+      <div class="event__required-confirmation">
+        <p class="font-text-1" class="event__required-confirmation__text">ZAPIS OBOWIĄZKOWY</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="eventInfo.limitedPlaces">
+      <p class="font-text-1">
+        Liczba dostępnych miejsc: {{ eventInfo.limitedPlaces - eventInfo.eventParticipationStats.accepted }}
+      </p>
+    </ng-container>
+
+    <div class="event__category_picture">
+      <img class="event__category_picture__image" alt="kategoria piwo" src="../../../assets/eventpicture.png" />
+    </div>
+    <ng-container *ngIf="eventInfo.cycleLenght"><p class="event__is-cyclic">Wydarzenie cykliczne</p> </ng-container>
+    <div class="event__listOfParticipants">
+      <button mat-button class="accepted">
+        <p class="text">
+          {{ eventInfo.eventParticipationStats.accepted }}
+        </p>
+      </button>
+      <button mat-button class="pending">
+        <p class="text">{{ eventInfo.eventParticipationStats.pending }}</p>
+      </button>
+      <button mat-button class="rejected">
+        <p class="text">{{ eventInfo.eventParticipationStats.rejected }}</p>
+      </button>
+    </div>
+    <div class="event__basic-information">
+      <p class="font-text-1">
+        Adres: {{ eventInfo.location.street }}, {{ eventInfo.location.postCode }} {{ eventInfo.location.city }}
+      </p>
+      <p class="font-text-1">Data: {{ eventInfo.startDate }}</p>
+      <p class="font-text-1">Godzina: {{ eventInfo.hour }}</p>
+      <p class="font-text-1">Kategoria: {{ eventInfo.category.name }}</p>
+    </div>
+    <div class="event__join-event">
+      <button mat-button class="accepted">
+        <mat-icon class="event__white-icon" fontIcon="check"></mat-icon>
+      </button>
+      <button mat-button class="pending">
+        <mat-icon class="event__white-icon" fontIcon="question_mark"></mat-icon>
+      </button>
+      <button mat-button class="rejected">
+        <mat-icon class="event__white-icon" fontIcon="close"></mat-icon>
+      </button>
+    </div>
+    <ng-container *ngIf="!eventInfo.isPrivate">
+      <button mat-raised-button color="primary"><a>skopiuj link</a></button>
+    </ng-container>
+    <div class="event__description">
+      <p class="event__description__title">Opis:</p>
+      <p class="font-text-1">{{ eventInfo.description }}</p>
+    </div>
+    <div class="event__hashtags">
+      <ol>
+        <li *ngFor="let hashtags of eventInfo.hashtags">#{{ hashtags.value }}</li>
+      </ol>
+    </div>
   </div>
-  <ng-container *ngIf="eventInfo.cycleLenght"><p>wydarzenie cykliczne</p> </ng-container>
-  <button>{{ eventInfo.eventParticipationStats.accepted }}</button>
-  <button>{{ eventInfo.eventParticipationStats.pending }}</button>
-  <button>{{ eventInfo.eventParticipationStats.rejected }}</button>
-  <p>Adres: {{ eventInfo.location.city }}</p>
-  <p>Data: {{ eventInfo.startDate }}</p>
-  <p>Godzina: {{ eventInfo.hour }}</p>
-  <p>Kategoria: {{ eventInfo.category.name }}</p>
-  <button>?</button>
-  <button>?</button>
-  <button>?</button>
-  <ng-container *ngIf="eventInfo.isPrivate">
-    <button><a>skopiuj link</a></button>
-  </ng-container>
-  <p>{{ eventInfo.description }}</p>
-  <ol>
-    <li *ngFor="let hashtags of eventInfo.hashtags">{{ hashtags.value }}</li>
-  </ol>
 </ng-container>
