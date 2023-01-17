@@ -1,7 +1,7 @@
 <form [formGroup]="joinForm" (ngSubmit)="submitForm()" class="form font-text-1">
   <mat-form-field color="primary">
     <mat-label>Imię</mat-label>
-    <input matInput type="firstName" formControlName="name" class="font-text-1" />
+    <input matInput formControlName="name" class="font-text-1" />
     <mat-error *ngIf="joinCtrl.name.errors as errors">
       <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
     </mat-error>
@@ -9,7 +9,7 @@
 
   <mat-form-field color="primary">
     <mat-label>Nazwisko</mat-label>
-    <input matInput type="lastName" formControlName="lastName" class="font-text-1" />
+    <input matInput formControlName="lastName" class="font-text-1" />
     <mat-error *ngIf="joinCtrl.lastName.errors as errors">
       <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
     </mat-error>
@@ -17,7 +17,7 @@
 
   <mat-form-field color="primary">
     <mat-label>E-mail</mat-label>
-    <input matInput type="email" formControlName="email" class="font-text-1" />
+    <input matInput formControlName="email" class="font-text-1" />
     <mat-error *ngIf="joinCtrl.email.errors as errors">
       <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
       <ng-container *ngIf="errors['pattern']">Proszę podać właściwy adres e-mail!</ng-container>
