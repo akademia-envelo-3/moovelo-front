@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NavbarScrollService } from './navbar-scroll.service';
+import users from './users.config';
 
 @Component({
   selector: 'app-navbar',
@@ -24,20 +25,8 @@ import { NavbarScrollService } from './navbar-scroll.service';
       </div>
     </nav>
     <div [ngClass]="menu ? 'nav__menu' : 'nav__menu--hide'">
-      <ul class="nav__menu__list">
-        <li>Wydarzenia</li>
-      </ul>
-      <ul class="nav__menu__list">
-        <li>Moje Wydarzenia</li>
-      </ul>
-      <ul class="nav__menu__list">
-        <li>Wydarzenia</li>
-      </ul>
-      <ul class="nav__menu__list">
-        <li>Wydarzenia</li>
-      </ul>
-      <ul class="nav__menu__list">
-        <li>Wydarzenia</li>
+      <ul class="nav__menu__list" *ngFor="let listValue of navbarList">
+        <li>{{ listValue }}</li>
       </ul>
     </div>
   `,
@@ -45,14 +34,25 @@ import { NavbarScrollService } from './navbar-scroll.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
+  userState = 'admin';
   menu = false;
+  navbarList: Array<string> = [];
   private navbarScroll = inject(NavbarScrollService);
 
   showMenu() {
     this.menu = !this.menu;
   }
 
+  decideRole() {
+    if (this.userState === 'user') {
+      this.navbarList = users['user'];
+    } else {
+      this.navbarList = users['admin'];
+    }
+  }
+
   ngOnInit() {
     this.navbarScroll.processOutsideOfAngularZone();
+    this.decideRole();
   }
 }

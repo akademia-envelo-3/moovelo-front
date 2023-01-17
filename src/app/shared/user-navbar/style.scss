@@ -36,12 +36,12 @@
     width: 100%;
     list-style-type: none;
     background-color: mat.get-color-from-palette(palette.$blue-palette, 700);
+    border: 1px solid mat.get-color-from-palette(palette.$gray-palette, 100);
   }
   &--hide {
     position: fixed;
     width: 100%;
     top: 8vh;
-    left: 0;
     transform: translateY(-60vh);
     transition-duration: 500ms;
     background-color: mat.get-color-from-palette(palette.$blue-palette, 700);
