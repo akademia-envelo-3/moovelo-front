@@ -1,5 +1,5 @@
 <form [formGroup]="joinForm" (ngSubmit)="submitForm()" class="form font-text-1">
-  <mat-form-field color="primary" class=".form__input">
+  <mat-form-field color="primary">
     <mat-label>Imię</mat-label>
     <input matInput type="firstName" formControlName="name" class="font-text-1" />
     <mat-error *ngIf="joinCtrl.name.errors as errors">
@@ -7,7 +7,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field color="primary" class=".form__input">
+  <mat-form-field color="primary">
     <mat-label>Nazwisko</mat-label>
     <input matInput type="lastName" formControlName="lastName" class="font-text-1" />
     <mat-error *ngIf="joinCtrl.lastName.errors as errors">
@@ -15,7 +15,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field color="primary" class=".form__input">
+  <mat-form-field color="primary">
     <mat-label>E-mail</mat-label>
     <input matInput type="email" formControlName="email" class="font-text-1" />
     <mat-error *ngIf="joinCtrl.email.errors as errors">
@@ -24,5 +24,5 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button class="form__button">Zarezerwuj</button>
+  <button mat-raised-button color="primary" class="form__button">Zarezerwuj</button>
 </form>

@@ -5,27 +5,22 @@
     border-radius: 20px;
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column;
     padding: 8px;
     max-width: 200px;
-    .form__input {
-        padding: 4px;
-        box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.12);
-        border: none;
-    }
-    .form__button {
+    &__button {
         background: mat.get-color-from-palette(palette.$blue-palette, 700);
         margin: 16px;
         color: mat.get-color-from-palette(palette.$gray-palette, 100);
         
     }
-    .form__error {
+    &__error {
         border: 2px solid mat.get-color-from-palette(palette.$red-warn-palette, 500);
         border-radius: 5px;
-    }
-    .form__error__text {
-        color: mat.get-color-from-palette(palette.$red-warn-palette, 500);
+        &__text {
+            color: mat.get-color-from-palette(palette.$red-warn-palette, 500);
+        }
     }
 }
