@@ -3,11 +3,19 @@
     <div class="group-info__name font-heading-3">
       {{ groupItem.name }}
     </div>
-    <div class="group-info__desc font-text-1">
-      {{ groupItem.description }}
+    <div class="group-info__desc">
+      <p class="font-text-1">{{ groupItem.description }}</p>
+      <div class="desc__number-of-members font-text-1">
+        <mat-icon>person</mat-icon>Członków: {{ groupItem.numberOfMembers }}
+      </div>
     </div>
   </div>
-  <button class="group-list-item__button" mat-fab color="primary" aria-label="button with plus icon">
+  <button
+    [disabled]="!groupItem.isUserMember ? 'disabled' : null"
+    class="group-list-item__button"
+    mat-fab
+    color="primary"
+    aria-label="button with plus icon">
     <mat-icon>add</mat-icon>
   </button>
 </div>
