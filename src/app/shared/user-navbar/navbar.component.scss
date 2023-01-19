@@ -24,6 +24,7 @@
   top: 0;
   position: fixed;
   align-items: center;
+
   color: mat.get-color-from-palette(palette.$gray-palette, 100);
   transition-duration: 500ms;
   transform: translateY(10vh);
@@ -33,6 +34,7 @@
     justify-content: center;
     height: 8vh;
     width: 100%;
+
     list-style-type: none;
     background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
     border-top: 1px solid mat.get-color-from-palette(palette.$gray-palette, 100);
