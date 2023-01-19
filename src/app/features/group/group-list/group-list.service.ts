@@ -16,7 +16,7 @@ export class GroupListService {
   }
 
   getAllGroups() {
-    return this.http.get<GroupListItem[]>(this.apiUrl).pipe(
+    return this.http.get<GroupListItem[]>(this.apiUrl + 'groups').pipe(
       retry(3),
       catchError(err => {
         this.error$$.next({ isError: true, errorStatus: err.status });
