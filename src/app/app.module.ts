@@ -10,10 +10,11 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
-import { NavbarComponent } from './shared/visitor-navbar/navbar.component';
+import { NavbarComponent } from './shared/user-navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent],
   providers: [
     {
       provide: API_URL,
@@ -24,10 +25,13 @@ import { NavbarComponent } from './shared/visitor-navbar/navbar.component';
       useValue: environment.production,
     },
   ],
-  bootstrap: [AppComponent, NavbarComponent],
+  bootstrap: [AppComponent],
   imports: [
     AppInputValidatorDirective,
     BrowserModule,
+    MatIconModule,
+    NavbarComponent,
+    RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
