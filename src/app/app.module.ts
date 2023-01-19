@@ -9,10 +9,24 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
+import { NavbarComponent } from './shared/visitor-navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent],
+  providers: [
+    {
+      provide: API_URL,
+      useValue: environment.API_URL,
+    },
+    {
+      provide: IS_PRODUCTION,
+      useValue: environment.production,
+    },
+  ],
+  bootstrap: [AppComponent, NavbarComponent],
   imports: [
+    AppInputValidatorDirective,
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({}),
@@ -43,16 +57,5 @@ import { noProductionGuard } from '@shared/no-production.guard';
       },
     ]),
   ],
-  providers: [
-    {
-      provide: API_URL,
-      useValue: environment.API_URL,
-    },
-    {
-      provide: IS_PRODUCTION,
-      useValue: environment.production,
-    },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
