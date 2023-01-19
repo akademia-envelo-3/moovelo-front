@@ -2,7 +2,7 @@
   <div class="event">
     <ng-container *ngIf="eventInfo.group">
       <div class="event__group-private-label">
-        <div class="event__group-private-label__text">
+        <div class="event__group-private-label-text">
           <p class="font-text-1">
             Grupa
             <br />
@@ -13,8 +13,8 @@
     </ng-container>
     <ng-container *ngIf="eventInfo.isPrivate"
       ><div class="event__group-private-label">
-        <div class="event__group-private-label__text">
-          <div class="event__group-private-label__text__icons">
+        <div class="event__group-private-label-text">
+          <div class="event__group-private-label-text-icons">
             <p class="font-text-1">
               Wydarzenie <br />
               prywatne
@@ -27,7 +27,7 @@
     <h1 class="$heading-1">{{ eventInfo.name | titlecase }}</h1>
     <ng-container *ngIf="eventInfo.isConfirmationRequired">
       <div class="event__required-confirmation">
-        <p class="font-text-1" class="event__required-confirmation__text">ZAPIS OBOWIĄZKOWY</p>
+        <p class="font-text-1" class="event__required-confirmation-text">Zapis obowiązkowy </p>
       </div>
     </ng-container>
     <ng-container *ngIf="eventInfo.limitedPlaces">
@@ -36,11 +36,11 @@
       </p>
     </ng-container>
 
-    <div class="event__category_picture">
-      <img class="event__category_picture__image" alt="kategoria piwo" src="../../../assets/eventpicture.png" />
+    <div class="event__category-picture">
+      <img class="event__category-picture-image" alt=`{{eventInfo.category.name}}` src="assets/eventpicture.png" />
     </div>
     <ng-container *ngIf="eventInfo.cycleLenght"><p class="event__is-cyclic">Wydarzenie cykliczne</p> </ng-container>
-    <div class="event__listOfParticipants">
+    <div class="event__list-of-participants">
       <button mat-button class="accepted">
         <p class="text">
           {{ eventInfo.eventParticipationStats.accepted }}
@@ -76,7 +76,7 @@
       <button mat-raised-button color="primary"><a>skopiuj link</a></button>
     </ng-container>
     <div class="event__description">
-      <p class="event__description__title">Opis:</p>
+      <p class="event__description-title">Opis:</p>
       <p class="font-text-1">{{ eventInfo.description }}</p>
     </div>
     <div class="event__hashtags">

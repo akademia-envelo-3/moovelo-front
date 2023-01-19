@@ -10,6 +10,7 @@ import { SingleEventActions } from './store/single-event.actions';
 export class SingleEventService {
   private store = inject<Store<SingleEventStateInterface>>(Store);
   private http = inject(HttpClient);
+
   getSingleEvent(eventId: string) {
     this.http.get<SingleEventStateInterface>(`http://localhost:3000/events/${eventId}`).subscribe(singleEvent => {
       this.store.dispatch(SingleEventActions.fetch_single_event(singleEvent));

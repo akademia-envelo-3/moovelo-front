@@ -14,9 +14,7 @@ export class SingleEventComponent {
   private singleEventService = inject(SingleEventService);
   private store = inject<Store<AppState>>(Store);
   private eventId = '1';
-  eventInfo$ = this.store.select(store => {
-    return store.singleEvent.eventInfo;
-  });
+  eventInfo$ = this.store.select(store => store.singleEvent.eventInfo);
 
   ngOnInit() {
     this.singleEventService.getSingleEvent(this.eventId);

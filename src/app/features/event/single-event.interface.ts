@@ -1,24 +1,24 @@
 export interface EventInfo {
   isConfirmationRequired: boolean;
   limitedPlaces: number;
-  eventParticipationStats: eventParticipationStats;
+  eventParticipationStats: EventParticipationStats;
   isPrivate: boolean;
-  group: group;
+  group: Group;
   cycleLenght: number;
   name: string;
-  category: category;
+  category: Category;
   startDate: string;
   hour: string;
-  location: location;
+  location: Location;
   description: string;
-  hashtags: singleHashtag[];
+  hashtags: SingleHashtag[];
 }
-export interface eventParticipationStats {
+export interface EventParticipationStats {
   accepted: number;
   pending: number;
   rejected: number;
 }
-export interface group {
+export interface Group {
   id: string;
   name: string;
 }
@@ -27,11 +27,11 @@ export interface SingleEventStateInterface {
   id: string;
   eventInfo: EventInfo;
 }
-export interface category {
+export interface Category {
   id: string;
   name: string;
 }
-export interface location {
+export interface Location {
   id: string;
   altitude: number;
   latitude: number;
@@ -41,7 +41,7 @@ export interface location {
   streetNumber: string;
   apartmentNumber: string;
 }
-export interface singleHashtag {
+export interface SingleHashtag {
   id: string;
   value: string;
 }
