@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { EventCard, EventCardComponent } from '../features/event';
 import { GroupItemComponent } from '../features/group';
-import { FooterComponent } from '@shared/footer/footer.component';
+import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { GroupListItem } from '../features/group';
+import { FooterComponent } from '@shared/footer/footer.component';
 
 @Component({
   selector: 'app-theme',
-  imports: [GroupItemComponent, EventCardComponent, FooterComponent],
+  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent],
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
     <h2>Loader</h2>
+    <app-cow-loader></app-cow-loader>
 
     <h2>Pojedyncza grupa w liście</h2>
     <app-group-list-item [groupItem]="group"></app-group-list-item>
