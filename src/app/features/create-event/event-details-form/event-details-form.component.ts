@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { EventFormProvider } from '../event-form-provider';
-import { EventDetailsForm, EventForm, EventTypeForm } from '../create-event.interface';
+import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
 import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
+import { CreateEventComponent } from '../create-event/create-event.component';
+import { CreateEventService } from '../create-event.service';
 
 @Component({
   selector: 'app-event-details-form',
@@ -12,10 +13,11 @@ import { HourErrorStateMatcher } from './hourErrorStateMatcher';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailsFormComponent implements OnInit, OnDestroy {
-  private eventFormProvider = inject<EventFormProvider<EventForm>>(EventFormProvider);
+  private eventFormProvider = inject(CreateEventService);
   private unsubscribe$ = new Subject<void>();
 
   constructor() {
+    console.log(this.eventFormProvider);
     this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
     this.eventDetailsForm = this.eventFormProvider.getForm().controls.eventDetailsForm;
   }

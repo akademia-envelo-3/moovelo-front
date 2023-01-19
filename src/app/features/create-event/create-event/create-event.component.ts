@@ -1,74 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import patterns from '@shared/regex-patterns';
-import { EventForm } from '../create-event.interface';
-import { EventFormProvider } from '../event-form-provider';
-import { isHourInThePastValidator } from '../validators/isHourInThePastValidator';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: EventFormProvider, useExisting: CreateEventComponent }],
+  providers: [],
 })
-export class CreateEventComponent extends EventFormProvider<EventForm> {
-  private builder = inject(NonNullableFormBuilder);
-  private eventForm = this.createForm();
-
-  getForm() {
-    return this.eventForm;
-  }
-
-  private createForm() {
-    return this.builder.group<EventForm>({
-      eventTypeForm: this.builder.group({
-        isInternal: this.builder.control(false),
-        isPrivate: this.builder.control(false),
-        isGroup: this.builder.control(false),
-      }),
-      eventDetailsForm: this.builder.group(
-        {
-          group: this.builder.control<number | null>(null),
-          limitedPlaces: this.builder.control(
-            { value: 1, disabled: true },
-            {
-              validators: [Validators.required, Validators.min(1), Validators.max(10000)],
-            }
-          ),
-          isLimitedPlaces: this.builder.control(false),
-          isConfirmationRequired: this.builder.control(false),
-          name: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
-          }),
-          category: this.builder.control<string[]>([]),
-          startDate: this.builder.control('', {
-            validators: [Validators.required],
-          }),
-          hour: this.builder.control('', {
-            validators: [Validators.required],
-          }),
-          postCode: this.builder.control('', {
-            validators: [Validators.required, Validators.pattern(patterns.postCode)],
-          }),
-          city: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
-          }),
-          street: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
-          }),
-          streetNumber: this.builder.control('', {
-            validators: [Validators.required, Validators.maxLength(10)],
-          }),
-          apartmentNumber: this.builder.control('', {
-            validators: [Validators.maxLength(5)],
-          }),
-          description: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4000)],
-          }),
-          hashtags: this.builder.control<string[]>([]),
-        },
-        { validators: isHourInThePastValidator }
-      ),
-    });
-  }
-}
+export class CreateEventComponent {}

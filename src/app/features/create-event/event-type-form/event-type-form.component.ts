@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventForm, EventTypeForm } from '../create-event.interface';
-import { EventFormProvider } from '../event-form-provider';
+import { EventTypeForm } from '../create-event.interface';
+import { CreateEventService } from '../create-event.service';
 
 @Component({
   selector: 'app-event-type-form',
@@ -11,11 +11,12 @@ import { EventFormProvider } from '../event-form-provider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventTypeFormComponent implements OnInit {
-  private eventFormProvider = inject<EventFormProvider<EventForm>>(EventFormProvider);
+  private eventFormProvider = inject(CreateEventService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   constructor() {
+    console.log(this.eventFormProvider);
     this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
   }
 

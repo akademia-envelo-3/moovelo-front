@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CreateEventComponent } from './create-event/create-event.component';
@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { CreateEventService } from './create-event.service';
+import { DetailsGuard } from './details.guard';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
@@ -39,6 +41,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
           {
             path: 'details',
             component: EventDetailsFormComponent,
+            canActivate: [DetailsGuard],
           },
         ],
       },
@@ -48,6 +51,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
       },
     ]),
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [CreateEventService, DetailsGuard, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export default class CreateEventModule {}
