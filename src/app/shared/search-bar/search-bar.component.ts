@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchBarService } from './search-bar.service';
+import { delay } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -25,9 +26,11 @@ import { SearchBarService } from './search-bar.service';
 })
 export class SearchBarComponent {
   private searchBarService = inject(SearchBarService);
-  searchControl = new FormControl('');
+  searchControl = new FormControl('', { nonNullable: true });
 
   ngOnInit() {
-    console.log(this.searchBarService);
+    this.searchControl.valueChanges.pipe(delay(2000)).subscribe(value => {
+      this.searchBarService.search(value);
+    });
   }
 }
