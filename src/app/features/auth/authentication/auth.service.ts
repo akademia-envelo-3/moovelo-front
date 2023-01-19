@@ -18,7 +18,7 @@ export class AuthService {
   loginData: LoginData = { accessToken: '', user: { email: '', password: '' } };
   http = inject(HttpClient);
   private router = inject(Router);
-  url = 'http://localhost:3000/users';
+  url = 'http://localhost:3000/login';
 
   private auth$$ = new BehaviorSubject<{ hasAuth: boolean }>({
     hasAuth: false,
@@ -41,12 +41,11 @@ export class AuthService {
       .pipe(
         tap({
           next: res => {
-            console.log(res);
             const { accessToken, user } = res;
             this.auth$$.next({ hasAuth: true });
             localStorage.setItem('token', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(this.authValue);
+            console.log(accessToken);
             // this.router.navigate(['']);
           },
         })
