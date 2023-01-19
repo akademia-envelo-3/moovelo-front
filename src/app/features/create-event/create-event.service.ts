@@ -6,7 +6,6 @@ import { isHourInThePastValidator } from './validators/isHourInThePastValidator'
 
 @Injectable()
 export class CreateEventService {
-  private a = Math.random();
   private builder = inject(NonNullableFormBuilder);
   private eventForm = this.createForm();
 
@@ -20,6 +19,7 @@ export class CreateEventService {
         isInternal: this.builder.control(false),
         isPrivate: this.builder.control(false),
         isGroup: this.builder.control(false),
+        isExternal: this.builder.control(false),
       }),
       eventDetailsForm: this.builder.group(
         {

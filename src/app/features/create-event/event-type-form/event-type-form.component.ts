@@ -16,7 +16,6 @@ export class EventTypeFormComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
   constructor() {
-    console.log(this.eventFormProvider);
     this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
   }
 
@@ -46,6 +45,9 @@ export class EventTypeFormComponent implements OnInit {
 
   nextPage() {
     if (this.isPrivate || this.isGroup || this.isInternal || this.page >= 2) {
+      if (!this.isPrivate && !this.isGroup && !this.isInternal) {
+        this.eventTypeForm.controls.isExternal.setValue(true);
+      }
       this.router.navigate(['../details'], { relativeTo: this.route });
     } else {
       this.page++;

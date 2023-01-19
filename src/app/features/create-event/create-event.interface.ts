@@ -9,6 +9,7 @@ export interface EventTypeForm {
   isInternal: FormControl<boolean>;
   isPrivate: FormControl<boolean>;
   isGroup: FormControl<boolean>;
+  isExternal: FormControl<boolean>;
 }
 
 export interface EventDetailsForm {

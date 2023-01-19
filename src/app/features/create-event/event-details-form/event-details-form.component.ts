@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
 import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
-import { CreateEventComponent } from '../create-event/create-event.component';
 import { CreateEventService } from '../create-event.service';
 
 @Component({
@@ -14,10 +13,9 @@ import { CreateEventService } from '../create-event.service';
 })
 export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private eventFormProvider = inject(CreateEventService);
-  private unsubscribe$ = new Subject<void>();
+  private unsubscribe$$ = new Subject<void>();
 
   constructor() {
-    console.log(this.eventFormProvider);
     this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
     this.eventDetailsForm = this.eventFormProvider.getForm().controls.eventDetailsForm;
   }
@@ -28,14 +26,24 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   hourMatcher = new HourErrorStateMatcher();
 
   ngOnInit() {
-    this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe(value => {
+    this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
       value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
   }
 
   get title() {
     const value = this.eventTypeForm.value;
-    return `${value.isPrivate ? 'prywatne' : value.isGroup ? 'grupowe' : value.isInternal ? 'firmowe' : 'zewnętrzne'}`;
+    return `${
+      value.isPrivate
+        ? 'prywatne'
+        : value.isGroup
+        ? 'grupowe'
+        : value.isInternal
+        ? 'firmowe'
+        : value.isExternal
+        ? 'zewnętrzne'
+        : ''
+    }`;
   }
 
   handleSubmit() {
@@ -92,7 +100,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    this.unsubscribe$$.next();
+    this.unsubscribe$$.complete();
   }
 }
