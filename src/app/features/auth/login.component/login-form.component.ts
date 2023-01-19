@@ -35,7 +35,7 @@ export class LoginComponent {
   }
 
   checkValidationAndAuth() {
-    this.authService.logIn(this.emailCtrl.value, this.passwordCtrl.value);
+    this.authService.logIn(this.emailCtrl.value, this.passwordCtrl.value).subscribe();
     this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
       return;

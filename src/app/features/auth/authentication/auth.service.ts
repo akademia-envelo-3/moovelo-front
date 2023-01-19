@@ -1,18 +1,55 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, tap } from 'rxjs';
+
+interface LoginData {
+  accessToken: string;
+  user: {
+    email: string;
+    password: string;
+  };
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  httpClient = Inject(HttpClient);
-  httpHeaders = Inject(HttpHeaders);
-  httpErrorReponse = Inject(HttpErrorResponse);
+  loginData: LoginData = { accessToken: '', user: { email: '', password: '' } };
+  http = inject(HttpClient);
+  private router = inject(Router);
+  url = 'http://localhost:3000/users';
 
-  endpoint = 'http://localhost:3000/users';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  private auth$$ = new BehaviorSubject<{ hasAuth: boolean }>({
+    hasAuth: false,
+  });
+
+  get auth$() {
+    return this.auth$$.asObservable();
+  }
+
+  get authValue() {
+    return this.auth$$.value;
+  }
 
   logIn(email: string, password: string) {
-    console.log(email, password);
+    return this.http
+      .post<LoginData>(this.url, {
+        email: email,
+        password: password,
+      })
+      .pipe(
+        tap({
+          next: res => {
+            console.log(res);
+            const { accessToken, user } = res;
+            this.auth$$.next({ hasAuth: true });
+            localStorage.setItem('token', accessToken);
+            localStorage.setItem('user', JSON.stringify(user));
+            console.log(this.authValue);
+            // this.router.navigate(['']);
+          },
+        })
+      );
   }
 }
