@@ -9,6 +9,7 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { NavbarComponent } from './shared/visitor-navbar/navbar.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NavbarComponent } from './shared/visitor-navbar/navbar.component';
   ],
   bootstrap: [AppComponent, NavbarComponent],
   imports: [
+    AppInputValidatorDirective,
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({}),
