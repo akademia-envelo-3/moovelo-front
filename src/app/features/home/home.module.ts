@@ -8,7 +8,12 @@ import { HomeComponent } from './home.component';
       {
         path: '',
         component: HomeComponent,
-        children: [],
+        children: [
+          {
+            path: 'events/1',
+            loadChildren: () => import('../event/single-event/single-event.module'),
+          },
+        ],
       },
     ]),
   ],

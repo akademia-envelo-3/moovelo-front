@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../styles/palettes' as palette;
+@use '../../../styles/palettes' as palette;
 
 .event {
   display: flex;
@@ -36,7 +36,7 @@
     border-color: mat.get-color-from-palette(palette.$red-palette, 500);
     padding: 8px 24px;
 
-    &__text {
+    &-text {
       color: mat.get-color-from-palette(palette.$red-palette, 500);
     }
   }

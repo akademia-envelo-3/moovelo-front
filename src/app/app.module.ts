@@ -9,9 +9,7 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { SingleEventComponent } from './features/event/single-event.component';
-import { singleEventReducer } from './features/event/store/single-event.reducer';
-import { SingleEventStateInterface } from './features/event/single-event.interface';
+import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -19,15 +17,13 @@ export interface AppState {
   singleEvent: SingleEventStateInterface;
 }
 @NgModule({
-  declarations: [AppComponent, SingleEventComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
-    StoreModule.forRoot({
-      singleEvent: singleEventReducer,
-    }),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     RouterModule.forRoot([
