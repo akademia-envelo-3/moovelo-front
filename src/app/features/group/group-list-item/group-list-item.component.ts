@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,7 +6,7 @@ import { GroupListItem } from '../group.interface';
 @Component({
   selector: 'app-group-list-item[groupItem]',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './group-list-item.component.html',
   styleUrls: ['./group-list-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
