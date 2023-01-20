@@ -6,7 +6,7 @@
           <p class="font-text-1">
             Grupa
             <br />
-            <!-- {{ eventInfo.group.name | titlecase }} -->
+            {{ eventInfo.group.name | titlecase }}
           </p>
         </div>
       </div>
@@ -19,12 +19,12 @@
               Wydarzenie <br />
               prywatne
             </p>
-            <!-- <mat-icon fontIcon="lock" class="event__white-icon"></mat-icon> -->
+            <mat-icon fontIcon="lock" class="event__white-icon"></mat-icon>
           </div>
         </div>
       </div>
     </ng-container>
-    <!-- <h1 class="$heading-1">{{ eventInfo.name | titlecase }}</h1> -->
+    <h1 class="$heading-1">{{ eventInfo.name | titlecase }}</h1>
     <ng-container *ngIf="eventInfo.isConfirmationRequired">
       <div class="event__required-confirmation">
         <p class="font-text-1" class="event__required-confirmation-text">Zapis obowiązkowy </p>
@@ -63,13 +63,13 @@
     </div>
     <div class="event__join-event">
       <button mat-button class="accepted">
-        <!-- <mat-icon class="event__white-icon" fontIcon="check"></mat-icon> -->
+        <mat-icon class="event__white-icon" fontIcon="check"></mat-icon>
       </button>
       <button mat-button class="pending">
-        <!-- <mat-icon class="event__white-icon" fontIcon="question_mark"></mat-icon> -->
+        <mat-icon class="event__white-icon" fontIcon="question_mark"></mat-icon>
       </button>
       <button mat-button class="rejected">
-        <!-- <mat-icon class="event__white-icon" fontIcon="close"></mat-icon> -->
+        <mat-icon class="event__white-icon" fontIcon="close"></mat-icon>
       </button>
     </div>
     <ng-container *ngIf="!eventInfo.isPrivate">
