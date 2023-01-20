@@ -111,3 +111,28 @@ body {
   padding: 16px;
   width: 100%;
 }
+
+.mat-default {
+  background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
+  border: none;
+  color: mat.get-color-from-palette(palette.$gray-palette, 100);
+  padding: 8px 16px;
+  text-align: center;
+  display: inline-block;
+  margin: 8px;
+  border-radius: 8px;
+  &--disabled {
+    @extend .mat-default;
+    background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
+    pointer-events: none;
+  }
+  &__round {
+    @extend .mat-default;
+    border-radius: 16px;
+    &--disabled {
+      @extend .mat-default__round;
+      background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
+      pointer-events: none;
+    }
+  }
+}
