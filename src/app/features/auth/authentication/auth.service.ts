@@ -5,37 +5,20 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { userActions } from '../store/user.action';
 import { User } from 'src/app/app.module';
-
-interface LoginData {
-  accessToken: string;
-  user: {
-    email: string;
-    password: string;
-    type: string;
-  };
-}
+import { LoginData } from './auth.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loginData: LoginData = { accessToken: '', user: { email: '', password: '', type: '' } };
-  http = inject(HttpClient);
-  store = inject<Store<User>>(Store);
+  private http = inject(HttpClient);
+  private store = inject<Store<User>>(Store);
   private router = inject(Router);
-  url = 'http://localhost:3000/login';
+  private url = 'http://localhost:3000/login';
 
   private auth$$ = new BehaviorSubject<{ hasAuth: boolean }>({
     hasAuth: false,
   });
-
-  get auth$() {
-    return this.auth$$.asObservable();
-  }
-
-  get authValue() {
-    return this.auth$$.value;
-  }
 
   logIn(email: string, password: string) {
     return this.http
