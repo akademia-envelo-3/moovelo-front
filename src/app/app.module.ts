@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -12,6 +12,8 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { LoaderService } from '@shared/Interceptor/interceptor-service.service';
+import { LoaderInterceptor } from '@shared/Interceptor/loader-interceptor.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,12 @@ import { MatIconModule } from '@angular/material/icon';
     {
       provide: IS_PRODUCTION,
       useValue: environment.production,
+    },
+    LoaderService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
