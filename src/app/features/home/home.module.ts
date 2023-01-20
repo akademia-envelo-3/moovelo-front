@@ -13,6 +13,10 @@ import { HomeComponent } from './home.component';
             path: 'groups',
             loadChildren: () => import('../group/single-group/single-group.module'),
           },
+          {
+            path: 'create-event',
+            loadChildren: () => import('../create-event/create-event.module'),
+          },
         ],
       },
     ]),
