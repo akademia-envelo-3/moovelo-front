@@ -2,46 +2,45 @@
 @use '../../../styles/palettes' as palette;
 
 .event-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px;
+  background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
+  border: 1px solid mat.get-color-from-palette(palette.$blue-palette, 500);
+  border-radius: 10px;
+  box-shadow: 1px 4px 4px mat.get-color-from-palette(palette.$gray-palette, 900);
+  &__info {
+    display: flex;
+    gap: 16px;
+    padding: 8px;
+  }
+  &__details {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 4px;
-    max-width: 560px;
-    background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
-    border: 1px solid mat.get-color-from-palette(palette.$blue-palette, 500);
-    border-radius: 10px;
-    box-shadow: 1px 4px 4px mat.get-color-from-palette(palette.$gray-palette, 900);
-    &__info {
-        display: flex;
-        gap: 16px;
-        padding: 8px;
-    }
-    &__details {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    &__hashtags {
-        display: flex;
-        justify-content: space-around;
-        padding: 8px 16px;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-    &__hashtag {
-        border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
-        padding: 4px 8px;
-        border-radius: 5px;
-        color: mat.get-color-from-palette(palette.$blue-palette, 500);
-    }
+    gap: 4px;
+  }
+  &__hashtags {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  &__hashtag {
+    border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
+    padding: 4px 8px;
+    border-radius: 5px;
+    color: mat.get-color-from-palette(palette.$blue-palette, 500);
+  }
 }
 
 .event-details__type {
-    color: mat.get-color-from-palette(palette.$red-palette, 500);
+  color: mat.get-color-from-palette(palette.$red-palette, 500);
 }
 
 .info__event-img {
-    border-radius: 5px;
-    max-width: 115px;
-    object-fit: cover;
+  border-radius: 5px;
+  max-width: 115px;
+  object-fit: cover;
 }

@@ -13,7 +13,9 @@
         </ul>
         <button class="group-info__button" mat-flat-button color="primary">Zobacz więcej</button>
       </div>
-      <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
+      <div class="group-info__events">
+        <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
+      </div>
     </div>
   </div>
 </ng-container>

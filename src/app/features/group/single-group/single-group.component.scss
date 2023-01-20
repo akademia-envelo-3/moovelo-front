@@ -5,7 +5,6 @@
   justify-content: center;
   gap: 16px;
   padding: 8px 4px;
-  width: 100vw;
 
   &__users {
     display: flex;
@@ -24,7 +23,9 @@
   &__events {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 16px;
+    width: 100%;
   }
 }
 
