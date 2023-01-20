@@ -23,11 +23,11 @@ import { VisitorFormComponent } from '../features/visitor-form/visitor-form.comp
       <app-event-card [eventCard]="event"></app-event-card>
     </div>
 
-    <h2>Footer</h2>
-    <app-footer></app-footer>
-
     <h2>Formularz zapisu dla visitora</h2>
     <app-visitor-form></app-visitor-form>
+
+    <h2>Footer</h2>
+    <app-footer></app-footer>
   `,
 })
 export default class ThemeComponent {
