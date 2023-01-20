@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { userActions } from '../store/user.action';
+import { User } from 'src/app/app.module';
 
 interface LoginData {
   accessToken: string;
@@ -20,7 +21,7 @@ interface LoginData {
 export class AuthService {
   loginData: LoginData = { accessToken: '', user: { email: '', password: '', type: '' } };
   http = inject(HttpClient);
-  store = inject(Store);
+  store = inject<Store<User>>(Store);
   private router = inject(Router);
   url = 'http://localhost:3000/login';
 
@@ -57,7 +58,6 @@ export class AuthService {
   }
 
   decideRole(role: string) {
-    console.log(role);
     if (role === 'user') {
       this.store.dispatch(userActions.changeDefaultToUser());
     }

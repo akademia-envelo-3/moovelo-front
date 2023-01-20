@@ -8,7 +8,6 @@ import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { LoginComponent } from './login.component/login-form.component';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/user.reducer';
-import { userFeatureKey } from './store/user.state';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -24,7 +23,7 @@ import { userFeatureKey } from './store/user.state';
         component: LoginComponent,
       },
     ]),
-    StoreModule.forFeature(userFeatureKey, userReducer),
+    StoreModule.forFeature('User', userReducer),
   ],
 })
 export default class AuthModule {}
