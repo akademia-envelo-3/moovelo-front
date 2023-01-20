@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { SearchResult } from '../../../features/home/search-bar/search-bar.interface';
+import { SearchResult } from '../search-bar.interface';
 
 export const SearchBarActions = createActionGroup({
   source: 'SearchBar',
