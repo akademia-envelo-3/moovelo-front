@@ -15,11 +15,7 @@ export class EventTypeFormComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  constructor() {
-    this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
-  }
-
-  eventTypeForm: FormGroup<EventTypeForm>;
+  eventTypeForm: FormGroup<EventTypeForm> = this.eventFormProvider.getForm().controls.eventTypeForm;
   page = 0;
   questions = [
     'Czy twoje wydarzenie jest tylko dla osób zaproszonych?',
