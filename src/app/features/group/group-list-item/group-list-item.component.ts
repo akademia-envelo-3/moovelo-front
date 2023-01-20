@@ -18,14 +18,12 @@ import { User } from 'src/app/app.module';
 })
 export class GroupItemComponent {
   @Input() groupItem!: GroupListItem;
-
   store = inject<Store<User>>(Store);
   user$ = this.store.select(state => state.User.type);
-
   authService = inject(AuthService);
   showRole() {
-    console.log(this.user$.pipe().subscribe());
-    // console.log(this.authService.userValue);
-    // console.log(this.store.dispatch(state));
+    this.user$.subscribe(res => {
+      console.log(res);
+    });
   }
 }

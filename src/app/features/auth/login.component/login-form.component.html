@@ -29,3 +29,4 @@
 
   <button class="button" mat-button class="login" (click)="checkValidationAndAuth()">Zaloguj</button>
 </form>
+<p *ngIf="user$ | async as user">{{ user }}</p>
