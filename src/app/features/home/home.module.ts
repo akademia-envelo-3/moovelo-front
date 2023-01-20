@@ -18,7 +18,12 @@ import { HomeComponent } from './home.component';
       {
         path: '',
         component: HomeComponent,
-        children: [],
+        children: [
+          {
+            path: 'create-event',
+            loadChildren: () => import('../create-event/create-event.module'),
+          },
+        ],
       },
     ]),
     StoreModule.forFeature('searchBar', searchBarReducer),
