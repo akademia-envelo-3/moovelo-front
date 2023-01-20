@@ -1,0 +1,31 @@
+<h1 class="header" class="$heading-1">MOOVELO</h1>
+<form class="form" [formGroup]="loginForm">
+  <div class="form__input">
+    <mat-form-field color="primary">
+      <mat-label>E-mail</mat-label>
+      <input error matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field color="primary">
+      <mat-label>Hasło</mat-label>
+      <input error type="password" matInput formControlName="password" />
+    </mat-form-field>
+  </div>
+
+  <ng-container *ngIf="loginForm.controls.email.errors as errors">
+    <p color="primary" class="form__warning" *ngIf="errors['maxlength']">Email nie może być dłuższy niż 100 znaków.</p>
+    <p color="primary" class="form__warning" *ngIf="errors['pattern']">
+      Podaj poprawny adres email według wzoru: nazwa@domena.pl
+    </p>
+  </ng-container>
+  <p
+    class="form__warning"
+    *ngIf="(passwordCtrl.errors?.['required'] &&
+       passwordCtrl.touched) ||
+      (emailCtrl.errors?.['required'] &&
+       emailCtrl.touched)
+    ">
+    Pola nie mogą byc puste.
+  </p>
+
+  <button class="button" mat-button class="login" (click)="checkValidationAndAuth()">Zaloguj</button>
+</form>

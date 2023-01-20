@@ -1,0 +1,88 @@
+@use '@angular/material' as mat;
+@use '../../styles/palettes' as palette;
+
+.nav-bar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  top: 0;
+  width: 100%;
+  height: 10vh;
+  position: fixed;
+  background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
+  transition-duration: 300ms;
+  transform: translateY(0);
+  &--visible {
+    transform: translateY(-10vh);
+    transition-duration: 300ms;
+  }
+  z-index: 10;
+}
+
+.nav-menu {
+  width: 100%;
+  top: 0;
+  position: fixed;
+  align-items: center;
+
+  color: mat.get-color-from-palette(palette.$gray-palette, 100);
+  transition-duration: 500ms;
+  transform: translateY(10vh);
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8vh;
+    width: 100%;
+
+    list-style-type: none;
+    background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
+    border-top: 1px solid mat.get-color-from-palette(palette.$gray-palette, 100);
+  }
+  &--blur {
+    background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
+    height: 100vh;
+    opacity: 0.6;
+  }
+  &--hide {
+    position: fixed;
+    width: 100%;
+    top: 8vh;
+    transform: translateY(-60vh);
+    transition-duration: 500ms;
+  }
+  &__link {
+    color: mat.get-color-from-palette(palette.$gray-palette, 100);
+    text-decoration: none;
+  }
+}
+
+.nav-bar {
+  &__logo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 8px;
+  }
+  &__image {
+    width: 25%;
+  }
+
+  &__padding {
+    padding-left: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.nav-icons {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  &__notifications {
+    margin-right: 16px;
+  }
+  &__menu {
+    margin-right: 8px;
+  }
+}
