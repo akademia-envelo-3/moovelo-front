@@ -7,7 +7,12 @@
       {{ groupItem.description }}
     </div>
   </div>
-  <button class="group-list-item__button" mat-fab color="primary" aria-label="button with plus icon">
+  <button
+    class="group-list-item__button"
+    mat-fab
+    color="primary"
+    aria-label="button with plus icon"
+    (click)="showRole()">
     <mat-icon>add</mat-icon>
   </button>
 </div>

@@ -2,12 +2,15 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { userActions } from '../store/user.action';
 
 interface LoginData {
   accessToken: string;
   user: {
     email: string;
     password: string;
+    type: string;
   };
 }
 
@@ -15,8 +18,9 @@ interface LoginData {
   providedIn: 'root',
 })
 export class AuthService {
-  loginData: LoginData = { accessToken: '', user: { email: '', password: '' } };
+  loginData: LoginData = { accessToken: '', user: { email: '', password: '', type: '' } };
   http = inject(HttpClient);
+  store = inject(Store);
   private router = inject(Router);
   url = 'http://localhost:3000/login';
 
@@ -45,10 +49,20 @@ export class AuthService {
             this.auth$$.next({ hasAuth: true });
             localStorage.setItem('token', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(accessToken);
-            // this.router.navigate(['']);
+            this.decideRole(user.type);
+            this.router.navigate(['/theme']);
           },
         })
       );
+  }
+
+  decideRole(role: string) {
+    console.log(role);
+    if (role === 'user') {
+      this.store.dispatch(userActions.changeDefaultToUser());
+    }
+    if (role === 'admin') {
+      this.store.dispatch(userActions.changeDefaultToAdmin());
+    }
   }
 }

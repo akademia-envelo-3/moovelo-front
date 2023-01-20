@@ -6,6 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { LoginComponent } from './login.component/login-form.component';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './store/user.reducer';
+import { userFeatureKey } from './store/user.state';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -21,6 +24,7 @@ import { LoginComponent } from './login.component/login-form.component';
         component: LoginComponent,
       },
     ]),
+    StoreModule.forFeature(userFeatureKey, userReducer),
   ],
 })
 export default class AuthModule {}
