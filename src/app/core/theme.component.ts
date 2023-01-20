@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { EventCard, EventCardComponent } from '../features/event';
 import { GroupItemComponent } from '../features/group';
-import { FooterComponent } from '@shared/footer/footer.component';
-import { SearchBarComponent } from '@shared/search-bar/search-bar.component';
+import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-theme',
-  imports: [GroupItemComponent, EventCardComponent, FooterComponent, SearchBarComponent],
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
-    <app-search-bar></app-search-bar>
     <h2>Loader</h2>
 
     <h2>Pojedyncza grupa w liście</h2>
@@ -25,6 +23,7 @@ import { SearchBarComponent } from '@shared/search-bar/search-bar.component';
     <h2>Footer</h2>
     <app-footer></app-footer>
   `,
+  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent],
 })
 export default class ThemeComponent {
   event: EventCard = {
