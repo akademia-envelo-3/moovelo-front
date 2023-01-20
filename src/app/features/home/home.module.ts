@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { SearchBarComponent } from '@shared/search-bar/search-bar.component';
-import { searchBarReducer } from '@shared/search-bar/store/search-bar.reducer';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { searchBarReducer } from './search-bar/store/search-bar.reducer';
 import { HomeComponent } from './home.component';
 
 @NgModule({

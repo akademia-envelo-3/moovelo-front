@@ -12,7 +12,6 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
-import { SearchBarComponent } from '@shared/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +32,6 @@ import { SearchBarComponent } from '@shared/search-bar/search-bar.component';
     MatIconModule,
     NavbarComponent,
     RouterModule,
-    SearchBarComponent,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
