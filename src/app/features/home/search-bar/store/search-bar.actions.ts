@@ -4,6 +4,13 @@ import { SearchResult } from '../search-bar.interface';
 export const SearchBarActions = createActionGroup({
   source: 'SearchBar',
   events: {
-    fetch_search_results: props<SearchResult>(),
+    upadate_search_results: props<SearchResult>(),
+  },
+});
+
+export const SearchBarApiActions = createActionGroup({
+  source: 'SearchBar',
+  events: {
+    fetch_search_results: props<{ value: string }>(),
   },
 });

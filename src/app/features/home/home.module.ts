@@ -10,9 +10,13 @@ import { StoreModule } from '@ngrx/store';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { searchBarReducer } from './search-bar/store/search-bar.reducer';
 import { HomeComponent } from './home.component';
+import { EffectsModule } from '@ngrx/effects';
+import { SearchBarEffects } from './search-bar/store/search-bar.effects';
+import { SearchBarService } from './search-bar/search-bar.service';
+import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
 
 @NgModule({
-  declarations: [SearchBarComponent, HomeComponent],
+  declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
   imports: [
     RouterModule.forChild([
       {
@@ -27,6 +31,7 @@ import { HomeComponent } from './home.component';
       },
     ]),
     StoreModule.forFeature('searchBar', searchBarReducer),
+    EffectsModule.forFeature([SearchBarEffects]),
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
@@ -34,5 +39,6 @@ import { HomeComponent } from './home.component';
     ReactiveFormsModule,
     CommonModule,
   ],
+  providers: [SearchBarService],
 })
 export default class HomeModule {}

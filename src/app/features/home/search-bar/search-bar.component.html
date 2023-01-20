@@ -3,6 +3,13 @@
     <mat-label>Search...</mat-label>
     <input [formControl]="searchControl" matInput [matAutocomplete]="auto" />
     <mat-icon matSuffix fontIcon="search"></mat-icon>
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> </mat-autocomplete>
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-optgroup label="Wydarzenia">
+        <mat-option *ngFor="let event of events | async">{{ event.name }}</mat-option>
+      </mat-optgroup>
+      <mat-optgroup label="Grupy">
+        <mat-option *ngFor="let group of groups | async">{{ group.name }}</mat-option>
+      </mat-optgroup>
+    </mat-autocomplete>
   </mat-form-field>
 </div>
