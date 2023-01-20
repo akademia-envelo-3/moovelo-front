@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SingleGroupService } from './single-group.service';
-import { SingleGroup } from '../group.interface';
 
 @Component({
   selector: 'app-single-group',
@@ -11,14 +9,11 @@ import { SingleGroup } from '../group.interface';
   providers: [SingleGroupService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SingleGroupComponent implements OnInit {
+export class SingleGroupComponent {
   private route = inject(ActivatedRoute);
   private singleGroupService = inject(SingleGroupService);
-  singleGroup$: Observable<SingleGroup> | null = null;
 
-  ngOnInit() {
-    this.singleGroup$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.singleGroupService.getGroupInfo(params.get('id') as string))
-    );
-  }
+  private groupId = this.route.snapshot.params['id'];
+
+  singleGroup$ = this.singleGroupService.getGroupInfo(this.groupId);
 }

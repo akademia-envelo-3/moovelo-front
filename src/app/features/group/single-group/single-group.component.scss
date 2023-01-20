@@ -1,0 +1,39 @@
+.group-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 4px;
+  width: 100vw;
+
+  &__users {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 8px 8px;
+    gap: 8px;
+    border-bottom: 2px solid black;
+  }
+
+  &__button {
+    align-self: flex-end;
+    border-radius: 20px;
+  }
+
+  &__events {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.users-list {
+  align-self: flex-start;
+  list-style-position: inside;
+  margin-left: 16px;
+
+  &__item {
+    margin-bottom: 8px;
+  }
+}
