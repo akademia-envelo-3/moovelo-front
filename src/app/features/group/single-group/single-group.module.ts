@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SingleGroupComponent } from './single-group.component';
@@ -7,10 +8,11 @@ import { SingleGroupComponent } from './single-group.component';
   imports: [
     RouterModule.forChild([
       {
-        path: '',
+        path: ':id',
         component: SingleGroupComponent,
       },
     ]),
+    CommonModule,
   ],
 })
 export default class SingleGroupModule {}

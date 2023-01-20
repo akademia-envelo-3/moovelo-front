@@ -8,7 +8,7 @@ export class SingleGroupService {
   private http = inject(HttpClient);
   private apiUrl = inject(API_URL);
 
-  getGroupInfo(groupId: number) {
+  getGroupInfo(groupId: string) {
     return this.http.get<SingleGroup>(this.apiUrl + `/groups/${groupId}`);
   }
 }

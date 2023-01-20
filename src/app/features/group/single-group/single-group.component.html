@@ -1,1 +1,4 @@
 <h1>SINGLE GROUP WORKS</h1>
+<ng-container *ngIf="singleGroup$ | async as singleGroup">
+  {{ singleGroup.name }}
+</ng-container>
