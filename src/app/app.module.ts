@@ -9,12 +9,30 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
+import { NavbarComponent } from './shared/user-navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
 import { Error404Component } from './shared/error404/error404.component';
 
 @NgModule({
   declarations: [AppComponent],
+  providers: [
+    {
+      provide: API_URL,
+      useValue: environment.API_URL,
+    },
+    {
+      provide: IS_PRODUCTION,
+      useValue: environment.production,
+    },
+  ],
+  bootstrap: [AppComponent],
   imports: [
+    AppInputValidatorDirective,
     BrowserModule,
+    MatIconModule,
+    NavbarComponent,
+    RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
@@ -44,16 +62,5 @@ import { Error404Component } from './shared/error404/error404.component';
       },
     ]),
   ],
-  providers: [
-    {
-      provide: API_URL,
-      useValue: environment.API_URL,
-    },
-    {
-      provide: IS_PRODUCTION,
-      useValue: environment.production,
-    },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
