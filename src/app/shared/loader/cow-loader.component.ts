@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [CommonModule],
   template: `
     <div class="loader">
-      <img src="/assets/logo.png" alt="ładowanie, proszę czekać" />
+      <img src="/assets/cow-grey.svg" alt="ładowanie, proszę czekać" />
       <p>Ładowanie...</p>
     </div>
   `,

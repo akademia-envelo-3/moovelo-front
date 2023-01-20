@@ -8,8 +8,9 @@ import { GroupListError } from '../group.interface';
 @Injectable()
 export class GroupListService {
   private http = inject(HttpClient);
-  private error$$ = new BehaviorSubject<GroupListError>({ isError: false, errorStatus: 404 });
   private apiUrl = inject(API_URL);
+
+  private error$$ = new BehaviorSubject<GroupListError>({ isError: false, errorStatus: 404 });
 
   get error$() {
     return this.error$$.asObservable();
