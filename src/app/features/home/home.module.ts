@@ -11,7 +11,7 @@ import { HomeComponent } from './home.component';
         children: [
           {
             path: 'events/1',
-            loadChildren: () => import('../event/single-event.module'),
+            loadChildren: () => import('../event/single-event/single-event.module'),
           },
         ],
       },

@@ -27,7 +27,7 @@
     <h1 class="$heading-1">{{ eventInfo.name | titlecase }}</h1>
     <ng-container *ngIf="eventInfo.isConfirmationRequired">
       <div class="event__required-confirmation">
-        <p class="font-text-1" class="event__required-confirmation-text">Zapis obowiązkowy </p>
+        <p class="font-text-1" class="event__required-confirmation-text">Zapis obowiązkowy</p>
       </div>
     </ng-container>
     <ng-container *ngIf="eventInfo.limitedPlaces">
@@ -37,7 +37,7 @@
     </ng-container>
 
     <div class="event__category-picture">
-      <img class="event__category-picture-image" alt=`{{eventInfo.category.name}}` src="assets/eventpicture.png" />
+      <img class="event__category-picture-image" alt="`{{ eventInfo.category.name }}`" src="assets/eventpicture.png" />
     </div>
     <ng-container *ngIf="eventInfo.cycleLenght"><p class="event__is-cyclic">Wydarzenie cykliczne</p> </ng-container>
     <div class="event__list-of-participants">

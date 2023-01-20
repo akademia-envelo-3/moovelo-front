@@ -44,9 +44,6 @@ Thumbs.db
 # Angular
 src/environment.ts
 .env
-<<<<<<< HEAD
 
 #db
-=======
->>>>>>> 0a70994ded672176d0ca24d6e0894e9b7831b9fe
 db.json

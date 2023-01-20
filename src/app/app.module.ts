@@ -9,7 +9,7 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { SingleEventStateInterface } from './features/event/single-event.interface';
+import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
