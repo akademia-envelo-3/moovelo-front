@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { EventCard, EventCardComponent } from '../features/event';
 import { GroupItemComponent } from '../features/group';
-import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
+import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 
 @Component({
   selector: 'app-theme',
-  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, VisitorFormComponent],
+  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent, VisitorFormComponent],
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
@@ -21,6 +22,9 @@ import { VisitorFormComponent } from '../features/visitor-form/visitor-form.comp
     <div style="padding: 8px 8px;">
       <app-event-card [eventCard]="event"></app-event-card>
     </div>
+
+    <h2>Footer</h2>
+    <app-footer></app-footer>
 
     <h2>Formularz zapisu dla visitora</h2>
     <app-visitor-form></app-visitor-form>

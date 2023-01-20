@@ -17,7 +17,7 @@ import { emailValidatorRegex } from './emailValidatorPattern';
 export class VisitorFormComponent {
   private builder = inject(NonNullableFormBuilder);
 
-  joinForm = this.builder.group({
+  joinEventForm = this.builder.group({
     name: this.builder.control('', {
       validators: [Validators.required, Validators.maxLength(20)],
     }),
@@ -29,14 +29,14 @@ export class VisitorFormComponent {
     }),
   });
 
-  get joinCtrl() {
-    return this.joinForm.controls;
+  get joinEventCtrl() {
+    return this.joinEventForm.controls;
   }
 
   submitForm() {
-    this.joinForm.markAllAsTouched();
+    this.joinEventForm.markAllAsTouched();
 
-    if (this.joinForm.invalid) {
+    if (this.joinEventForm.invalid) {
       return;
     }
   }
