@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
 import { MatButtonModule } from '@angular/material/button';
+import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
+import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 
 export interface AppState {
@@ -18,8 +20,23 @@ export interface AppState {
 }
 @NgModule({
   declarations: [AppComponent],
+  providers: [
+    {
+      provide: API_URL,
+      useValue: environment.API_URL,
+    },
+    {
+      provide: IS_PRODUCTION,
+      useValue: environment.production,
+    },
+  ],
+  bootstrap: [AppComponent],
   imports: [
+    AppInputValidatorDirective,
     BrowserModule,
+    MatIconModule,
+    NavbarComponent,
+    RouterModule,
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
@@ -51,16 +68,5 @@ export interface AppState {
       },
     ]),
   ],
-  providers: [
-    {
-      provide: API_URL,
-      useValue: environment.API_URL,
-    },
-    {
-      provide: IS_PRODUCTION,
-      useValue: environment.production,
-    },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
