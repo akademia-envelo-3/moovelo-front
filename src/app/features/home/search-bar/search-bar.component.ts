@@ -14,9 +14,10 @@ import { SearchBarApiActions } from './store/search-bar.actions';
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
   private store = inject<Store<AppState>>(Store);
-  events = this.store.select(selectEvents);
-  groups = this.store.select(selectGroups);
   private unsubscribe$$ = new Subject<void>();
+
+  events$ = this.store.select(selectEvents);
+  groups$ = this.store.select(selectGroups);
 
   searchControl = new FormControl('', { nonNullable: true });
 
