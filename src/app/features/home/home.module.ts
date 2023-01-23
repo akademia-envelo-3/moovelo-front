@@ -20,6 +20,10 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
         component: HomeComponent,
         children: [
           {
+            path: 'groups',
+            loadChildren: () => import('../group/group-list/group-list.module'),
+          },
+          {
             path: 'create-event',
             loadChildren: () => import('../create-event/create-event.module'),
           },
