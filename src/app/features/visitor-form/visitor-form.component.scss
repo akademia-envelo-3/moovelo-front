@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+@use '../../styles/palettes' as palette;
+
+.mat-mdc-raised-button {
+    border-radius: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    max-width: 200px;
+    &__button {
+        background: mat.get-color-from-palette(palette.$blue-palette, 700);
+        margin: 16px;
+        color: mat.get-color-from-palette(palette.$gray-palette, 100);
+        
+    }
+    &__error {
+        border: 2px solid mat.get-color-from-palette(palette.$red-warn-palette, 500);
+        border-radius: 5px;
+        &__text {
+            color: mat.get-color-from-palette(palette.$red-warn-palette, 500);
+        }
+    }
+}
