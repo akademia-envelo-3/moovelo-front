@@ -3,7 +3,9 @@ import { inject, Injectable } from '@angular/core';
 import { API_URL } from '@core/env.token';
 import { SingleGroup } from '../group.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SingleGroupService {
   private http = inject(HttpClient);
   private apiUrl = inject(API_URL);

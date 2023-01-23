@@ -10,10 +10,6 @@ import { HomeComponent } from './home.component';
         component: HomeComponent,
         children: [
           {
-            path: 'group',
-            loadChildren: () => import('../group/single-group/single-group.module'),
-          },
-          {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
           },
