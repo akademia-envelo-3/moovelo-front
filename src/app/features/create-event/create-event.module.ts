@@ -11,8 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { CreateEventService } from './create-event.service';
+import { CreateEventFormService } from './create-event-form.service';
 import { detailsGuard } from './guards/details.guard';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
@@ -22,6 +23,7 @@ import { detailsGuard } from './guards/details.guard';
     MatSlideToggleModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forChild([
@@ -51,6 +53,6 @@ import { detailsGuard } from './guards/details.guard';
       },
     ]),
   ],
-  providers: [CreateEventService, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [CreateEventFormService, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export default class CreateEventModule {}

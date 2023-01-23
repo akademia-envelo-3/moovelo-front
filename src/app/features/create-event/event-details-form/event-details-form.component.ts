@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
 import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
-import { CreateEventService } from '../create-event.service';
+import { CreateEventFormService } from '../create-event-form.service';
 
 @Component({
   selector: 'app-event-details-form',
@@ -12,12 +12,12 @@ import { CreateEventService } from '../create-event.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailsFormComponent implements OnInit, OnDestroy {
-  private eventFormProvider = inject(CreateEventService);
+  private createEventForm = inject(CreateEventFormService);
   private unsubscribe$$ = new Subject<void>();
 
   constructor() {
-    this.eventTypeForm = this.eventFormProvider.getForm().controls.eventTypeForm;
-    this.eventDetailsForm = this.eventFormProvider.getForm().controls.eventDetailsForm;
+    this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
+    this.eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
   }
 
   eventTypeForm: FormGroup<EventTypeForm>;
@@ -29,26 +29,49 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
       value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
+
+    if (this.isGroup) {
+      this.groupCtrl.setValidators(Validators.required);
+    }
   }
 
   get title() {
-    const value = this.eventTypeForm.value;
     return `${
-      value.isPrivate
+      this.isPrivate
         ? 'prywatne'
-        : value.isGroup
+        : this.isGroup
         ? 'grupowe'
-        : value.isInternal
+        : this.isInternal
         ? 'firmowe'
-        : value.isExternal
+        : this.isExternal
         ? 'zewnętrzne'
         : ''
     }`;
   }
 
+  get isGroup() {
+    return this.eventTypeForm.value.isGroup;
+  }
+
+  get isInternal() {
+    return this.eventTypeForm.value.isInternal;
+  }
+
+  get isPrivate() {
+    return this.eventTypeForm.value.isPrivate;
+  }
+
+  get isExternal() {
+    return this.eventTypeForm.value.isExternal;
+  }
+
   handleSubmit() {
     this.eventDetailsForm.markAllAsTouched();
     if (this.eventDetailsForm.invalid) return;
+  }
+
+  get groupCtrl() {
+    return this.eventDetailsForm.controls.group;
   }
 
   get isConfirmationRequiredCtrl() {
