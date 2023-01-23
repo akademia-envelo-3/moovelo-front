@@ -16,9 +16,10 @@ export class SearchBarService {
       this.http.get<Group[]>(`${this.API_URL}groups?name_like=${value}`),
     ]).pipe(
       map(result => {
+        const [events, groups] = result;
         return {
-          events: result[0],
-          groups: result[1],
+          events: events,
+          groups: groups,
         };
       })
     );
