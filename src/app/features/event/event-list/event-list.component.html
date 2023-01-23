@@ -1,3 +1,5 @@
-<div>
-  <h3>Lista wydarzeń</h3>
+<div class="event-list">
+  <ng-container *ngIf="eventList | async as events">
+    <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
+  </ng-container>
 </div>

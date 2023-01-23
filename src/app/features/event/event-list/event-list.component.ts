@@ -1,10 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { EventListService } from './event-list.service';
 
 @Component({
   selector: 'app-event-list',
-  standalone: true,
   templateUrl: `./event-list.component.html`,
   styles: [],
+  providers: [EventListService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventListComponent {}
+export class EventListComponent {
+  private eventListService = inject(EventListService);
+
+  error = this.eventListService.errors$;
+  eventList = this.eventListService.getAllEvents();
+}

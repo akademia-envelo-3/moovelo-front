@@ -3,7 +3,6 @@ import { EventCard, EventCardComponent } from '../features/event';
 import { GroupItemComponent } from '../features/group';
 import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
-import { EventListComponent } from '../features/event/event-list/event-list.component';
 
 @Component({
   selector: 'app-theme',
@@ -22,13 +21,10 @@ import { EventListComponent } from '../features/event/event-list/event-list.comp
       <app-event-card [eventCard]="event"></app-event-card>
     </div>
 
-    <h2>Event list</h2>
-    <app-event-list></app-event-list>
-
     <h2>Footer</h2>
     <app-footer></app-footer>
   `,
-  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent, EventListComponent],
+  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent],
 })
 export default class ThemeComponent {
   event: EventCard = {
