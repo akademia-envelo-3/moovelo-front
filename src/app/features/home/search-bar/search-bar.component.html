@@ -4,14 +4,12 @@
     <input [formControl]="searchControl" matInput [matAutocomplete]="auto" />
     <mat-icon matSuffix fontIcon="search"></mat-icon>
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <ng-container *ngIf="events$ | async as events">
-        <mat-optgroup *ngIf="events.length" label="Wydarzenia">
-          <mat-option *ngFor="let event of events">{{ event.name }}</mat-option>
+      <ng-container *ngIf="searchResult$ | async as searchResult">
+        <mat-optgroup *ngIf="searchResult.events.length" label="Wydarzenia">
+          <mat-option *ngFor="let event of searchResult.events">{{ event.name }}</mat-option>
         </mat-optgroup>
-      </ng-container>
-      <ng-container *ngIf="groups$ | async as groups">
-        <mat-optgroup *ngIf="groups.length" label="Grupy">
-          <mat-option *ngFor="let group of groups">{{ group.name }}</mat-option>
+        <mat-optgroup *ngIf="searchResult.groups.length" label="Grupy">
+          <mat-option *ngFor="let group of searchResult.groups">{{ group.name }}</mat-option>
         </mat-optgroup>
       </ng-container>
     </mat-autocomplete>

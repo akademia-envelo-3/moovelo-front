@@ -1,10 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { selectEvents, selectGroups } from './store/search-bar.selectors';
-import { AppState } from 'src/app/app.module';
-import { SearchBarApiActions } from './store/search-bar.actions';
+import { SearchBarService } from './search-bar.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -13,17 +10,16 @@ import { SearchBarApiActions } from './store/search-bar.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
-  private store = inject<Store<AppState>>(Store);
+  private searchBarService = inject(SearchBarService);
   private unsubscribe$$ = new Subject<void>();
 
-  events$ = this.store.select(selectEvents);
-  groups$ = this.store.select(selectGroups);
+  searchResult$ = this.searchBarService.searchResult$;
 
   searchControl = new FormControl('', { nonNullable: true });
 
   ngOnInit() {
     this.searchControl.valueChanges.pipe(takeUntil(this.unsubscribe$$), debounceTime(1000)).subscribe(value => {
-      return this.store.dispatch(SearchBarApiActions.fetch_search_results({ value: value }));
+      return this.searchBarService.search(value);
     });
   }
 

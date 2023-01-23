@@ -12,11 +12,6 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { Error404Component } from './shared/error404/error404.component';
-import { SearchResult } from './features/home/search-bar/search-bar.interface';
-
-export interface AppState {
-  searchBar?: SearchResult;
-}
 
 @NgModule({
   declarations: [AppComponent],
