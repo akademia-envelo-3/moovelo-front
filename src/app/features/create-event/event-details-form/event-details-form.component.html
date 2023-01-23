@@ -18,7 +18,9 @@
   <mat-form-field *ngIf="isGroup" appearance="fill">
     <mat-label>Wybierz grupę</mat-label>
     <mat-select formControlName="group">
-      <mat-option [value]="1">1</mat-option>
+      <ng-container *ngIf="groups | async as groups">
+        <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
+      </ng-container>
     </mat-select>
   </mat-form-field>
   <div class="toggle">
