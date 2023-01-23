@@ -10,3 +10,8 @@ export interface GroupListItem {
 export interface GroupOwner {
   basicUserId: number;
 }
+
+export interface GroupListError {
+  isError: boolean;
+  errorStatus: number;
+}
