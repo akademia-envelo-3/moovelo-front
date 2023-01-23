@@ -1,0 +1,40 @@
+.details-form {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  &__title {
+    row-gap: 16px;
+  }
+
+  &__description {
+    max-width: 450px;
+    width: 100%;
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+
+  &__label {
+    margin-right: 16px;
+  }
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  row-gap: 32px;
+
+  &__input {
+    width: 100%;
+  }
+}

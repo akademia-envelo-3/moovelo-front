@@ -1,0 +1,20 @@
+<div class="group-list">
+  <h3 class="font-heading-3">Lista Grup</h3>
+  <ng-container *ngIf="groupList$ | async as groups; else loadingOrError">
+    <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
+    <button class="group-list__button" mat-fab extended color="primary">Stwórz grupę</button>
+  </ng-container>
+  <ng-template #loadingOrError>
+    <ng-container *ngIf="error$ | async as error">
+      <ng-container *ngIf="error.isError; else loading">
+        <div class="group-list__errors font-text-1">
+          <p class="font-text-1">Status błędu: {{ error.errorStatus }}</p>
+          <p class="font-text-1">Coś poszło nie tak. Spróbuj ponownie.</p>
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <app-cow-loader></app-cow-loader>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+</div>
