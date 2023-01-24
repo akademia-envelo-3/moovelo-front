@@ -6,10 +6,11 @@ import { ErrorhandlerService } from './Interceptor/errorhandler.service';
   selector: 'app-error',
   imports: [CommonModule],
   standalone: true,
-  template: `<div class="smth-went-wrong"><p *ngIf="errorService.error$ | async">Ups coś poszło nie tak...</p></div> `,
+  template: `<div class="smth-went-wrong"><p *ngIf="error$ | async">Ups coś poszło nie tak...</p></div> `,
   styles: ['.smth-went-wrong {  text-align: center }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorComponent {
-  errorService = inject(ErrorhandlerService);
+  private errorService$$ = inject(ErrorhandlerService);
+  error$ = this.errorService$$.error$;
 }

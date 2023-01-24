@@ -5,7 +5,7 @@ import { ErrorhandlerService } from './errorhandler.service';
 
 @Injectable()
 export class ErrorhandlerInterceptor implements HttpInterceptor {
-  errorService = inject(ErrorhandlerService);
+  private errorService = inject(ErrorhandlerService);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(

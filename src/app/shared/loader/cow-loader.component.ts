@@ -7,7 +7,7 @@ import { LoaderService } from '@shared/Interceptor/loaderhandler.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div *ngIf="loaderService.isLoading$ | async">
+    <div *ngIf="isLoading$ | async">
       <div class="loader">
         <img src="/assets/cow-grey.svg" alt="ładowanie, proszę czekać" />
         <p>Ładowanie...</p>
@@ -18,5 +18,6 @@ import { LoaderService } from '@shared/Interceptor/loaderhandler.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CowLoaderComponent {
-  loaderService = inject(LoaderService);
+  private loaderService = inject(LoaderService);
+  isLoading$ = this.loaderService.isLoading$;
 }
