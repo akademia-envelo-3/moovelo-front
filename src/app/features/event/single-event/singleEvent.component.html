@@ -42,15 +42,15 @@
     <ng-container *ngIf="eventInfo.cycleLenght"><p class="event__is-cyclic">Wydarzenie cykliczne</p> </ng-container>
     <div class="event__list-of-participants">
       <button mat-button class="accepted">
-        <p class="text">
+        <p class="font-text-1" class="text">
           {{ eventInfo.eventParticipationStats.accepted }}
         </p>
       </button>
       <button mat-button class="pending">
-        <p class="text">{{ eventInfo.eventParticipationStats.pending }}</p>
+        <p class="font-text-1" class="text">{{ eventInfo.eventParticipationStats.pending }}</p>
       </button>
       <button mat-button class="rejected">
-        <p class="text">{{ eventInfo.eventParticipationStats.rejected }}</p>
+        <p class="font-text-1" class="text">{{ eventInfo.eventParticipationStats.rejected }}</p>
       </button>
     </div>
     <div class="event__basic-information">
