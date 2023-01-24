@@ -45,3 +45,4 @@ Thumbs.db
 src/environment.ts
 .env
 db.json
+routes.json

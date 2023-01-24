@@ -5,10 +5,19 @@ import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
+import { EventParticipantsComponent } from '../features/event/event-participants/event-participants.component';
+import { EventParticipationStats } from '../features/event';
 
 @Component({
   selector: 'app-theme',
-  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent, VisitorFormComponent],
+  imports: [
+    GroupItemComponent,
+    EventCardComponent,
+    CowLoaderComponent,
+    FooterComponent,
+    VisitorFormComponent,
+    EventParticipantsComponent,
+  ],
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
@@ -26,11 +35,20 @@ import { GroupListItem } from '../features/group';
     <h2>Formularz zapisu dla visitora</h2>
     <app-visitor-form></app-visitor-form>
 
+    <h2>Lista uczestników eventu</h2>
+    <app-event-participants [eventParticipants]="eventParticipants"> </app-event-participants>
+
     <h2>Footer</h2>
     <app-footer></app-footer>
   `,
 })
 export default class ThemeComponent {
+  eventParticipants: EventParticipationStats = {
+    accepted: 10,
+    pending: 2,
+    rejected: 5,
+  };
+
   group: GroupListItem = {
     groupOwner: {
       basicUserId: 1,

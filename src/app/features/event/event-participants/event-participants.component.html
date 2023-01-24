@@ -1,0 +1,40 @@
+<div class="event-participants">
+  <div class="event-participants__buttons">
+    <div class="event-participants__button">
+      <button (click)="showUserList()" mat-button class="accepted">
+        <p class="font-heading-2">
+          {{ eventParticipants.accepted }}
+        </p>
+      </button>
+      <p class="font-text-2">Weźmie udział</p>
+    </div>
+    <div class="event-participants__button">
+      <button mat-button class="pending">
+        <p class="font-heading-2">
+          {{ eventParticipants.pending }}
+        </p>
+      </button>
+      <p class="font-text-2">Zastanawia się</p>
+    </div>
+    <div class="event-participants__button">
+      <button mat-button class="rejected">
+        <p class="font-heading-2">
+          {{ eventParticipants.rejected }}
+        </p>
+      </button>
+      <p class="font-text-2">Zrezygnowało</p>
+    </div>
+  </div>
+  <ng-container *ngIf="userList">
+    <ng-container *ngIf="eventParticipants$ | async as participants">
+      <div class="event-participants__list">
+        <ul>
+          Użytkownicy:
+          <li class="event-participants__list__item font-text-1" *ngFor="let participant of participants.users">
+            {{ participant.firstName }} {{ participant.lastName }}
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
+.event-participants {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__list {
+    margin-left: 16px;
+    list-style-position: inside;
+
+    &__item {
+      margin-top: 8px;
+    }
+  }
+}
+
+.users-list {
+  align-self: flex-start;
+  list-style-position: inside;
+  margin-left: 16px;
+
+  &__item {
+    margin-bottom: 8px;
+  }
+}
+
+.mat-mdc-button {
+  border-radius: 20px;
+  color: mat.get-color-from-palette(palette.$gray-palette, 100) !important;
+}
+
+.accepted {
+  background-color: mat.get-color-from-palette(palette.$green-palette, 500);
+}
+
+.pending {
+  background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
+}
+
+.rejected {
+  background-color: mat.get-color-from-palette(palette.$red-palette, 900);
+}

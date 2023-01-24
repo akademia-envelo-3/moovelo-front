@@ -25,3 +25,25 @@ export interface EventCardHashtag {
   id: number;
   value: string;
 }
+
+export interface EventParticipationStats {
+  accepted: number;
+  pending: number;
+  rejected: number;
+}
+
+export interface EventParticipants {
+  users: ParticipantUser[];
+  visitors: ParticipantVisitor[];
+}
+
+export interface ParticipantUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+}
+
+export interface ParticipantVisitor {
+  firstName: string;
+  lastName: string;
+}
