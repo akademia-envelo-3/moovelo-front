@@ -30,7 +30,7 @@ export interface EventDetailsForm {
   hashtags: FormControl<string[]>;
 }
 
-export interface FetchedGroup {
+export interface Group {
   groupOwner: {
     basicUserId: number;
   };

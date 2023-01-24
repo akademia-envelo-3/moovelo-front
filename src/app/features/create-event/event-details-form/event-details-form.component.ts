@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { EventDetailsForm, EventTypeForm, FetchedGroup } from '../create-event.interface';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
+import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
@@ -26,7 +26,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   eventDetailsForm: FormGroup<EventDetailsForm>;
   today = new Date();
   hourMatcher = new HourErrorStateMatcher();
-  groups = this.createEventService.fetchUserGroups();
+  groups$ = this.createEventService.fetchUserGroups();
 
   ngOnInit() {
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {

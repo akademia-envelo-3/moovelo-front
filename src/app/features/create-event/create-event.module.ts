@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
       {
         path: '',
         component: CreateEventComponent,
+        providers: [CreateEventFormService],
         children: [
           {
             path: '',
@@ -53,6 +54,6 @@ import { MatSelectModule } from '@angular/material/select';
       },
     ]),
   ],
-  providers: [CreateEventFormService, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export default class CreateEventModule {}
