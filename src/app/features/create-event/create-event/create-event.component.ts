@@ -11,6 +11,6 @@ export class CreateEventComponent implements OnDestroy {
   private createEventFormService = inject(CreateEventFormService);
 
   ngOnDestroy() {
-    this.createEventFormService.getForm().reset();
+    this.createEventFormService.resetForm();
   }
 }

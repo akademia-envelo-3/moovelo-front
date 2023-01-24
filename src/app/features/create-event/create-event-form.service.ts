@@ -13,6 +13,10 @@ export class CreateEventFormService {
     return this.eventForm;
   }
 
+  resetForm() {
+    this.eventForm.reset();
+  }
+
   private createForm() {
     return this.builder.group<EventForm>({
       eventTypeForm: this.builder.group({
