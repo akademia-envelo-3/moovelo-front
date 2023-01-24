@@ -4,13 +4,12 @@ import { EventListService } from './event-list.service';
 @Component({
   selector: 'app-event-list',
   templateUrl: `./event-list.component.html`,
-  styles: [],
+  styleUrls: ['./event-list.component.scss'],
   providers: [EventListService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventListComponent {
   private eventListService = inject(EventListService);
 
-  error = this.eventListService.errors$;
-  eventList = this.eventListService.getAllEvents();
+  eventList$ = this.eventListService.getAllEvents();
 }

@@ -1,5 +1,9 @@
 <div class="event-list">
-  <ng-container *ngIf="eventList | async as events">
+  <ng-container *ngIf="eventList$ | async as events">
     <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
+    <button class="event-list__button" mat-fab extended color="primary">
+      <p>Stwórz</p>
+      <p>wydarzenie</p>
+    </button>
   </ng-container>
 </div>

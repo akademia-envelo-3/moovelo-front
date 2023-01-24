@@ -4,6 +4,7 @@ import { EventListComponent } from './event-list.component';
 import { RouterModule } from '@angular/router';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [EventListComponent],
@@ -17,7 +18,8 @@ import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
     ]),
     EventCardComponent,
     CowLoaderComponent,
+    MatButtonModule,
   ],
   providers: [],
 })
-export class EventListModule {}
+export default class EventListModule {}
