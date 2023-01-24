@@ -5,8 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ErrorhandlerService {
-  public error = new BehaviorSubject(false);
+  private error$$ = new BehaviorSubject(false);
+  get error$() {
+    return this.error$$.asObservable();
+  }
   errorShows() {
-    this.error.next(true);
+    this.error$$.next(true);
   }
 }

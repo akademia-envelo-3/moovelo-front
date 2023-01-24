@@ -7,7 +7,7 @@ import { LoaderService } from '@shared/Interceptor/loaderhandler.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div *ngIf="loaderService.isLoading | async">
+    <div *ngIf="loaderService.isLoading$ | async">
       <div class="loader">
         <img src="/assets/cow-grey.svg" alt="ładowanie, proszę czekać" />
         <p>Ładowanie...</p>
