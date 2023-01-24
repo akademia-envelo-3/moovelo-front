@@ -6,4 +6,11 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 export class LoaderService {
   public isLoading = new BehaviorSubject(false);
+  show() {
+    this.isLoading.next(true);
+  }
+
+  hide() {
+    this.isLoading.next(false);
+  }
 }
