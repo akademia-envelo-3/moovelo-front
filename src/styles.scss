@@ -156,3 +156,17 @@ body {
     }
   }
 }
+
+::ng-deep .mdc-switch__handle::before {
+  background-color: black !important;
+}
+
+::ng-deep {
+  .mdc-switch__handle::before {
+    background-color: black !important;
+  }
+}
+
+::ng-deep.mdc-switch__handle::before {
+  background-color: black !important;
+}
