@@ -35,20 +35,11 @@ export class AuthService {
             this.auth$$.next({ hasAuth: true });
             localStorage.setItem('token', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-            this.decideRole(user.type);
+            this.store.dispatch(userActions.changeRole({ role: user.type }));
             this.router.navigate(['/theme']);
           },
         })
       )
       .subscribe();
-  }
-
-  private decideRole(role: string) {
-    if (role === 'user') {
-      this.store.dispatch(userActions.changeDefaultToUser());
-    }
-    if (role === 'admin') {
-      this.store.dispatch(userActions.changeDefaultToAdmin());
-    }
   }
 }
