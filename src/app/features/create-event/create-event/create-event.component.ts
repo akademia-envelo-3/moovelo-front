@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/core';
+import { CreateEventFormService } from '../create-event-form.service';
 
 @Component({
   selector: 'app-create-event',
@@ -6,4 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class CreateEventComponent {}
+export class CreateEventComponent implements OnDestroy {
+  private createEventFormService = inject(CreateEventFormService);
+
+  ngOnDestroy() {
+    this.createEventFormService.getForm().reset();
+  }
+}
