@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventListService } from './event-list.service';
 
 @Component({
@@ -10,6 +11,11 @@ import { EventListService } from './event-list.service';
 })
 export class EventListComponent {
   private eventListService = inject(EventListService);
+  private router = inject(Router);
 
   eventList$ = this.eventListService.getAllEvents();
+
+  createNewEvent() {
+    this.router.navigateByUrl('/create-event');
+  }
 }
