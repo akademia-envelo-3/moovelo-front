@@ -9,11 +9,9 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { MatButtonModule } from '@angular/material/button';
 
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { NavbarComponent } from './shared/user-navbar/navbar.component';
-import { MatIconModule } from '@angular/material/icon';
 import { LoaderInterceptor } from '@shared/Interceptor/loader-interceptor.interceptor';
 import { ErrorhandlerInterceptor } from '@shared/Interceptor/errorhandler.interceptor';
 
@@ -46,8 +44,6 @@ import { ErrorhandlerInterceptor } from '@shared/Interceptor/errorhandler.interc
     NavbarComponent,
     RouterModule,
     HttpClientModule,
-    MatButtonModule,
-    MatIconModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
