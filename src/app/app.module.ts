@@ -10,7 +10,6 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
-import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { Error404Component } from './shared/error404/error404.component';
 
@@ -31,7 +30,6 @@ import { Error404Component } from './shared/error404/error404.component';
     AppInputValidatorDirective,
     BrowserModule,
     MatIconModule,
-    NavbarComponent,
     RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}),
