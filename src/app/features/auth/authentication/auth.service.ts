@@ -4,17 +4,19 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { userActions } from '../store/user.action';
-import { User } from 'src/app/app.module';
+import { AppState } from 'src/app/app.module';
 import { LoginData } from './auth.interface';
+import { API_URL } from '@core/env.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private store = inject<Store<User>>(Store);
+  private store = inject<Store<AppState>>(Store);
   private router = inject(Router);
-  private url = 'http://localhost:3000/login';
+  private apiUrl = inject(API_URL);
+  private url = '/login';
 
   private auth$$ = new BehaviorSubject<{ hasAuth: boolean }>({
     hasAuth: false,
@@ -22,7 +24,7 @@ export class AuthService {
 
   logIn(email: string, password: string) {
     return this.http
-      .post<LoginData>(this.url, {
+      .post<LoginData>(this.apiUrl + this.url, {
         email: email,
         password: password,
       })
@@ -37,10 +39,11 @@ export class AuthService {
             this.router.navigate(['/theme']);
           },
         })
-      );
+      )
+      .subscribe();
   }
 
-  decideRole(role: string) {
+  private decideRole(role: string) {
     if (role === 'user') {
       this.store.dispatch(userActions.changeDefaultToUser());
     }
