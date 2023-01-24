@@ -4,8 +4,9 @@ import { initialUserState } from './user.state';
 
 export const userReducer = createReducer(
   initialUserState,
-  on(userActions.changeRole, (state, { role }) => ({
+  on(userActions.changeRole, (state, { role, id }) => ({
     ...state,
     type: role,
+    id: id,
   }))
 );

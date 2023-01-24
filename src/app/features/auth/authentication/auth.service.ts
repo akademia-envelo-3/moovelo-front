@@ -35,7 +35,7 @@ export class AuthService {
             this.auth$$.next({ hasAuth: true });
             localStorage.setItem('token', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-            this.store.dispatch(userActions.changeRole({ role: user.type }));
+            this.store.dispatch(userActions.changeRole({ role: user.type, id: user.id }));
             this.router.navigate(['/theme']);
           },
         })

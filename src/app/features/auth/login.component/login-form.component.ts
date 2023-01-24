@@ -35,10 +35,10 @@ export class LoginComponent {
   }
 
   checkValidationAndAuth() {
-    this.authService.logIn(this.emailCtrl.value, this.passwordCtrl.value);
     this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
       return;
     }
+    this.authService.logIn(this.emailCtrl.value, this.passwordCtrl.value);
   }
 }
