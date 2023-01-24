@@ -111,7 +111,8 @@ body {
   padding: 16px;
   width: 100%;
 }
-
+// how to use it: <button mat-button class="mat-default">button</button>
+// <button mat-button class="mat-default__danger--disabled">button</button>
 .mat-default {
   background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
   border: none;
@@ -132,6 +133,25 @@ body {
     &--disabled {
       @extend .mat-default__round;
       background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
+      pointer-events: none;
+    }
+  }
+  &__danger {
+    @extend .mat-default;
+    background-color: mat.get-color-from-palette(palette.$red-palette, 700);
+    &--disabled {
+      @extend .mat-default__danger;
+      background-color: mat.get-color-from-palette(palette.$red-palette, 500);
+      pointer-events: none;
+    }
+  }
+  &__danger-round {
+    border-radius: 16px;
+    @extend .mat-default;
+    background-color: mat.get-color-from-palette(palette.$red-palette, 700);
+    &--disabled {
+      @extend .mat-default__danger-round;
+      background-color: mat.get-color-from-palette(palette.$red-palette, 500);
       pointer-events: none;
     }
   }
