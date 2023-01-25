@@ -29,3 +29,14 @@ export interface EventDetailsForm {
   description: FormControl<string>;
   hashtags: FormControl<string[]>;
 }
+
+export interface Group {
+  groupOwner: {
+    basicUserId: number;
+  };
+  isUserMember: boolean;
+  id: number;
+  name: string;
+  description: string;
+  numberOfMembers: number;
+}
