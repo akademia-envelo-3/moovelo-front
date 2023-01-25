@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { Group } from './create-event.interface';
-import { EventCategories } from './services/create-event-categories.interface';
+import { EventCategories, Group } from './create-event.interface';
 
 @Injectable({
   providedIn: 'root',

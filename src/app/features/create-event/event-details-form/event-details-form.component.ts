@@ -5,7 +5,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
-import { EventCategories } from '../services/create-event-categories.interface';
 
 @Component({
   selector: 'app-event-details-form',

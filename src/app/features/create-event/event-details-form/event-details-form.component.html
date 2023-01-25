@@ -24,12 +24,12 @@
     </mat-select>
   </mat-form-field>
   <div class="category">
-    <button mat-button (click)="categoriesModal = !categoriesModal">Wybierz kategorię</button>
-    <ng-container *ngIf="categoriesModal">
-      <ul *ngFor="let category of categories | async">
-        <li>{{ category.name }}</li>
-      </ul>
-    </ng-container>
+    <mat-form-field appearance="fill">
+      <mat-label>Wybierz kategorię </mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories | async" value="{{ category }}">{{ category.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="toggle">
     <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
