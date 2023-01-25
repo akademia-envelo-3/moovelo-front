@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../authentication/auth.service';
 import { emailValidatorRegex } from './emailValidatorPattern';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login-form.component.html',
