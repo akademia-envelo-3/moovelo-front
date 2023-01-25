@@ -4,7 +4,7 @@ import { NonNullableFormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { emailValidatorRegex } from './emailValidatorPattern';
+import { emailValidatorRegex } from '@shared/patterns/patterns';
 
 @Component({
   standalone: true,

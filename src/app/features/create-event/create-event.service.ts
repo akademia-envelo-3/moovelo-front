@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import patterns from '@shared/regex-patterns';
+import postCodePattern from '../../shared/patterns/patterns';
 import { EventForm } from './create-event.interface';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
 
@@ -43,7 +43,7 @@ export class CreateEventService {
             validators: [Validators.required],
           }),
           postCode: this.builder.control('', {
-            validators: [Validators.required, Validators.pattern(patterns.postCode)],
+            validators: [Validators.required, Validators.pattern(postCodePattern.postCode)],
           }),
           city: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
