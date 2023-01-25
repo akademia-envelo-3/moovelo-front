@@ -11,7 +11,12 @@ import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { MatIconModule } from '@angular/material/icon';
-import { Error404Component } from './shared/error404/error404.component';
+import { UserState } from './features/auth/store/user.interface';
+import { Error404Component } from '@shared/error404/error404.component';
+
+export interface AppState {
+  User: UserState;
+}
 
 @NgModule({
   declarations: [AppComponent],
