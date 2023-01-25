@@ -1,0 +1,10 @@
+<div class="event-participants-list">
+  <ul>
+    <p class="font-heading-3">
+      {{ participantType }}
+    </p>
+    <li class="event-participants__list__item font-text-1" *ngFor="let participant of participantsList">
+      {{ participant.firstName }} {{ participant.lastName }}
+    </li>
+  </ul>
+</div>

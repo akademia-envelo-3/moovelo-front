@@ -1,35 +1,41 @@
-import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
-import { EventParticipants, EventParticipationStats } from '../event.interfaces';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { EventParticipantsService } from './event-participants.service';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { EventParticipation } from '../event.interfaces';
+import { EventParticipantsListComponent } from './event-participants-list/event-participants-list.component';
 
 @Component({
   selector: 'app-event-participants',
-  imports: [MatButtonModule, CommonModule],
+  imports: [MatButtonModule, CommonModule, EventParticipantsListComponent],
   standalone: true,
   templateUrl: './event-participants.component.html',
   styleUrls: ['./event-participants.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventParticipantsComponent {
-  private eventParticipantService = inject(EventParticipantsService);
+  @Input() eventParticipants!: EventParticipation;
 
-  @Input() eventParticipants!: EventParticipationStats;
-  @Input() eventId!: number;
+  showAcceptedList = false;
+  showPendingList = false;
+  showRejectedList = false;
 
-  userList = false;
-
-  eventParticipants$: Observable<EventParticipants> | null = null;
-
-  showAcceptedUserList(listStatus: string) {
-    if (this.userList === false) {
-      this.eventParticipants$ = this.eventParticipantService.getParticipants(listStatus, this.eventId);
-      this.userList = !this.userList;
-    } else {
-      this.eventParticipants$ = null;
-      this.userList = !this.userList;
+  showList(status: string) {
+    switch (status) {
+      case 'accepted':
+        this.showAcceptedList = !this.showAcceptedList;
+        this.showPendingList = false;
+        this.showRejectedList = false;
+        break;
+      case 'pending':
+        this.showAcceptedList = false;
+        this.showPendingList = !this.showPendingList;
+        this.showRejectedList = false;
+        break;
+      case 'rejected':
+        this.showAcceptedList = false;
+        this.showPendingList = false;
+        this.showRejectedList = !this.showRejectedList;
+        break;
     }
   }
 }

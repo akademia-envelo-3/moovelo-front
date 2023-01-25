@@ -26,24 +26,15 @@ export interface EventCardHashtag {
   value: string;
 }
 
-export interface EventParticipationStats {
-  accepted: number;
-  pending: number;
-  rejected: number;
+export interface EventParticipation {
+  accepted: Participants[];
+  pending: Participants[];
+  rejected: Participants[];
+  visitors: Participants[];
 }
 
-export interface EventParticipants {
-  users: ParticipantUser[];
-  visitors: ParticipantVisitor[];
-}
-
-export interface ParticipantUser {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
-
-export interface ParticipantVisitor {
+export interface Participants {
+  userId: number;
   firstName: string;
   lastName: string;
 }

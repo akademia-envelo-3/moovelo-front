@@ -6,7 +6,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
 import { EventParticipantsComponent } from '../features/event/event-participants/event-participants.component';
-import { EventParticipationStats } from '../features/event';
+import { EventParticipation } from '../features/event';
 
 @Component({
   selector: 'app-theme',
@@ -36,17 +36,47 @@ import { EventParticipationStats } from '../features/event';
     <app-visitor-form></app-visitor-form>
 
     <h2>Lista uczestników eventu</h2>
-    <app-event-participants [eventParticipants]="eventParticipants" [eventId]="1"> </app-event-participants>
+    <app-event-participants [eventParticipants]="eventParticipants"> </app-event-participants>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
   `,
 })
 export default class ThemeComponent {
-  eventParticipants: EventParticipationStats = {
-    accepted: 10,
-    pending: 2,
-    rejected: 5,
+  eventParticipants: EventParticipation = {
+    accepted: [
+      {
+        userId: 1,
+        firstName: 'Janek',
+        lastName: 'Kowalski',
+      },
+      {
+        userId: 2,
+        firstName: 'Janina',
+        lastName: 'Kowalska',
+      },
+    ],
+    pending: [
+      {
+        userId: 1,
+        firstName: 'Zbigniew',
+        lastName: 'Stonoga',
+      },
+    ],
+    rejected: [
+      {
+        userId: 1,
+        firstName: 'Tupac',
+        lastName: 'Shakur',
+      },
+    ],
+    visitors: [
+      {
+        userId: 1,
+        firstName: 'Adam',
+        lastName: 'Małysz',
+      },
+    ],
   };
 
   group: GroupListItem = {
