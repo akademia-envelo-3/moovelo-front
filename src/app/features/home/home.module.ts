@@ -9,7 +9,10 @@ import { HomeComponent } from './home.component';
         path: '',
         component: HomeComponent,
         children: [
-          { path: 'events', loadChildren: () => import('../event/event-list/event-list.module') },
+          {
+            path: 'events',
+            loadChildren: () => import('../event/event-list/event-list.module'),
+          },
           {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
