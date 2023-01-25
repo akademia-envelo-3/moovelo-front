@@ -7,6 +7,11 @@
   align-items: center;
   gap: 16px;
 
+  &__heading {
+    width: 80%;
+    text-align: center;
+  }
+
   &__group-private-label {
     background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
     color: mat.get-color-from-palette(palette.$gray-palette, 100);
@@ -54,14 +59,24 @@
       border-radius: 20px;
     }
   }
-  &__basic-information {
-    width: 80vw;
+  &__information-container {
+    width: 80%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
     text-align: left;
   }
+  &__basic-information {
+    flex-direction: column;
+    gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+  }
 
-  &__list-of-participants,
   &__join-event {
     display: flex;
+    justify-content: center;
     gap: 10vw;
   }
 
@@ -77,10 +92,12 @@
     color: mat.get-color-from-palette(palette.$gray-palette, 100);
   }
   &__hashtags {
+    width: 80%;
     ol {
       display: flex;
       gap: 16px;
       list-style-type: none;
+      flex-wrap: wrap;
     }
     li {
       border: solid mat.get-color-from-palette(palette.$blue-palette, 500);
@@ -95,6 +112,9 @@
   border-radius: 20px;
   .text {
     color: mat.get-color-from-palette(palette.$gray-palette, 100);
+  }
+  .mat-icon {
+    margin-right: 0;
   }
 }
 .accepted {
