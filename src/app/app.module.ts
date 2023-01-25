@@ -10,9 +10,9 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
-import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { UserState } from './features/auth/store/user.interface';
+import { Error404Component } from '@shared/error404/error404.component';
 
 export interface AppState {
   User: UserState;
@@ -35,7 +35,6 @@ export interface AppState {
     AppInputValidatorDirective,
     BrowserModule,
     MatIconModule,
-    NavbarComponent,
     RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}),
@@ -60,7 +59,7 @@ export interface AppState {
           },
           {
             path: '**',
-            redirectTo: '',
+            component: Error404Component,
           },
         ],
       },
