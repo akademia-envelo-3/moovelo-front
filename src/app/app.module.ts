@@ -12,7 +12,6 @@ import { noProductionGuard } from '@shared/no-production.guard';
 
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 
-import { NavbarComponent } from './shared/user-navbar/navbar.component';
 import { LoaderInterceptor } from '@shared/Interceptor/loader-interceptor.interceptor';
 import { ErrorhandlerInterceptor } from '@shared/Interceptor/errorhandler.interceptor';
 
@@ -23,7 +22,6 @@ import { Error404Component } from '@shared/error404/error404.component';
 export interface AppState {
   User: UserState;
 }
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,7 +49,6 @@ export interface AppState {
   imports: [
     AppInputValidatorDirective,
     BrowserModule,
-    NavbarComponent,
     MatIconModule,
     RouterModule,
     HttpClientModule,
