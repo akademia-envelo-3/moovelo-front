@@ -1,10 +1,10 @@
 import { inject } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CreateEventService } from '../create-event.service';
+import { CreateEventFormService } from '../create-event-form.service';
 
 export const detailsGuard = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree => {
-  const eventTypeForm = inject(CreateEventService).getForm().controls.eventTypeForm;
+  const eventTypeForm = inject(CreateEventFormService).getForm().controls.eventTypeForm;
   const router = inject(Router);
 
   const isInternal = eventTypeForm.controls.isInternal.value;
