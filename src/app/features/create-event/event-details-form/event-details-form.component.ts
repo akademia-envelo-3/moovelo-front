@@ -88,6 +88,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     return this.eventDetailsForm.controls.name;
   }
 
+  get categoryCtrl() {
+    return this.eventDetailsForm.controls.category;
+  }
+
   get isLimitedPlacesCtrl() {
     return this.eventDetailsForm.controls.isLimitedPlaces;
   }

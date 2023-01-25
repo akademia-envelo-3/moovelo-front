@@ -18,7 +18,7 @@ export interface EventDetailsForm {
   limitedPlaces: FormControl<number>;
   isLimitedPlaces: FormControl<boolean>;
   name: FormControl<string>;
-  category: FormControl<string[]>;
+  category: FormControl<string>;
   startDate: FormControl<string>;
   hour: FormControl<string>;
   postCode: FormControl<string>;
