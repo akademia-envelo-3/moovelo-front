@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { EventParticipation } from '../event.interfaces';
+import { EventParticipation, Participants } from '../event.interfaces';
 import { EventParticipantsListComponent } from './event-participants-list/event-participants-list.component';
 
 @Component({
