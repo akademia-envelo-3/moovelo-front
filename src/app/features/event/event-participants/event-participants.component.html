@@ -1,7 +1,7 @@
 <div class="event-participants">
   <div class="event-participants__buttons">
     <div class="event-participants__button">
-      <button (click)="showUserList()" mat-button class="accepted">
+      <button (click)="showAcceptedUserList('accepted')" mat-button class="accepted">
         <p class="font-heading-2">
           {{ eventParticipants.accepted }}
         </p>
@@ -9,7 +9,7 @@
       <p class="font-text-2">Weźmie udział</p>
     </div>
     <div class="event-participants__button">
-      <button mat-button class="pending">
+      <button (click)="showAcceptedUserList('pending')" mat-button class="pending">
         <p class="font-heading-2">
           {{ eventParticipants.pending }}
         </p>
@@ -17,7 +17,7 @@
       <p class="font-text-2">Zastanawia się</p>
     </div>
     <div class="event-participants__button">
-      <button mat-button class="rejected">
+      <button (click)="showAcceptedUserList('rejected')" mat-button class="rejected">
         <p class="font-heading-2">
           {{ eventParticipants.rejected }}
         </p>

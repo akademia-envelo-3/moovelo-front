@@ -10,7 +10,7 @@ export class EventParticipantsService {
   private http = inject(HttpClient);
   private apiUrl = inject(API_URL);
 
-  getAccteptedParticipants() {
-    return this.http.get<EventParticipants>(this.apiUrl + `/accepted`);
+  getParticipants(userStatus: string, eventId: number) {
+    return this.http.get<EventParticipants>(this.apiUrl + `/${userStatus}/${eventId}`);
   }
 }

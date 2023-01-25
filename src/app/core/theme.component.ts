@@ -36,7 +36,7 @@ import { EventParticipationStats } from '../features/event';
     <app-visitor-form></app-visitor-form>
 
     <h2>Lista uczestników eventu</h2>
-    <app-event-participants [eventParticipants]="eventParticipants"> </app-event-participants>
+    <app-event-participants [eventParticipants]="eventParticipants" [eventId]="1"> </app-event-participants>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
