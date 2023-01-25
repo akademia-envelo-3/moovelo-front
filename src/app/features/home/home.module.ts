@@ -10,6 +10,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HomeComponent } from './home.component';
 import { SearchBarService } from './search-bar/search-bar.service';
 import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
+import { AuthGuard } from '../auth';
 
 @NgModule({
   declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
@@ -18,6 +19,7 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
       {
         path: '',
         component: HomeComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'groups',
