@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../authentication/auth.service';
 import { emailValidatorRegex } from './emailValidatorPattern';
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { emailValidatorRegex } from './emailValidatorPattern';
 })
 export class LoginComponent {
   private fb = inject(NonNullableFormBuilder);
+  private authService = inject(AuthService);
 
   loginForm = this.createControlGroup();
 
@@ -36,5 +38,6 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     }
+    this.authService.logIn(this.emailCtrl.value, this.passwordCtrl.value);
   }
 }

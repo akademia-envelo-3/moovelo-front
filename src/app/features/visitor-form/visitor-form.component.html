@@ -1,0 +1,28 @@
+<form [formGroup]="joinEventForm" (ngSubmit)="submitForm()" class="form font-text-1">
+  <mat-form-field color="primary">
+    <mat-label>Imię</mat-label>
+    <input matInput formControlName="name" class="font-text-1" />
+    <mat-error *ngIf="joinEventCtrl.name.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="primary">
+    <mat-label>Nazwisko</mat-label>
+    <input matInput formControlName="lastName" class="font-text-1" />
+    <mat-error *ngIf="joinEventCtrl.lastName.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="primary">
+    <mat-label>E-mail</mat-label>
+    <input matInput formControlName="email" class="font-text-1" />
+    <mat-error *ngIf="joinEventCtrl.email.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+      <ng-container *ngIf="errors['pattern']">Proszę podać właściwy adres e-mail!</ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="form__button">Zarezerwuj</button>
+</form>

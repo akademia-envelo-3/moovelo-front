@@ -1,0 +1,10 @@
+.group-list {
+    text-align: center;
+    max-width: 568px;
+
+    &__button {
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+    }
+}
