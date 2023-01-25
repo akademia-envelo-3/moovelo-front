@@ -22,6 +22,10 @@ export class AuthService {
     hasAuth: false,
   });
 
+  get isAuth$() {
+    return this.auth$$.asObservable();
+  }
+
   logIn(email: string, password: string) {
     return this.http
       .post<LoginData>(this.apiUrl + this.url, {
