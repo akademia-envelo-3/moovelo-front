@@ -157,16 +157,7 @@ body {
   }
 }
 
-::ng-deep .mdc-switch__handle::before {
-  background-color: black !important;
-}
-
-::ng-deep {
-  .mdc-switch__handle::before {
-    background-color: black !important;
-  }
-}
-
-::ng-deep.mdc-switch__handle::before {
-  background-color: black !important;
+.mdc-switch__handle::before,
+.mdc-switch__handle::after {
+  background: mat.get-color-from-palette(palette.$blue-palette, 700) !important;
 }
