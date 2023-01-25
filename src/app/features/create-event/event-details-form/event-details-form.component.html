@@ -23,6 +23,14 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
+  <div class="category">
+    <button mat-button (click)="categoriesModal = !categoriesModal">Wybierz kategorię</button>
+    <ng-container *ngIf="categoriesModal">
+      <ul *ngFor="let category of categories | async">
+        <li>{{ category.name }}</li>
+      </ul>
+    </ng-container>
+  </div>
   <div class="toggle">
     <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
     <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>

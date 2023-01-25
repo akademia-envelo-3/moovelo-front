@@ -40,3 +40,7 @@ export interface Group {
   description: string;
   numberOfMembers: number;
 }
+
+export interface EventCategories {
+  name: string;
+}

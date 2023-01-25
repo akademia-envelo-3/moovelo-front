@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { API_URL } from '@core/env.token';
 import { Group } from './create-event.interface';
+import { EventCategories } from './services/create-event-categories.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,9 @@ export class CreateEventService {
   fetchUserGroups() {
     // this endpoint will be replaced with endpoint that contains user id
     return this.http.get<Group[]>(`${this.API_URL}/groups`);
+  }
+
+  getAllCategories() {
+    return this.http.get<EventCategories[]>(this.API_URL + '/eventCategories');
   }
 }

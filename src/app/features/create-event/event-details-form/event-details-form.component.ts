@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
+import { EventCategories } from '../services/create-event-categories.interface';
 
 @Component({
   selector: 'app-event-details-form',
@@ -17,6 +18,8 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventService = inject(CreateEventService);
   private unsubscribe$$ = new Subject<void>();
 
+  categories = this.createEventService.getAllCategories();
+
   constructor() {
     this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
     this.eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
@@ -27,6 +30,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   today = new Date();
   hourMatcher = new HourErrorStateMatcher();
   groups$ = this.createEventService.fetchUserGroups();
+  categoriesModal = false;
 
   ngOnInit() {
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
@@ -128,5 +132,9 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribe$$.next();
     this.unsubscribe$$.complete();
+  }
+
+  showCategories() {
+    this.categoriesModal = true;
   }
 }
