@@ -5,10 +5,18 @@ import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
+import { EventSurveyComponent } from '../features/event/event-survey/event-survey.component';
 
 @Component({
   selector: 'app-theme',
-  imports: [GroupItemComponent, EventCardComponent, CowLoaderComponent, FooterComponent, VisitorFormComponent],
+  imports: [
+    GroupItemComponent,
+    EventCardComponent,
+    CowLoaderComponent,
+    FooterComponent,
+    VisitorFormComponent,
+    EventSurveyComponent,
+  ],
   standalone: true,
   template: `
     <h1>Storybook-like route</h1>
@@ -24,6 +32,9 @@ import { GroupListItem } from '../features/group';
 
     <h2>Formularz zapisu dla visitora</h2>
     <app-visitor-form></app-visitor-form>
+
+    <h2>Widok ankiety dla usera</h2>
+    <app-event-survey></app-event-survey>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
