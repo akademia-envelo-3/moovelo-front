@@ -9,6 +9,6 @@ export class EventSurveyService {
   private apiUrl = inject(API_URL);
 
   getSurveys() {
-    return this.http.get<EventSurvey[]>(this.apiUrl + '/surveys');
+    return this.http.get<EventSurvey[]>(this.apiUrl + '/eventSurveys');
   }
 }

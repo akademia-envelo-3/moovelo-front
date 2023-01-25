@@ -29,16 +29,12 @@ export interface EventCardHashtag {
 export interface EventSurvey {
   question: string;
   isMultipleChoice: boolean;
-  answers: [
-    {
-      id: number;
-      value: string;
-      voted: number;
-    }
-  ];
-  yourAnswersIds: [
-    {
-      id: number;
-    }
-  ];
+  answers: {
+    id: number;
+    value: string;
+    voted: number;
+  }[];
+  yourAnswersIds: {
+    id?: number;
+  }[];
 }

@@ -1,5 +1,6 @@
 <div>
   <mat-form-field>
-    <mat-checkbox> Answer </mat-checkbox>
+    <h2>{{ eventSurvey.question }}</h2>
+    <mat-checkbox *ngFor="let answer of eventSurvey.answers"> {{ answer.value }} </mat-checkbox>
   </mat-form-field>
 </div>
