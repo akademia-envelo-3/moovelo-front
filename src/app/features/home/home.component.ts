@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [RouterOutlet],
   template: `
+<<<<<<< HEAD
     application shell
 
+=======
+    <app-navbar></app-navbar>
+>>>>>>> 632c082787524eea2c6483c0ac14a34f1ffac87c
     <router-outlet></router-outlet>
   `,
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}

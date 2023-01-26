@@ -25,3 +25,8 @@ export interface EventCardHashtag {
   id: number;
   value: string;
 }
+
+export interface EventListError {
+  isError: boolean;
+  errorStatus: number;
+}

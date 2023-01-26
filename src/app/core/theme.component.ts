@@ -14,7 +14,6 @@ import { GroupListItem } from '../features/group';
     <h1>Storybook-like route</h1>
     <h2>Loader</h2>
     <app-cow-loader></app-cow-loader>
-
     <h2>Pojedyncza grupa w liście</h2>
     <app-group-list-item [groupItem]="group"></app-group-list-item>
 

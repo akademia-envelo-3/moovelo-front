@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
+
+  &__input {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+// deleting input border radius
+::ng-deep .search-bar__input > .mdc-text-field {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+// deleting bottom border
+::ng-deep .search-bar .mdc-line-ripple {
+  display: none;
+}
+
+// deleting input bottom space
+::ng-deep .search-bar__input > .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
