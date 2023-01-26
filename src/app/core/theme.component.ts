@@ -82,7 +82,7 @@ export default class ThemeComponent {
 
   survey: EventSurvey = {
     question: 'test',
-    isMultipleChoice: true,
+    isMultipleChoice: false,
     answers: [
       {
         id: 1,

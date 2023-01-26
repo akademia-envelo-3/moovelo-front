@@ -1,6 +1,16 @@
-<div>
-  <mat-form-field>
-    <h2>{{ eventSurvey.question }}</h2>
-    <mat-checkbox *ngFor="let answer of eventSurvey.answers"> {{ answer.value }} </mat-checkbox>
+<div class="surveys">
+  <mat-form-field [formGroup]="surveyForm" class="surveys__single">
+    <h3 class="surveys__single__header">{{ eventSurvey.question }}</h3>
+    <ng-container *ngIf="eventSurvey.isMultipleChoice">
+      <mat-checkbox *ngFor="let answer of eventSurvey.answers" class="surveys__single">
+        {{ answer.value }}
+      </mat-checkbox>
+    </ng-container>
+    <ng-container *ngIf="!eventSurvey.isMultipleChoice">
+      <mat-radio-button *ngFor="let answer of eventSurvey.answers" class="surveys__single">
+        {{ answer.value }}
+      </mat-radio-button>
+    </ng-container>
+    <button mat-raised-button color="primary">Wyślij odpowiedź</button>
   </mat-form-field>
 </div>
