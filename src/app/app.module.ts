@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserState } from './features/auth/store/user.interface';
 import { Error404Component } from '@shared/error404/error404.component';
 import { AuthService } from './features/auth/authentication/auth.service';
+import { CanLoginGuard } from './features/auth/guards/can-login.guard';
 
 export interface AppState {
   User: UserState;
@@ -53,6 +54,7 @@ export interface AppState {
           {
             path: 'auth',
             loadChildren: () => import('./features/auth/auth.module'),
+            canActivate: [CanLoginGuard],
           },
           {
             path: 'theme',
