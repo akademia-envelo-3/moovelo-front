@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import patterns from '@shared/regex-patterns';
+import { emailValidatorRegex } from '../auth/login.component/emailValidatorPattern';
 import { EventForm } from './create-event.interface';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
+import { noSpecialSignsValidatorRegex } from './validators/noSpecialSignsValidatorRegex';
 
 @Injectable()
 export class CreateEventFormService {
@@ -37,7 +39,12 @@ export class CreateEventFormService {
           isLimitedPlaces: this.builder.control(false),
           isConfirmationRequired: this.builder.control(false),
           name: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
+            validators: [
+              Validators.required,
+              Validators.minLength(4),
+              Validators.maxLength(100),
+              Validators.pattern(noSpecialSignsValidatorRegex),
+            ],
           }),
           category: this.builder.control<string[]>([]),
           startDate: this.builder.control('', {
