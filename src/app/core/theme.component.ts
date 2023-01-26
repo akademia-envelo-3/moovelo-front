@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { EventCard, EventCardComponent } from '../features/event';
+import { EventCard, EventCardComponent, EventParticipantsComponent } from '../features/event';
 import { GroupItemComponent } from '../features/group';
 import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
-import { EventParticipantsComponent } from '../features/event/event-participants/event-participants.component';
 import { EventParticipation } from '../features/event';
 
 @Component({
