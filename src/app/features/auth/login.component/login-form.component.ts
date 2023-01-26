@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
+<<<<<<< HEAD
 import { pattern } from '@shared/patterns/patterns';
+=======
+import { AuthService } from '../authentication/auth.service';
+import { emailValidatorRegex } from './emailValidatorPattern';
+>>>>>>> 0aa43cb8c7811d2c266f93d2930ce81454bfdf72
 @Component({
   selector: 'app-login',
   templateUrl: './login-form.component.html',
@@ -10,6 +15,7 @@ import { pattern } from '@shared/patterns/patterns';
 })
 export class LoginComponent {
   private fb = inject(NonNullableFormBuilder);
+  private authService = inject(AuthService);
 
   loginForm = this.createControlGroup();
 
@@ -36,5 +42,6 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     }
+    this.authService.logIn(this.emailCtrl.value, this.passwordCtrl.value);
   }
 }

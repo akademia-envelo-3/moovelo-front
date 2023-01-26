@@ -1,18 +1,20 @@
 import { inject, Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { pattern } from '../../shared/patterns/patterns';
+import patterns from '@shared/regex-patterns';
 import { EventForm } from './create-event.interface';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class CreateEventService {
-  private API_URL = inject(API_URL);
-  private http = inject(HttpClient);
+@Injectable()
+export class CreateEventFormService {
+  private builder = inject(NonNullableFormBuilder);
+  private eventForm = this.createForm();
 
   getForm(): FormGroup<EventForm> {
     return this.eventForm;
+  }
+
+  resetForm() {
+    this.eventForm.reset();
   }
 
   private createForm() {
@@ -45,7 +47,7 @@ export class CreateEventService {
             validators: [Validators.required],
           }),
           postCode: this.builder.control('', {
-            validators: [Validators.required, Validators.pattern(pattern.postCode)],
+            validators: [Validators.required, Validators.pattern(patterns.postCode)],
           }),
           city: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],

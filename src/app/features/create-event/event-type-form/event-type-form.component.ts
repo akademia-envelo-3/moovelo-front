@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventTypeForm } from '../create-event.interface';
-import { CreateEventService } from '../create-event.service';
+import { CreateEventFormService } from '../create-event-form.service';
 
 @Component({
   selector: 'app-event-type-form',
@@ -11,11 +11,11 @@ import { CreateEventService } from '../create-event.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventTypeFormComponent implements OnInit {
-  private eventFormProvider = inject(CreateEventService);
+  private createEventForm = inject(CreateEventFormService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  eventTypeForm: FormGroup<EventTypeForm> = this.eventFormProvider.getForm().controls.eventTypeForm;
+  eventTypeForm: FormGroup<EventTypeForm> = this.createEventForm.getForm().controls.eventTypeForm;
   page = 0;
   questions = [
     'Czy twoje wydarzenie jest tylko dla osób zaproszonych?',
