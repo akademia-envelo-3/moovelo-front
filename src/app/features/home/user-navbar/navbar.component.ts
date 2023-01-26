@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NavbarScrollService } from './services/navbar-scroll.service';
 import users from './mock/users.config';
+import { AuthService } from '../../auth/authentication/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,12 @@ export class NavbarComponent {
   navbarList: string[][] = [[]];
 
   private navbarScroll = inject(NavbarScrollService);
+  private authService = inject(AuthService);
+
+  ngOnInit() {
+    this.navbarScroll.scrollDetection();
+    this.decideRole();
+  }
 
   showMenu() {
     this.menu = !this.menu;
@@ -27,8 +34,7 @@ export class NavbarComponent {
     }
   }
 
-  ngOnInit() {
-    this.navbarScroll.scrollDetection();
-    this.decideRole();
+  handleLogout() {
+    this.authService.logout();
   }
 }

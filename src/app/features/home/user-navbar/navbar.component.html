@@ -19,9 +19,12 @@
     </div>
   </div>
   <div class="main-container" [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
-    <ul class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
-      <li>
+    <ul>
+      <li class="nav-menu__list-item" *ngFor="let value of navbarList[0]; let i = index">
         <a class="nav-menu__link" routerLink="/{{ navbarList[1][i] }}">{{ value }} </a>
+      </li>
+      <li class="nav-menu__list-item">
+        <a class="nav-menu__link" (click)="handleLogout()">Wyloguj</a>
       </li>
     </ul>
     <div [ngClass]="menu ? 'nav-menu--blur' : ''" (click)="showMenu()"></div>
