@@ -12,7 +12,6 @@ import { noProductionGuard } from '@shared/no-production.guard';
 
 import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
 import { MatButtonModule } from '@angular/material/button';
-
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 
 import { LoaderInterceptor } from '@shared/Interceptor/loader-interceptor.interceptor';
