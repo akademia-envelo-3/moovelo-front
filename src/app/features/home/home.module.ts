@@ -22,6 +22,9 @@ import { AuthGuard } from '../auth';
         canActivate: [AuthGuard],
         children: [
           {
+            path: 'events/1',
+            loadChildren: () => import('../event/single-event/single-event.module')},
+           { 
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
           },
