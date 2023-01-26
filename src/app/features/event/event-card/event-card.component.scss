@@ -24,7 +24,7 @@
   }
   &__hashtags {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 8px 16px;
     gap: 8px;
     flex-wrap: wrap;
