@@ -27,7 +27,8 @@ export class TokenService {
   isTokenExpired(): boolean | void {
     const expTime = this.decodedToken?.exp;
     if (expTime) {
-      const expDate = new Date(expTime * 1000);
+      const milisecondsInSeconds = 1000;
+      const expDate = new Date(expTime * milisecondsInSeconds);
       return expDate.getTime() - Date.now() < 0;
     }
   }
