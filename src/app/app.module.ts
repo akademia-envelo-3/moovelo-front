@@ -13,6 +13,7 @@ import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { UserState } from './features/auth/store/user.interface';
 import { Error404Component } from '@shared/error404/error404.component';
+import { AuthService } from './features/auth/authentication/auth.service';
 
 export interface AppState {
   User: UserState;
@@ -29,6 +30,7 @@ export interface AppState {
       provide: IS_PRODUCTION,
       useValue: environment.production,
     },
+    AuthService,
   ],
   bootstrap: [AppComponent],
   imports: [

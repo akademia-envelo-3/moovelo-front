@@ -11,9 +11,9 @@ export class AuthGuard implements CanActivate {
   private router = inject(Router);
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isAuth$.pipe(
+    return this.authService.auth$.pipe(
       switchMap(result => {
-        if (result) this.router.navigate(['auth']);
+        if (!result.hasAuth) this.router.navigate(['auth']);
         return of(result.hasAuth);
       })
     );
