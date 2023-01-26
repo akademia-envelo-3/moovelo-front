@@ -29,7 +29,7 @@
   z-index: -1;
   color: mat.get-color-from-palette(palette.$gray-palette, 100);
   transition-duration: 500ms;
-  transform: translateY(60px);
+  transform: translateY(120px);
   &__list {
     display: flex;
     align-items: center;
@@ -105,6 +105,6 @@
   }
 
   &--hidden {
-    z-index: -2;
+    z-index: 2;
   }
 }
