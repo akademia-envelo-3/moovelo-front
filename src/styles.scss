@@ -111,3 +111,35 @@ body {
   padding: 16px;
   width: 100%;
 }
+
+button[mat-button] {
+  background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
+  border: none;
+  color: mat.get-color-from-palette(palette.$gray-palette, 100);
+  padding: 8px 16px;
+  text-align: center;
+  display: inline-block;
+  margin: 8px;
+  border-radius: 8px;
+  // this ~ sign helps us to combine styles in our html
+  // for example we can do something like: <button mat-button class="btn-round btn-danger">button</button>
+  // it's basically a .btn-round.btn-danger
+  &[class~='btn-round'] {
+    border-radius: 16px;
+  }
+  &[class~='btn-disabled'] {
+    pointer-events: none;
+    background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
+  }
+  &[class~='btn-danger'] {
+    background-color: mat.get-color-from-palette(palette.$red-palette, 700);
+  }
+  &[class~='btn-success'] {
+    background-color: mat.get-color-from-palette(palette.$green-palette, 700);
+  }
+}
+
+.mdc-switch__handle::before,
+.mdc-switch__handle::after {
+  background: mat.get-color-from-palette(palette.$blue-palette, 700) !important;
+}
