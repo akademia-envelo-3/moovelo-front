@@ -1,0 +1,21 @@
+<ng-container *ngIf="singleGroup$ | async as singleGroup">
+  <div class="main-container">
+    <header class="blue-container">
+      <h2 class="font-heading-2">{{ singleGroup.name }}</h2>
+    </header>
+    <div class="group-info">
+      <div class="group-info__users">
+        <h3 class="users-number font-heading-3">Członkowie grupy ({{ singleGroup.groupMembers.length }})</h3>
+        <ul class="users-list">
+          <li class="font-text-1 users-list__item" *ngFor="let member of singleGroup.groupMembers.slice(0, 3)">
+            {{ member.firstName }} {{ member.lastName }}
+          </li>
+        </ul>
+        <button class="group-info__button" mat-flat-button color="primary">Zobacz więcej</button>
+      </div>
+      <div class="group-info__events">
+        <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
+      </div>
+    </div>
+  </div>
+</ng-container>

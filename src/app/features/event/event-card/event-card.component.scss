@@ -6,7 +6,6 @@
   flex-direction: column;
   gap: 16px;
   padding: 4px;
-  max-width: 560px;
   background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
   border: 1px solid mat.get-color-from-palette(palette.$blue-palette, 500);
   border-radius: 10px;
@@ -15,6 +14,8 @@
     display: flex;
     gap: 16px;
     padding: 8px;
+    word-break: break-word;
+    hyphens: auto;
   }
   &__details {
     display: flex;
@@ -23,7 +24,7 @@
   }
   &__hashtags {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 8px 16px;
     gap: 8px;
     flex-wrap: wrap;
@@ -33,6 +34,7 @@
     padding: 4px 8px;
     border-radius: 5px;
     color: mat.get-color-from-palette(palette.$blue-palette, 500);
+    word-break: break-all;
   }
 }
 
@@ -42,6 +44,8 @@
 
 .info__event-img {
   border-radius: 5px;
-  max-width: 115px;
+  width: 115px;
+  height: 140px;
   object-fit: cover;
+  align-self: center;
 }
