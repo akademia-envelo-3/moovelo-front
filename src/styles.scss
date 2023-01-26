@@ -111,9 +111,8 @@ body {
   padding: 16px;
   width: 100%;
 }
-// how to use it: <button mat-button class="mat-default">button</button>
-// <button mat-button class="mat-default__danger--disabled">button</button>
-.mat-default {
+
+button[mat-button] {
   background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
   border: none;
   color: mat.get-color-from-palette(palette.$gray-palette, 100);
@@ -122,38 +121,21 @@ body {
   display: inline-block;
   margin: 8px;
   border-radius: 8px;
-  &--disabled {
-    @extend .mat-default;
-    background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
+  // this ~ sign helps us to combine styles in our html
+  // for example we can do something like: <button mat-button class="btn-round btn-danger">button</button>
+  // it's basically a .btn-round.btn-danger
+  &[class~='btn-round'] {
+    border-radius: 16px;
+  }
+  &[class~='btn-disabled'] {
     pointer-events: none;
+    background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
   }
-  &__round {
-    @extend .mat-default;
-    border-radius: 16px;
-    &--disabled {
-      @extend .mat-default__round;
-      background-color: mat.get-color-from-palette(palette.$blue-palette, 100);
-      pointer-events: none;
-    }
-  }
-  &__danger {
-    @extend .mat-default;
+  &[class~='btn-danger'] {
     background-color: mat.get-color-from-palette(palette.$red-palette, 700);
-    &--disabled {
-      @extend .mat-default__danger;
-      background-color: mat.get-color-from-palette(palette.$red-palette, 500);
-      pointer-events: none;
-    }
   }
-  &__danger-round {
-    border-radius: 16px;
-    @extend .mat-default;
-    background-color: mat.get-color-from-palette(palette.$red-palette, 700);
-    &--disabled {
-      @extend .mat-default__danger-round;
-      background-color: mat.get-color-from-palette(palette.$red-palette, 500);
-      pointer-events: none;
-    }
+  &[class~='btn-success'] {
+    background-color: mat.get-color-from-palette(palette.$green-palette, 700);
   }
 }
 
