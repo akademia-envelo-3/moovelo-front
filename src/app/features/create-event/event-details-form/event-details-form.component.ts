@@ -29,6 +29,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   groups$ = this.createEventService.fetchUserGroups();
 
   ngOnInit() {
+    this.isConfirmationRequiredCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
+      value ? this.limitedPlacesGroup.enable() : this.limitedPlacesGroup.disable();
+    });
+
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
       value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
@@ -85,12 +89,16 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     return this.eventDetailsForm.controls.name;
   }
 
+  get limitedPlacesGroup() {
+    return this.eventDetailsForm.controls.limitedPlacesGroup;
+  }
+
   get isLimitedPlacesCtrl() {
-    return this.eventDetailsForm.controls.isLimitedPlaces;
+    return this.eventDetailsForm.controls.limitedPlacesGroup.controls.isLimitedPlaces;
   }
 
   get limitedPlacesCtrl() {
-    return this.eventDetailsForm.controls.limitedPlaces;
+    return this.eventDetailsForm.controls.limitedPlacesGroup.controls.limitedPlaces;
   }
 
   get startDateCtrl() {

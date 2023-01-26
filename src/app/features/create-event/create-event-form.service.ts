@@ -28,14 +28,16 @@ export class CreateEventFormService {
       eventDetailsForm: this.builder.group(
         {
           group: this.builder.control<number | null>(null),
-          limitedPlaces: this.builder.control(
-            { value: 1, disabled: true },
-            {
-              validators: [Validators.required, Validators.min(1), Validators.max(10000)],
-            }
-          ),
-          isLimitedPlaces: this.builder.control(false),
           isConfirmationRequired: this.builder.control(false),
+          limitedPlacesGroup: this.builder.group({
+            isLimitedPlaces: this.builder.control(false),
+            limitedPlaces: this.builder.control(
+              { value: 1, disabled: true },
+              {
+                validators: [Validators.required, Validators.min(1), Validators.max(10000)],
+              }
+            ),
+          }),
           name: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
           }),

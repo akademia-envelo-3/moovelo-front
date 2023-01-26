@@ -15,8 +15,7 @@ export interface EventTypeForm {
 export interface EventDetailsForm {
   group: FormControl<null | number>;
   isConfirmationRequired: FormControl<boolean>;
-  limitedPlaces: FormControl<number>;
-  isLimitedPlaces: FormControl<boolean>;
+  limitedPlacesGroup: FormGroup<LimitedPlacesGroup>;
   name: FormControl<string>;
   category: FormControl<string[]>;
   startDate: FormControl<string>;
@@ -28,6 +27,11 @@ export interface EventDetailsForm {
   apartmentNumber: FormControl<string>;
   description: FormControl<string>;
   hashtags: FormControl<string[]>;
+}
+
+export interface LimitedPlacesGroup {
+  limitedPlaces: FormControl<number>;
+  isLimitedPlaces: FormControl<boolean>;
 }
 
 export interface Group {
