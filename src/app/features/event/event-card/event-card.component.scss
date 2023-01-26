@@ -34,6 +34,7 @@
     padding: 4px 8px;
     border-radius: 5px;
     color: mat.get-color-from-palette(palette.$blue-palette, 500);
+    word-break: break-all;
   }
 }
 
@@ -43,6 +44,8 @@
 
 .info__event-img {
   border-radius: 5px;
-  max-width: 115px;
+  width: 115px;
+  height: 140px;
   object-fit: cover;
+  align-self: center;
 }
