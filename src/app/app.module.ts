@@ -10,6 +10,8 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 
+import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
+import { MatButtonModule } from '@angular/material/button';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 
 import { LoaderInterceptor } from '@shared/Interceptor/loader-interceptor.interceptor';
@@ -23,6 +25,9 @@ export interface AppState {
   User: UserState;
 }
 
+export interface AppState {
+  singleEvent: SingleEventStateInterface;
+}
 @NgModule({
   declarations: [AppComponent],
   providers: [
@@ -49,9 +54,10 @@ export interface AppState {
   imports: [
     AppInputValidatorDirective,
     BrowserModule,
-    MatIconModule,
     RouterModule,
     HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
