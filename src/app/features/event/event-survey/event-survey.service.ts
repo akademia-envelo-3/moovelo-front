@@ -11,4 +11,8 @@ export class EventSurveyService {
   getSurveys() {
     return this.http.get<EventSurvey[]>(this.apiUrl + '/eventSurveys');
   }
+
+  getAnswers() {
+    return this.http.get<EventSurvey['answers']>(this.apiUrl + '/eventSurveys');
+  }
 }

@@ -18,21 +18,22 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class EventSurveyComponent {
   private builder = inject(NonNullableFormBuilder);
-  // private surveyService = inject(EventSurveyService);
-
-  // private addAnswers() {
-  //   this.answers$.forEach(answer => {
-  //     this.surveyForm.addControl(answer.value, this.builder.control(''));
-  //   });
-  // }
+  private surveyService = inject(EventSurveyService);
 
   surveyForm = this.builder.group({});
+
+  addAnswers(arr: EventSurvey['answers']) {
+    arr.forEach(answer => {
+      this.surveyForm.addControl(answer.value, this.builder.control(''));
+    });
+  }
 
   submitAnswer() {
     this.surveyForm.markAllAsTouched();
 
     console.log;
   }
-  @Input() eventSurvey!: EventSurvey;
-  // answers$ = this.eventSurvey.answers;
+  @Input() eventSurveys!: EventSurvey[];
+  eventSurvey!: EventSurvey;
+  answers = this.addAnswers(this.eventSurvey.answers);
 }

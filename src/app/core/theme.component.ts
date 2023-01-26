@@ -34,7 +34,7 @@ import { EventSurveyComponent } from '../features/event/event-survey/event-surve
     <app-visitor-form></app-visitor-form>
 
     <h2>Widok ankiety dla usera</h2>
-    <app-event-survey [eventSurvey]="survey"></app-event-survey>
+    <app-event-survey [eventSurveys]="surveys"></app-event-survey>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
@@ -80,26 +80,50 @@ export default class ThemeComponent {
     },
   };
 
-  survey: EventSurvey = {
-    question: 'test',
-    isMultipleChoice: false,
-    answers: [
-      {
-        id: 1,
-        value: 'Hello',
-        voted: 20,
-      },
-      {
-        id: 2,
-        value: 'Yo',
-        voted: 20,
-      },
-      {
-        id: 3,
-        value: 'Help',
-        voted: 20,
-      },
-    ],
-    yourAnswersIds: [],
-  };
+  surveys: EventSurvey[] = [
+    {
+      question: 'test',
+      isMultipleChoice: false,
+      answers: [
+        {
+          id: 1,
+          value: 'Hello',
+          voted: 20,
+        },
+        {
+          id: 2,
+          value: 'Yo',
+          voted: 20,
+        },
+        {
+          id: 3,
+          value: 'Help',
+          voted: 20,
+        },
+      ],
+      yourAnswersIds: [],
+    },
+    {
+      question: 'Mięso?',
+      isMultipleChoice: true,
+      answers: [
+        {
+          id: 1,
+          value: 'Tak',
+          voted: 20,
+        },
+        {
+          id: 2,
+          value: 'Nie',
+          voted: 20,
+        },
+        {
+          id: 3,
+          value: 'Bardzo nie',
+          voted: 20,
+        },
+      ],
+      yourAnswersIds: [],
+    },
+  ];
 }

@@ -26,6 +26,11 @@ export interface EventCardHashtag {
   value: string;
 }
 
+export interface EventListError {
+  isError: boolean;
+  errorStatus: number;
+}
+
 export interface EventSurvey {
   question: string;
   isMultipleChoice: boolean;
