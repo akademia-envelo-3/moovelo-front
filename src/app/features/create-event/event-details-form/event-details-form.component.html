@@ -12,6 +12,7 @@
         <ng-container *ngIf="errors['maxlength'] as maxLength"
           >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
         >
+        <ng-container *ngIf="errors['pattern']"> Podaj litery alfabetu lub cyfry</ng-container>
       </mat-error>
     </mat-form-field>
   </div>

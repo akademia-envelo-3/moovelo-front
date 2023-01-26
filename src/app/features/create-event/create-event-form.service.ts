@@ -37,7 +37,12 @@ export class CreateEventFormService {
           isLimitedPlaces: this.builder.control(false),
           isConfirmationRequired: this.builder.control(false),
           name: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
+            validators: [
+              Validators.required,
+              Validators.minLength(4),
+              Validators.maxLength(100),
+              Validators.pattern(/^([a-zA-Z0-9 ĄąĆćĘęŁłŃńÓóŚśŹźŻż -]+)$/),
+            ],
           }),
           category: this.builder.control<string[]>([]),
           startDate: this.builder.control('', {
