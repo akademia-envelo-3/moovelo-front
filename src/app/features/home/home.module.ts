@@ -20,6 +20,9 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
         component: HomeComponent,
         children: [
           {
+            path: 'events/1',
+            loadChildren: () => import('../event/single-event/single-event.module')},
+           { 
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
           },

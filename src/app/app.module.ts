@@ -9,6 +9,11 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+<<<<<<< feature-#6-zrobienie-widoku-pojedynczego-wydarzenia
+import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
+import { MatButtonModule } from '@angular/material/button';
+=======
+>>>>>>> develop
 
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
 
@@ -23,6 +28,9 @@ export interface AppState {
   User: UserState;
 }
 
+export interface AppState {
+  singleEvent: SingleEventStateInterface;
+}
 @NgModule({
   declarations: [AppComponent],
   providers: [
@@ -49,9 +57,15 @@ export interface AppState {
   imports: [
     AppInputValidatorDirective,
     BrowserModule,
+<<<<<<< feature-#6-zrobienie-widoku-pojedynczego-wydarzenia
+    NavbarComponent,
+=======
     MatIconModule,
+>>>>>>> develop
     RouterModule,
     HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
