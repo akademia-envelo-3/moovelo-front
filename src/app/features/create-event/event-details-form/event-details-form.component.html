@@ -15,6 +15,14 @@
       </mat-error>
     </mat-form-field>
   </div>
+  <mat-form-field *ngIf="isGroup" appearance="fill">
+    <mat-label>Wybierz grupę</mat-label>
+    <mat-select formControlName="group">
+      <ng-container *ngIf="groups$ | async as groups">
+        <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
   <div class="toggle">
     <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
     <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>

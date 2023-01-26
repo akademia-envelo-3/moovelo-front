@@ -44,5 +44,7 @@ Thumbs.db
 # Angular
 src/environment.ts
 .env
+
+#db
 db.json
 routes.json

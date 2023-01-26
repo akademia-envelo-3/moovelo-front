@@ -1,0 +1,17 @@
+<div class="main-container search-bar">
+  <mat-form-field class="search-bar__input" appearance="fill">
+    <mat-label>Search...</mat-label>
+    <input [formControl]="searchControl" matInput [matAutocomplete]="auto" />
+    <mat-icon matSuffix fontIcon="search"></mat-icon>
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <ng-container *ngIf="searchResult$ | async as searchResult">
+        <mat-optgroup *ngIf="searchResult.events.length" label="Wydarzenia">
+          <mat-option *ngFor="let event of searchResult.events">{{ event.name }}</mat-option>
+        </mat-optgroup>
+        <mat-optgroup *ngIf="searchResult.groups.length" label="Grupy">
+          <mat-option *ngFor="let group of searchResult.groups">{{ group.name }}</mat-option>
+        </mat-optgroup>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
