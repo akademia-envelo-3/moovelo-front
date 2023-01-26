@@ -136,8 +136,4 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     this.unsubscribe$$.next();
     this.unsubscribe$$.complete();
   }
-
-  showCategories() {
-    this.categoriesModal = true;
-  }
 }
