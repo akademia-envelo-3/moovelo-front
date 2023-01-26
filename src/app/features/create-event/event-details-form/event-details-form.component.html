@@ -26,7 +26,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Wybierz kategorię </mat-label>
     <mat-select formControlName="category">
-      <mat-option *ngFor="let category of categories | async" value="{{ category }}">{{ category.name }}</mat-option>
+      <mat-option *ngFor="let category of categories$ | async" value="{{ category }}">{{ category.name }}</mat-option>
     </mat-select>
     <mat-error *ngIf="categoryCtrl.errors as errors">
       <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>

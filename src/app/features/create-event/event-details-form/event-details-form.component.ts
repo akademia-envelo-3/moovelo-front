@@ -17,7 +17,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventService = inject(CreateEventService);
   private unsubscribe$$ = new Subject<void>();
 
-  categories = this.createEventService.getAllCategories();
+  categories$ = this.createEventService.getAllCategories();
 
   constructor() {
     this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
@@ -29,7 +29,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   today = new Date();
   hourMatcher = new HourErrorStateMatcher();
   groups$ = this.createEventService.fetchUserGroups();
-  categoriesModal = false;
 
   ngOnInit() {
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
