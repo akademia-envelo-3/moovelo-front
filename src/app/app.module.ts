@@ -10,11 +10,24 @@ import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
 
+import { SingleEventStateInterface } from './features/event/single-event/single-event.interface';
+import { MatButtonModule } from '@angular/material/button';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
-import { NavbarComponent } from './shared/user-navbar/navbar.component';
+
 import { LoaderInterceptor } from '@shared/Interceptor/loader-interceptor.interceptor';
 import { ErrorhandlerInterceptor } from '@shared/Interceptor/errorhandler.interceptor';
 
+import { MatIconModule } from '@angular/material/icon';
+import { UserState } from './features/auth/store/user.interface';
+import { Error404Component } from '@shared/error404/error404.component';
+
+export interface AppState {
+  User: UserState;
+}
+
+export interface AppState {
+  singleEvent: SingleEventStateInterface;
+}
 @NgModule({
   declarations: [AppComponent],
   providers: [
@@ -41,9 +54,10 @@ import { ErrorhandlerInterceptor } from '@shared/Interceptor/errorhandler.interc
   imports: [
     AppInputValidatorDirective,
     BrowserModule,
-    NavbarComponent,
     RouterModule,
     HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
@@ -66,7 +80,7 @@ import { ErrorhandlerInterceptor } from '@shared/Interceptor/errorhandler.interc
           },
           {
             path: '**',
-            redirectTo: '',
+            component: Error404Component,
           },
         ],
       },
