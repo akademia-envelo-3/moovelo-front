@@ -17,6 +17,8 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventService = inject(CreateEventService);
   private unsubscribe$$ = new Subject<void>();
 
+  categories$ = this.createEventService.getAllCategories();
+
   constructor() {
     this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
     this.eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
@@ -83,6 +85,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   get nameCtrl() {
     return this.eventDetailsForm.controls.name;
+  }
+
+  get categoryCtrl() {
+    return this.eventDetailsForm.controls.category;
   }
 
   get isLimitedPlacesCtrl() {

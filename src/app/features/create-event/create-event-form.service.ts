@@ -39,7 +39,9 @@ export class CreateEventFormService {
           name: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
           }),
-          category: this.builder.control<string[]>([]),
+          category: this.builder.control('', {
+            validators: [Validators.required],
+          }),
           startDate: this.builder.control('', {
             validators: [Validators.required],
           }),
