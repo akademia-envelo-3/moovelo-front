@@ -1,6 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Participant } from '../../event.interfaces';
+import { EventParticipant } from '../../event.interfaces';
 
 @Component({
   selector: 'app-event-participants-list[participantsList]',
@@ -10,6 +10,6 @@ import { Participant } from '../../event.interfaces';
   styleUrls: ['./event-participants-list.component.scss'],
 })
 export class EventParticipantsListComponent {
-  @Input() participantsList!: Participant[];
-  @Input() visitorList?: Participant[];
+  @Input() participantsList!: EventParticipant[];
+  @Input() visitorList?: EventParticipant[];
 }

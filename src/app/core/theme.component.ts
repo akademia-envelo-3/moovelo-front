@@ -3,8 +3,8 @@ import {
   EventCard,
   EventCardComponent,
   EventParticipantsComponent,
-  Participant,
-  ParticipantsStatus,
+  EventParticipant,
+  EventParticipantsStatus,
 } from '../features/event';
 import { GroupItemComponent } from '../features/group';
 import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
@@ -46,7 +46,7 @@ import { GroupListItem } from '../features/group';
   `,
 })
 export default class ThemeComponent {
-  eventParticipants: Record<ParticipantsStatus, Participant[]> = {
+  eventParticipants: Record<EventParticipantsStatus, EventParticipant[]> = {
     accepted: [
       {
         userId: 1,
@@ -75,7 +75,7 @@ export default class ThemeComponent {
     ],
   };
 
-  visitor: Participant[] = [
+  visitor: EventParticipant[] = [
     {
       userId: 1,
       firstName: 'Adam',

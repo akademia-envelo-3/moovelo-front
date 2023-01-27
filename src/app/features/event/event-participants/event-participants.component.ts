@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { ActiveParticipantList, Participant, ParticipantsStatus } from '../event.interfaces';
+import { ActiveParticipantList, EventParticipant, EventParticipantsStatus } from '../event.interfaces';
 import { EventParticipantsListComponent } from './event-participants-list/event-participants-list.component';
 import { ParticipantStatusPipe } from './event-participants.pipe';
 
@@ -14,14 +14,14 @@ import { ParticipantStatusPipe } from './event-participants.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventParticipantsComponent implements OnInit {
-  @Input() eventParticipants!: Record<ParticipantsStatus, Participant[]>;
-  @Input() eventVisitors!: Participant[];
+  @Input() eventParticipants!: Record<EventParticipantsStatus, EventParticipant[]>;
+  @Input() eventVisitors!: EventParticipant[];
 
-  participantsStatuses: ParticipantsStatus[] = [];
+  participantsStatuses: EventParticipantsStatus[] = [];
 
   activeList: ActiveParticipantList | null = null;
 
-  showList(status: ParticipantsStatus) {
+  showList(status: EventParticipantsStatus) {
     if (this.activeList?.type === status) {
       this.activeList = null;
       return;
@@ -33,6 +33,6 @@ export class EventParticipantsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.participantsStatuses = Object.keys(this.eventParticipants) as ParticipantsStatus[];
+    this.participantsStatuses = Object.keys(this.eventParticipants) as EventParticipantsStatus[];
   }
 }
