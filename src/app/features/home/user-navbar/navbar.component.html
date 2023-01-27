@@ -27,4 +27,4 @@
   </div>
   <app-search-bar [ngClass]="menu ? 'search-bar--hidden' : 'search-bar--visible'" class="search-bar"></app-search-bar>
 </nav>
-<div [ngClass]="menu ? 'nav-menu--blur' : ''" (click)="showMenu()"></div>
+<div [class.nav-menu--blur]="menu" (click)="showMenu()"></div>
