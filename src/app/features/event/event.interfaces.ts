@@ -38,3 +38,5 @@ export interface ActiveParticipantList {
   type: EventParticipantsStatus;
   list: EventParticipant[];
 }
+
+export type ParticipantType = 'Użytkownik' | 'Gość';
