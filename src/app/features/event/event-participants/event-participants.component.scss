@@ -17,14 +17,17 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-  }
 
-  &__list {
-    margin-left: 16px;
-    list-style-position: inside;
+    &--accepted {
+      background-color: mat.get-color-from-palette(palette.$green-palette, 500);
+    }
 
-    &__item {
-      margin-top: 8px;
+    &--pending {
+      background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
+    }
+
+    &--rejected {
+      background-color: mat.get-color-from-palette(palette.$red-palette, 900);
     }
   }
 }
@@ -42,16 +45,4 @@
 .mat-mdc-button {
   border-radius: 20px;
   color: mat.get-color-from-palette(palette.$gray-palette, 100) !important;
-}
-
-.accepted {
-  background-color: mat.get-color-from-palette(palette.$green-palette, 500);
-}
-
-.pending {
-  background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
-}
-
-.rejected {
-  background-color: mat.get-color-from-palette(palette.$red-palette, 900);
 }

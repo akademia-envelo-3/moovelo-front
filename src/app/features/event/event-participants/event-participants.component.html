@@ -1,7 +1,7 @@
 <div class="event-participants">
   <div class="event-participants__buttons">
     <div class="event-participants__button" *ngFor="let status of participantsStatuses">
-      <button (click)="showList(status)" mat-button ngClass="{{ status }}">
+      <button (click)="showList(status)" mat-button ngClass="event-participants__button--{{ status }}">
         <p *ngIf="status !== 'accepted'; else acceptedAndVisitors" class="font-heading-3">
           {{ eventParticipants[status].length }}
         </p>
