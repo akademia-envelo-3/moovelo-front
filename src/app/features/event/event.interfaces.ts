@@ -27,14 +27,21 @@ export interface EventCardHashtag {
 }
 
 export interface EventParticipation {
-  accepted: Participants[];
-  pending: Participants[];
-  rejected: Participants[];
-  visitors: Participants[];
+  accepted: Participant[];
+  pending: Participant[];
+  rejected: Participant[];
+  visitors: Participant[];
 }
 
-export interface Participants {
+export interface Participant {
   userId: number;
   firstName: string;
   lastName: string;
+}
+
+export type ParticipantsStatus = 'accepted' | 'pending' | 'rejected';
+
+export interface ActiveParticipantList {
+  type: ParticipantsStatus;
+  list: Participant[];
 }

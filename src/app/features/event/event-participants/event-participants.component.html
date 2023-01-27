@@ -1,46 +1,27 @@
 <div class="event-participants">
   <div class="event-participants__buttons">
-    <div class="event-participants__button">
-      <button (click)="showList('accepted')" mat-button class="accepted">
-        <p class="font-heading-2">
-          {{ eventParticipants.accepted.length + eventParticipants.visitors.length }}
-        </p>
-      </button>
-      <p class="font-text-2">Weźmie udział</p>
-    </div>
-    <div class="event-participants__button">
-      <button (click)="showList('pending')" mat-button class="pending">
-        <p class="font-heading-2">
-          {{ eventParticipants.pending.length }}
-        </p>
-      </button>
-      <p class="font-text-2">Zastanawia się</p>
-    </div>
-    <div class="event-participants__button">
-      <button (click)="showList('rejected')" mat-button class="rejected">
-        <p class="font-heading-2">
-          {{ eventParticipants.rejected.length }}
-        </p>
-      </button>
-      <p class="font-text-2">Zrezygnowało</p>
-    </div>
+    <ng-container *ngFor="let status of participantsStatuses">
+      <div class="event-participants__button">
+        <button (click)="showList(status)" mat-button ngClass="{{ status }}">
+          <p *ngIf="status !== 'accepted'; else acceptedAndVisitors" class="font-heading-3">
+            {{ eventParticipants[status].length }}
+          </p>
+          <ng-template #acceptedAndVisitors>
+            <p class="font-heading-3">{{ eventParticipants[status].length + eventVisitors.length }}</p>
+          </ng-template>
+        </button>
+        <p class="font-text-2">{{ status | participantStatus }}</p>
+      </div>
+    </ng-container>
   </div>
-  <ng-container *ngIf="showAcceptedList">
-    <app-event-participants-list
-      [participantsList]="eventParticipants.accepted"
-      [participantType]="'Użytkownik'"></app-event-participants-list>
-    <app-event-participants-list
-      [participantsList]="eventParticipants.visitors"
-      [participantType]="'Gość'"></app-event-participants-list>
-  </ng-container>
-  <ng-container *ngIf="showPendingList">
-    <app-event-participants-list
-      [participantsList]="eventParticipants.pending"
-      [participantType]="'Użytkownik'"></app-event-participants-list>
-  </ng-container>
-  <ng-container *ngIf="showRejectedList">
-    <app-event-participants-list
-      [participantsList]="eventParticipants.rejected"
-      [participantType]="'Użytkownik'"></app-event-participants-list>
+  <ng-container *ngIf="activeList">
+    <ng-container *ngIf="activeList.type !== 'accepted'; else acceptedAndVisitors">
+      <app-event-participants-list [participantsList]="activeList.list"></app-event-participants-list>
+    </ng-container>
+    <ng-template #acceptedAndVisitors>
+      <app-event-participants-list
+        [participantsList]="activeList.list"
+        [visitorList]="eventVisitors"></app-event-participants-list>
+    </ng-template>
   </ng-container>
 </div>

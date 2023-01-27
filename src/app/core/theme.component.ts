@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { EventCard, EventCardComponent, EventParticipantsComponent } from '../features/event';
+import {
+  EventCard,
+  EventCardComponent,
+  EventParticipantsComponent,
+  Participant,
+  ParticipantsStatus,
+} from '../features/event';
 import { GroupItemComponent } from '../features/group';
 import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
-import { EventParticipation } from '../features/event';
 
 @Component({
   selector: 'app-theme',
@@ -34,14 +39,14 @@ import { EventParticipation } from '../features/event';
     <app-visitor-form></app-visitor-form>
 
     <h2>Lista uczestników eventu</h2>
-    <app-event-participants [eventParticipants]="eventParticipants"> </app-event-participants>
+    <app-event-participants [eventParticipants]="eventParticipants" [eventVisitors]="visitor"> </app-event-participants>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
   `,
 })
 export default class ThemeComponent {
-  eventParticipants: EventParticipation = {
+  eventParticipants: Record<ParticipantsStatus, Participant[]> = {
     accepted: [
       {
         userId: 1,
@@ -68,14 +73,15 @@ export default class ThemeComponent {
         lastName: 'Shakur',
       },
     ],
-    visitors: [
-      {
-        userId: 1,
-        firstName: 'Adam',
-        lastName: 'Małysz',
-      },
-    ],
   };
+
+  visitor: Participant[] = [
+    {
+      userId: 1,
+      firstName: 'Adam',
+      lastName: 'Małysz',
+    },
+  ];
 
   group: GroupListItem = {
     groupOwner: {
