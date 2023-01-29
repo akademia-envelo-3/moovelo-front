@@ -1,18 +1,22 @@
 <div class="surveys">
-  <mat-form-field [formGroup]="surveyForm" class="surveys__single">
-    <div *ngFor="let survey of eventSurveys">
-      <h3 class="surveys__single__header">{{ survey.question }}</h3>
-      <ng-container *ngIf="survey.isMultipleChoice">
-        <mat-checkbox *ngFor="let answer of survey.answers" class="surveys__single">
-          {{ answer.value }}
-        </mat-checkbox>
-      </ng-container>
-      <ng-container *ngIf="!survey.isMultipleChoice">
-        <mat-radio-button *ngFor="let answer of survey.answers" class="surveys__single" [value]="answer">
-          {{ answer.value }}
-        </mat-radio-button>
-      </ng-container>
-      <button mat-raised-button color="primary">Wyślij odpowiedź</button>
-    </div>
-  </mat-form-field>
+  <form [formGroup]="surveyForm" class="surveys__single">
+    <mat-form-field>
+      <div *ngFor="let survey of eventSurveys">
+        <h3 class="surveys__single__header">{{ survey.question }}</h3>
+        <ng-container *ngIf="survey.isMultipleChoice">
+          <mat-checkbox *ngFor="let answer of survey.answers" class="surveys__single" formControlName="answer">
+            {{ answer.value }}
+          </mat-checkbox>
+        </ng-container>
+        <ng-container *ngIf="!survey.isMultipleChoice">
+          <mat-radio-group>
+            <mat-radio-button *ngFor="let answer of survey.answers" class="surveys__single" [value]="answer">
+              {{ answer.value }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </ng-container>
+        <button mat-raised-button color="primary">Wyślij odpowiedź</button>
+      </div>
+    </mat-form-field>
+  </form>
 </div>

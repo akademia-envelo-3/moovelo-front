@@ -4,8 +4,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { EventSurvey } from '../event.interfaces';
 import { CommonModule } from '@angular/common';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { EventSurveyService } from './event-survey.service';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+// import { EventSurveyService } from './event-survey.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -18,22 +18,27 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class EventSurveyComponent {
   private builder = inject(NonNullableFormBuilder);
-  private surveyService = inject(EventSurveyService);
+  // private surveyService = inject(EventSurveyService);
 
-  surveyForm = this.builder.group({});
+  surveyForm = this.builder.group({
+    answer: this.builder.control('', {
+      validators: [Validators.required],
+    }),
+  });
 
-  addAnswers(arr: EventSurvey['answers']) {
-    arr.forEach(answer => {
-      this.surveyForm.addControl(answer.value, this.builder.control(''));
-    });
-  }
+  // addAnswers(arr: EventSurvey['answers']) {
+  //   arr.forEach(answer => {
+  //     this.surveyForm.addControl(answer.value, this.builder.control(''));
+  //   });
+  // }
 
   submitAnswer() {
     this.surveyForm.markAllAsTouched();
 
     console.log;
   }
-  @Input() eventSurveys!: EventSurvey[];
+  @Input()
+  eventSurveys!: EventSurvey[];
   eventSurvey!: EventSurvey;
-  answers = this.addAnswers(this.eventSurvey.answers);
+  // answers = this.addAnswers(this.eventSurvey.answers);
 }
