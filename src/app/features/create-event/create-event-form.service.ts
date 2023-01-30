@@ -8,7 +8,6 @@ import { isHourInThePastValidator } from './validators/isHourInThePastValidator'
 export class CreateEventFormService {
   private builder = inject(NonNullableFormBuilder);
   private eventForm = this.createForm();
-  lettersNumbersDashesAndPolishLettersRegex = /^([a-zA-Z0-9 ĄąĆćĘęŁłŃńÓóŚśŹźŻż -]+)$/;
 
   getForm(): FormGroup<EventForm> {
     return this.eventForm;
@@ -44,7 +43,7 @@ export class CreateEventFormService {
               Validators.required,
               Validators.minLength(4),
               Validators.maxLength(100),
-              Validators.pattern(this.lettersNumbersDashesAndPolishLettersRegex),
+              Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
             ],
           }),
           category: this.builder.control('', {
