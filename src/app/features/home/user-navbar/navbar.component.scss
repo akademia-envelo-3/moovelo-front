@@ -90,6 +90,11 @@
   }
 }
 
+a {
+  text-decoration: none;
+  color: mat.get-color-from-palette(palette.$blue-palette, 900);
+}
+
 .search-bar {
   position: sticky;
 

@@ -25,6 +25,10 @@ import { FooterComponent } from '@shared/footer/footer.component';
             loadChildren: () => import('../event/single-event/single-event.module'),
           },
           {
+            path: 'events',
+            loadChildren: () => import('../event/event-list/event-list.module'),
+          },
+          {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
           },
