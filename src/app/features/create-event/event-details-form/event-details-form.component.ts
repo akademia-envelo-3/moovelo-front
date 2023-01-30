@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
+import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 
 @Component({
   selector: 'app-event-details-form',
@@ -16,7 +17,8 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventForm = inject(CreateEventFormService);
   private createEventService = inject(CreateEventService);
   private unsubscribe$$ = new Subject<void>();
-
+  private errorService = inject(ErrorhandlerService);
+  errorClientServer$ = this.errorService.error$;
   categories$ = this.createEventService.getAllCategories();
 
   constructor() {
