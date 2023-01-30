@@ -17,7 +17,7 @@ export interface EventDetailsForm {
   isConfirmationRequired: FormControl<boolean>;
   limitedPlacesGroup: FormGroup<LimitedPlacesGroup>;
   name: FormControl<string>;
-  category: FormControl<string[]>;
+  category: FormControl<string>;
   startDate: FormControl<string>;
   hour: FormControl<string>;
   postCode: FormControl<string>;
@@ -43,4 +43,8 @@ export interface Group {
   name: string;
   description: string;
   numberOfMembers: number;
+}
+
+export interface EventCategories {
+  name: string;
 }

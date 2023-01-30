@@ -21,8 +21,13 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
         children: [
           {
             path: 'events/1',
-            loadChildren: () => import('../event/single-event/single-event.module')},
-           { 
+            loadChildren: () => import('../event/single-event/single-event.module'),
+          },
+          {
+            path: 'events',
+            loadChildren: () => import('../event/event-list/event-list.module'),
+          },
+          {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
           },
