@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/palettes' as palette;
+
+.mat-mdc-raised-button {
+    border-radius: 20px;
+}
+
+.surveys {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    &__single {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 8px;
+
+        &__header {
+            padding: 16px;
+            background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
+        }
+
+        &__submit {
+            padding: 8px 32px 8px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+    }
+}

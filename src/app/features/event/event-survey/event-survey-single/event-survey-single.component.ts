@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [MatFormFieldModule, MatCheckboxModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatRadioModule],
   templateUrl: 'event-survey-single.component.html',
-  styleUrls: [],
+  styleUrls: ['event-survey-single.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventSurveySingleComponent {
@@ -24,16 +24,12 @@ export class EventSurveySingleComponent {
     }),
   });
 
-  // addAnswers(arr: EventSurvey['answers']) {
-  //   arr.forEach(answer => {
-  //     this.surveyForm.addControl(answer.value, this.builder.control(''));
-  //   });
-  // }
-
   submitAnswer() {
     this.surveyForm.markAllAsTouched();
 
-    console.log(this.surveyForm.value);
+    if (this.surveyForm.invalid) {
+      return;
+    }
   }
 
   @Input()
