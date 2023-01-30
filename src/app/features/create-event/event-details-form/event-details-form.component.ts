@@ -16,8 +16,9 @@ import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventForm = inject(CreateEventFormService);
   private createEventService = inject(CreateEventService);
-  private unsubscribe$$ = new Subject<void>();
   private errorService = inject(ErrorhandlerService);
+  private unsubscribe$$ = new Subject<void>();
+
   errorClientServer$ = this.errorService.error$;
   categories$ = this.createEventService.getAllCategories();
 
