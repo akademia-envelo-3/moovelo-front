@@ -34,7 +34,7 @@ import { EventSurveyComponent } from '../features/event/event-survey/event-surve
     <app-visitor-form></app-visitor-form>
 
     <h2>Widok ankiety dla usera</h2>
-    <app-event-survey [eventSurveys]="surveys"></app-event-survey>
+    <app-event-survey></app-event-survey>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
