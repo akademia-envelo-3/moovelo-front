@@ -8,7 +8,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-event-survey-single',
+  selector: 'app-event-survey-single[survey]',
   standalone: true,
   imports: [MatFormFieldModule, MatCheckboxModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatRadioModule],
   templateUrl: 'event-survey-single.component.html',
