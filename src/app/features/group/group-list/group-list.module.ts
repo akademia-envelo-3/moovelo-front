@@ -14,6 +14,10 @@ import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
         path: '',
         component: GroupListComponent,
       },
+      {
+        path: ':id',
+        loadComponent: () => import('../single-group/single-group.component'),
+      },
     ]),
     GroupItemComponent,
     CommonModule,

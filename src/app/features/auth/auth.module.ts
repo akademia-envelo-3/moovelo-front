@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { AppInputValidatorDirective } from '@shared/inputValidator.directive';
+import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { LoginComponent } from './login.component/login-form.component';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/user.reducer';
@@ -14,6 +15,7 @@ import { userReducer } from './store/user.reducer';
   imports: [
     CommonModule,
     MatInputModule,
+    CowLoaderComponent,
     AppInputValidatorDirective,
     MatButtonModule,
     ReactiveFormsModule,
