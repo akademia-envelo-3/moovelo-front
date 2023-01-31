@@ -23,15 +23,25 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Wybierz kategorię </mat-label>
+    <mat-select formControlName="category">
+      <mat-option *ngFor="let category of categories$ | async" value="{{ category }}">{{ category.name }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="categoryCtrl.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+    </mat-error>
+  </mat-form-field>
   <div class="toggle">
     <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
     <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
   </div>
-  <div class="toggle" *ngIf="isConfirmationRequiredCtrl.value">
-    <mat-label class="toggle__label">Ograniczona liczba miejsc</mat-label>
-    <mat-slide-toggle color="primary" formControlName="isLimitedPlaces"></mat-slide-toggle>
-  </div>
-  <fieldset class="fieldset">
+
+  <div *ngIf="isConfirmationRequiredCtrl.value" formGroupName="limitedPlacesGroup">
+    <div class="toggle">
+      <mat-label class="toggle__label">Ograniczona liczba miejsc</mat-label>
+      <mat-slide-toggle color="primary" formControlName="isLimitedPlaces"></mat-slide-toggle>
+    </div>
     <mat-form-field *ngIf="isLimitedPlacesCtrl.value" color="primary">
       <mat-label>Liczba osób</mat-label>
       <input matInput formControlName="limitedPlaces" type="number" />
@@ -40,7 +50,9 @@
         <ng-container *ngIf="errors['min']">L. osób musi być większa od 0.</ng-container>
       </mat-error>
     </mat-form-field>
+  </div>
 
+  <fieldset class="fieldset">
     <mat-form-field color="primary" class="fieldset__input">
       <mat-label>Data</mat-label>
       <input matInput [matDatepicker]="picker" [min]="today" formControlName="startDate" />

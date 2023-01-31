@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ErrorhandlerService {
   private error$$ = new BehaviorSubject(false);
+
   get error$() {
     return this.error$$.asObservable();
   }

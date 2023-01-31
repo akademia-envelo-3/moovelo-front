@@ -1,4 +1,4 @@
-<div class="group-list">
+<div class="group-list main-container">
   <h3 class="font-heading-3">Lista Grup</h3>
   <ng-container *ngIf="groupList$ | async as groups; else loadingOrError">
     <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>

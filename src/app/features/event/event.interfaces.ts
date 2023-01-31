@@ -40,3 +40,8 @@ export interface ActiveParticipantList {
 }
 
 export type ParticipantType = 'Użytkownik' | 'Gość';
+
+export interface EventListError {
+  isError: boolean;
+  errorStatus: number;
+}
