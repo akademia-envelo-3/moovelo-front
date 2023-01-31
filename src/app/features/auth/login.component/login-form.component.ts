@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { pattern } from '@shared/patterns/patterns';
+
 import { AuthService } from '../authentication/auth.service';
-import { emailValidatorRegex } from './emailValidatorPattern';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login-form.component.html',
@@ -18,7 +20,7 @@ export class LoginComponent {
   createControlGroup() {
     return this.fb.group({
       email: this.fb.control('', {
-        validators: [Validators.required, Validators.maxLength(100), Validators.pattern(emailValidatorRegex)],
+        validators: [Validators.required, Validators.maxLength(100), Validators.pattern(pattern.emailValidatorRegex)],
       }),
       password: this.fb.control('', {
         validators: [Validators.required],

@@ -4,7 +4,7 @@ import { NonNullableFormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { emailValidatorRegex } from './emailValidatorPattern';
+import { pattern } from '@shared/patterns/patterns';
 
 @Component({
   standalone: true,
@@ -25,7 +25,7 @@ export class VisitorFormComponent {
       validators: [Validators.required, Validators.maxLength(20)],
     }),
     email: this.builder.control('', {
-      validators: [Validators.required, Validators.maxLength(30), Validators.pattern(emailValidatorRegex)],
+      validators: [Validators.required, Validators.maxLength(30), Validators.pattern(pattern.emailValidatorRegex)],
     }),
   });
 

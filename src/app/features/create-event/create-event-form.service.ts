@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import patterns from '@shared/regex-patterns';
-import { emailValidatorRegex } from '../auth/login.component/emailValidatorPattern';
+import { pattern } from '@shared/patterns/patterns';
 import { EventForm } from './create-event.interface';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
 import { noSpecialSignsValidatorRegex } from './validators/noSpecialSignsValidatorRegex';
@@ -30,23 +29,22 @@ export class CreateEventFormService {
       eventDetailsForm: this.builder.group(
         {
           group: this.builder.control<number | null>(null),
-          limitedPlaces: this.builder.control(
-            { value: 1, disabled: true },
-            {
-              validators: [Validators.required, Validators.min(1), Validators.max(10000)],
-            }
-          ),
-          isLimitedPlaces: this.builder.control(false),
           isConfirmationRequired: this.builder.control(false),
-          name: this.builder.control('', {
-            validators: [
-              Validators.required,
-              Validators.minLength(4),
-              Validators.maxLength(100),
-              Validators.pattern(noSpecialSignsValidatorRegex),
-            ],
+          limitedPlacesGroup: this.builder.group({
+            isLimitedPlaces: this.builder.control(false),
+            limitedPlaces: this.builder.control(
+              { value: 1, disabled: true },
+              {
+                validators: [Validators.required, Validators.min(1), Validators.max(10000)],
+              }
+            ),
           }),
-          category: this.builder.control<string[]>([]),
+          name: this.builder.control('', {
+            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
+          }),
+          category: this.builder.control('', {
+            validators: [Validators.required],
+          }),
           startDate: this.builder.control('', {
             validators: [Validators.required],
           }),
@@ -54,7 +52,7 @@ export class CreateEventFormService {
             validators: [Validators.required],
           }),
           postCode: this.builder.control('', {
-            validators: [Validators.required, Validators.pattern(patterns.postCode)],
+            validators: [Validators.required, Validators.pattern(pattern.postCode)],
           }),
           city: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],

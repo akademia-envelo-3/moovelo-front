@@ -1,0 +1,30 @@
+<div class="event-participants">
+  <div class="event-participants__buttons">
+    <div class="event-participants__button" *ngFor="let status of participantsStatuses">
+      <button (click)="showList(status)" mat-button ngClass="event-participants__button--{{ status }}">
+        <p *ngIf="status !== 'accepted'; else acceptedAndVisitors" class="font-heading-3">
+          {{ eventParticipants[status].length }}
+        </p>
+        <ng-template #acceptedAndVisitors>
+          <p class="font-heading-3">{{ eventParticipants[status].length + eventVisitors.length }}</p>
+        </ng-template>
+      </button>
+      <p class="font-text-2">{{ status | participantStatus }}</p>
+    </div>
+  </div>
+  <ng-container *ngIf="activeList">
+    <ng-container *ngIf="activeList.type !== 'accepted'; else acceptedAndVisitors">
+      <app-event-participants-list
+        [participantsList]="activeList.list"
+        [participantType]="'Użytkownik'"></app-event-participants-list>
+    </ng-container>
+    <ng-template #acceptedAndVisitors>
+      <app-event-participants-list
+        [participantsList]="activeList.list"
+        [participantType]="'Użytkownik'"></app-event-participants-list>
+      <app-event-participants-list
+        [participantsList]="eventVisitors"
+        [participantType]="'Gość'"></app-event-participants-list>
+    </ng-template>
+  </ng-container>
+</div>

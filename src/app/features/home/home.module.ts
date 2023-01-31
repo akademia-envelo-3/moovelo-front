@@ -10,6 +10,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HomeComponent } from './home.component';
 import { SearchBarService } from './search-bar/search-bar.service';
 import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
+import { FooterComponent } from '@shared/footer/footer.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 @NgModule({
   declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
@@ -18,11 +20,17 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
       {
         path: '',
         component: HomeComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'events/1',
-            loadChildren: () => import('../event/single-event/single-event.module')},
-           { 
+            loadChildren: () => import('../event/single-event/single-event.module'),
+          },
+          {
+            path: 'events',
+            loadChildren: () => import('../event/event-list/event-list.module'),
+          },
+          {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
           },
@@ -39,6 +47,7 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
     MatIconModule,
     ReactiveFormsModule,
     CommonModule,
+    FooterComponent,
   ],
   providers: [SearchBarService],
 })

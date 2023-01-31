@@ -7,6 +7,12 @@
   flex-direction: column;
   max-width: 568px;
 
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
   &__button {
     align-self: flex-end;
     transform: translate(0px, -150px);
