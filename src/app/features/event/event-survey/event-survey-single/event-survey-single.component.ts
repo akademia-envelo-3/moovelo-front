@@ -16,6 +16,9 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventSurveySingleComponent {
+  @Input()
+  survey!: EventSurvey;
+
   private builder = inject(NonNullableFormBuilder);
 
   surveyForm = this.builder.group({
@@ -31,7 +34,4 @@ export class EventSurveySingleComponent {
       return;
     }
   }
-
-  @Input()
-  survey!: EventSurvey;
 }
