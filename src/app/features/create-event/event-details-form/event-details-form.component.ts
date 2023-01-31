@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
+import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 
 @Component({
   selector: 'app-event-details-form',
@@ -15,7 +16,11 @@ import { CreateEventService } from '../create-event.service';
 export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventForm = inject(CreateEventFormService);
   private createEventService = inject(CreateEventService);
+  private errorService = inject(ErrorhandlerService);
   private unsubscribe$$ = new Subject<void>();
+
+  errorClientServer$ = this.errorService.error$;
+  categories$ = this.createEventService.getAllCategories();
 
   constructor() {
     this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
@@ -29,6 +34,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   groups$ = this.createEventService.fetchUserGroups();
 
   ngOnInit() {
+    this.isConfirmationRequiredCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
+      value ? this.limitedPlacesGroup.enable() : this.limitedPlacesGroup.disable();
+    });
+
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
       value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
@@ -85,12 +94,20 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     return this.eventDetailsForm.controls.name;
   }
 
+  get categoryCtrl() {
+    return this.eventDetailsForm.controls.category;
+  }
+
+  get limitedPlacesGroup() {
+    return this.eventDetailsForm.controls.limitedPlacesGroup;
+  }
+
   get isLimitedPlacesCtrl() {
-    return this.eventDetailsForm.controls.isLimitedPlaces;
+    return this.eventDetailsForm.controls.limitedPlacesGroup.controls.isLimitedPlaces;
   }
 
   get limitedPlacesCtrl() {
-    return this.eventDetailsForm.controls.limitedPlaces;
+    return this.eventDetailsForm.controls.limitedPlacesGroup.controls.limitedPlaces;
   }
 
   get startDateCtrl() {

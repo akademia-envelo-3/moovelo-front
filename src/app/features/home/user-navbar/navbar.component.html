@@ -1,9 +1,11 @@
 <nav class="nav-bar main-container">
   <div class="nav-bar__container">
-    <header class="nav-bar__logo">
-      <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav-bar__image" />
-      <p class="nav-bar__padding">Moovelo</p>
-    </header>
+    <a routerLink="/">
+      <header class="nav-bar__logo">
+        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav-bar__image" />
+        <p class="nav-bar__padding">Moovelo</p>
+      </header>
+    </a>
     <div class="nav-icons">
       <mat-icon
         aria-hidden="false"
@@ -19,12 +21,17 @@
     </div>
   </div>
   <div class="main-container" [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
-    <ul class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
-      <li>
-        <a class="nav-menu__link" routerLink="/{{ navbarList[1][i] }}">{{ value }} </a>
+    <ul>
+      <li class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
+        <button class="nav-menu__button" (click)="navigateAndHideMenu(navbarList[1][i])">
+          {{ value }}
+        </button>
+      </li>
+      <li class="nav-menu__list">
+        <button class="nav-menu__button" (click)="handleLogout()">Wyloguj</button>
       </li>
     </ul>
-    <div [ngClass]="menu ? 'nav-menu--blur' : ''" (click)="showMenu()"></div>
   </div>
   <app-search-bar [ngClass]="menu ? 'search-bar--hidden' : 'search-bar--visible'" class="search-bar"></app-search-bar>
 </nav>
+<div [class.nav-menu--blur]="menu" (click)="showMenu()"></div>

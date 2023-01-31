@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { GroupListService } from './group-list.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { GroupListService } from './group-list.service';
 })
 export class GroupListComponent {
   private groupListService = inject(GroupListService);
+  private errorService = inject(ErrorhandlerService);
 
-  error$ = this.groupListService.error$;
+  errorClientServer$ = this.errorService.error$;
   groupList$ = this.groupListService.getAllGroups();
 }

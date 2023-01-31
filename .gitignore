@@ -47,3 +47,4 @@ src/environment.ts
 
 #db
 db.json
+routes.json
