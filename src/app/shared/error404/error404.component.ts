@@ -14,7 +14,7 @@ export class Error404Component implements OnInit {
 
   goBack(): void {
     setTimeout(() => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('');
     }, 5000);
   }
 

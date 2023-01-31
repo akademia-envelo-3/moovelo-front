@@ -10,7 +10,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HomeComponent } from './home.component';
 import { SearchBarService } from './search-bar/search-bar.service';
 import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
-import { AuthGuard } from '../auth';
+import { AuthGuard } from '../auth/guards/auth.guard';
 import { FooterComponent } from '@shared/footer/footer.component';
 
 @NgModule({
