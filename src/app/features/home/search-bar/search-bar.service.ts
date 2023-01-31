@@ -21,8 +21,8 @@ export class SearchBarService {
   search(value: string) {
     // This whole combineLatest will be replaced with one endpoint.
     return combineLatest([
-      this.http.get<Event[]>(`${this.API_URL}/events?name_like=${value}`),
-      this.http.get<Group[]>(`${this.API_URL}/groups?name_like=${value}`),
+      this.http.get<Event[]>(`${this.API_URL}/searchbarEvents?name_like=${value}`),
+      this.http.get<Group[]>(`${this.API_URL}/searchbarGroups?name_like=${value}`),
     ])
       .pipe(
         map(result => {
