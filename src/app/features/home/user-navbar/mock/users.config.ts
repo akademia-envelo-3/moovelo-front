@@ -4,7 +4,7 @@ const users = {
     routes: ['events', 'category-proposition', 'category', 'groups', 'hashtags'],
   },
   user: {
-    titles: ['Wydarzenia', 'Moje wydarzenia', 'Grupy', 'Moje grupy'],
+    titles: ['Wydarzenia', 'Wydarzenia, którymi zarządzasz', 'Grupy', 'Grupy, którymi zarządzasz'],
     routes: ['events', 'my-events', 'groups', 'my-groups'],
   },
 };
