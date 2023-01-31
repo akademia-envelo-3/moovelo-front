@@ -10,6 +10,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HomeComponent } from './home.component';
 import { SearchBarService } from './search-bar/search-bar.service';
 import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
+import { AuthGuard } from '../auth';
 import { FooterComponent } from '@shared/footer/footer.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FooterComponent } from '@shared/footer/footer.component';
       {
         path: '',
         component: HomeComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'events/1',
