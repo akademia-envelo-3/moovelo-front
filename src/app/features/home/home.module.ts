@@ -23,13 +23,14 @@ import { FooterComponent } from '@shared/footer/footer.component';
         canActivate: [AuthGuard],
         children: [
           {
+            path: '',
+            loadChildren: () => import('../event/event-list/event-list.module'),
+          },
+          {
             path: 'events/1',
             loadChildren: () => import('../event/single-event/single-event.module'),
           },
-          {
-            path: 'events',
-            loadChildren: () => import('../event/event-list/event-list.module'),
-          },
+
           {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
