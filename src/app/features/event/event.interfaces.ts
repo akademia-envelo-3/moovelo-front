@@ -26,6 +26,21 @@ export interface EventCardHashtag {
   value: string;
 }
 
+export interface EventParticipant {
+  userId: number;
+  firstName: string;
+  lastName: string;
+}
+
+export type EventParticipantsStatus = 'accepted' | 'pending' | 'rejected';
+
+export interface ActiveParticipantList {
+  type: EventParticipantsStatus;
+  list: EventParticipant[];
+}
+
+export type ParticipantType = 'Użytkownik' | 'Gość';
+
 export interface EventListError {
   isError: boolean;
   errorStatus: number;

@@ -2,12 +2,12 @@
   <app-error></app-error>
 </div>
 <ng-template #success>
-  <div class="group-list">
+  <div class="group-list main-container">
     <app-cow-loader></app-cow-loader>
     <h3 class="font-heading-3">Lista Grup</h3>
     <ng-container *ngIf="groupList$ | async as groups">
       <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
-      <button class="group-list__button" mat-fab extended color="primary">Stwórz grupę</button>
     </ng-container>
   </div>
+  <button class="group-list__button" mat-fab extended color="primary">Stwórz grupę</button>
 </ng-template>
