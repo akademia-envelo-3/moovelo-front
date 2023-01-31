@@ -10,6 +10,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HomeComponent } from './home.component';
 import { SearchBarService } from './search-bar/search-bar.service';
 import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
+import { ErrorComponent } from '@shared/error.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { FooterComponent } from '@shared/footer/footer.component';
 
@@ -48,6 +49,7 @@ import { FooterComponent } from '@shared/footer/footer.component';
     MatIconModule,
     ReactiveFormsModule,
     CommonModule,
+    ErrorComponent,
     FooterComponent,
   ],
   providers: [SearchBarService],

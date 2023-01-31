@@ -14,10 +14,15 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CreateEventFormService } from './create-event-form.service';
 import { detailsGuard } from './guards/details.guard';
 import { MatSelectModule } from '@angular/material/select';
+import { CowLoaderComponent } from '../../shared/loader/cow-loader.component';
+import { ErrorComponent } from '../../shared/error.component';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   imports: [
+    CowLoaderComponent,
+    ErrorComponent,
     CommonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
@@ -53,7 +58,7 @@ import { MatSelectModule } from '@angular/material/select';
         redirectTo: '',
       },
     ]),
+    CowLoaderComponent,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export default class CreateEventModule {}
