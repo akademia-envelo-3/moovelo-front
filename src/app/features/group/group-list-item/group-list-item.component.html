@@ -1,15 +1,17 @@
 <div class="group-list-item">
-  <div class="group-list-item__group-info">
-    <div class="group-info__name font-heading-3">
-      {{ groupItem.name }}
-    </div>
-    <div class="group-info__desc">
-      <p class="font-text-1">{{ groupItem.description }}</p>
-      <div class="desc__number-of-members font-text-1">
-        <mat-icon>person</mat-icon>Członków: {{ groupItem.numberOfMembers }}
+  <a class="group-list-item__link" [routerLink]="[groupItem.id]">
+    <div class="group-list-item__group-info">
+      <div class="group-info__name font-heading-3">
+        {{ groupItem.name }}
+      </div>
+      <div class="group-info__desc">
+        <p class="font-text-1">{{ groupItem.description }}</p>
+        <div class="desc__number-of-members font-text-1">
+          <mat-icon>person</mat-icon>Członków: {{ groupItem.numberOfMembers }}
+        </div>
       </div>
     </div>
-  </div>
+  </a>
   <button
     [disabled]="groupItem.isUserMember ? 'disabled' : null"
     class="group-list-item__button"

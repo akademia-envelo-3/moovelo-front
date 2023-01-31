@@ -11,6 +11,7 @@ import { HomeComponent } from './home.component';
 import { SearchBarService } from './search-bar/search-bar.service';
 import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.component';
 import { AuthGuard } from '../auth';
+import { FooterComponent } from '@shared/footer/footer.component';
 
 @NgModule({
   declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
@@ -46,6 +47,7 @@ import { AuthGuard } from '../auth';
     MatIconModule,
     ReactiveFormsModule,
     CommonModule,
+    FooterComponent,
   ],
   providers: [SearchBarService],
 })

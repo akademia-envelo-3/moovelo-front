@@ -22,14 +22,16 @@
   </div>
   <div class="main-container" [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
     <ul>
-      <li class="nav-menu__list-item" *ngFor="let value of navbarList[0]; let i = index">
-        <a class="nav-menu__link" routerLink="/{{ navbarList[1][i] }}">{{ value }} </a>
+      <li class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
+        <button class="nav-menu__button" (click)="navigateAndHideMenu(navbarList[1][i])">
+          {{ value }}
+        </button>
       </li>
       <li class="nav-menu__list-item">
         <a class="nav-menu__link" (click)="handleLogout()">Wyloguj</a>
       </li>
     </ul>
-    <div [ngClass]="menu ? 'nav-menu--blur' : ''" (click)="showMenu()"></div>
   </div>
   <app-search-bar [ngClass]="menu ? 'search-bar--hidden' : 'search-bar--visible'" class="search-bar"></app-search-bar>
 </nav>
+<div [class.nav-menu--blur]="menu" (click)="showMenu()"></div>
