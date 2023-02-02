@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({
@@ -9,16 +9,14 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./error404.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Error404Component implements OnInit {
+export class Error404Component implements OnDestroy {
   private router = inject(Router);
 
-  goBack(): void {
-    setTimeout(() => {
-      this.router.navigateByUrl('');
-    }, 5000);
-  }
+  private timeout = setTimeout(() => {
+    this.router.navigateByUrl('');
+  }, 5000);
 
-  ngOnInit(): void {
-    this.goBack();
+  ngOnDestroy() {
+    clearTimeout(this.timeout);
   }
 }
