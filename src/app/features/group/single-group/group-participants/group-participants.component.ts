@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { GroupUsersService } from './group-participants.service';
 
 @Component({
   standalone: true,
   selector: 'app-group-participants',
-  imports: [CommonModule],
+  imports: [CommonModule, CowLoaderComponent],
   templateUrl: './group-participants.html',
   styleUrls: ['./group-participants.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
