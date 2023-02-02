@@ -1,0 +1,3 @@
+<ng-container *ngIf="eventSurveys$ | async as eventSurveys">
+  <app-event-survey-single *ngFor="let survey of eventSurveys" [survey]="survey"></app-event-survey-single>
+</ng-container>
