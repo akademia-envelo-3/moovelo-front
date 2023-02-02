@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ErrorComponent } from '@shared/error.component';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
@@ -11,7 +11,7 @@ import { SingleGroupService } from './single-group.service';
 @Component({
   selector: 'app-single-group',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, EventCardComponent, CowLoaderComponent, ErrorComponent],
+  imports: [CommonModule, MatButtonModule, EventCardComponent, CowLoaderComponent, ErrorComponent, RouterModule],
   templateUrl: './single-group.component.html',
   styleUrls: ['./single-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

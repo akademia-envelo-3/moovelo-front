@@ -1,0 +1,12 @@
+<ng-container *ngIf="users$ | async as users$">
+  <div class="main-container group">
+    <h1 class="font-heading-3">Członkowie grupy ({{users$.groupMembers.length}})</h1>
+    <ul>
+      <div class="group__list">
+        <li class="font-text-1" *ngFor="let groupMember of users$.groupMembers">
+          {{groupMember.firstName}} {{groupMember.lastName}}
+        </li>
+      </div>
+    </ul>
+  </div>
+</ng-container>
