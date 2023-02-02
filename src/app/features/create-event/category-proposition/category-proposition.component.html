@@ -1,0 +1,35 @@
+<form [formGroup]="proposeCategoryForm" (ngSubmit)="submitForm()" class="form font-text-1">
+  <mat-form-field color="primary" class="form__field">
+    <mat-label>Nazwa kategorii</mat-label>
+    <input matInput formControlName="name" class="font-text-1" />
+    <mat-error *ngIf="proposeCategoryCtrl.name.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+      <ng-container *ngIf="errors['minlength'] as minLength"
+        >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+      >
+      <ng-container *ngIf="errors['maxlength'] as maxLength"
+        >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+      >
+      <ng-container *ngIf="errors['pattern'] as pattern">Niedozwolne znaki specjalne.</ng-container>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="form__field">
+    <mat-label>Dlaczego taka kategoria</mat-label>
+    <textarea class="form__field--textarea font-text-1" formControlName="description" matInput></textarea>
+    <mat-error *ngIf="proposeCategoryCtrl.description.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+      <ng-container *ngIf="errors['minlength'] as minLength"
+        >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+      >
+      <ng-container *ngIf="errors['maxlength'] as maxLength"
+        >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+      >
+      <ng-container *ngIf="errors['pattern'] as pattern">Niedozwolne znaki specjalne.</ng-container>
+    </mat-error>
+    <mat-hint>Liczba znaków: {{ proposeCategoryCtrl.description.value.length }}/4000 </mat-hint>
+  </mat-form-field>
+  <button mat-button class="btn-round" mat-flat-button color="primary">Wyślij</button>
+  <ng-container *ngIf="error$ | async as error">
+    <app-error></app-error>
+  </ng-container>
+</form>

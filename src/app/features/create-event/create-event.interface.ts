@@ -48,3 +48,8 @@ export interface Group {
 export interface EventCategories {
   name: string;
 }
+
+export interface CategoryPropositionForm {
+  name: string;
+  description: string;
+}

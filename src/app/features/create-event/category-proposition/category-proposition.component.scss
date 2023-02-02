@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__field {
+    width: 248px;
+  }
+
+  &__field--textarea {
+    min-height: 150px;
+  }
+}

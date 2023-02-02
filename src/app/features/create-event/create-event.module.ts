@@ -14,9 +14,14 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CreateEventFormService } from './create-event-form.service';
 import { detailsGuard } from './guards/details.guard';
 import { MatSelectModule } from '@angular/material/select';
+import { CategoryPropositionComponent } from './category-proposition/category-proposition.component';
+import { CategoryPropositionService } from './category-proposition/category-proposition.service';
+import { ErrorComponent } from '@shared/error.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '@shared/snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
+  declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent, CategoryPropositionComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -26,11 +31,14 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ErrorComponent,
+    MatSnackBarModule,
+    SnackbarComponent,
     RouterModule.forChild([
       {
         path: '',
         component: CreateEventComponent,
-        providers: [CreateEventFormService],
+        providers: [CreateEventFormService, CategoryPropositionService],
         children: [
           {
             path: '',

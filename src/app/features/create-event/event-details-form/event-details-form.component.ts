@@ -18,6 +18,11 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private unsubscribe$$ = new Subject<void>();
 
   categories$ = this.createEventService.getAllCategories();
+  categoryProposition = false;
+
+  showCategoryPropositionForm() {
+    this.categoryProposition = !this.categoryProposition;
+  }
 
   constructor() {
     this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
