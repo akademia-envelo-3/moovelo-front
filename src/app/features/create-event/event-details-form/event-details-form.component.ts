@@ -27,6 +27,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     this.eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
   }
 
+  isHashtagInputVisible = false;
   eventTypeForm: FormGroup<EventTypeForm>;
   eventDetailsForm: FormGroup<EventDetailsForm>;
   today = new Date();
@@ -75,11 +76,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   get isExternal() {
     return this.eventTypeForm.value.isExternal;
-  }
-
-  handleSubmit() {
-    this.eventDetailsForm.markAllAsTouched();
-    if (this.eventDetailsForm.invalid) return;
   }
 
   get groupCtrl() {
@@ -140,6 +136,15 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   get descriptionCtrl() {
     return this.eventDetailsForm.controls.description;
+  }
+
+  toggleHashtagInput() {
+    this.isHashtagInputVisible = this.isHashtagInputVisible!;
+  }
+
+  handleSubmit() {
+    this.eventDetailsForm.markAllAsTouched();
+    if (this.eventDetailsForm.invalid) return;
   }
 
   ngOnDestroy() {

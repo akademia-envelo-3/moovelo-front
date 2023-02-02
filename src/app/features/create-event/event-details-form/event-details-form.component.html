@@ -156,6 +156,10 @@
         </mat-error>
         <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
       </mat-form-field>
+      <div class="details-form__button-container">
+        <button mat-flat-button color="primary" (click)="toggleHashtagInput()" type="button">Dodaj hashtag</button>
+        <button mat-flat-button color="primary" type="button">Dodaj załącznik</button>
+      </div>
     </div>
     <button mat-flat-button color="primary">Zatwierdź</button>
   </form>
