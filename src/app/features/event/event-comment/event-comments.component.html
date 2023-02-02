@@ -1,1 +1,3 @@
-<app-event-comments-single></app-event-comments-single>
+<ng-container *ngIf="eventComments$ | async as eventComments">
+  <app-event-comments-single *ngFor="let comment of eventComments" [comment]="comment"></app-event-comments-single>
+</ng-container>

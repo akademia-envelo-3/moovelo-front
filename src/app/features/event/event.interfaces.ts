@@ -60,14 +60,12 @@ export interface EventSurvey {
 }
 
 export interface EventComment {
-  comments: {
-    id: number;
-    user: {
-      firstname: string;
-      lastName: string;
-    };
-    date: string;
-    text: string;
-    attachments: [];
+  id: number;
+  user: {
+    firstname: string;
+    lastName: string;
   };
+  date: string;
+  text: string;
+  attachments: [];
 }
