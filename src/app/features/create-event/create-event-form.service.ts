@@ -35,7 +35,12 @@ export class CreateEventFormService {
             ),
           }),
           name: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(100)],
+            validators: [
+              Validators.required,
+              Validators.minLength(4),
+              Validators.maxLength(100),
+              Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
+            ],
           }),
           category: this.builder.control('', {
             validators: [Validators.required],
