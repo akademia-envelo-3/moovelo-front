@@ -156,11 +156,32 @@
         </mat-error>
         <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
       </mat-form-field>
-      <div class="details-form__button-container">
-        <button mat-flat-button color="primary" (click)="toggleHashtagInput()" type="button">Dodaj hashtag</button>
-        <button mat-flat-button color="primary" type="button">Dodaj załącznik</button>
-      </div>
+
+      <mat-form-field class="details-form__chip-list" appearance="fill">
+        <mat-label>Hashtagi</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Hashtag selection">
+          <mat-chip-row *ngFor="let hashtag of hashtags" (removed)="remove(hashtag)">
+            {{ hashtag }}
+            <button matChipRemove [attr.aria-label]="'remove ' + hashtag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="Nowy hashtag..."
+          #fruitInput
+          [formControl]="hashtagCtrl"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)" />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let hashtag of filteredHashtags$ | async" [value]="hashtag"> #{{ hashtag }} </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button mat-flat-button color="primary" type="button">Dodaj załącznik</button>
     </div>
+
     <button mat-flat-button color="primary">Zatwierdź</button>
   </form>
 </ng-template>

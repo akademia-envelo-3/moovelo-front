@@ -9,7 +9,8 @@
     row-gap: 16px;
   }
 
-  &__description {
+  &__description,
+  &__chip-list {
     max-width: 450px;
     width: 100%;
   }
