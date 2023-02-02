@@ -3,7 +3,6 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { pattern } from '@shared/patterns/patterns';
 import { EventForm } from './create-event.interface';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
-import { noSpecialSignsValidatorRegex } from './validators/noSpecialSignsValidatorRegex';
 @Injectable()
 export class CreateEventFormService {
   private builder = inject(NonNullableFormBuilder);
