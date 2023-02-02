@@ -14,7 +14,7 @@ export class SingleEventService {
   private http = inject(HttpClient);
 
   getSingleEvent(eventId: string) {
-    this.http.get<SingleEventStateInterface>(this.API_URL + `/events/${eventId}`).subscribe(singleEvent => {
+    this.http.get<SingleEventStateInterface>(this.API_URL + `/singleEvents/${eventId}`).subscribe(singleEvent => {
       this.store.dispatch(SingleEventActions.fetch_single_event(singleEvent));
     });
   }
