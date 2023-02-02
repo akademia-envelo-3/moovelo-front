@@ -63,12 +63,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
       value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
-
     if (this.isGroup) {
       this.groupCtrl.setValidators(Validators.required);
     }
   }
-
   get title() {
     return `${
       this.isPrivate
@@ -82,19 +80,15 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
         : ''
     }`;
   }
-
   get isGroup() {
     return this.eventTypeForm.value.isGroup;
   }
-
   get isInternal() {
     return this.eventTypeForm.value.isInternal;
   }
-
   get isPrivate() {
     return this.eventTypeForm.value.isPrivate;
   }
-
   get isExternal() {
     return this.eventTypeForm.value.isExternal;
   }
@@ -102,15 +96,12 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   get groupCtrl() {
     return this.eventDetailsForm.controls.group;
   }
-
   get isConfirmationRequiredCtrl() {
     return this.eventDetailsForm.controls.isConfirmationRequired;
   }
-
   get nameCtrl() {
     return this.eventDetailsForm.controls.name;
   }
-
   get categoryCtrl() {
     return this.eventDetailsForm.controls.category;
   }
@@ -130,31 +121,24 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   get startDateCtrl() {
     return this.eventDetailsForm.controls.startDate;
   }
-
   get hourCtrl() {
     return this.eventDetailsForm.controls.hour;
   }
-
   get postCodeCtrl() {
     return this.eventDetailsForm.controls.postCode;
   }
-
   get cityCtrl() {
     return this.eventDetailsForm.controls.city;
   }
-
   get streetCtrl() {
     return this.eventDetailsForm.controls.street;
   }
-
   get streetNumberCtrl() {
     return this.eventDetailsForm.controls.streetNumber;
   }
-
   get apartmentNumberCtrl() {
     return this.eventDetailsForm.controls.apartmentNumber;
   }
-
   get descriptionCtrl() {
     return this.eventDetailsForm.controls.description;
   }

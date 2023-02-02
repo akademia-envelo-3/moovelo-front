@@ -3,20 +3,16 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { pattern } from '@shared/patterns/patterns';
 import { EventForm } from './create-event.interface';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
-
 @Injectable()
 export class CreateEventFormService {
   private builder = inject(NonNullableFormBuilder);
   private eventForm = this.createForm();
-
   getForm(): FormGroup<EventForm> {
     return this.eventForm;
   }
-
   resetForm() {
     this.eventForm.reset();
   }
-
   private createForm() {
     return this.builder.group<EventForm>({
       eventTypeForm: this.builder.group({
