@@ -49,7 +49,20 @@
     background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
     height: 100%;
     width: 100%;
+    transition-duration: 500ms;
     opacity: 0.5;
+  }
+  &--no-blur {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
+    height: 100%;
+    width: 100%;
+    transition-duration: 500ms;
+    opacity: 0;
+    pointer-events: none;
   }
   &--hide {
     position: absolute;
