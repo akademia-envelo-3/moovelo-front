@@ -5,6 +5,7 @@ import { GroupListComponent } from './group-list.component';
 import { GroupItemComponent } from '../group-list-item/group-list-item.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
+import { ErrorComponent } from '@shared/error.component';
 
 @NgModule({
   declarations: [GroupListComponent],
@@ -23,6 +24,7 @@ import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
     CommonModule,
     MatButtonModule,
     CowLoaderComponent,
+    ErrorComponent,
   ],
   providers: [],
 })

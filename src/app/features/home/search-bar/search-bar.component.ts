@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { SearchBarService } from './search-bar.service';
 
@@ -12,6 +13,9 @@ import { SearchBarService } from './search-bar.service';
 export class SearchBarComponent implements OnInit, OnDestroy {
   private searchBarService = inject(SearchBarService);
   private unsubscribe$$ = new Subject<void>();
+  private errorService = inject(ErrorhandlerService);
+
+  errorClientServer$ = this.errorService.error$;
 
   searchResult$ = this.searchBarService.searchResult$;
 

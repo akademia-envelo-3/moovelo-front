@@ -1,16 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ErrorhandlerService } from './Interceptor/errorhandler.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-error',
   imports: [CommonModule],
   standalone: true,
-  template: `<div class="smth-went-wrong"><p *ngIf="error$ | async">Ups coś poszło nie tak...</p></div> `,
+  template: `<div class="smth-went-wrong"><p>Ups coś poszło nie tak...</p></div> `,
   styles: ['.smth-went-wrong {  text-align: center }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ErrorComponent {
-  private errorService$$ = inject(ErrorhandlerService);
-  error$ = this.errorService$$.error$;
-}
+export class ErrorComponent {}

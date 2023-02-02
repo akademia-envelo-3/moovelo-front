@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit {
   }
 
   handleLogout() {
+    this.menu = !this.menu;
     this.authService.logout();
   }
 }

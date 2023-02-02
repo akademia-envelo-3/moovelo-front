@@ -1,12 +1,13 @@
 .event-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding: 8px;
-    
-    &__button {
-        position: fixed;
-        bottom: 16px;
-        right: 16px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 8px;
+
+  &__button {
+    position: sticky;
+    bottom: 2%;
+    left: 100%;
+    margin-right: 16px;
+  }
 }
