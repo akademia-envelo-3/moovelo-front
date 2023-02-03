@@ -13,8 +13,8 @@ export class EventMapMarkerService {
 
   addCircle() {
     const circle = leaflet.circle([this.markerCoordinates.altitude, this.markerCoordinates.latitude], {
-      color: 'red',
-      fillColor: '#f03',
+      color: '#bd1c1c',
+      fillColor: '#bd1c1c',
       fillOpacity: 0.5,
       radius: 5,
     });

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import * as leaflet from 'leaflet';
 import { EventMapMarkerService } from './event-map-marker.service';
@@ -5,7 +6,7 @@ import { EventMapMarkerService } from './event-map-marker.service';
 @Component({
   selector: 'app-event-map',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: `./event-map.component.html`,
   styleUrls: ['./event-map.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,6 +14,7 @@ import { EventMapMarkerService } from './event-map-marker.service';
 export class EventMapComponent {
   private map: leaflet.Map | leaflet.LayerGroup<any> | undefined;
   private eventMapMarkerService = inject(EventMapMarkerService);
+  isCoordinates = true;
   @Input() coordinates: any;
 
   get getCoordinates() {
@@ -38,8 +40,9 @@ export class EventMapComponent {
 
   ngOnChanges() {
     if (this.coordinates.altitude === null && this.coordinates.latitude === null) {
-      return;
+      this.isCoordinates = false;
     }
+    this.isCoordinates = true;
     this.eventMapMarkerService.passCoordinates(this.coordinates);
     this.initMap();
   }
