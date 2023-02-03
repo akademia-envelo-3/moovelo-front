@@ -14,8 +14,6 @@ export class EventMapComponent {
   private map: leaflet.Map | leaflet.LayerGroup<any> | undefined;
   private eventMapMarkerService = inject(EventMapMarkerService);
 
-  constructor() {}
-
   private initMap() {
     this.map = leaflet.map('map', {
       center: [52.24, 21.0],

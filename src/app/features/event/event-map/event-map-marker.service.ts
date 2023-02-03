@@ -5,8 +5,6 @@ import * as leaflet from 'leaflet';
   providedIn: 'root',
 })
 export class EventMapMarkerService {
-  constructor() {}
-
   private circle = leaflet.circle([52.24, 21.0], {
     color: 'red',
     fillColor: '#f03',
