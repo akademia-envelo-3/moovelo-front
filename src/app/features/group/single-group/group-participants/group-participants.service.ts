@@ -11,6 +11,6 @@ export class GroupUsersService {
   private apiUrl = inject(API_URL);
 
   getParticipants(groupId: number) {
-    return this.http.get<GroupMembersExtended>(this.apiUrl + `/mockedGropuUsers/${groupId}`);
+    return this.http.get<GroupMembersExtended>(this.apiUrl + `/mockedGroupUsers/${groupId}`);
   }
 }
