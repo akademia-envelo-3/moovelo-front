@@ -155,24 +155,30 @@
 
       <mat-form-field class="details-form__chip-list" appearance="fill">
         <mat-label>Hashtagi</mat-label>
-        <mat-chip-grid #chipGrid aria-label="Hashtag selection">
-          <mat-chip-row *ngFor="let hashtag of hashtags" (removed)="remove(hashtag)">
-            {{ hashtag }}
+        <mat-chip-grid #chipGrid aria-label="Hashtag selection" formControlName="hashtags">
+          <mat-chip-row *ngFor="let hashtag of hashtags" (removed)="remove(hashtag)" class="s">
+            #{{ hashtag }}
             <button matChipRemove [attr.aria-label]="'remove ' + hashtag">
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip-row>
         </mat-chip-grid>
+        <mat-error *ngIf="hashtagsCtrl.errors as errors">
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba hashtagów: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
         <input
+          maxlength="20"
+          minlength="2"
           placeholder="Nowy hashtag..."
-          #fruitInput
           [formControl]="hashtagCtrl"
           [matChipInputFor]="chipGrid"
           [matAutocomplete]="auto"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           (matChipInputTokenEnd)="add($event)" />
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let hashtag of filteredHashtags$ | async" [value]="hashtag"> #{{ hashtag }} </mat-option>
+          <mat-option *ngFor="let hashtag of filteredHashtags$ | async" value="hashtag"> {{ hashtag }} </mat-option>
         </mat-autocomplete>
       </mat-form-field>
       <button mat-flat-button color="primary" type="button">Dodaj załącznik</button>

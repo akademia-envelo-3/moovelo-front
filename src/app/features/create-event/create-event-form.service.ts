@@ -69,7 +69,9 @@ export class CreateEventFormService {
           description: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4000)],
           }),
-          hashtags: this.builder.control<string[]>([]),
+          hashtags: this.builder.control<string[]>([], {
+            validators: Validators.maxLength(10),
+          }),
         },
         { validators: isHourInThePastValidator }
       ),
