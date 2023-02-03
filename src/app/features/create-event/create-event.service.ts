@@ -20,6 +20,7 @@ export class CreateEventService {
     return this.http.get<EventCategories[]>(`${this.API_URL}/eventCategories`);
   }
 
+  // getting all hashtags as array of strings
   fetchAllHashtags() {
     return this.http.get<Hashtag[]>(`${this.API_URL}/hashtags`).pipe(
       map(hashtags => {

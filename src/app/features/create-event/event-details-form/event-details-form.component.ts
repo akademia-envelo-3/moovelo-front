@@ -61,7 +61,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
       this.allHashtags = result;
       this.filteredHashtags$ = this.hashtagCtrl.valueChanges.pipe(
         startWith(null),
-        map((hashtag: string | null) => (hashtag ? this.filter(hashtag) : this.allHashtags.slice()))
+        map((hashtag: string | null) => (hashtag ? this.filter(hashtag) : this.allHashtags))
       );
     });
   }
