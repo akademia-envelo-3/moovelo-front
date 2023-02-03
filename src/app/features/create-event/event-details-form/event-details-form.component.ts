@@ -10,7 +10,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { pattern } from '@shared/patterns/patterns';
-import { supportsPassiveEventListeners } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-event-details-form',
