@@ -72,7 +72,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   }
 
   add(event: MatChipInputEvent) {
-    if (this.hashtagCtrl.invalid) return;
+    if (this.hashtagCtrl.invalid || event.value.length < 2) return;
     const value = (event.value || '').trim();
 
     if (value) {
@@ -93,6 +93,7 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent) {
+    if (this.hashtagCtrl.invalid) return;
     this.hashtags.push(event.option.viewValue);
     this.hashtagCtrl.setValue(null);
   }
