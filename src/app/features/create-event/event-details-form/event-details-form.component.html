@@ -186,6 +186,7 @@
             >
           </ng-template>
         </mat-error>
+        <mat-hint color="warn">min. 2 znaki, maks. 20 i brak znaków specjalnych.</mat-hint>
         <input
           maxlength="40"
           minlength="2"
@@ -199,7 +200,6 @@
           <mat-option *ngFor="let hashtag of filteredHashtags$ | async" value="hashtag"> {{ hashtag }} </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <button mat-flat-button color="primary" type="button">Dodaj załącznik</button>
     </div>
 
     <button mat-flat-button color="primary">Zatwierdź</button>

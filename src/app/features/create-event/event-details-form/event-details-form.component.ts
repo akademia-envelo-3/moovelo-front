@@ -9,6 +9,8 @@ import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { pattern } from '@shared/patterns/patterns';
+import { supportsPassiveEventListeners } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-event-details-form',
@@ -30,7 +32,11 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   groups$ = this.createEventService.fetchUserGroups();
 
   hashtagCtrl = new FormControl('', {
-    validators: Validators.maxLength(20),
+    validators: [
+      Validators.maxLength(20),
+      Validators.minLength(2),
+      Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
+    ],
   });
   filteredHashtags$?: Observable<string[]>;
   hashtags: string[] = [];
@@ -72,7 +78,12 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   }
 
   add(event: MatChipInputEvent) {
-    if (this.hashtagCtrl.invalid || event.value.length < 2) return;
+    if (
+      this.hashtagCtrl.invalid ||
+      event.value.length < 2 ||
+      !pattern.lettersNumbersDashesAndPolishLettersRegex.test(event.value)
+    )
+      return;
     const value = (event.value || '').trim();
 
     if (value) {
