@@ -33,8 +33,8 @@ export interface Category {
 }
 export interface Location {
   id: string;
-  altitude: number;
-  latitude: number;
+  altitude: number | null;
+  latitude: number | null;
   postCode: string;
   city: string;
   street: string;

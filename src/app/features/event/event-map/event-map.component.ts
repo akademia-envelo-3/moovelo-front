@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, AfterViewInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import * as leaflet from 'leaflet';
 import { EventMapMarkerService } from './event-map-marker.service';
 
@@ -13,10 +13,15 @@ import { EventMapMarkerService } from './event-map-marker.service';
 export class EventMapComponent {
   private map: leaflet.Map | leaflet.LayerGroup<any> | undefined;
   private eventMapMarkerService = inject(EventMapMarkerService);
+  @Input() coordinates: any;
+
+  get getCoordinates() {
+    return this.coordinates;
+  }
 
   private initMap() {
     this.map = leaflet.map('map', {
-      center: [52.24, 21.0],
+      center: [this.coordinates.altitude, this.coordinates.latitude],
       zoom: 17,
     });
 
@@ -31,7 +36,11 @@ export class EventMapComponent {
     tiles.addTo(this.map);
   }
 
-  ngAfterViewInit(): void {
+  ngOnChanges() {
+    if (this.coordinates.altitude === null && this.coordinates.latitude === null) {
+      return;
+    }
+    this.eventMapMarkerService.passCoordinates(this.coordinates);
     this.initMap();
   }
 }

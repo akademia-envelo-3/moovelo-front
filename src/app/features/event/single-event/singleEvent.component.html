@@ -88,6 +88,7 @@
         </ol>
       </div>
     </div>
+    {{ eventInfo.location.altitude }}
+    <app-event-map [coordinates]="eventInfo.location"></app-event-map>
   </ng-container>
 </ng-template>
-<app-event-map></app-event-map>

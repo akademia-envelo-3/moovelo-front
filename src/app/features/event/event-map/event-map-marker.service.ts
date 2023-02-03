@@ -5,14 +5,19 @@ import * as leaflet from 'leaflet';
   providedIn: 'root',
 })
 export class EventMapMarkerService {
-  private circle = leaflet.circle([52.24, 21.0], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 5,
-  });
+  private markerCoordinates: any = undefined;
+
+  passCoordinates(coordinates: any) {
+    this.markerCoordinates = coordinates;
+  }
 
   addCircle() {
-    return this.circle;
+    const circle = leaflet.circle([this.markerCoordinates.altitude, this.markerCoordinates.latitude], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 5,
+    });
+    return circle;
   }
 }
