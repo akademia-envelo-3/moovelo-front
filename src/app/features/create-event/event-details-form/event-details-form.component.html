@@ -1,171 +1,170 @@
-<form class="details-form main-container" [formGroup]="eventDetailsForm" (ngSubmit)="handleSubmit()">
-  <div class="blue-container">
-    <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
-    <mat-form-field color="primary">
-      <mat-label>Nazwa wydarzenia</mat-label>
-      <input matInput formControlName="name" />
-      <mat-error *ngIf="nameCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['minlength'] as minLength"
-          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
-        >
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-        >
-        <ng-container *ngIf="errors['pattern']"> Podaj litery alfabetu lub cyfry</ng-container>
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <mat-form-field *ngIf="isGroup" appearance="fill">
-    <mat-label>Wybierz grupę</mat-label>
-    <mat-select formControlName="group">
-      <ng-container *ngIf="groups$ | async as groups">
-        <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
-      </ng-container>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Wybierz kategorię </mat-label>
-    <mat-select formControlName="category">
-      <mat-option *ngFor="let category of categories$ | async" value="{{ category }}">{{ category.name }}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="categoryCtrl.errors as errors">
-      <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-    </mat-error>
-  </mat-form-field>
-  <button
-    type="button"
-    mat-button
-    class="btn-round"
-    mat-flat-button
-    color="primary"
-    (click)="showCategoryPropositionForm()">
-    Zaproponuj kategorię
-  </button>
-  <div [ngClass]="categoryProposition ? 'details-form__category--visible' : 'details-form__category--hidden'">
-    <app-category-proposition (hideForm)="showCategoryPropositionForm()"></app-category-proposition>
-  </div>
-  <div class="toggle">
-    <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
-    <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
-  </div>
-
-  <div *ngIf="isConfirmationRequiredCtrl.value" formGroupName="limitedPlacesGroup">
-    <div class="toggle">
-      <mat-label class="toggle__label">Ograniczona liczba miejsc</mat-label>
-      <mat-slide-toggle color="primary" formControlName="isLimitedPlaces"></mat-slide-toggle>
+<div *ngIf="errorClientServer$ | async; else success">
+  <app-error></app-error>
+</div>
+<ng-template #success>
+  <form class="details-form main-container" [formGroup]="eventDetailsForm" (ngSubmit)="handleSubmit()">
+    <app-cow-loader></app-cow-loader>
+    <div class="blue-container">
+      <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
+      <mat-form-field color="primary">
+        <mat-label>Nazwa wydarzenia</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="nameCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['minlength'] as minLength"
+            >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+          >
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
     </div>
-    <mat-form-field *ngIf="isLimitedPlacesCtrl.value" color="primary">
-      <mat-label>Liczba osób</mat-label>
-      <input matInput formControlName="limitedPlaces" type="number" />
-      <mat-error *ngIf="limitedPlacesCtrl.errors as errors">
+    <mat-form-field *ngIf="isGroup" appearance="fill">
+      <mat-label>Wybierz grupę</mat-label>
+      <mat-select formControlName="group">
+        <ng-container *ngIf="groups$ | async as groups">
+          <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Wybierz kategorię </mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories$ | async" value="{{ category }}">{{ category.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="categoryCtrl.errors as errors">
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['min']">L. osób musi być większa od 0.</ng-container>
       </mat-error>
     </mat-form-field>
-  </div>
+    <button
+      type="button"
+      mat-button
+      class="btn-round"
+      mat-flat-button
+      color="primary"
+      (click)="showCategoryPropositionForm()">
+      Zaproponuj kategorię
+    </button>
+    <div [ngClass]="categoryProposition ? 'details-form__category--visible' : 'details-form__category--hidden'">
+      <app-category-proposition (hideForm)="showCategoryPropositionForm()"></app-category-proposition>
+    </div>
+    <div class="toggle">
+      <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
+      <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
+    </div>
 
-  <fieldset class="fieldset">
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="picker" [min]="today" formControlName="startDate" />
-      <mat-error *ngIf="startDateCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['matDatepickerMin']">Data nie może być w przeszłości.</ng-container>
-      </mat-error>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <div *ngIf="isConfirmationRequiredCtrl.value" formGroupName="limitedPlacesGroup">
+      <div class="toggle">
+        <mat-label class="toggle__label">Ograniczona liczba miejsc</mat-label>
+        <mat-slide-toggle color="primary" formControlName="isLimitedPlaces"></mat-slide-toggle>
+      </div>
+      <mat-form-field *ngIf="isLimitedPlacesCtrl.value" color="primary">
+        <mat-label>Liczba osób</mat-label>
+        <input matInput formControlName="limitedPlaces" type="number" />
+        <mat-error *ngIf="limitedPlacesCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['min']">L. osób musi być większa od 0.</ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Godzina</mat-label>
-      <input matInput formControlName="hour" type="time" [errorStateMatcher]="hourMatcher" />
-      <mat-error *ngIf="eventDetailsForm.hasError('isHourInThePast')">Godzina nie może być w przeszłości.</mat-error>
-      <mat-error *ngIf="hourCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Kod pocztowy</mat-label>
-      <mat-hint>np. 00-000</mat-hint>
-      <input matInput formControlName="postCode" />
-      <mat-error *ngIf="postCodeCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['pattern']">Podaj kod pocztowy w formacie XX-XXX np. 09-400</ng-container>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Miasto</mat-label>
-      <input matInput formControlName="city" />
-      <mat-error *ngIf="cityCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['minlength'] as minLength"
-          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
-        >
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-        >
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Ulica</mat-label>
-      <input matInput formControlName="street" />
-      <mat-error *ngIf="streetCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['minlength'] as minLength"
-          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
-        >
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-        >
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Numer domu</mat-label>
-      <input matInput formControlName="streetNumber" />
-      <mat-error *ngIf="streetNumberCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-        >
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field color="primary" class="fieldset__input">
-      <mat-label>Lokal</mat-label>
-      <input matInput formControlName="apartmentNumber" />
-      <mat-error *ngIf="apartmentNumberCtrl.errors as errors">
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-        >
-      </mat-error>
-    </mat-form-field>
-  </fieldset>
-  <div class="blue-container">
-    <h3 class="font-heading-3">Opis wydarzenia</h3>
-    <mat-form-field color="primary" appearance="fill" class="details-form__description">
-      <textarea
-        formControlName="description"
-        matInput
-        placeholder="Dodaj opis..."
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="5"
-        cdkAutosizeMaxRows="15"></textarea>
-      <mat-error *ngIf="descriptionCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-        <ng-container *ngIf="errors['minlength'] as minLength"
-          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
-        >
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
-          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-        >
-      </mat-error>
-      <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
-    </mat-form-field>
-  </div>
-  <button mat-flat-button color="primary">Zatwierdź</button>
-</form>
+    <fieldset class="fieldset">
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" [min]="today" formControlName="startDate" />
+        <mat-error *ngIf="startDateCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['matDatepickerMin']">Data nie może być w przeszłości.</ng-container>
+        </mat-error>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Godzina</mat-label>
+        <input matInput formControlName="hour" type="time" [errorStateMatcher]="hourMatcher" />
+        <mat-error *ngIf="eventDetailsForm.hasError('isHourInThePast')">Godzina nie może być w przeszłości.</mat-error>
+        <mat-error *ngIf="hourCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Kod pocztowy</mat-label>
+        <mat-hint>np. 00-000</mat-hint>
+        <input matInput formControlName="postCode" />
+        <mat-error *ngIf="postCodeCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['pattern']">Podaj kod pocztowy w formacie XX-XXX np. 09-400</ng-container>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Miasto</mat-label>
+        <input matInput formControlName="city" />
+        <mat-error *ngIf="cityCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['minlength'] as minLength"
+            >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+          >
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Ulica</mat-label>
+        <input matInput formControlName="street" />
+        <mat-error *ngIf="streetCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['minlength'] as minLength"
+            >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+          >
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Numer domu</mat-label>
+        <input matInput formControlName="streetNumber" />
+        <mat-error *ngIf="streetNumberCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field color="primary" class="fieldset__input">
+        <mat-label>Lokal</mat-label>
+        <input matInput formControlName="apartmentNumber" />
+        <mat-error *ngIf="apartmentNumberCtrl.errors as errors">
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
+    <div class="blue-container">
+      <h3 class="font-heading-3">Opis wydarzenia</h3>
+      <mat-form-field color="primary" appearance="fill" class="details-form__description">
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="Dodaj opis..."
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="5"
+          cdkAutosizeMaxRows="15"></textarea>
+        <mat-error *ngIf="descriptionCtrl.errors as errors">
+          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+          <ng-container *ngIf="errors['minlength'] as minLength"
+            >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+          >
+          <ng-container *ngIf="errors['maxlength'] as maxLength"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+        </mat-error>
+        <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
+      </mat-form-field>
+    </div>
+    <button mat-flat-button color="primary">Zatwierdź</button>
+  </form>
+</ng-template>

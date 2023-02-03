@@ -7,11 +7,15 @@ import { StoreModule } from '@ngrx/store';
 import { singleEventReducer } from './store/single-event.reducer';
 import { RouterModule } from '@angular/router';
 import { SingleEventComponent } from './single-event.component';
+import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
+import { ErrorComponent } from '@shared/error.component';
 
 @NgModule({
   declarations: [SingleEventComponent],
   imports: [
     CommonModule,
+    ErrorComponent,
+    CowLoaderComponent,
     HttpClientModule,
     MatButtonModule,
     MatIconModule,

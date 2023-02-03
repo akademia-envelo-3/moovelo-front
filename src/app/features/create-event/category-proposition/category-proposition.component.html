@@ -24,7 +24,7 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill" class="form__field">
-    <mat-label>Dlaczego taka kategoria</mat-label>
+    <mat-label>Opis kategorii</mat-label>
     <textarea class="form__field--textarea font-text-1" formControlName="description" matInput></textarea>
     <mat-error *ngIf="descriptionCtrl.errors as errors">
       <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>

@@ -1,17 +1,14 @@
 import { FormControl, FormGroup } from '@angular/forms';
-
 export interface EventForm {
   eventTypeForm: FormGroup<EventTypeForm>;
   eventDetailsForm: FormGroup<EventDetailsForm>;
 }
-
 export interface EventTypeForm {
   isInternal: FormControl<boolean>;
   isPrivate: FormControl<boolean>;
   isGroup: FormControl<boolean>;
   isExternal: FormControl<boolean>;
 }
-
 export interface EventDetailsForm {
   group: FormControl<null | number>;
   isConfirmationRequired: FormControl<boolean>;
@@ -44,7 +41,6 @@ export interface Group {
   description: string;
   numberOfMembers: number;
 }
-
 export interface EventCategories {
   name: string;
 }

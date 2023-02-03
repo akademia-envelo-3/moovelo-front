@@ -16,13 +16,17 @@ import { detailsGuard } from './guards/details.guard';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryPropositionComponent } from './category-proposition/category-proposition.component';
 import { CategoryPropositionService } from './category-proposition/category-proposition.service';
-import { ErrorComponent } from '@shared/error.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '@shared/snackbar/snackbar.component';
+import { CowLoaderComponent } from '../../shared/loader/cow-loader.component';
+import { ErrorComponent } from '../../shared/error.component';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent, CategoryPropositionComponent],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   imports: [
+    CowLoaderComponent,
+    ErrorComponent,
     CommonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
@@ -61,7 +65,7 @@ import { SnackbarComponent } from '@shared/snackbar/snackbar.component';
         redirectTo: '',
       },
     ]),
+    CowLoaderComponent,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export default class CreateEventModule {}

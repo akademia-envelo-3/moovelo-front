@@ -45,3 +45,16 @@ export interface EventListError {
   isError: boolean;
   errorStatus: number;
 }
+
+export interface EventSurvey {
+  question: string;
+  isMultipleChoice: boolean;
+  answers: {
+    id: number;
+    value: string;
+    voted: number;
+  }[];
+  yourAnswersIds: {
+    id?: number;
+  }[];
+}

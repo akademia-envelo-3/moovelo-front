@@ -14,12 +14,6 @@ import { CategoryPropositionService } from './category-proposition.service';
 export class CategoryPropositionComponent {
   @Output() hideForm = new EventEmitter();
 
-  ngOnInit() {
-    this.proposeCategoryForm.valueChanges.subscribe(() => {
-      console.log(this.proposeCategoryForm.controls.name.errors);
-    });
-  }
-
   private builder = inject(NonNullableFormBuilder);
   private errorService = inject(ErrorhandlerService);
   private categoryPropositionService = inject(CategoryPropositionService);
