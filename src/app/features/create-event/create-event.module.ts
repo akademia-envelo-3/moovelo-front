@@ -17,7 +17,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { CategoryPropositionComponent } from './category-proposition/category-proposition.component';
 import { CategoryPropositionService } from './category-proposition/category-proposition.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SnackbarComponent } from '@shared/snackbar/snackbar.component';
 import { CowLoaderComponent } from '../../shared/loader/cow-loader.component';
 import { ErrorComponent } from '../../shared/error.component';
 
@@ -37,7 +36,6 @@ import { ErrorComponent } from '../../shared/error.component';
     MatNativeDateModule,
     ErrorComponent,
     MatSnackBarModule,
-    SnackbarComponent,
     RouterModule.forChild([
       {
         path: '',
