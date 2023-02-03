@@ -39,11 +39,12 @@ export class EventMapComponent {
   }
 
   ngOnChanges() {
-    if (this.coordinates.altitude === null && this.coordinates.latitude === null) {
+    if (this.coordinates.altitude === null || this.coordinates.latitude === null) {
       this.isCoordinates = false;
     }
     this.isCoordinates = true;
     this.eventMapMarkerService.passCoordinates(this.coordinates);
     this.initMap();
+    console.log(this.isCoordinates)
   }
 }
