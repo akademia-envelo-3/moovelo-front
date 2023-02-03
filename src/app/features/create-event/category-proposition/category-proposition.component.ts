@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatIcon } from '@angular/material/icon';
+import { FormGroup, FormGroupDirective, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { pattern } from '@shared/patterns/patterns';
-import { SnackbarComponent } from '@shared/snackbar/snackbar.component';
 import { CategoryPropositionService } from './category-proposition.service';
 
 @Component({
@@ -16,13 +14,39 @@ import { CategoryPropositionService } from './category-proposition.service';
 export class CategoryPropositionComponent {
   @Output() hideForm = new EventEmitter();
 
+  ngOnInit() {
+    this.proposeCategoryForm.valueChanges.subscribe(() => {
+      console.log(this.proposeCategoryForm.controls.name.errors);
+    });
+  }
+
   private builder = inject(NonNullableFormBuilder);
   private errorService = inject(ErrorhandlerService);
   private categoryPropositionService = inject(CategoryPropositionService);
   private snackBar = inject(MatSnackBar);
 
+  private snackBarDuration = 5;
   error$ = this.errorService.error$;
-  snackBarDuration = 5;
+
+  private openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: this.snackBarDuration * 1000,
+      panelClass: 'white-snackbar',
+    });
+  }
+
+  private clearForm(form: FormGroup, formGroupDirective: FormGroupDirective) {
+    form.reset;
+    formGroupDirective.resetForm();
+  }
+
+  get nameCtrl() {
+    return this.proposeCategoryForm.controls.name;
+  }
+
+  get descriptionCtrl() {
+    return this.proposeCategoryForm.controls.description;
+  }
 
   proposeCategoryForm = this.builder.group({
     name: this.builder.control('', {
@@ -34,26 +58,11 @@ export class CategoryPropositionComponent {
       ],
     }),
     description: this.builder.control('', {
-      validators: [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(255),
-        Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
-      ],
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(255)],
     }),
   });
 
-  get proposeCategoryCtrl() {
-    return this.proposeCategoryForm.controls;
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      panelClass: ['white-snackbar'],
-    });
-  }
-
-  submitForm() {
+  submitForm(form: FormGroup, formGroupDirective: FormGroupDirective) {
     this.proposeCategoryForm.markAllAsTouched();
 
     if (this.proposeCategoryForm.invalid) {
@@ -61,7 +70,8 @@ export class CategoryPropositionComponent {
     }
 
     this.categoryPropositionService.postCategoryProposition(this.proposeCategoryForm.getRawValue()).subscribe(() => {
-      this.openSnackBar('Wysłano propozycję nowej grupy', 'X');
+      this.clearForm(form, formGroupDirective);
+      this.openSnackBar('Wysłano propozycję nowej kategorii', 'X');
       this.hideForm.emit();
     });
   }

@@ -120,7 +120,6 @@ button[mat-button] {
   padding: 8px 16px;
   text-align: center;
   display: inline-block;
-  margin: 8px;
   border-radius: 8px;
   // this ~ sign helps us to combine styles in our html
   // for example we can do something like: <button mat-button class="btn-round btn-danger">button</button>
@@ -140,8 +139,14 @@ button[mat-button] {
   }
 }
 
-.white-snackbar {
-  background-color: mat.get-color-from-palette(palette.$gray-palette, 100) !important;
+.mat-mdc-snack-bar-container {
+  --mat-mdc-snack-bar-button-color: none;
+  --mdc-snackbar-container-color: none;
+  --mdc-snackbar-supporting-text-color: none;
+  &.white-snackbar {
+    background-color: mat.get-color-from-palette(palette.$blue-palette, 500) !important;
+    color: mat.get-color-from-palette(palette.$gray-palette, 100) !important;
+  }
 }
 
 .mdc-switch__handle::before,
