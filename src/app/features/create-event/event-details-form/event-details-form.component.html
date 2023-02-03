@@ -1,9 +1,6 @@
-<div *ngIf="errorClientServer$ | async; else success">
-  <app-error></app-error>
-</div>
-<ng-template #success>
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="groups$ | async as groups; else error">
   <form class="details-form main-container" [formGroup]="eventDetailsForm" (ngSubmit)="handleSubmit()">
-    <app-cow-loader></app-cow-loader>
     <div class="blue-container">
       <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
       <mat-form-field color="primary">
@@ -23,9 +20,7 @@
     <mat-form-field *ngIf="isGroup" appearance="fill">
       <mat-label>Wybierz grupę</mat-label>
       <mat-select formControlName="group">
-        <ng-container *ngIf="groups$ | async as groups">
-          <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
-        </ng-container>
+        <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -155,4 +150,9 @@
     </div>
     <button mat-flat-button color="primary">Zatwierdź</button>
   </form>
+</ng-container>
+<ng-template #error>
+  <div *ngIf="errorClientServer$ | async">
+    <app-error></app-error>
+  </div>
 </ng-template>
