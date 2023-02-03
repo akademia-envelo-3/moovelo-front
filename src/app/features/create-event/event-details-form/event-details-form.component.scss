@@ -39,3 +39,8 @@
     width: 100%;
   }
 }
+
+//decreasing hashtag whitespace
+::ng-deep .mdc-evolution-chip__graphic {
+  padding-right: 0 !important;
+}
