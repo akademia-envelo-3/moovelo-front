@@ -22,6 +22,7 @@ export class EventMapComponent {
   }
 
   private initMap() {
+    this.isCoordinates = true;
     this.map = leaflet.map('map', {
       center: [this.coordinates.altitude, this.coordinates.latitude],
       zoom: 17,
@@ -29,7 +30,7 @@ export class EventMapComponent {
 
     const tiles = leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
-      minZoom: 3,
+      minZoom: 1,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     });
 
@@ -41,10 +42,14 @@ export class EventMapComponent {
   ngOnChanges() {
     if (this.coordinates.altitude === null || this.coordinates.latitude === null) {
       this.isCoordinates = false;
+      return;
+    } else {
+      this.eventMapMarkerService.passCoordinates(this.coordinates);
+      this.initMap();
     }
-    this.isCoordinates = true;
-    this.eventMapMarkerService.passCoordinates(this.coordinates);
+  }
+
+  ngOnInit() {
     this.initMap();
-    console.log(this.isCoordinates)
   }
 }
