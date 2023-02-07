@@ -7,6 +7,5 @@ export const hashtagMinLengthValidator: ValidatorFn = (control: AbstractControl)
 
 export const hashtagMaxLengthValidator: ValidatorFn = (control: AbstractControl) => {
   const value = control.value as string[];
-  console.log(value);
   return value.some(hashtag => hashtag.length > 40) ? { maxSingleHashtagLength: true } : null;
 };

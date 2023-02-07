@@ -85,16 +85,18 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
       this.hashtags.push(value);
     }
 
-    event.chipInput!.clear();
+    if (event.chipInput) {
+      event.chipInput.clear();
+    }
 
     this.hashtagCtrl.setValue(null);
   }
 
-  remove(fruit: string) {
-    const index = this.hashtags.indexOf(fruit);
+  remove(hashtag: string) {
+    const hashtagIndex = this.hashtags.indexOf(hashtag);
 
-    if (index >= 0) {
-      this.hashtags.splice(index, 1);
+    if (hashtagIndex >= 0) {
+      this.hashtags = this.hashtags.filter((_, index) => index !== hashtagIndex);
     }
   }
 
