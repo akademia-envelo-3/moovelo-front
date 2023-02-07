@@ -176,13 +176,13 @@
             >Maks. liczba hashtagów: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
           >
           <ng-template #hashtagsMinLength>
-            <ng-container *ngIf="errors['minSingleHashtagLength']; else hashtagsMaxLength"
-              >Hashtag musi mieć co najmniej 2 znaki</ng-container
+            <ng-container *ngIf="errors['minSingleHashtagLength'] as minLength; else hashtagsMaxLength"
+              >Hashtag musi mieć co najmniej {{ minLength.requiredLength }} znaki</ng-container
             >
           </ng-template>
           <ng-template #hashtagsMaxLength>
-            <ng-container *ngIf="errors['maxSingleHashtagLength']"
-              >Hashtag może mieć maksymalnie 20 znaków.</ng-container
+            <ng-container *ngIf="errors['maxSingleHashtagLength'] as maxLength"
+              >Hashtag może mieć maksymalnie {{ maxLength.requiredLength }} znaków.</ng-container
             >
           </ng-template>
         </mat-error>
