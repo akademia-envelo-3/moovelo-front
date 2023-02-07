@@ -9,5 +9,5 @@
       <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
     </ng-container>
   </div>
-  <button class="group-list__button" mat-fab extended color="primary">Stwórz grupę</button>
+  <button class="group-list__button" (click)="navToCreateGroup()" mat-fab extended color="primary">Stwórz grupę</button>
 </ng-template>
