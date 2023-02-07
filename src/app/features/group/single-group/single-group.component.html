@@ -17,7 +17,9 @@
               {{ member.firstName }} {{ member.lastName }}
             </li>
           </ul>
-          <button routerLink="users" class="group-info__button" mat-flat-button color="primary">Zobacz więcej</button>
+          <button (click)="navigateToUsers()" class="group-info__button" mat-flat-button color="primary">
+            Zobacz więcej
+          </button>
         </div>
         <div class="group-info__events">
           <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
