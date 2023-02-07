@@ -16,9 +16,22 @@
     justify-content: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 0px 0px;
+    gap: 32px;
     grid-template-areas:
       '. .'
       '. .';
+  }
+}
+
+@media (min-width: 1050px) {
+  .event-list {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 32px;
+    grid-template-areas:
+      '. . .'
+      '. . .';
   }
 }
