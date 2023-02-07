@@ -12,7 +12,7 @@ import { EventMapMarkerService } from './event-map-marker.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventMapComponent {
-  private map: leaflet.Map | leaflet.LayerGroup<any> | undefined;
+  private map?: leaflet.Map | leaflet.LayerGroup<any>;
   private eventMapMarkerService = inject(EventMapMarkerService);
   isCoordinates = true;
   @Input() coordinates!: { altitude: number | null; latitude: number | null };

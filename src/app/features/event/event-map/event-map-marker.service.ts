@@ -5,14 +5,14 @@ import * as leaflet from 'leaflet';
   providedIn: 'root',
 })
 export class EventMapMarkerService {
-  private markerCoordinates: { altitude: number; latitude: number } | undefined;
+  private markerCoordinates?: { altitude: number; latitude: number };
 
   passCoordinates(coordinates: any) {
     this.markerCoordinates = coordinates;
   }
 
   addCircle() {
-    if (this.markerCoordinates === undefined) {
+    if (!this.markerCoordinates) {
       return;
     }
     const circle = leaflet.circle([this.markerCoordinates.altitude, this.markerCoordinates.latitude], {
