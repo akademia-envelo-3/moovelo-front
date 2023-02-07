@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
-
+  padding-bottom: 8px;
   &__input {
     width: 100%;
     max-width: 320px;
