@@ -12,7 +12,8 @@ import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
-import { EventCommentFormComponent } from '../features/event/event-comment-form/event-comment-form.component';
+import { EventCommentFormComponent } from '../features/event/event-comment/event-comment-form/event-comment-form.component';
+import { EventCommentsComponent } from '../features/event/event-comment/event-comments.component';
 
 @Component({
   selector: 'app-theme',
@@ -25,6 +26,7 @@ import { EventCommentFormComponent } from '../features/event/event-comment-form/
     EventParticipantsComponent,
     EventSurveyComponent,
     EventCommentFormComponent,
+    EventCommentsComponent,
   ],
   standalone: true,
   template: `
@@ -49,7 +51,7 @@ import { EventCommentFormComponent } from '../features/event/event-comment-form/
     <app-event-survey></app-event-survey>
 
     <h2>Komentarze</h2>
-    <app-event-comment-form></app-event-comment-form>
+    <app-event-comments></app-event-comments>
 
     <h2>Footer</h2>
     <app-footer></app-footer>

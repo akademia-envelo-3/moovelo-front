@@ -58,3 +58,14 @@ export interface EventSurvey {
     id?: number;
   }[];
 }
+
+export interface EventComment {
+  id: number;
+  user: {
+    firstname: string;
+    lastName: string;
+  };
+  date: string;
+  text: string;
+  attachments: [];
+}
