@@ -30,7 +30,12 @@ export class CreateEventFormService {
             limitedPlaces: this.builder.control(
               { value: 1, disabled: true },
               {
-                validators: [Validators.required, Validators.min(1), Validators.max(10000)],
+                validators: [
+                  Validators.required,
+                  Validators.min(1),
+                  Validators.max(1000),
+                  Validators.pattern(pattern.onlyNumbers),
+                ],
               }
             ),
           }),
