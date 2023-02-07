@@ -6,6 +6,8 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorComponent } from '@shared/error.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [EventListComponent],
@@ -22,6 +24,8 @@ import { ErrorComponent } from '@shared/error.component';
     EventCardComponent,
     CowLoaderComponent,
     MatButtonModule,
+    MatTabsModule,
+    MatCheckboxModule,
   ],
   providers: [],
 })

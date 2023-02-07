@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
+import { SortOption, SortValue } from '../event.interfaces';
 import { EventListService } from './event-list.service';
 
 @Component({
@@ -9,11 +10,32 @@ import { EventListService } from './event-list.service';
   providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventListComponent {
+export class EventListComponent implements OnInit {
   private eventListService = inject(EventListService);
   private errorService = inject(ErrorhandlerService);
 
-  errorClientServer$ = this.errorService.error$;
+  private sortValue: SortValue = 'sortOrder=desc';
 
-  eventList$ = this.eventListService.getAllEvents();
+  errorClientServer$ = this.errorService.error$;
+  events$ = this.eventListService.events$;
+
+  sortOptions: SortOption[] = [
+    { name: 'Data: najnowsze', value: 'sortOrder=desc' },
+    { name: 'Data: najstarsze', value: 'sortOrder=asc' },
+    { name: 'Liczba uczestników: od najwyższej', value: 'participants=desc' },
+    { name: 'Liczba uczestników: od najniższej', value: 'participants=asc' },
+  ];
+
+  ngOnInit() {
+    this.getEvents();
+  }
+
+  getEvents() {
+    this.eventListService.getAllEvents(this.sortValue);
+  }
+
+  sort(value: SortValue) {
+    this.sortValue = value;
+    this.getEvents();
+  }
 }

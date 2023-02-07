@@ -4,9 +4,26 @@
   </div>
   <ng-template #success>
     <app-cow-loader></app-cow-loader>
-    <ng-container *ngIf="eventList$ | async as events">
+    <mat-tab-group class="event-list__tab-group" animationDuration="0ms">
+      <mat-tab label="Filtruj">
+        <div class="event-list__tab menu-list">
+          <li *ngFor="let sortOption of sortOptions">
+            <button (click)="sort(sortOption.value)">{{ sortOption.name }}</button>
+          </li>
+        </div>
+      </mat-tab>
+      <mat-tab label="Sortuj">
+        <div class="event-list__tab">
+          <p><mat-checkbox formControlName="pepperoni">Pepperoni</mat-checkbox></p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Kategorie">
+        <div class="event-list__tab">asdasd</div>
+      </mat-tab>
+    </mat-tab-group>
+    <div class="event-list__events" *ngIf="events$ | async as events">
       <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
-    </ng-container>
+    </div>
   </ng-template>
 </div>
 
