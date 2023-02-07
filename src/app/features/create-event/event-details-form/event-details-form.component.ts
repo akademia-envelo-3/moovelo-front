@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
+import { FormControl, Validators } from '@angular/forms';
 import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
@@ -40,15 +39,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   filteredHashtags$?: Observable<string[]>;
   hashtags: string[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  eventTypeForm: FormGroup<EventTypeForm>;
-  eventDetailsForm: FormGroup<EventDetailsForm>;
+  eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
+  eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
   today = new Date();
   hourMatcher = new HourErrorStateMatcher();
-
-  constructor() {
-    this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
-    this.eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
-  }
 
   ngOnInit() {
     this.isConfirmationRequiredCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
@@ -81,8 +75,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
       this.hashtagCtrl.invalid ||
       event.value.length < 2 ||
       !pattern.lettersNumbersDashesAndPolishLettersRegex.test(event.value)
-    )
+    ) {
       return;
+    }
+
     const value = (event.value || '').trim();
 
     if (value) {
