@@ -30,16 +30,6 @@
   color: mat.get-color-from-palette(palette.$gray-palette, 100);
   transition-duration: 500ms;
   transform: translateY(115px);
-  &__list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 100%;
-    list-style-type: none;
-    background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
-    border-top: 1px solid mat.get-color-from-palette(palette.$gray-palette, 100);
-  }
   &--blur {
     position: fixed;
     z-index: 2;
@@ -70,15 +60,6 @@
     z-index: -1;
     transform: translateY(-100%);
     transition-duration: 500ms;
-  }
-  &__button {
-    width: 100%;
-    height: 100%;
-    background-color: inherit;
-    border: none;
-    color: mat.get-color-from-palette(palette.$gray-palette, 100);
-    text-decoration: none;
-    cursor: pointer;
   }
 }
 
