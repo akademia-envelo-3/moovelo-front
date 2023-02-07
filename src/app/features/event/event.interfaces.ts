@@ -58,3 +58,10 @@ export interface EventSurvey {
     id?: number;
   }[];
 }
+
+export type SortValue = 'sortOrder=desc' | 'sortOrder=asc' | 'participants=asc' | 'participants=desc';
+
+export interface SortOption {
+  name: string;
+  value: SortValue;
+}
