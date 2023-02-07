@@ -6,6 +6,7 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorComponent } from '@shared/error.component';
+import { EventCardNewComponent } from '../event-card-new/event-card-new.component';
 
 @NgModule({
   declarations: [EventListComponent],
@@ -22,6 +23,7 @@ import { ErrorComponent } from '@shared/error.component';
     EventCardComponent,
     CowLoaderComponent,
     MatButtonModule,
+    EventCardNewComponent,
   ],
   providers: [],
 })

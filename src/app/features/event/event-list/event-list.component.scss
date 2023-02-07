@@ -1,13 +1,24 @@
 .event-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr;
   gap: 32px;
-  padding: 8px;
-
   &__button {
     position: sticky;
     bottom: 2%;
     left: 100%;
     margin-right: 16px;
+  }
+}
+@media (min-width: 600px) {
+  .event-list {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      '. .'
+      '. .';
   }
 }

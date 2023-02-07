@@ -5,6 +5,7 @@
   <ng-template #success>
     <app-cow-loader></app-cow-loader>
     <ng-container *ngIf="eventList$ | async as events">
+      <app-event-card-new *ngFor="let event of events" [eventCard]="event"></app-event-card-new>
       <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
     </ng-container>
   </ng-template>
