@@ -12,7 +12,6 @@ import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
-import { EventCommentFormComponent } from '../features/event/event-comment/event-comment-form/event-comment-form.component';
 import { EventCommentsComponent } from '../features/event/event-comment/event-comments.component';
 
 @Component({
@@ -25,7 +24,6 @@ import { EventCommentsComponent } from '../features/event/event-comment/event-co
     VisitorFormComponent,
     EventParticipantsComponent,
     EventSurveyComponent,
-    EventCommentFormComponent,
     EventCommentsComponent,
   ],
   standalone: true,

@@ -69,3 +69,7 @@ export interface EventComment {
   text: string;
   attachments: [];
 }
+
+export interface EventCommentForm {
+  text: string;
+}

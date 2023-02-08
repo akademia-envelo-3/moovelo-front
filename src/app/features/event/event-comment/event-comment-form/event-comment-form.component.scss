@@ -1,0 +1,13 @@
+.mat-mdc-raised-button {
+    border-radius: 20px;
+}
+
+.commentsForm {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    &__button {
+        display: flex;
+        align-self: center;
+    }
+}

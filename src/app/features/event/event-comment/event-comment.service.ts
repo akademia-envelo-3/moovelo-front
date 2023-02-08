@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { EventComment } from '../event.interfaces';
+import { EventComment, EventCommentForm } from '../event.interfaces';
 
 @Injectable()
 export class EventCommentService {
@@ -10,5 +10,9 @@ export class EventCommentService {
 
   getComments() {
     return this.http.get<EventComment[]>(this.apiUrl + '/comments');
+  }
+
+  postComment(eventCommentForm: EventCommentForm) {
+    return this.http.post<EventComment>(this.apiUrl + '/comments', eventCommentForm);
   }
 }
