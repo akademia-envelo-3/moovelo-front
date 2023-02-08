@@ -4,7 +4,7 @@ import * as leaflet from 'leaflet';
 import { EventMapMarkerService } from './event-map-marker.service';
 
 @Component({
-  selector: 'app-event-map',
+  selector: 'app-event-map[coordinates]',
   standalone: true,
   imports: [CommonModule],
   templateUrl: `./event-map.component.html`,

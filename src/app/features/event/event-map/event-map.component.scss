@@ -5,15 +5,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.map-frame {
-  border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
-  margin: 32px;
-  height: 50vh;
-  width: 80vw;
-}
-
-#map {
-  height: 100%;
+  &__frame {
+    border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
+    margin: 32px;
+    height: 50vh;
+    width: 80vw;
+  }
+  &__map {
+    height: 100%;
+  }
+  &__error {
+    padding: 32px;
+  }
 }
