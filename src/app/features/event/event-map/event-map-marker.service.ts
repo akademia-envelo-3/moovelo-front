@@ -7,7 +7,7 @@ import * as leaflet from 'leaflet';
 export class EventMapMarkerService {
   private markerCoordinates?: { altitude: number; latitude: number };
 
-  passCoordinates(coordinates: any) {
+  passCoordinates(coordinates: { altitude: number; latitude: number }) {
     this.markerCoordinates = coordinates;
   }
 
