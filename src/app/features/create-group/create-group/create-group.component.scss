@@ -18,19 +18,12 @@
   &--textarea {
     min-height: 150px;
   }
-}
-
-.description {
-  &__textarea {
-    border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
-    border-radius: 5px;
-    width: 80%;
-  }
-  &__textarea.ng-invalid.ng-touched {
-    border: 1px solid mat.get-color-from-palette(palette.$red-palette, 500);
-  }
 
   &__title {
     color: mat.get-color-from-palette(palette.$blue-palette, 500);
+  }
+
+  &__textarea {
+    width: 80%;
   }
 }

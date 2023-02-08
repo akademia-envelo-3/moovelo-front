@@ -9,6 +9,6 @@ export class CreateGroupService {
   private apiUrl = inject(API_URL);
 
   postNewGroup(newGroup: CreateGroup) {
-    return this.http.post<CreateGroup>(this.apiUrl + '/groups', newGroup).subscribe();
+    return this.http.post<CreateGroup>(this.apiUrl + '/group', newGroup);
   }
 }

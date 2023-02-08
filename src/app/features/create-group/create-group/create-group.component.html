@@ -1,11 +1,11 @@
-<form class="create-group main-container" [formGroup]="createGroupForm" (ngSubmit)="handleSubmit()">
+<form class="create-group main-container" [formGroup]="createGroupForm" (ngSubmit)="handleCreateGroupSubmit()">
   <div class="blue-container">
     <h2 class="font-heading-2">Stwórz Grupę</h2>
     <mat-form-field color="primary">
       <mat-label>Nazwa grupy</mat-label>
-      <input matInput formControlName="name" />
+      <input matInput formControlName="name" class="create-group__input" />
       <mat-error *ngIf="nameCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']; else errorMinLength">To pole jest obowiązkowe!</ng-container>
+        <ng-container *ngIf="errors['required']; else errorMinLength">To pole jest wymagane.</ng-container>
         <ng-template #errorMinLength>
           <ng-container *ngIf="errors['minlength'] as minLength; else errorMaxLength"
             >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.
@@ -23,12 +23,17 @@
     </mat-form-field>
   </div>
   <div class="create-group__description">
-    <h3 class="description__title font-heading-3">Opis Group</h3>
-    <mat-form-field class="description__textarea" color="primary">
-      <mat-label></mat-label>
-      <textarea class="create-group--textarea" matInput formControlName="description"></textarea>
+    <h3 class="font-heading-3 create-group__title">Opis wydarzenia</h3>
+    <mat-form-field color="primary" appearance="fill" class="create-group__textarea">
+      <textarea
+        formControlName="description"
+        matInput
+        placeholder="Dodaj opis..."
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="15"></textarea>
       <mat-error *ngIf="descriptionCtrl.errors as errors">
-        <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
         <ng-container *ngIf="errors['minlength'] as minLength"
           >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
         >

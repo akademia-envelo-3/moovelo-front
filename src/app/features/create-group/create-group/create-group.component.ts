@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { pattern } from '@shared/patterns/patterns';
 import { CreateGroupService } from '../create-group.service';
@@ -13,6 +14,7 @@ export class CreateGroupComponent {
   private builder = inject(NonNullableFormBuilder);
   private createGroupService = inject(CreateGroupService);
   private errorService = inject(ErrorhandlerService);
+  private router = inject(Router);
 
   error$ = this.errorService.error$;
 
@@ -38,12 +40,14 @@ export class CreateGroupComponent {
     return this.createGroupForm.controls.description;
   }
 
-  handleSubmit() {
+  handleCreateGroupSubmit() {
     this.createGroupForm.markAsTouched;
     if (this.createGroupForm.invalid) {
       return;
     }
 
-    this.createGroupService.postNewGroup(this.createGroupForm.getRawValue());
+    this.createGroupService.postNewGroup(this.createGroupForm.getRawValue()).subscribe(result => {
+      this.router.navigate(['groups', result.id]);
+    });
   }
 }
