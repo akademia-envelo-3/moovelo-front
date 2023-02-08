@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
+import { Subject, takeUntil } from 'rxjs';
 import { FilterValue, SortValue } from '../event.interfaces';
 import { EventListService } from './event-list.service';
 import { filterOptions, sortOptions } from './filterSortOptions';
@@ -16,6 +17,8 @@ export class EventListComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
   private eventListService = inject(EventListService);
   private errorService = inject(ErrorhandlerService);
+
+  private unsubscribe$$ = new Subject<void>();
 
   private sortValue: SortValue = 'sortOrder=desc';
   private filterValue: FilterValue[] = [];
@@ -35,7 +38,7 @@ export class EventListComponent implements OnInit {
     this.getEvents();
     filterOptions.forEach(() => this.formArray.push(this.builder.control(false)));
 
-    this.formArray.valueChanges.subscribe(() => (this.hasFilterChanged = true));
+    this.formArray.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(() => (this.hasFilterChanged = true));
   }
 
   getEvents() {
@@ -90,5 +93,10 @@ export class EventListComponent implements OnInit {
 
   openTab() {
     this.isHidden = false;
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$$.next();
+    this.unsubscribe$$.complete();
   }
 }
