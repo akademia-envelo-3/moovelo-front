@@ -26,7 +26,7 @@
         <div class="group-info__events">
           <ng-container *ngIf="singleGroup.events.length === 0; else groupEvent">
             <p class="group-info__warn font-text-1">W tej grupie narazie nie ma wydarzeń</p>
-            <img src="/assets/logo-mascot.png" class="error__logo__image" alt="404 error site logo" />
+            <img src="/assets/logo-mascot.png" class="error__logo__image" alt="no events site logo" />
           </ng-container>
           <ng-template #groupEvent>
             <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
