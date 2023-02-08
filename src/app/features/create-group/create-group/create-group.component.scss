@@ -15,10 +15,6 @@
     width: 100%;
   }
 
-  &--textarea {
-    min-height: 150px;
-  }
-
   &__title {
     color: mat.get-color-from-palette(palette.$blue-palette, 500);
   }
