@@ -61,7 +61,14 @@ export interface EventSurvey {
 
 export type SortValue = 'sortOrder=desc' | 'sortOrder=asc' | 'participants=asc' | 'participants=desc';
 
+export type FilterValue = 'participating=true' | 'group=true';
+
 export interface SortOption {
   name: string;
   value: SortValue;
+}
+
+export interface FilterOption {
+  name: string;
+  value: FilterValue;
 }

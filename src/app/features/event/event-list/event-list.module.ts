@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ErrorComponent } from '@shared/error.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [EventListComponent],
@@ -26,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     MatTabsModule,
     MatCheckboxModule,
+    ReactiveFormsModule,
   ],
   providers: [],
 })

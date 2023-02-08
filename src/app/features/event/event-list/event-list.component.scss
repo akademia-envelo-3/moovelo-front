@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
 .event-list {
   display: flex;
   flex-direction: column;
@@ -5,6 +8,24 @@
 
   &__tab-group {
     position: relative;
+
+    &--hidden ::ng-deep span.mdc-tab-indicator__content--underline {
+      display: none;
+    }
+
+    &--hidden ::ng-deep div.mat-mdc-tab-body-content {
+      display: none;
+    }
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 4px;
+    background-color: white;
+    padding: 8px;
   }
 
   &__events {
@@ -12,6 +33,12 @@
     flex-direction: column;
     row-gap: 32px;
     margin-top: 16px;
+  }
+
+  &__button-container {
+    display: flex;
+    column-gap: 32px;
+    margin-top: 8px;
   }
 
   &__button {
@@ -26,4 +53,14 @@
   position: absolute;
   top: 100%;
   width: 100%;
+}
+
+::ng-deep div.mat-mdc-tab-body-content {
+  overflow: hidden;
+}
+
+.menu-list {
+  &__reset {
+    background-color: mat.get-color-from-palette(palette.$red-palette, 100);
+  }
 }
