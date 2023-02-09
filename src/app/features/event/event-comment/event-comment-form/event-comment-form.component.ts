@@ -48,10 +48,6 @@ export class EventCommentFormComponent {
     if (this.commentForm.invalid) {
       return;
     }
-    console.log({
-      text: this.commentForm.value.text,
-      attachments: [],
-    });
     this.service.postComment(this.commentForm.getRawValue()).subscribe(() => {
       this.clearForm(form, formGroupDirective);
       this.sentComment.emit();
