@@ -28,7 +28,7 @@ export class EventListComponent implements OnInit {
   filterOptions = filterOptions;
   formArray = this.builder.array<FormControl<boolean>>([]);
   errorClientServer$ = this.errorService.error$;
-  events$$ = this.eventListService.events$;
+  events$ = this.eventListService.events$;
   categories$ = this.eventListService.getCategories();
 
   isHidden = true;

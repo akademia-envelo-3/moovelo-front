@@ -44,7 +44,7 @@
         </menu>
       </mat-tab>
     </mat-tab-group>
-    <div class="event-list__events" *ngIf="events$$ | async as events">
+    <div class="event-list__events" *ngIf="events$ | async as events">
       <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
     </div>
   </ng-template>
