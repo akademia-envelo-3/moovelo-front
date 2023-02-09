@@ -35,7 +35,7 @@ export class EventSurveySingleComponent {
   submitAnswer() {
     this.surveyForm.markAllAsTouched();
     const answer = Object.values(this.getSurveyForm.value);
-    this.surveyService.sendAnswerId(Number(answer[0]));
+    this.surveyService.sendAnswerId(Number(answer[0]), this.survey.id);
     if (this.surveyForm.invalid) {
       return;
     }

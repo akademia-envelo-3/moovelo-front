@@ -16,9 +16,9 @@ export class EventSurveyService {
     return this.http.get<EventSurvey['answers']>(this.apiUrl + '/eventSurveys');
   }
 
-  sendAnswerId(answerId: number) {
-    return this.http.get<EventSurvey[]>(this.apiUrl + '/eventSurveys?id=0').subscribe(data => {
-      console.log(data[0].yourAnswersIds[0].id);
-    });
+  sendAnswerId(answerId: number, surveyId: number) {
+    return this.http
+      .patch<EventSurvey>(this.apiUrl + `/eventSurveys/${surveyId}`, { yourAnswersIds: [{ id: answerId }] })
+      .subscribe();
   }
 }
