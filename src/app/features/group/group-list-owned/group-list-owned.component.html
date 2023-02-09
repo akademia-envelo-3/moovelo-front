@@ -1,9 +1,9 @@
-<div class="main-container">
+<div class="main-container group-list-owned">
   <div class="blue-container">
     <h2 class="font-heading-2">Posiadane Grupy</h2>
   </div>
-  <div class="group-list-owned">
-    <app-cow-loader></app-cow-loader>
+  <app-cow-loader></app-cow-loader>
+  <div class="group-list-owned__items">
     <ng-container *ngIf="groupListOwned$ | async as groupListOwned; else error">
       <app-group-list-item *ngFor="let group of groupListOwned" [groupItem]="group"></app-group-list-item>
     </ng-container>
