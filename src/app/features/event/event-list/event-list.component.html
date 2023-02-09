@@ -34,12 +34,12 @@
         </div>
       </mat-tab>
       <mat-tab label="Kategorie">
-        <menu class="menu-list" (click)="toggleTab()">
+        <menu class="menu-list">
           <li *ngFor="let category of categories$ | async">
-            <button (click)="chooseCategory(category.name)">{{ category.name }}</button>
+            <button (click)="chooseCategory(category.name); $event.stopPropagation()">{{ category.name }}</button>
           </li>
           <li class="menu-list__reset">
-            <button (click)="resetCategory()">Resetuj kategorię</button>
+            <button (click)="resetCategory(); $event.stopPropagation()">Resetuj kategorię</button>
           </li>
         </menu>
       </mat-tab>
