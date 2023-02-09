@@ -1,24 +1,32 @@
 <div class="surveys">
   <form [formGroup]="surveyForm" class="surveys__single">
     <h3 class="surveys__single__header font-heading-3">{{ survey.question }}</h3>
-    <ng-container *ngIf="survey.isMultipleChoice">
-      <mat-checkbox
-        *ngFor="let answer of survey.answers"
-        class="surveys__single"
-        formControlName="answer"
-        [value]="answer.value">
-        <p class="font-text-1">{{ answer.value }}</p>
-      </mat-checkbox>
-    </ng-container>
-    <ng-container *ngIf="!survey.isMultipleChoice">
-      <mat-radio-group formControlName="answer">
-        <mat-radio-button *ngFor="let answer of survey.answers" class="surveys__single" [value]="answer">
-          <p class="font-text-1">{{ answer.value }}</p>
-        </mat-radio-button>
-      </mat-radio-group>
-    </ng-container>
-    <p class="surveys__single__submit font-text-1">
-      Wyślij odpowiedź <button mat-raised-button color="primary" (click)="submitAnswer()">Wyślij</button>
-    </p>
+    <div *ngIf="isAvaliable; else elseBlock">
+      <ng-container *ngIf="survey.isMultipleChoice">
+        <div *ngFor="let answer of survey.answers; let i = index" (click)="test(i)">
+          <mat-checkbox class="surveys__single" formControlName="answer" [value]="answer.value">
+            <p class="font-text-1">{{ answer.value }}</p>
+          </mat-checkbox>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!survey.isMultipleChoice">
+        <mat-radio-group formControlName="answer">
+          <mat-radio-button *ngFor="let answer of survey.answers" class="surveys__single" [value]="answer.id">
+            <p class="font-text-1">{{ answer.value }}</p>
+          </mat-radio-button>
+        </mat-radio-group>
+      </ng-container>
+      <p class="surveys__single__submit font-text-1">
+        Wyślij odpowiedź <button mat-raised-button color="primary" (click)="submitAnswer()">Wyślij</button>
+      </p>
+    </div>
+    <ng-template #elseBlock>
+      <div *ngFor="let answer of survey.answers; let i = index" class="container">
+        <p class="font-text-1">{{ answer.value }} - {{ answer.voted }} głosy</p>
+        <div class="bar">
+          <div class="progress-bar" [style.width]="answer.voted + '%'"></div>
+        </div>
+      </div>
+    </ng-template>
   </form>
 </div>

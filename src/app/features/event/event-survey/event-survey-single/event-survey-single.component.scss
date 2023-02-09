@@ -2,28 +2,48 @@
 @use '../../../../styles/palettes' as palette;
 
 .mat-mdc-raised-button {
-    border-radius: 20px;
+  border-radius: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.bar {
+  width: 80vw;
+  height: 20px;
+  border-radius: 16px;
+  background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
+  border-radius: 16px;
 }
 
 .surveys {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  &__single {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    &__single {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 8px;
+    margin-bottom: 8px;
 
-        &__header {
-            padding: 16px;
-            background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
-        }
-
-        &__submit {
-            padding: 8px 32px 8px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
+    &__header {
+      padding: 16px;
+      background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
     }
+
+    &__submit {
+      padding: 8px 32px 8px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
 }
