@@ -47,6 +47,7 @@ export interface EventListError {
 }
 
 export interface EventSurvey {
+  id: number;
   question: string;
   isMultipleChoice: boolean;
   answers: {

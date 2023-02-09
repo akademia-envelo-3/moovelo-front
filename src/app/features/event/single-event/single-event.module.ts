@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SingleEventComponent } from './single-event.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { ErrorComponent } from '@shared/error.component';
+import { EventSurveyComponent } from '../event-survey/event-survey.component';
 
 @NgModule({
   declarations: [SingleEventComponent],
@@ -26,6 +27,7 @@ import { ErrorComponent } from '@shared/error.component';
         component: SingleEventComponent,
       },
     ]),
+    EventSurveyComponent,
   ],
 })
 export default class SingleEventModule {}

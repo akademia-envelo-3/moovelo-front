@@ -82,6 +82,7 @@ export default class ThemeComponent {
 
   surveys: EventSurvey[] = [
     {
+      id: 0,
       question: 'test',
       isMultipleChoice: false,
       answers: [
@@ -104,6 +105,7 @@ export default class ThemeComponent {
       yourAnswersIds: [],
     },
     {
+      id: 1,
       question: 'Mięso?',
       isMultipleChoice: true,
       answers: [

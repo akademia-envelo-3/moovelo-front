@@ -15,4 +15,10 @@ export class EventSurveyService {
   getAnswers() {
     return this.http.get<EventSurvey['answers']>(this.apiUrl + '/eventSurveys');
   }
+
+  sendAnswerId(answerId: number) {
+    return this.http.get<EventSurvey[]>(this.apiUrl + '/eventSurveys?id=0').subscribe(data => {
+      console.log(data[0].yourAnswersIds[0].id);
+    });
+  }
 }

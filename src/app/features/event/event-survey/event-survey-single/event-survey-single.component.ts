@@ -6,6 +6,7 @@ import { EventSurvey } from '../../event.interfaces';
 import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { EventSurveyService } from '../event-survey.service';
 
 @Component({
   selector: 'app-event-survey-single[survey]',
@@ -20,16 +21,21 @@ export class EventSurveySingleComponent {
   survey!: EventSurvey;
 
   private builder = inject(NonNullableFormBuilder);
-
+  private surveyService = inject(EventSurveyService);
   surveyForm = this.builder.group({
     answer: this.builder.control('', {
       validators: [Validators.required],
     }),
   });
 
+  get getSurveyForm() {
+    return this.surveyForm.controls.answer;
+  }
+
   submitAnswer() {
     this.surveyForm.markAllAsTouched();
-
+    const answer = Object.values(this.getSurveyForm.value);
+    this.surveyService.sendAnswerId(Number(answer[0]));
     if (this.surveyForm.invalid) {
       return;
     }
