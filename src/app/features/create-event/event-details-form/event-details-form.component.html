@@ -163,7 +163,7 @@
       <mat-form-field class="details-form__chip-list" appearance="fill">
         <mat-label>Hashtagi</mat-label>
         <mat-chip-grid #chipGrid aria-label="Hashtag selection" formControlName="hashtags">
-          <mat-chip-row *ngFor="let hashtag of hashtags" (removed)="remove(hashtag)">
+          <mat-chip-row *ngFor="let hashtag of hashtagsCtrl.value" (removed)="remove(hashtag)">
             <span matChipAvatar>#</span>
             {{ hashtag }}
             <button matChipRemove [attr.aria-label]="'remove ' + hashtag">

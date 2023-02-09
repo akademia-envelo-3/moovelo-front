@@ -37,7 +37,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     ],
   });
   filteredHashtags$?: Observable<string[]>;
-  hashtags: string[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
   eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
@@ -78,31 +77,30 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     ) {
       return;
     }
-
     const value = (event.value || '').trim();
 
     if (value) {
-      this.hashtags.push(value);
+      this.hashtagsCtrl.setValue([...this.hashtagsCtrl.value, value]);
     }
 
     if (event.chipInput) {
       event.chipInput.clear();
     }
-
     this.hashtagCtrl.setValue(null);
   }
 
   remove(hashtag: string) {
-    const hashtagIndex = this.hashtags.indexOf(hashtag);
+    const hashtagIndex = this.hashtagsCtrl.value.indexOf(hashtag);
 
     if (hashtagIndex >= 0) {
-      this.hashtags = this.hashtags.filter((_, index) => index !== hashtagIndex);
+      const filteredValue = this.hashtagsCtrl.value.filter((_, index) => index !== hashtagIndex);
+      this.hashtagsCtrl.setValue(filteredValue);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent) {
     if (this.hashtagCtrl.invalid) return;
-    this.hashtags.push(event.option.viewValue);
+    this.hashtagsCtrl.setValue([...this.hashtagsCtrl.value, event.option.viewValue]);
     this.hashtagCtrl.setValue(null);
   }
 
