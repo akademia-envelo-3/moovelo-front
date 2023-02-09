@@ -16,6 +16,10 @@ export class EventSurveyService {
     return this.http.get<EventSurvey['answers']>(this.apiUrl + '/eventSurveys');
   }
 
+  getAnswersId(id: number) {
+    return this.http.get<EventSurvey>(this.apiUrl + `/eventSurveys/${id}`);
+  }
+
   sendAnswerId(answerId: number, surveyId: number) {
     return this.http
       .patch<EventSurvey>(this.apiUrl + `/eventSurveys/${surveyId}`, { yourAnswersIds: [{ id: answerId }] })

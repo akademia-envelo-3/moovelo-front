@@ -22,7 +22,7 @@
     </div>
     <ng-template #elseBlock>
       <div *ngFor="let answer of survey.answers; let i = index" class="container">
-        <p class="font-text-1">{{ answer.value }} - {{ answer.voted }} głosy</p>
+        <p class="font-text-1">{{ answer.value }} - {{ answer.voted }} {{ arrayValue }} głosy</p>
         <div class="bar">
           <div class="progress-bar" [style.width]="answer.voted + '%'"></div>
         </div>

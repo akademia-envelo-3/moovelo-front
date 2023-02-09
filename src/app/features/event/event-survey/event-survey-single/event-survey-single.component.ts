@@ -21,6 +21,7 @@ export class EventSurveySingleComponent {
   survey!: EventSurvey;
   indexArray: Array<number> = [];
   isAvaliable = true;
+  arrayValue = 0;
 
   private builder = inject(NonNullableFormBuilder);
   private surveyService = inject(EventSurveyService);
@@ -39,11 +40,21 @@ export class EventSurveySingleComponent {
   }
 
   submitAnswer() {
+    this.getValuesFromSurvey(this.survey.id);
     this.surveyForm.markAllAsTouched();
     this.isAvaliable = false;
     this.surveyService.sendAnswerId(Number(this.getSurveyForm.value), this.survey.id);
+    console.log(this.arrayValue);
     if (this.surveyForm.invalid) {
       return;
     }
+  }
+
+  getValuesFromSurvey(surveyId: number) {
+    this.surveyService.getAnswersId(surveyId).subscribe(test => {
+      test.answers.map(test => {
+        this.arrayValue = +test.voted;
+      });
+    });
   }
 }
