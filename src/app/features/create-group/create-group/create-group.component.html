@@ -17,7 +17,17 @@
           </ng-container>
         </ng-template>
         <ng-template #errorSymbols>
-          <ng-container *ngIf="errors['pattern'] as pattern">Niedozwolne znaki specjalne.</ng-container>
+          <ng-container *ngIf="errors['pattern'] as pattern; else trailingSpace"
+            >Niedozwolne znaki specjalne.</ng-container
+          >
+        </ng-template>
+        <ng-template #trailingSpace>
+          <ng-container *ngIf="errors['leadingOrTrailingSpace'] as space; else tooManySpaces"
+            >Spacja na początku lub końcu!</ng-container
+          >
+        </ng-template>
+        <ng-template #tooManySpaces>
+          <ng-container *ngIf="errors['tooManySpaces'] as space">Spacje między wyrazami!</ng-container>
         </ng-template>
       </mat-error>
     </mat-form-field>
@@ -37,9 +47,17 @@
         <ng-container *ngIf="errors['minlength'] as minLength"
           >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
         >
-        <ng-container *ngIf="errors['maxlength'] as maxLength"
+        <ng-container *ngIf="errors['maxlength'] as maxLength; else trailingSpace"
           >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
         >
+        <ng-template #trailingSpace>
+          <ng-container *ngIf="errors['leadingOrTrailingSpace'] as space; else tooManySpaces"
+            >Spacja na początku lub końcu!</ng-container
+          >
+        </ng-template>
+        <ng-template #tooManySpaces>
+          <ng-container *ngIf="errors['tooManySpaces'] as space">Spacje między wyrazami!</ng-container>
+        </ng-template>
       </mat-error>
       <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/255 </mat-hint>
     </mat-form-field>

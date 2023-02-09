@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { pattern } from '@shared/patterns/patterns';
+import { trimValidator } from '@shared/validators/space-trim.validator';
 import { CreateGroupService } from '../create-group.service';
 
 @Component({
@@ -25,10 +26,11 @@ export class CreateGroupComponent {
         Validators.minLength(4),
         Validators.maxLength(100),
         Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
+        trimValidator,
       ],
     }),
     description: this.builder.control('', {
-      validators: [Validators.required, Validators.minLength(20), Validators.maxLength(255)],
+      validators: [Validators.required, Validators.minLength(20), Validators.maxLength(255), trimValidator],
     }),
   });
 
