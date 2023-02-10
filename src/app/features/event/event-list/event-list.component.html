@@ -1,56 +1,58 @@
-<div class="event-list main-container">
-  <div *ngIf="errorClientServer$ | async; else success">
-    <app-error></app-error>
-  </div>
-  <ng-template #success>
-    <app-cow-loader></app-cow-loader>
-    <mat-tab-group
-      class="event-list__tab-group"
-      [ngClass]="{ 'event-list__tab-group--hidden': isHidden }"
-      animationDuration="0ms"
-      (click)="toggleTab()"
-      (selectedTabChange)="openTab()">
-      <mat-tab label="Sortuj">
-        <menu class="menu-list" (click)="toggleTab()">
-          <li *ngFor="let sortOption of sortOptions">
-            <button (click)="sort(sortOption.value)">{{ sortOption.name }}</button>
-          </li>
-        </menu>
-      </mat-tab>
-      <mat-tab label="Filtruj">
-        <div class="event-list__tab" (click)="toggleTab()">
-          <p *ngFor="let filterOption of filterOptions; let i = index">
-            <mat-checkbox
-              [formControl]="formArray.controls[i]"
-              color="primary"
-              (change)="addfilter(filterOption.value)"
-              >{{ filterOption.name }}</mat-checkbox
-            >
-          </p>
-          <div class="event-list__button-container">
-            <button mat-flat-button color="primary" (click)="filter()">filtruj</button>
-            <button mat-flat-button color="warn" (click)="resetFilter()">resetuj</button>
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="events$ | async as events; else error">
+  <ng-container *ngIf="categories$ | async as categories; else error">
+    <div class="event-list main-container">
+      <mat-tab-group
+        class="event-list__tab-group"
+        [ngClass]="{ 'event-list__tab-group--hidden': isHidden }"
+        animationDuration="0ms"
+        (click)="toggleTab()"
+        (selectedTabChange)="openTab()">
+        <mat-tab label="Sortuj">
+          <menu class="menu-list" (click)="toggleTab()">
+            <li *ngFor="let sortOption of sortOptions">
+              <button (click)="sort(sortOption.value)">{{ sortOption.name }}</button>
+            </li>
+          </menu>
+        </mat-tab>
+        <mat-tab label="Filtruj">
+          <div class="event-list__tab" (click)="toggleTab()">
+            <p *ngFor="let filterOption of filterOptions; let i = index">
+              <mat-checkbox
+                [formControl]="formArray.controls[i]"
+                color="primary"
+                (change)="addfilter(filterOption.value)"
+                >{{ filterOption.name }}</mat-checkbox
+              >
+            </p>
+            <div class="event-list__button-container">
+              <button mat-flat-button color="primary" (click)="filter()">filtruj</button>
+              <button mat-flat-button color="warn" (click)="resetFilter()">resetuj</button>
+            </div>
           </div>
-        </div>
-      </mat-tab>
-      <mat-tab label="Kategorie">
-        <menu class="menu-list">
-          <li *ngFor="let category of categories$ | async">
-            <button (click)="chooseCategory(category.name); $event.stopPropagation()">{{ category.name }}</button>
-          </li>
-          <li class="menu-list__reset">
-            <button (click)="resetCategory(); $event.stopPropagation()">Resetuj kategorię</button>
-          </li>
-        </menu>
-      </mat-tab>
-    </mat-tab-group>
-    <div class="event-list__events" *ngIf="events$ | async as events">
-      <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
+        </mat-tab>
+        <mat-tab label="Kategorie">
+          <menu class="menu-list">
+            <li *ngFor="let category of categories">
+              <button (click)="chooseCategory(category.name); $event.stopPropagation()">{{ category.name }}</button>
+            </li>
+            <li class="menu-list__reset">
+              <button (click)="resetCategory(); $event.stopPropagation()">Resetuj kategorię</button>
+            </li>
+          </menu>
+        </mat-tab>
+      </mat-tab-group>
+      <div class="event-list__events" *ngIf="events$ | async as events">
+        <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
+      </div>
     </div>
-  </ng-template>
-</div>
 
-<button class="event-list__button" mat-fab extended color="primary" routerLink="/create-event">
-  <p>Stwórz</p>
-  <p>wydarzenie</p>
-</button>
+    <button class="event-list__button" mat-fab extended color="primary" routerLink="/create-event">
+      <p>Stwórz</p>
+      <p>wydarzenie</p>
+    </button>
+  </ng-container>
+</ng-container>
+<ng-template #error>
+  <app-error></app-error>
+</ng-template>
