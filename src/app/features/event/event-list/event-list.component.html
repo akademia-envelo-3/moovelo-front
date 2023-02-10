@@ -42,6 +42,7 @@
           </menu>
         </mat-tab>
       </mat-tab-group>
+      <div [ngClass]="isHidden ? 'blur--unvisible' : ''" class="blur" (click)="toggleTab()"></div>
       <div class="event-list__events" *ngIf="events$ | async as events">
         <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
       </div>
