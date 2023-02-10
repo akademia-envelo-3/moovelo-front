@@ -16,6 +16,9 @@ import { detailsGuard } from './guards/details.guard';
 import { MatSelectModule } from '@angular/material/select';
 import { CowLoaderComponent } from '../../shared/loader/cow-loader.component';
 import { ErrorComponent } from '../../shared/error.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
@@ -31,6 +34,9 @@ import { ErrorComponent } from '../../shared/error.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatIconModule,
     RouterModule.forChild([
       {
         path: '',

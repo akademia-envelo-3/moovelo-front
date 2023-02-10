@@ -44,3 +44,8 @@ export interface Group {
 export interface EventCategories {
   name: string;
 }
+
+export interface Hashtag {
+  id: number;
+  value: string;
+}

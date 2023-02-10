@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { EventCategories, Group } from './create-event.interface';
+import { map } from 'rxjs';
+import { EventCategories, Group, Hashtag } from './create-event.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,17 @@ export class CreateEventService {
     return this.http.get<Group[]>(`${this.API_URL}/groups`);
   }
 
-  getAllCategories() {
-    return this.http.get<EventCategories[]>(this.API_URL + '/eventCategories');
+  fetchAllCategories() {
+    return this.http.get<EventCategories[]>(`${this.API_URL}/eventCategories`);
+  }
+
+  fetchAllHashtags() {
+    return this.http.get<Hashtag[]>(`${this.API_URL}/hashtags`).pipe(
+      map(hashtags => {
+        return hashtags.map(hashtag => {
+          return hashtag.value;
+        });
+      })
+    );
   }
 }
