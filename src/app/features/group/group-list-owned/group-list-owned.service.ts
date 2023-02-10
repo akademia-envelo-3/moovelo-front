@@ -1,5 +1,3 @@
-// http://[::1]:3000/groups?groupOwner.userId=1
-
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '@core/env.token';
