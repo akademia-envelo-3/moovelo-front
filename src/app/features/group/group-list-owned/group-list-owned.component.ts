@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ErrorComponent } from '@shared/error.component';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
-import { Observable, Subscription, take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AppState } from 'src/app/app.module';
 import { GroupItemComponent } from '../group-list-item/group-list-item.component';
 import { GroupListItem } from '../group.interface';
