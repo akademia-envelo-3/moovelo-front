@@ -1,4 +1,4 @@
-import { FilterOption, SortOption } from '../event.interfaces';
+import { FilterOption, SortOption } from './event-list.interface';
 
 export const sortOptions: SortOption[] = [
   { name: 'Data: najnowsze', value: 'sortOrder=desc' },
