@@ -1,4 +1,5 @@
 export interface EventInfo {
+  eventOwner: EventOwner;
   isConfirmationRequired: boolean;
   limitedPlaces: number;
   eventParticipationStats: EventParticipationStats;
@@ -13,6 +14,11 @@ export interface EventInfo {
   description: string;
   hashtags: SingleHashtag[];
 }
+
+export interface EventOwner {
+  userId: number;
+}
+
 export interface EventParticipationStats {
   accepted: number;
   pending: number;

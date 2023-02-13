@@ -2,6 +2,9 @@ import { SingleEventStateInterface } from '../single-event.interface';
 export const initialSingleEventState: SingleEventStateInterface = {
   id: '',
   eventInfo: {
+    eventOwner: {
+      userId: 0,
+    },
     isConfirmationRequired: true,
     limitedPlaces: 0,
     eventParticipationStats: {

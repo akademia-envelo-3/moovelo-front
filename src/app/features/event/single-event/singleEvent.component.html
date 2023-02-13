@@ -31,7 +31,7 @@
       </ng-container>
       <div class="event__heading">
         <h1 class="$heading-1">{{ eventInfo.name | titlecase }}</h1>
-        <app-settings class="event__settings" [eventOwnerId]="1"></app-settings>
+        <app-settings class="event__settings" [eventOwnerId]="eventInfo.eventOwner.userId"></app-settings>
       </div>
       <ng-container *ngIf="eventInfo.isConfirmationRequired">
         <div class="event__required-confirmation">
