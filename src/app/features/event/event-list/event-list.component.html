@@ -11,7 +11,9 @@
         <mat-tab label="Sortuj">
           <menu class="menu-list" (click)="toggleTab()">
             <li *ngFor="let sortOption of sortOptions">
-              <button (click)="sort(sortOption.value)">{{ sortOption.name }}</button>
+              <button (click)="sort(sortOption.value)" [disabled]="sortOption.value === getEventPayload.sort">
+                {{ sortOption.name }}
+              </button>
             </li>
           </menu>
         </mat-tab>
@@ -34,7 +36,11 @@
         <mat-tab label="Kategorie">
           <menu class="menu-list">
             <li *ngFor="let category of categories">
-              <button (click)="chooseCategory(category.name); $event.stopPropagation()">{{ category.name }}</button>
+              <button
+                (click)="chooseCategory(category.name); $event.stopPropagation()"
+                [disabled]="category.name === getEventPayload.category">
+                {{ category.name }}
+              </button>
             </li>
             <li class="menu-list__reset">
               <button (click)="resetCategory(); $event.stopPropagation()">Resetuj kategorię</button>

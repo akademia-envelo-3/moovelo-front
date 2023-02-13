@@ -134,6 +134,10 @@ body {
   cursor: pointer;
 }
 
+.menu-list > li > button:disabled {
+  background-color: mat.get-color-from-palette(palette.$blue-palette, 900);
+}
+
 button[mat-button] {
   background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
   border: none;

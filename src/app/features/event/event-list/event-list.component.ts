@@ -26,7 +26,7 @@ export class EventListComponent implements OnInit {
 
   private unsubscribe$$ = new Subject<void>();
 
-  private getEventPayload: GetEventPayload = {
+  getEventPayload: GetEventPayload = {
     sort: 'sortOrder=desc',
     filter: [],
     category: null,
