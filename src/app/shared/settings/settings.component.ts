@@ -52,6 +52,8 @@ export class SettingsComponent {
         this.role = 'eventOwner';
       } else if (this.groupOwnerId) {
         this.role = 'user';
+      } else {
+        this.isSettingsVisible = false;
       }
     } else {
       this.isSettingsVisible = false;
