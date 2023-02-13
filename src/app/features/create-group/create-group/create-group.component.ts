@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { pattern } from '@shared/patterns/patterns';
 import { trimValidator } from '@shared/validators/space-trim.validator';
+import { CreateGroupResponse } from '../create-group.interface';
 import { CreateGroupService } from '../create-group.service';
 
 @Component({

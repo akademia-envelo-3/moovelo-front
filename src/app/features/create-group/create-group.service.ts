@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { CreateGroup } from './create-group.interface';
+import { CreateGroup, CreateGroupResponse } from './create-group.interface';
 
 @Injectable()
 export class CreateGroupService {
@@ -9,6 +9,6 @@ export class CreateGroupService {
   private apiUrl = inject(API_URL);
 
   postNewGroup(newGroup: CreateGroup) {
-    return this.http.post<CreateGroup>(this.apiUrl + '/group', newGroup);
+    return this.http.post<CreateGroupResponse>(this.apiUrl + '/group', newGroup);
   }
 }
