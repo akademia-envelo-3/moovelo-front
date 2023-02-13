@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.module';
 import { CommonModule } from '@angular/common';
 import { tap } from 'rxjs';
+import { menuVariants } from './menuVariants';
 
 type Role = 'admin' | 'eventOwner' | 'groupOwner' | 'user';
 
@@ -32,6 +33,7 @@ export class SettingsComponent {
     );
 
   role: Role = 'user';
+  menuVariants = menuVariants;
   isSettingsVisible = true;
 
   private isGroupOwner(userId: number) {
@@ -59,16 +61,4 @@ export class SettingsComponent {
       this.isSettingsVisible = false;
     }
   }
-
-  menuVariants = {
-    event: {
-      eventOwner: ['Edytuj wydarzenie', 'Dodaj ankietę', 'Zmień właściciela', 'Usuń wydarzenie'],
-      admin: ['Zmień właściciela'],
-    },
-    group: {
-      groupOwner: ['Stwórz wydarzenie cykliczne', 'Edytuj grupę', 'Usuń'],
-      admin: ['Zmień właściciela'],
-      user: ['Wyjdź z grupy'],
-    },
-  };
 }
