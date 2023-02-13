@@ -1,7 +1,4 @@
-<div *ngIf="errorClientServer$ | async; else success">
-  <app-error></app-error>
-</div>
-<ng-template #success>
+<ng-template>
   <ng-container *ngIf="users$ | async as users">
     <div class="main-container group">
       <h1 class="font-heading-3">Członkowie grupy ({{users.groupMembers.length}})</h1>
@@ -14,5 +11,10 @@
       </ul>
     </div>
   </ng-container>
+</ng-template>
+<ng-template #error>
+  <div *ngIf="errorClientServer$ | async">
+    <app-error></app-error>
+  </div>
 </ng-template>
 <app-cow-loader></app-cow-loader>
