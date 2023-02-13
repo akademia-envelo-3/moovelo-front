@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '@core/env.token';
 import { EventCard } from '../event.interfaces';
-import { ReplaySubject } from 'rxjs';
 import { Category } from '../single-event/single-event.interface';
 import { GetEventPayload } from './event-list.interface';
 
@@ -12,12 +11,6 @@ import { GetEventPayload } from './event-list.interface';
 export class EventListService {
   private http = inject(HttpClient);
   private apiUrl = inject(API_URL);
-
-  private events$$ = new ReplaySubject<EventCard[]>(1);
-
-  get events$() {
-    return this.events$$.asObservable();
-  }
 
   private createEndpoint({ sort = 'sortOrder=desc', filter, category }: GetEventPayload) {
     const filterString = filter.length ? '&' + filter.join('&') : '';
