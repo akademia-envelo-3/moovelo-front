@@ -7,6 +7,7 @@ export const EventListActions = createActionGroup({
   events: {
     'get events': props<GetEventPayload>(),
     'show filters': emptyProps(),
+    'hide filters': emptyProps(),
     'toggle filters': emptyProps(),
   },
 });

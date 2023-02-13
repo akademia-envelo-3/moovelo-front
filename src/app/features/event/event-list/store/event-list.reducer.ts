@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { EventListActions, EventListApiActions } from './event-list.actions';
 import { initialEventListState } from './event-list.state';
@@ -7,6 +8,10 @@ export const eventListReducer = createReducer(
   on(EventListActions.showFilters, state => ({
     ...state,
     isFiltersHidden: false,
+  })),
+  on(EventListActions.hideFilters, state => ({
+    ...state,
+    isFiltersHidden: true,
   })),
   on(EventListActions.toggleFilters, state => ({
     ...state,
