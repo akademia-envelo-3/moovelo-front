@@ -2,58 +2,11 @@
 <ng-container *ngIf="eventListState$ | async as eventListState; else error">
   <ng-container *ngIf="categories$ | async as categories; else error">
     <div class="event-list main-container">
-      <mat-tab-group
-        class="event-list__tab-group"
-        [ngClass]="{ 'event-list__tab-group--hidden': eventListState.isFiltersHidden }"
-        animationDuration="0ms"
-        (click)="toggleTab()"
-        (selectedTabChange)="openTab()">
-        <mat-tab label="Sortuj">
-          <menu class="menu-list" (click)="toggleTab()">
-            <li *ngFor="let sortOption of sortOptions">
-              <button (click)="sort(sortOption.value)" [disabled]="sortOption.value === getEventPayload.sort">
-                {{ sortOption.name }}
-              </button>
-            </li>
-          </menu>
-        </mat-tab>
-        <mat-tab label="Filtruj">
-          <div class="event-list__tab" (click)="toggleTab()">
-            <p *ngFor="let filterOption of filterOptions; let i = index">
-              <mat-checkbox
-                [formControl]="formArray.controls[i]"
-                color="primary"
-                (change)="addfilter(filterOption.value)"
-                >{{ filterOption.name }}</mat-checkbox
-              >
-            </p>
-            <div class="event-list__button-container">
-              <button mat-flat-button color="primary" (click)="filter()">filtruj</button>
-              <button mat-flat-button color="warn" (click)="resetFilter()">resetuj</button>
-            </div>
-          </div>
-        </mat-tab>
-        <mat-tab label="Kategorie">
-          <menu class="menu-list">
-            <li *ngFor="let category of categories">
-              <button
-                (click)="chooseCategory(category.name); $event.stopPropagation()"
-                [disabled]="category.name === getEventPayload.category">
-                {{ category.name }}
-              </button>
-            </li>
-            <li class="menu-list__reset">
-              <button (click)="resetCategory(); $event.stopPropagation()">Resetuj kategorię</button>
-            </li>
-          </menu>
-        </mat-tab>
-      </mat-tab-group>
-      <div [ngClass]="eventListState.isFiltersHidden ? 'blur--unvisible' : ''" class="blur" (click)="toggleTab()"></div>
+      <app-filter-sort [isFiltersHidden]="eventListState.isFiltersHidden" [categories]="categories"></app-filter-sort>
       <div class="event-list__events">
         <app-event-card *ngFor="let event of eventListState.events" [eventCard]="event"></app-event-card>
       </div>
     </div>
-
     <button class="event-list__button" mat-fab extended color="primary" routerLink="/create-event">
       <p>Stwórz</p>
       <p>wydarzenie</p>

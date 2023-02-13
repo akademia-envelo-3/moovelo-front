@@ -13,9 +13,10 @@ import { StoreModule } from '@ngrx/store';
 import { eventListReducer } from './store/event-list.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { EventListEffects } from './store/event-list.effects';
+import { FilterSortComponent } from './filter-sort/filter-sort.component';
 
 @NgModule({
-  declarations: [EventListComponent],
+  declarations: [EventListComponent, FilterSortComponent],
   imports: [
     ErrorComponent,
     CowLoaderComponent,

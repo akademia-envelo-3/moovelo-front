@@ -6,29 +6,6 @@
   flex-direction: column;
   padding: 0 8px 8px 8px;
 
-  &__tab-group {
-    position: relative;
-    z-index: 10;
-
-    &--hidden ::ng-deep span.mdc-tab-indicator__content--underline {
-      display: none;
-    }
-
-    &--hidden ::ng-deep div.mat-mdc-tab-body-content {
-      display: none;
-    }
-  }
-
-  &__tab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    row-gap: 4px;
-    background-color: white;
-    padding: 8px;
-  }
-
   &__events {
     display: flex;
     flex-direction: column;
@@ -36,53 +13,10 @@
     margin-top: 16px;
   }
 
-  &__button-container {
-    display: flex;
-    column-gap: 32px;
-    margin-top: 8px;
-  }
-
   &__button {
     position: sticky;
     bottom: 2%;
     left: 100%;
     margin-right: 16px;
-  }
-}
-
-.blur {
-  position: fixed;
-  z-index: 2;
-  left: 0;
-  top: 0;
-  background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
-  height: 100%;
-  width: 100%;
-  transition-duration: 500ms;
-  opacity: 0.5;
-
-  &--unvisible {
-    opacity: 0;
-    pointer-events: none;
-  }
-}
-
-::ng-deep div.mat-mdc-tab-body-wrapper {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-}
-
-::ng-deep div.mat-mdc-tab-body-content {
-  overflow: hidden;
-}
-
-::ng-deep div.mdc-tab {
-  width: calc(100% / 3);
-}
-
-.menu-list {
-  &__reset {
-    background-color: mat.get-color-from-palette(palette.$red-palette, 100);
   }
 }
