@@ -11,6 +11,13 @@
     width: 80%;
     text-align: center;
     word-break: break-all;
+    position: relative;
+  }
+
+  &__settings {
+    position: absolute;
+    right: 8px;
+    top: 4px;
   }
 
   &__group-private-label {

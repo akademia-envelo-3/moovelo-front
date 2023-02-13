@@ -5,9 +5,9 @@
   <ng-container *ngIf="singleGroup$ | async as singleGroup">
     <app-cow-loader></app-cow-loader>
     <div class="main-container">
-      <header class="blue-container">
+      <header class="header blue-container">
         <h2 class="font-heading-2">{{ singleGroup.name }}</h2>
-        <app-settings [groupOwnerId]="singleGroup.groupOwner.basicUserId"></app-settings>
+        <app-settings class="header__settings" [groupOwnerId]="singleGroup.groupOwner.basicUserId"></app-settings>
       </header>
       <div class="group-info">
         <div class="group-info__users">
