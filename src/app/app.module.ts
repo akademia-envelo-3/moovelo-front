@@ -22,9 +22,10 @@ import { UserState } from './features/auth/store/user.interface';
 import { Error404Component } from '@shared/error404/error404.component';
 import { AuthService } from './features/auth/authentication/auth.service';
 import { CanLoginGuard } from './features/auth/guards/can-login.guard';
+import { userReducer } from './features/auth/store/user.reducer';
 
 export interface AppState {
-  User: UserState;
+  user: UserState;
 }
 
 export interface AppState {
@@ -61,7 +62,7 @@ export interface AppState {
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ user: userReducer }),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     RouterModule.forRoot([
