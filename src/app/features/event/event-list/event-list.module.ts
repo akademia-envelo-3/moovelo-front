@@ -9,6 +9,10 @@ import { ErrorComponent } from '@shared/error.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { eventListReducer } from './store/event-list.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { EventListEffects } from './store/event-list.effects';
 
 @NgModule({
   declarations: [EventListComponent],
@@ -22,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         component: EventListComponent,
       },
     ]),
+    StoreModule.forFeature('eventList', eventListReducer),
+    EffectsModule.forFeature([EventListEffects]),
     EventCardComponent,
     CowLoaderComponent,
     MatButtonModule,

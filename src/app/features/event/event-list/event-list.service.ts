@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { EventCard, FilterValue, SortValue } from '../event.interfaces';
+import { EventCard } from '../event.interfaces';
 import { ReplaySubject } from 'rxjs';
 import { Category } from '../single-event/single-event.interface';
+import { GetEventPayload } from './event-list.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,18 +19,16 @@ export class EventListService {
     return this.events$$.asObservable();
   }
 
-  private createEndpoint(sort: SortValue, filter: FilterValue[], category: string | null) {
+  private createEndpoint({ sort = 'sortOrder=desc', filter, category }: GetEventPayload) {
     const filterString = filter.length ? '&' + filter.join('&') : '';
     const categoryString = category ? '&cat=' + category : '';
 
     return `${this.apiUrl}/events?${sort}${filterString}${categoryString}`;
   }
 
-  getAllEvents(sort: SortValue = 'sortOrder=desc', filter: FilterValue[], category: string | null) {
-    const endpoint = this.createEndpoint(sort, filter, category);
-    this.http.get<EventCard[]>(endpoint).subscribe(result => {
-      this.events$$.next(result);
-    });
+  getAllEvents({ sort = 'sortOrder=desc', filter, category }: GetEventPayload) {
+    const endpoint = this.createEndpoint({ sort, filter, category });
+    return this.http.get<EventCard[]>(endpoint);
   }
 
   getCategories() {

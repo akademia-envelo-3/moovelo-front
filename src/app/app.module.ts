@@ -22,9 +22,11 @@ import { UserState } from './features/auth/store/user.interface';
 import { Error404Component } from '@shared/error404/error404.component';
 import { AuthService } from './features/auth/authentication/auth.service';
 import { CanLoginGuard } from './features/auth/guards/can-login.guard';
+import { EventListState } from './features/event/event-list/event-list.interface';
 
 export interface AppState {
   User: UserState;
+  eventList: EventListState;
 }
 
 export interface AppState {

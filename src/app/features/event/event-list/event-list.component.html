@@ -1,10 +1,10 @@
 <app-cow-loader></app-cow-loader>
-<ng-container *ngIf="events$ | async as events; else error">
+<ng-container *ngIf="eventListState$ | async as eventListState; else error">
   <ng-container *ngIf="categories$ | async as categories; else error">
     <div class="event-list main-container">
       <mat-tab-group
         class="event-list__tab-group"
-        [ngClass]="{ 'event-list__tab-group--hidden': isHidden }"
+        [ngClass]="{ 'event-list__tab-group--hidden': eventListState.isFiltersHidden }"
         animationDuration="0ms"
         (click)="toggleTab()"
         (selectedTabChange)="openTab()">
@@ -42,9 +42,9 @@
           </menu>
         </mat-tab>
       </mat-tab-group>
-      <div [ngClass]="isHidden ? 'blur--unvisible' : ''" class="blur" (click)="toggleTab()"></div>
-      <div class="event-list__events" *ngIf="events$ | async as events">
-        <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
+      <div [ngClass]="eventListState.isFiltersHidden ? 'blur--unvisible' : ''" class="blur" (click)="toggleTab()"></div>
+      <div class="event-list__events">
+        <app-event-card *ngFor="let event of eventListState.events" [eventCard]="event"></app-event-card>
       </div>
     </div>
 

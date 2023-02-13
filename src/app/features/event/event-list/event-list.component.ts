@@ -1,10 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, NonNullableFormBuilder } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { Subject, takeUntil } from 'rxjs';
+import { AppState } from 'src/app/app.module';
 import { FilterValue, SortValue } from '../event.interfaces';
+import { GetEventPayload } from './event-list.interface';
 import { EventListService } from './event-list.service';
 import { filterOptions, sortOptions } from './filterSortOptions';
+import { EventListActions } from './store/event-list.actions';
+import { selectEventList } from './store/event-list.selectors';
 
 @Component({
   selector: 'app-event-list',
@@ -14,85 +19,84 @@ import { filterOptions, sortOptions } from './filterSortOptions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventListComponent implements OnInit {
+  private store = inject<Store<AppState>>(Store);
   private builder = inject(NonNullableFormBuilder);
   private eventListService = inject(EventListService);
   private errorService = inject(ErrorhandlerService);
 
   private unsubscribe$$ = new Subject<void>();
 
-  private sortValue: SortValue = 'sortOrder=desc';
-  private filterValue: FilterValue[] = [];
-  private categoryValue: string | null = null;
+  private getEventPayload: GetEventPayload = {
+    sort: 'sortOrder=desc',
+    filter: [],
+    category: null,
+  };
 
   sortOptions = sortOptions;
   filterOptions = filterOptions;
+
   formArray = this.builder.array<FormControl<boolean>>([]);
+
+  eventListState$ = this.store.select(selectEventList);
   errorClientServer$ = this.errorService.error$;
-  events$ = this.eventListService.events$;
   categories$ = this.eventListService.getCategories();
 
-  isHidden = true;
   hasFilterChanged = false;
 
   ngOnInit() {
-    this.getEvents();
+    this.store.dispatch(EventListActions.getEvents(this.getEventPayload));
+
     filterOptions.forEach(() => this.formArray.push(this.builder.control(false)));
 
     this.formArray.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(() => (this.hasFilterChanged = true));
   }
 
-  getEvents() {
-    this.eventListService.getAllEvents(this.sortValue, this.filterValue, this.categoryValue);
-    this.isHidden = true;
-    this.hasFilterChanged = false;
-  }
-
   sort(value: SortValue) {
-    this.sortValue = value;
-    this.getEvents();
+    this.getEventPayload.sort = value;
+    this.store.dispatch(EventListActions.getEvents(this.getEventPayload));
   }
 
   addfilter(value: FilterValue) {
-    if (this.filterValue.join() === value) return;
+    if (this.getEventPayload.filter.join() === value) return;
 
-    if (this.filterValue.includes(value)) {
-      this.filterValue = this.filterValue.filter(filter => filter !== value);
+    if (this.getEventPayload.filter.includes(value)) {
+      this.getEventPayload.filter = this.getEventPayload.filter.filter(filter => filter !== value);
     } else {
-      this.filterValue.push(value);
+      this.getEventPayload.filter = [...this.getEventPayload.filter, value];
     }
   }
 
   filter() {
     if (!this.hasFilterChanged) return;
-    this.getEvents();
+    this.store.dispatch(EventListActions.getEvents(this.getEventPayload));
   }
 
   resetFilter() {
-    if (this.filterValue.length) {
-      this.filterValue = [];
+    if (this.getEventPayload.filter.length) {
+      this.getEventPayload.filter = [];
       this.formArray.reset();
-      this.getEvents();
+      this.store.dispatch(EventListActions.getEvents(this.getEventPayload));
     }
   }
 
   resetCategory() {
-    if (this.categoryValue) {
-      this.categoryValue = null;
-      this.getEvents();
+    if (this.getEventPayload.category) {
+      this.getEventPayload.category = null;
+      this.store.dispatch(EventListActions.getEvents(this.getEventPayload));
     }
   }
 
   chooseCategory(category: string) {
-    this.categoryValue = category;
-    this.getEvents();
+    this.getEventPayload.category = category;
+    this.store.dispatch(EventListActions.getEvents(this.getEventPayload));
   }
 
   toggleTab() {
-    this.isHidden = !this.isHidden;
+    this.store.dispatch(EventListActions.toggleFilters());
   }
 
   openTab() {
-    this.isHidden = false;
+    this.store.dispatch(EventListActions.showFilters());
   }
 
   ngOnDestroy() {
