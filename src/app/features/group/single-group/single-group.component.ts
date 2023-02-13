@@ -5,13 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { ErrorComponent } from '@shared/error.component';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
+import { SettingsComponent } from '@shared/settings/settings.component';
 import { EventCardComponent } from '../../event';
 import { SingleGroupService } from './single-group.service';
 
 @Component({
   selector: 'app-single-group',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, EventCardComponent, CowLoaderComponent, ErrorComponent],
+  imports: [CommonModule, MatButtonModule, EventCardComponent, CowLoaderComponent, ErrorComponent, SettingsComponent],
   templateUrl: './single-group.component.html',
   styleUrls: ['./single-group.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

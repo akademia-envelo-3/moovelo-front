@@ -7,6 +7,7 @@
     <div class="main-container">
       <header class="blue-container">
         <h2 class="font-heading-2">{{ singleGroup.name }}</h2>
+        <app-settings [groupOwnerId]="singleGroup.groupOwner.basicUserId"></app-settings>
       </header>
       <div class="group-info">
         <div class="group-info__users">

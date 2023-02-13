@@ -5,14 +5,34 @@
     </button>
     <mat-menu #menu="matMenu">
       <ng-container *ngIf="eventOwnerId; else groupSettings">
-        <button mat-menu-item>
-          <span>Redial</span>
-        </button>
+        <ng-container *ngIf="role === 'eventOwner' && menuVariants.event.eventOwner as menu">
+          <button *ngFor="let option of menu" mat-menu-item>
+            <span>{{ option }}</span>
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="role === 'admin' && menuVariants.event.admin as menu">
+          <button *ngFor="let option of menu" mat-menu-item>
+            <span>{{ option }}</span>
+          </button>
+        </ng-container>
       </ng-container>
       <ng-template #groupSettings>
-        <button mat-menu-item>
-          <span>Redial</span>
-        </button>
+        <ng-container *ngIf="role === 'groupOwner' && menuVariants.group.groupOwner as menu">
+          <button *ngFor="let option of menu" mat-menu-item>
+            <span>{{ option }}</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="role === 'admin' && menuVariants.group.admin as menu">
+          <button *ngFor="let option of menu" mat-menu-item>
+            <span>{{ option }}</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="role === 'user' && menuVariants.group.user as menu">
+          <button *ngFor="let option of menu" mat-menu-item>
+            <span>{{ option }}</span>
+          </button>
+        </ng-container>
       </ng-template>
     </mat-menu>
   </ng-container>

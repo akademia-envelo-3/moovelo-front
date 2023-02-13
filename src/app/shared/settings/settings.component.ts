@@ -27,7 +27,7 @@ export class SettingsComponent {
     .select(state => state.user)
     .pipe(
       tap(result => {
-        this.setRole(result.type, 1);
+        this.setRole(result.type, result.id);
       })
     );
 
@@ -49,7 +49,7 @@ export class SettingsComponent {
       if (this.isGroupOwner(userId)) {
         this.role = 'groupOwner';
       } else if (this.isEventOwner(userId)) {
-        this.role = 'groupOwner';
+        this.role = 'eventOwner';
       } else if (this.groupOwnerId) {
         this.role = 'user';
       }
@@ -60,13 +60,13 @@ export class SettingsComponent {
 
   menuVariants = {
     event: {
-      eventOwner: [],
-      admin: [],
+      eventOwner: ['Edytuj wydarzenie', 'Dodaj ankietę', 'Zmień właściciela', 'Usuń wydarzenie'],
+      admin: ['Zmień właściciela'],
     },
     group: {
-      groupOwner: [],
-      admin: [],
-      user: [],
+      groupOwner: ['Stwórz wydarzenie cykliczne', 'Edytuj grupę', 'Usuń'],
+      admin: ['Zmień właściciela'],
+      user: ['Wyjdź z grupy'],
     },
   };
 }
