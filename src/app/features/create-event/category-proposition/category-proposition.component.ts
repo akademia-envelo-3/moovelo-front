@@ -30,7 +30,7 @@ export class CategoryPropositionComponent {
   }
 
   private clearForm(form: FormGroup, formGroupDirective: FormGroupDirective) {
-    form.reset;
+    form.reset();
     formGroupDirective.resetForm();
   }
 
