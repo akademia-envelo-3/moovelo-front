@@ -40,6 +40,10 @@ import { FooterComponent } from '@shared/footer/footer.component';
             path: 'create-event',
             loadChildren: () => import('../create-event/create-event.module'),
           },
+          {
+            path: 'create-group',
+            loadChildren: () => import('../create-group/create-group.module'),
+          },
         ],
       },
     ]),
