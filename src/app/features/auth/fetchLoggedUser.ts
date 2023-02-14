@@ -12,13 +12,18 @@ export function fetchedLoggedUser() {
 
   const { token, decodedToken } = tokenService;
 
-  if (token) {
-    if (!tokenService.isTokenExpired() && decodedToken!.sub) {
-      authService.getLoggedUser(decodedToken!.sub).subscribe(result => {
-        store.dispatch(userActions.changeRole({ role: result.type, id: result.id }));
-      });
-    } else if (tokenService.isTokenExpired()) {
-      tokenService.removeToken();
-    }
+  if (!token) return;
+
+  if (tokenService.isTokenExpired()) {
+    tokenService.removeToken();
+    return;
   }
+
+  if (!decodedToken) {
+    return;
+  }
+
+  authService.getLoggedUser(decodedToken.sub!).subscribe(result => {
+    store.dispatch(userActions.changeRole({ role: result.type, id: result.id }));
+  });
 }
