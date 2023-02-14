@@ -1,13 +1,13 @@
-<div *ngIf="errorClientServer$ | async; else success">
-  <app-error></app-error>
-</div>
-<ng-template #success>
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="groupList$ | async as groups; else error">
   <div class="group-list main-container">
-    <app-cow-loader></app-cow-loader>
     <h3 class="font-heading-3">Lista Grup</h3>
-    <ng-container *ngIf="groupList$ | async as groups">
-      <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
-    </ng-container>
+    <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
   </div>
-  <button class="group-list__button" (click)="navToCreateGroup()" mat-fab extended color="primary">Stwórz grupę</button>
+  <button (click)="navToCreateGroup()" class="group-list__button" mat-fab extended color="primary">Stwórz grupę</button>
+</ng-container>
+<ng-template #error>
+  <div *ngIf="errorClientServer$ | async">
+    <app-error></app-error>
+  </div>
 </ng-template>

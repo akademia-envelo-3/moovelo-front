@@ -28,7 +28,7 @@ import { FooterComponent } from '@shared/footer/footer.component';
             loadChildren: () => import('../event/event-list/event-list.module'),
           },
           {
-            path: 'events/1',
+            path: 'events/:id',
             loadChildren: () => import('../event/single-event/single-event.module'),
           },
 
