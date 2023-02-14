@@ -44,6 +44,18 @@
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
       </mat-error>
     </mat-form-field>
+    <button
+      type="button"
+      mat-button
+      class="btn-round"
+      mat-flat-button
+      color="primary"
+      (click)="showCategoryPropositionForm()">
+      Zaproponuj kategorię
+    </button>
+    <div [ngClass]="categoryProposition ? 'details-form__category--visible' : 'details-form__category--hidden'">
+      <app-category-proposition (hideForm)="showCategoryPropositionForm()"></app-category-proposition>
+    </div>
     <div class="toggle">
       <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
       <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
