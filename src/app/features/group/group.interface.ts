@@ -36,3 +36,7 @@ export interface SingleGroupMembers {
   firstName: string;
   lastName: string;
 }
+export interface GroupMembersExtended {
+  id: number;
+  groupMembers: SingleGroupMembers[];
+}

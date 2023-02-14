@@ -16,7 +16,9 @@
               {{ member.firstName }} {{ member.lastName }}
             </li>
           </ul>
-          <button class="group-info__button" mat-flat-button color="primary">Zobacz więcej</button>
+          <button (click)="navigateToUsers()" class="group-info__button" mat-flat-button color="primary">
+            Zobacz więcej
+          </button>
         </ng-template>
       </div>
       <div class="group-info__events">
