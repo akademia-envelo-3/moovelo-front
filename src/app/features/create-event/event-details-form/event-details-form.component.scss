@@ -9,7 +9,8 @@
     row-gap: 16px;
   }
 
-  &__description {
+  &__description,
+  &__chip-list {
     max-width: 450px;
     width: 100%;
   }
@@ -45,4 +46,9 @@
   &__input {
     width: 100%;
   }
+}
+
+//decreasing hashtag whitespace
+::ng-deep .mdc-evolution-chip__graphic {
+  padding-right: 0 !important;
 }

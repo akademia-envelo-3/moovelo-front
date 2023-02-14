@@ -11,15 +11,26 @@
       <div class="group-info">
         <div class="group-info__users">
           <h3 class="users-number font-heading-3">Członkowie grupy ({{ singleGroup.groupMembers.length }})</h3>
-          <ul class="users-list">
-            <li class="font-text-1 users-list__item" *ngFor="let member of singleGroup.groupMembers.slice(0, 3)">
-              {{ member.firstName }} {{ member.lastName }}
-            </li>
-          </ul>
-          <button class="group-info__button" mat-flat-button color="primary">Zobacz więcej</button>
+          <ng-container *ngIf="!singleGroup.groupMembers.length; else groupMembers">
+            <p class="group-info__warn font-text-1">Nikt nie należy do tej group</p>
+          </ng-container>
+          <ng-template #groupMembers>
+            <ul class="users-list">
+              <li class="font-text-1 users-list__item" *ngFor="let member of singleGroup.groupMembers.slice(0, 3)">
+                {{ member.firstName }} {{ member.lastName }}
+              </li>
+            </ul>
+            <button class="group-info__button" mat-flat-button color="primary">Zobacz więcej</button>
+          </ng-template>
         </div>
         <div class="group-info__events">
-          <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
+          <ng-container *ngIf="!singleGroup.events.length; else groupEvent">
+            <p class="group-info__warn font-text-1">W tej grupie narazie nie ma wydarzeń</p>
+            <img src="/assets/logo-mascot.png" class="group-info__warn--img" alt="no events site logo" />
+          </ng-container>
+          <ng-template #groupEvent>
+            <app-event-card *ngFor="let event of singleGroup.events" [eventCard]="event"></app-event-card>
+          </ng-template>
         </div>
       </div>
     </div>

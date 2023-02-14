@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
-import { EventDetailsForm, EventTypeForm } from '../create-event.interface';
-import { Subject, takeUntil } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
+import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { pattern } from '@shared/patterns/patterns';
 
 @Component({
   selector: 'app-event-details-form',
@@ -17,21 +20,29 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   private createEventForm = inject(CreateEventFormService);
   private createEventService = inject(CreateEventService);
   private errorService = inject(ErrorhandlerService);
+
   private unsubscribe$$ = new Subject<void>();
+  private allHashtags: string[] = [];
 
-  constructor() {
-    this.eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
-    this.eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
-  }
-
-  categories$ = this.createEventService.getAllCategories();
   errorClientServer$ = this.errorService.error$;
-  eventTypeForm: FormGroup<EventTypeForm>;
-  eventDetailsForm: FormGroup<EventDetailsForm>;
+  categories$ = this.createEventService.fetchAllCategories();
+  allHashtags$ = this.createEventService.fetchAllHashtags();
+  groups$ = this.createEventService.fetchUserGroups();
+  filteredHashtags$?: Observable<string[]>;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
+  eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
   today = new Date();
   hourMatcher = new HourErrorStateMatcher();
-  groups$ = this.createEventService.fetchUserGroups();
   categoryProposition = false;
+
+  hashtagCtrl = new FormControl('', {
+    validators: [
+      Validators.maxLength(20),
+      Validators.minLength(2),
+      Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
+    ],
+  });
 
   ngOnInit() {
     this.isConfirmationRequiredCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
@@ -44,10 +55,63 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
     if (this.isGroup) {
       this.groupCtrl.setValidators(Validators.required);
     }
+
+    this.createEventService.fetchAllHashtags().subscribe(result => {
+      this.allHashtags = result;
+      this.filteredHashtags$ = this.hashtagCtrl.valueChanges.pipe(
+        startWith(null),
+        map((hashtag: string | null) => (hashtag ? this.filter(hashtag) : this.allHashtags))
+      );
+    });
   }
 
   showCategoryPropositionForm() {
     this.categoryProposition = !this.categoryProposition;
+  }
+
+  private filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allHashtags.filter(hashtag => hashtag.toLowerCase().includes(filterValue));
+  }
+
+  add(event: MatChipInputEvent) {
+    if (
+      this.hashtagCtrl.invalid ||
+      event.value.length < 2 ||
+      !pattern.lettersNumbersDashesAndPolishLettersRegex.test(event.value)
+    ) {
+      return;
+    }
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.hashtagsCtrl.setValue([...this.hashtagsCtrl.value, value]);
+    }
+
+    if (event.chipInput) {
+      event.chipInput.clear();
+    }
+    this.hashtagCtrl.setValue(null);
+  }
+
+  remove(hashtag: string) {
+    const hashtagIndex = this.hashtagsCtrl.value.indexOf(hashtag);
+
+    if (hashtagIndex >= 0) {
+      const filteredValue = this.hashtagsCtrl.value.filter((_, index) => index !== hashtagIndex);
+      this.hashtagsCtrl.setValue(filteredValue);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent) {
+    if (this.hashtagCtrl.invalid) return;
+    this.hashtagsCtrl.setValue([...this.hashtagsCtrl.value, event.option.viewValue]);
+    this.hashtagCtrl.setValue(null);
+  }
+
+  handleSubmit() {
+    this.eventDetailsForm.markAllAsTouched();
+    if (this.eventDetailsForm.invalid) return;
   }
 
   get title() {
@@ -78,11 +142,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   get isExternal() {
     return this.eventTypeForm.value.isExternal;
-  }
-
-  handleSubmit() {
-    this.eventDetailsForm.markAllAsTouched();
-    if (this.eventDetailsForm.invalid) return;
   }
 
   get groupCtrl() {
@@ -143,6 +202,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   get descriptionCtrl() {
     return this.eventDetailsForm.controls.description;
+  }
+
+  get hashtagsCtrl() {
+    return this.eventDetailsForm.controls.hashtags;
   }
 
   ngOnDestroy() {

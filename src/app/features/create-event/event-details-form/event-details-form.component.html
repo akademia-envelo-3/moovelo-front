@@ -10,13 +10,20 @@
         <mat-label>Nazwa wydarzenia</mat-label>
         <input matInput formControlName="name" />
         <mat-error *ngIf="nameCtrl.errors as errors">
-          <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
-          <ng-container *ngIf="errors['minlength'] as minLength"
-            >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
-          >
-          <ng-container *ngIf="errors['maxlength'] as maxLength"
-            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
-          >
+          <ng-container *ngIf="errors['required']; else nameMinLength">To pole jest wymagane.</ng-container>
+          <ng-template #nameMinLength>
+            <ng-container *ngIf="errors['minlength'] as minLength; else nameMaxLength"
+              >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+            >
+          </ng-template>
+          <ng-template #nameMaxLength>
+            <ng-container *ngIf="errors['maxlength'] as maxLength; else namePattern"
+              >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+            >
+          </ng-template>
+          <ng-template #namePattern>
+            <ng-container *ngIf="errors['pattern'] as pattern">Pole nie może zawierać symboli.</ng-container>
+          </ng-template>
         </mat-error>
       </mat-form-field>
     </div>
@@ -164,7 +171,49 @@
         </mat-error>
         <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/4000 </mat-hint>
       </mat-form-field>
+
+      <mat-form-field class="details-form__chip-list" appearance="fill">
+        <mat-label>Hashtagi</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Hashtag selection" formControlName="hashtags">
+          <mat-chip-row *ngFor="let hashtag of hashtagsCtrl.value" (removed)="remove(hashtag)">
+            <span matChipAvatar>#</span>
+            {{ hashtag }}
+            <button matChipRemove [attr.aria-label]="'remove ' + hashtag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <mat-error *ngIf="hashtagsCtrl.errors as errors">
+          <ng-container *ngIf="errors['maxlength'] as maxLength; else hashtagsMinLength"
+            >Maks. liczba hashtagów: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+          >
+          <ng-template #hashtagsMinLength>
+            <ng-container *ngIf="errors['minSingleHashtagLength'] as minLength; else hashtagsMaxLength"
+              >Hashtag musi mieć co najmniej {{ minLength.requiredLength }} znaki</ng-container
+            >
+          </ng-template>
+          <ng-template #hashtagsMaxLength>
+            <ng-container *ngIf="errors['maxSingleHashtagLength'] as maxLength"
+              >Hashtag może mieć maksymalnie {{ maxLength.requiredLength }} znaków.</ng-container
+            >
+          </ng-template>
+        </mat-error>
+        <mat-hint color="warn">min. 2 znaki, maks. 20 i brak znaków specjalnych.</mat-hint>
+        <input
+          maxlength="40"
+          minlength="2"
+          placeholder="Nowy hashtag..."
+          [formControl]="hashtagCtrl"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)" />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let hashtag of filteredHashtags$ | async" value="hashtag"> {{ hashtag }} </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
+
     <button mat-flat-button color="primary">Zatwierdź</button>
   </form>
 </ng-template>

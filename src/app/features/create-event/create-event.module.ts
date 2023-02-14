@@ -19,6 +19,9 @@ import { CategoryPropositionService } from './category-proposition/category-prop
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CowLoaderComponent } from '../../shared/loader/cow-loader.component';
 import { ErrorComponent } from '../../shared/error.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent, CategoryPropositionComponent],
@@ -36,6 +39,9 @@ import { ErrorComponent } from '../../shared/error.component';
     MatNativeDateModule,
     ErrorComponent,
     MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatIconModule,
     RouterModule.forChild([
       {
         path: '',

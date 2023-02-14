@@ -26,6 +26,10 @@
     align-items: center;
     gap: 16px;
   }
+
+  &__warn {
+    text-align: center;
+  }
   &__events > * {
     width: 100%;
   }
