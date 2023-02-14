@@ -24,10 +24,10 @@ export default class EventListOwnedComponent {
   private store = inject<Store<AppState>>(Store);
 
   error$ = this.errorService.error$;
-  userId$ = this.store.select(state => state.User);
+  userId$ = this.store.select(state => state.user);
 
   eventListOwned$ = this.userId$.pipe(
     take(1),
-    switchMap(result => this.eventListOwnedService.getOwnedGroups(result.id))
+    switchMap(result => this.eventListOwnedService.getOwnedEvents(result.id))
   );
 }

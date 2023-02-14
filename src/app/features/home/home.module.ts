@@ -31,7 +31,10 @@ import { FooterComponent } from '@shared/footer/footer.component';
             path: 'events/:id',
             loadChildren: () => import('../event/single-event/single-event.module'),
           },
-
+          {
+            path: 'owned-groups',
+            loadComponent: () => import('../group/group-list-owned/group-list-owned.component'),
+          },
           {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),

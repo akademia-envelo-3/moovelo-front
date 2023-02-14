@@ -1,8 +1,9 @@
 .event-list-owned {
-  text-align: center;
-  max-width: 568px;
-
   &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
     margin-top: 16px;
+    padding: 8px;
   }
 }
