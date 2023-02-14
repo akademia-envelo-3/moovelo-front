@@ -28,6 +28,13 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
   categories$ = this.createEventService.fetchAllCategories();
   allHashtags$ = this.createEventService.fetchAllHashtags();
   groups$ = this.createEventService.fetchUserGroups();
+  filteredHashtags$?: Observable<string[]>;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
+  eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
+  today = new Date();
+  hourMatcher = new HourErrorStateMatcher();
+  categoryProposition = false;
 
   hashtagCtrl = new FormControl('', {
     validators: [
@@ -36,12 +43,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
       Validators.pattern(pattern.lettersNumbersDashesAndPolishLettersRegex),
     ],
   });
-  filteredHashtags$?: Observable<string[]>;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  eventTypeForm = this.createEventForm.getForm().controls.eventTypeForm;
-  eventDetailsForm = this.createEventForm.getForm().controls.eventDetailsForm;
-  today = new Date();
-  hourMatcher = new HourErrorStateMatcher();
 
   ngOnInit() {
     this.isConfirmationRequiredCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
@@ -62,6 +63,10 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
         map((hashtag: string | null) => (hashtag ? this.filter(hashtag) : this.allHashtags))
       );
     });
+  }
+
+  showCategoryPropositionForm() {
+    this.categoryProposition = !this.categoryProposition;
   }
 
   private filter(value: string): string[] {
@@ -106,7 +111,6 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   handleSubmit() {
     this.eventDetailsForm.markAllAsTouched();
-
     if (this.eventDetailsForm.invalid) return;
   }
 

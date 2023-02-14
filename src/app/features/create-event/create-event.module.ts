@@ -14,6 +14,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CreateEventFormService } from './create-event-form.service';
 import { detailsGuard } from './guards/details.guard';
 import { MatSelectModule } from '@angular/material/select';
+import { CategoryPropositionComponent } from './category-proposition/category-proposition.component';
+import { CategoryPropositionService } from './category-proposition/category-proposition.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CowLoaderComponent } from '../../shared/loader/cow-loader.component';
 import { ErrorComponent } from '../../shared/error.component';
 import { MatChipsModule } from '@angular/material/chips';
@@ -21,7 +24,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent],
+  declarations: [CreateEventComponent, EventTypeFormComponent, EventDetailsFormComponent, CategoryPropositionComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   imports: [
     CowLoaderComponent,
@@ -34,6 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ErrorComponent,
+    MatSnackBarModule,
     MatChipsModule,
     MatAutocompleteModule,
     MatIconModule,
@@ -41,7 +46,7 @@ import { MatIconModule } from '@angular/material/icon';
       {
         path: '',
         component: CreateEventComponent,
-        providers: [CreateEventFormService],
+        providers: [CreateEventFormService, CategoryPropositionService],
         children: [
           {
             path: '',

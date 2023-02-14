@@ -10,6 +10,8 @@
   border: 1px solid mat.get-color-from-palette(palette.$blue-palette, 500);
   border-radius: 10px;
   box-shadow: 1px 4px 4px mat.get-color-from-palette(palette.$gray-palette, 900);
+  text-decoration: none;
+  color: mat.get-color-from-palette(palette.$blue-palette, 900);
   &__info {
     display: flex;
     gap: 16px;

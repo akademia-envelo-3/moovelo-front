@@ -1,9 +1,6 @@
-<div *ngIf="errorClientServer$ | async; else success">
-  <app-error></app-error>
-</div>
-<ng-template #success>
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="groups$ | async as groups; else error">
   <form class="details-form main-container" [formGroup]="eventDetailsForm" (ngSubmit)="handleSubmit()">
-    <app-cow-loader></app-cow-loader>
     <div class="blue-container">
       <h2 class="details-form__title font-heading-2">Dodaj wydarzenie {{ title }}</h2>
       <mat-form-field color="primary">
@@ -30,9 +27,7 @@
     <mat-form-field *ngIf="isGroup" appearance="fill">
       <mat-label>Wybierz grupę</mat-label>
       <mat-select formControlName="group">
-        <ng-container *ngIf="groups$ | async as groups">
-          <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
-        </ng-container>
+        <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -44,6 +39,18 @@
         <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
       </mat-error>
     </mat-form-field>
+    <button
+      type="button"
+      mat-button
+      class="btn-round"
+      mat-flat-button
+      color="primary"
+      (click)="showCategoryPropositionForm()">
+      Zaproponuj kategorię
+    </button>
+    <div [ngClass]="categoryProposition ? 'details-form__category--visible' : 'details-form__category--hidden'">
+      <app-category-proposition (hideForm)="showCategoryPropositionForm()"></app-category-proposition>
+    </div>
     <div class="toggle">
       <mat-label class="toggle__label">Potwierdzenie obowiązkowe</mat-label>
       <mat-slide-toggle color="primary" formControlName="isConfirmationRequired"></mat-slide-toggle>
@@ -204,4 +211,9 @@
 
     <button mat-flat-button color="primary">Zatwierdź</button>
   </form>
+</ng-container>
+<ng-template #error>
+  <div *ngIf="errorClientServer$ | async">
+    <app-error></app-error>
+  </div>
 </ng-template>
