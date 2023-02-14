@@ -29,10 +29,4 @@ export default class GroupListOwnedComponent {
     take(1),
     switchMap(result => this.groupListOwnedService.getOwnedGroups(result.id))
   );
-
-  // ngOnInit() {
-  //   this.userId$.pipe(take(1)).subscribe(result => {
-  //     this.groupListOwned$ = this.groupListOwnedService.getOwnedGroups(result.id);
-  //   });
-  // }
 }
