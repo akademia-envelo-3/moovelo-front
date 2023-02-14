@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { pattern } from '@shared/patterns/patterns';
 import { EventForm } from './create-event.interface';
+import { hashtagMaxLengthValidator, hashtagMinLengthValidator } from './validators/hastagLengthValidators';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
 @Injectable()
 export class CreateEventFormService {
@@ -55,10 +56,10 @@ export class CreateEventFormService {
             validators: [Validators.required, Validators.pattern(pattern.postCode)],
           }),
           city: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
+            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
           }),
           street: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
+            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
           }),
           streetNumber: this.builder.control('', {
             validators: [Validators.required, Validators.maxLength(10)],
@@ -67,9 +68,11 @@ export class CreateEventFormService {
             validators: [Validators.maxLength(5)],
           }),
           description: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4000)],
+            validators: [Validators.required, Validators.minLength(20), Validators.maxLength(4000)],
           }),
-          hashtags: this.builder.control<string[]>([]),
+          hashtags: this.builder.control<string[]>([], {
+            validators: [Validators.maxLength(10), hashtagMinLengthValidator, hashtagMaxLengthValidator],
+          }),
         },
         { validators: isHourInThePastValidator }
       ),

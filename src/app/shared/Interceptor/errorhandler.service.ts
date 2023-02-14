@@ -13,4 +13,7 @@ export class ErrorhandlerService {
   errorShows() {
     this.error$$.next(true);
   }
+  errorHide() {
+    this.error$$.next(false);
+  }
 }
