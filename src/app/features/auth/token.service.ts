@@ -6,14 +6,18 @@ import jwtDecode, { JwtPayload } from 'jwt-decode';
 })
 export class TokenService {
   private _token: string | null = localStorage.getItem('token');
-  private decodedToken: JwtPayload | null;
+  private _decodedToken: JwtPayload | null;
 
   get token() {
     return this._token;
   }
 
+  get decodedToken() {
+    return this._decodedToken;
+  }
+
   constructor() {
-    this.decodedToken = this.decodeToken();
+    this._decodedToken = this.decodeToken();
   }
 
   private decodeToken() {
