@@ -28,7 +28,7 @@ import { FooterComponent } from '@shared/footer/footer.component';
             loadChildren: () => import('../event/event-list/event-list.module'),
           },
           {
-            path: 'events/1',
+            path: 'events/:id',
             loadChildren: () => import('../event/single-event/single-event.module'),
           },
           {
@@ -42,6 +42,10 @@ import { FooterComponent } from '@shared/footer/footer.component';
           {
             path: 'create-event',
             loadChildren: () => import('../create-event/create-event.module'),
+          },
+          {
+            path: 'create-group',
+            loadChildren: () => import('../create-group/create-group.module'),
           },
         ],
       },
