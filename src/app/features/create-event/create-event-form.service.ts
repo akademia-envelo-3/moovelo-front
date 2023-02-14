@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { pattern } from '@shared/patterns/patterns';
 import { EventForm } from './create-event.interface';
+import { hashtagMaxLengthValidator, hashtagMinLengthValidator } from './validators/hastagLengthValidators';
 import { isHourInThePastValidator } from './validators/isHourInThePastValidator';
 @Injectable()
 export class CreateEventFormService {
@@ -69,7 +70,9 @@ export class CreateEventFormService {
           description: this.builder.control('', {
             validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4000)],
           }),
-          hashtags: this.builder.control<string[]>([]),
+          hashtags: this.builder.control<string[]>([], {
+            validators: [Validators.maxLength(10), hashtagMinLengthValidator, hashtagMaxLengthValidator],
+          }),
         },
         { validators: isHourInThePastValidator }
       ),
