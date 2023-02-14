@@ -11,8 +11,6 @@ export interface GetEventPayload {
   category: string | null;
 }
 
-export type SortValue = 'sortOrder=desc' | 'sortOrder=asc' | 'participants=asc' | 'participants=desc';
-
 export type FilterValue = 'participating=true' | 'group=true';
 
 export interface SortOption {
@@ -24,3 +22,7 @@ export interface FilterOption {
   name: string;
   value: FilterValue;
 }
+
+export type SortOrder = 'asc' | 'desc';
+export type SortProperty = 'sortOrder' | 'participants';
+export type SortValue = `${SortProperty}=${SortOrder}`;
