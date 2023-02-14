@@ -24,5 +24,7 @@ export interface FilterOption {
 }
 
 export type SortOrder = 'asc' | 'desc';
+
 export type SortProperty = 'sortOrder' | 'participants';
+
 export type SortValue = `${SortProperty}=${SortOrder}`;
