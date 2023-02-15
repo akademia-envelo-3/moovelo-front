@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,11 +22,11 @@ import { UserState } from './features/auth/store/user.interface';
 import { Error404Component } from '@shared/error404/error404.component';
 import { AuthService } from './features/auth/authentication/auth.service';
 import { CanLoginGuard } from './features/auth/guards/can-login.guard';
-import { EventListState } from './features/event/event-list/event-list.interface';
+import { fetchedLoggedUser } from './features/auth/fetchLoggedUser';
+import { userReducer } from './features/auth/store/user.reducer';
 
 export interface AppState {
-  User: UserState;
-  eventList: EventListState;
+  user: UserState;
 }
 
 export interface AppState {
@@ -54,6 +54,10 @@ export interface AppState {
       useValue: environment.production,
     },
     AuthService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: fetchedLoggedUser,
+    },
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -63,7 +67,7 @@ export interface AppState {
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ user: userReducer }),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     RouterModule.forRoot([

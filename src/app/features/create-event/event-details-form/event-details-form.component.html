@@ -63,10 +63,12 @@
       </div>
       <mat-form-field *ngIf="isLimitedPlacesCtrl.value" color="primary">
         <mat-label>Liczba osób</mat-label>
-        <input matInput formControlName="limitedPlaces" type="number" />
+        <input matInput formControlName="limitedPlaces" />
         <mat-error *ngIf="limitedPlacesCtrl.errors as errors">
           <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
           <ng-container *ngIf="errors['min']">L. osób musi być większa od 0.</ng-container>
+          <ng-container *ngIf="errors['max']">L. osób nie powinna być większa niż 1000.</ng-container>
+          <ng-container *ngIf="errors['pattern']">Dozwolone są tylko cyfry.</ng-container>
         </mat-error>
       </mat-form-field>
     </div>

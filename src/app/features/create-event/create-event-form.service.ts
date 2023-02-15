@@ -31,7 +31,12 @@ export class CreateEventFormService {
             limitedPlaces: this.builder.control(
               { value: 1, disabled: true },
               {
-                validators: [Validators.required, Validators.min(1), Validators.max(10000)],
+                validators: [
+                  Validators.required,
+                  Validators.min(1),
+                  Validators.max(1000),
+                  Validators.pattern(pattern.onlyNumbers),
+                ],
               }
             ),
           }),
@@ -56,10 +61,10 @@ export class CreateEventFormService {
             validators: [Validators.required, Validators.pattern(pattern.postCode)],
           }),
           city: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
+            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
           }),
           street: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
+            validators: [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
           }),
           streetNumber: this.builder.control('', {
             validators: [Validators.required, Validators.maxLength(10)],
@@ -68,7 +73,7 @@ export class CreateEventFormService {
             validators: [Validators.maxLength(5)],
           }),
           description: this.builder.control('', {
-            validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4000)],
+            validators: [Validators.required, Validators.minLength(20), Validators.maxLength(4000)],
           }),
           hashtags: this.builder.control<string[]>([], {
             validators: [Validators.maxLength(10), hashtagMinLengthValidator, hashtagMaxLengthValidator],
