@@ -21,9 +21,9 @@
     </div>
   </div>
   <div class="main-container" [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
-    <ul>
-      <li class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
-        <button class="nav-menu__button" (click)="navigateAndHideMenu(navbarList[1][i])">
+    <ul class="menu-list">
+      <li *ngFor="let value of navbarList[0]; let i = index">
+        <button (click)="navigateAndHideMenu(navbarList[1][i])">
           {{ value }}
         </button>
       </li>

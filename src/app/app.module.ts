@@ -24,9 +24,11 @@ import { AuthService } from './features/auth/authentication/auth.service';
 import { CanLoginGuard } from './features/auth/guards/can-login.guard';
 import { fetchedLoggedUser } from './features/auth/fetchLoggedUser';
 import { userReducer } from './features/auth/store/user.reducer';
+import { EventListState } from './features/event/event-list/event-list.interface';
 
 export interface AppState {
   user: UserState;
+  eventList: EventListState;
 }
 
 export interface AppState {
