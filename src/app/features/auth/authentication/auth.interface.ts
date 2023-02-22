@@ -5,3 +5,9 @@ export interface LoginData {
     id: number;
   };
 }
+
+export interface LoggedUserData {
+  email: string;
+  type: string;
+  id: number;
+}

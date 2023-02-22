@@ -1,16 +1,18 @@
-<div class="event-list main-container">
-  <div *ngIf="errorClientServer$ | async; else success">
-    <app-error></app-error>
-  </div>
-  <ng-template #success>
-    <app-cow-loader></app-cow-loader>
-    <ng-container *ngIf="eventList$ | async as events">
-      <app-event-card *ngFor="let event of events" [eventCard]="event"></app-event-card>
-    </ng-container>
-  </ng-template>
-</div>
-
-<button class="event-list__button" mat-fab extended color="primary" routerLink="/create-event">
-  <p>Stwórz</p>
-  <p>wydarzenie</p>
-</button>
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="eventListState$ | async as eventListState; else error">
+  <ng-container *ngIf="categories$ | async as categories; else error">
+    <div class="event-list main-container">
+      <app-filter-sort [isFiltersHidden]="eventListState.isFiltersHidden" [categories]="categories"></app-filter-sort>
+      <div class="event-list__events">
+        <app-event-card *ngFor="let event of eventListState.events" [eventCard]="event"></app-event-card>
+      </div>
+    </div>
+    <button class="event-list__button" mat-fab extended color="primary" routerLink="/create-event">
+      <p>Stwórz</p>
+      <p>wydarzenie</p>
+    </button>
+  </ng-container>
+</ng-container>
+<ng-template #error>
+  <app-error></app-error>
+</ng-template>

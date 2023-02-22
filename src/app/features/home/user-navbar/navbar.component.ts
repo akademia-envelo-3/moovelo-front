@@ -3,6 +3,9 @@ import { NavbarScrollService } from './services/navbar-scroll.service';
 import users from './mock/users.config';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/authentication/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.module';
+import { EventListActions } from '../../event/event-list/store/event-list.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +14,7 @@ import { AuthService } from '../../auth/authentication/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit {
+  private store = inject<Store<AppState>>(Store);
   private router = inject(Router);
 
   private userState = 'user';
@@ -27,6 +31,7 @@ export class NavbarComponent implements OnInit {
   }
 
   showMenu() {
+    this.store.dispatch(EventListActions.hideFilters());
     this.menu = !this.menu;
   }
 

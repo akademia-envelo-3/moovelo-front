@@ -1,4 +1,4 @@
-<div class="event-card">
+<a class="event-card" routerLink="/events/{{ eventCard.id }}">
   <div class="event-card__info">
     <img class="info__event-img" src="assets/eventCard2.png" alt="zdjęcie wydarzenia" />
     <div class="info__event-details">
@@ -20,4 +20,4 @@
       <div class="event-card__hashtag font-text-1" *ngFor="let hashtag of hashtags">#{{ hashtag.value }}</div>
     </div>
   </ng-container>
-</div>
+</a>

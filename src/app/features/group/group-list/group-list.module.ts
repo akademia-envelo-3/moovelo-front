@@ -19,6 +19,10 @@ import { ErrorComponent } from '@shared/error.component';
         path: ':id',
         loadComponent: () => import('../single-group/single-group.component'),
       },
+      {
+        path: ':id/users',
+        loadComponent: () => import('../single-group/group-participants/group-participants.component'),
+      },
     ]),
     GroupItemComponent,
     CommonModule,

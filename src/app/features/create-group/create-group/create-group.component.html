@@ -1,0 +1,69 @@
+<form class="create-group main-container" [formGroup]="createGroupForm" (ngSubmit)="handleCreateGroupSubmit()">
+  <div class="blue-container">
+    <h2 class="font-heading-2">Stwórz Grupę</h2>
+    <mat-form-field color="primary">
+      <mat-label>Nazwa grupy</mat-label>
+      <input matInput formControlName="name" class="create-group__input" />
+      <mat-error *ngIf="nameCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']; else errorMinLength">To pole jest wymagane.</ng-container>
+        <ng-template #errorMinLength>
+          <ng-container *ngIf="errors['minlength'] as minLength; else errorMaxLength"
+            >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.
+          </ng-container>
+        </ng-template>
+        <ng-template #errorMaxLength>
+          <ng-container *ngIf="errors['maxlength'] as maxLength; else errorSymbols"
+            >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.
+          </ng-container>
+        </ng-template>
+        <ng-template #errorSymbols>
+          <ng-container *ngIf="errors['pattern'] as pattern; else trailingSpace"
+            >Niedozwolne znaki specjalne.</ng-container
+          >
+        </ng-template>
+        <ng-template #trailingSpace>
+          <ng-container *ngIf="errors['leadingOrTrailingSpace'] as space; else tooManySpaces"
+            >Spacja na początku lub końcu!</ng-container
+          >
+        </ng-template>
+        <ng-template #tooManySpaces>
+          <ng-container *ngIf="errors['tooManySpaces'] as space">Spacje między wyrazami!</ng-container>
+        </ng-template>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="create-group__description">
+    <h3 class="font-heading-3 create-group__title">Opis grupy</h3>
+    <mat-form-field color="primary" appearance="fill" class="create-group__textarea">
+      <textarea
+        formControlName="description"
+        matInput
+        placeholder="Dodaj opis..."
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="15"></textarea>
+      <mat-error *ngIf="descriptionCtrl.errors as errors">
+        <ng-container *ngIf="errors['required']">To pole jest wymagane.</ng-container>
+        <ng-container *ngIf="errors['minlength'] as minLength"
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+        >
+        <ng-container *ngIf="errors['maxlength'] as maxLength; else trailingSpace"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+        >
+        <ng-template #trailingSpace>
+          <ng-container *ngIf="errors['leadingOrTrailingSpace'] as space; else tooManySpaces"
+            >Spacja na początku lub końcu!</ng-container
+          >
+        </ng-template>
+        <ng-template #tooManySpaces>
+          <ng-container *ngIf="errors['tooManySpaces'] as space">Spacje między wyrazami!</ng-container>
+        </ng-template>
+      </mat-error>
+      <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/255 </mat-hint>
+    </mat-form-field>
+  </div>
+  <button mat-button class="btn-round" mat-flat-button color="primary">Stwórz grupę</button>
+  <ng-container *ngIf="error$ | async as error">
+    <app-error></app-error>
+  </ng-container>
+</form>
