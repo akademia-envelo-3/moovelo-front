@@ -3,28 +3,27 @@
 
 .nav-bar__wrapper {
   top: 0;
-  height: 54px;
+  height: 56px;
   position: sticky;
   transition-duration: 500ms;
   transform: translateY(0);
   background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
   z-index: 999;
+  margin-bottom: 8px;
+
+  &--visible {
+    transform: translateY(-100%);
+    transition-duration: 500ms;
+  }
 }
 
 .nav-bar {
-  margin-bottom: 8px;
-
   &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
-  }
-
-  &--visible {
-    transform: translateY(-100%);
-    transition-duration: 500ms;
   }
 }
 
