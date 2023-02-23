@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
+import { map, Observable, startWith, takeUntil } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
@@ -9,6 +9,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { pattern } from '@shared/patterns/patterns';
+import { useDestroyToken } from '@shared/injection-hooks/useDestroyToken';
 
 @Component({
   selector: 'app-event-details-form',
@@ -16,12 +17,12 @@ import { pattern } from '@shared/patterns/patterns';
   styleUrls: ['./event-details-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventDetailsFormComponent implements OnInit, OnDestroy {
+export class EventDetailsFormComponent implements OnInit {
   private createEventForm = inject(CreateEventFormService);
   private createEventService = inject(CreateEventService);
   private errorService = inject(ErrorhandlerService);
 
-  private unsubscribe$$ = new Subject<void>();
+  private unsubscribe$$ = useDestroyToken();
   private allHashtags: string[] = [];
 
   errorClientServer$ = this.errorService.error$;
@@ -206,10 +207,5 @@ export class EventDetailsFormComponent implements OnInit, OnDestroy {
 
   get hashtagsCtrl() {
     return this.eventDetailsForm.controls.hashtags;
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$$.next();
-    this.unsubscribe$$.complete();
   }
 }

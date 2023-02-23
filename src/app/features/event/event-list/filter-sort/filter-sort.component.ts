@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
 import { FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { useDestroyToken } from '@shared/injection-hooks/useDestroyToken';
 import { Subject, takeUntil } from 'rxjs';
 import { AppState } from 'src/app/app.module';
 import { Category } from '../../single-event/single-event.interface';
@@ -15,14 +16,14 @@ import { filterOptions, sortOptions } from './../filterSortOptions';
   styleUrls: ['./filter-sort.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterSortComponent {
+export class FilterSortComponent implements OnInit {
   @Input() isFiltersHidden!: boolean;
   @Input() categories!: Category[];
 
   private store = inject<Store<AppState>>(Store);
   private builder = inject(NonNullableFormBuilder);
 
-  private unsubscribe$$ = new Subject<void>();
+  private unsubscribe$$ = useDestroyToken();
 
   eventListState$ = this.store.select(selectEventList);
 
