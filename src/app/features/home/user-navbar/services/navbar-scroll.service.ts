@@ -10,7 +10,7 @@ export class NavbarScrollService {
     let currentPosition: number;
 
     this.ngZone.runOutsideAngular(() => {
-      const navbar = document.querySelector('.nav-bar');
+      const navbar = document.querySelector('.nav-bar__wrapper');
       document.addEventListener('scroll', () => onContentScrolled());
 
       document.removeEventListener('scroll', () => onContentScrolled());
