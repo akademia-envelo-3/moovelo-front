@@ -21,7 +21,7 @@ export class SingleEventComponent {
 
   errorClientServer$ = this.errorService.error$;
 
-  eventInfo$ = this.store.select(store => store.singleEvent.eventInfo);
+  singleEvent$ = this.store.select(store => store.singleEvent);
 
   ngOnInit() {
     this.singleEventService.getSingleEvent(this.eventId);

@@ -1,5 +1,4 @@
 export interface EventInfo {
-  eventOwner: EventOwner;
   isConfirmationRequired: boolean;
   limitedPlaces: number;
   eventParticipationStats: EventParticipationStats;
@@ -24,19 +23,23 @@ export interface EventParticipationStats {
   pending: number;
   rejected: number;
 }
+
 export interface Group {
   id: string;
   name: string;
 }
 
 export interface SingleEventStateInterface {
+  eventOwner: EventOwner;
   id: string;
-  eventInfo: EventInfo | null;
+  eventInfo: EventInfo;
 }
+
 export interface Category {
   id: string;
   name: string;
 }
+
 export interface Location {
   id: string;
   altitude: number;
@@ -47,6 +50,7 @@ export interface Location {
   streetNumber: string;
   apartmentNumber: string;
 }
+
 export interface SingleHashtag {
   id: string;
   value: string;
