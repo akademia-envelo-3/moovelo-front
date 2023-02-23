@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
@@ -21,6 +22,7 @@ export class EventListComponent implements OnInit {
   eventListState$ = this.store.select(selectEventList);
   errorClientServer$ = this.errorService.error$;
   categories$ = this.eventListService.getCategories();
+  userType$ = this.store.select(state => state.user.type);
 
   hasFilterChanged = false;
 

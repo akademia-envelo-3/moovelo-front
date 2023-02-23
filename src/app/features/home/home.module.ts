@@ -13,6 +13,7 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
 import { ErrorComponent } from '@shared/error.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { FooterComponent } from '@shared/footer/footer.component';
+import { IsNotAdminGuard } from '../auth/guards/is-not-admin.guard';
 
 @NgModule({
   declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
@@ -42,10 +43,12 @@ import { FooterComponent } from '@shared/footer/footer.component';
           {
             path: 'create-event',
             loadChildren: () => import('../create-event/create-event.module'),
+            canActivate: [IsNotAdminGuard],
           },
           {
             path: 'create-group',
             loadChildren: () => import('../create-group/create-group.module'),
+            canActivate: [IsNotAdminGuard],
           },
         ],
       },
