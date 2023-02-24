@@ -1,0 +1,14 @@
+<div class="main-container event-list-owned">
+  <div class="blue-container">
+    <h2 class="font-heading-2">Posiadane Wydarzenia</h2>
+  </div>
+  <app-cow-loader></app-cow-loader>
+  <div class="event-list-owned__items">
+    <ng-container *ngIf="eventListOwned$ | async as eventListOwned; else error">
+      <app-event-card *ngFor="let event of eventListOwned" [eventCard]="event"></app-event-card>
+    </ng-container>
+    <ng-template #error>
+      <app-error></app-error>
+    </ng-template>
+  </div>
+</div>
