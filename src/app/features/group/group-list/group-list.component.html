@@ -4,7 +4,17 @@
     <h3 class="font-heading-3">Lista Grup</h3>
     <app-group-list-item *ngFor="let group of groups" [groupItem]="group"></app-group-list-item>
   </div>
-  <button (click)="navToCreateGroup()" class="group-list__button" mat-fab extended color="primary">Stwórz grupę</button>
+  <ng-container *ngIf="userType$ | async as userType">
+    <button
+      *ngIf="userType !== 'admin'"
+      (click)="navToCreateGroup()"
+      class="group-list__button"
+      mat-fab
+      extended
+      color="primary">
+      Stwórz grupę
+    </button>
+  </ng-container>
 </ng-container>
 <ng-template #error>
   <div *ngIf="errorClientServer$ | async">
