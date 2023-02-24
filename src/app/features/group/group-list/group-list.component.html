@@ -6,7 +6,7 @@
   </div>
   <ng-container *ngIf="userType$ | async as userType">
     <button
-      *ngIf="userType === 'user'"
+      *ngIf="userType !== 'admin'"
       (click)="navToCreateGroup()"
       class="group-list__button"
       mat-fab

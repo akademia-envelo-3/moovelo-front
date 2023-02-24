@@ -9,7 +9,7 @@
     </div>
     <ng-container *ngIf="userType$ | async as userType">
       <button
-        *ngIf="userType === 'user'"
+        *ngIf="userType !== 'admin'"
         class="event-list__button"
         mat-fab
         extended
