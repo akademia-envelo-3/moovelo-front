@@ -10,7 +10,7 @@ export class NavbarScrollService {
     let currentPosition: number;
 
     this.ngZone.runOutsideAngular(() => {
-      const navbar = document.querySelector('.nav-bar');
+      const navbar = document.querySelector('.nav-bar__wrapper');
       document.addEventListener('scroll', () => onContentScrolled());
 
       document.removeEventListener('scroll', () => onContentScrolled());
@@ -19,9 +19,9 @@ export class NavbarScrollService {
         const scroll = window.pageYOffset;
 
         if (scroll > currentPosition) {
-          navbar?.classList.add('nav-bar--visible');
+          navbar?.classList.add('nav-bar__wrapper--visible');
         } else {
-          navbar?.classList.remove('nav-bar--visible');
+          navbar?.classList.remove('nav-bar__wrapper--visible');
         }
         currentPosition = scroll;
       }

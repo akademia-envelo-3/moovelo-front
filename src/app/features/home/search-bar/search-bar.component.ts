@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { useDestroyToken } from '@shared/injection-hooks/useDestroyToken';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
-import { debounceTime, takeUntil } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { SearchBarService } from './search-bar.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -13,7 +14,6 @@ import { SearchBarService } from './search-bar.service';
 })
 export class SearchBarComponent implements OnInit {
   private searchBarService = inject(SearchBarService);
-  private unsubscribe$$ = useDestroyToken();
   private errorService = inject(ErrorhandlerService);
 
   errorClientServer$ = this.errorService.error$;
@@ -23,7 +23,7 @@ export class SearchBarComponent implements OnInit {
   searchControl = new FormControl('', { nonNullable: true });
 
   ngOnInit() {
-    this.searchControl.valueChanges.pipe(takeUntil(this.unsubscribe$$), debounceTime(1000)).subscribe(value => {
+    this.searchControl.valueChanges.pipe(untilDestroyed(this), debounceTime(1000)).subscribe(value => {
       return this.searchBarService.search(value);
     });
   }
