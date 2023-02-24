@@ -54,6 +54,9 @@ export default class ThemeComponent {
 
   event: EventCard = {
     id: 1,
+    eventOwner: {
+      userId: 1,
+    },
     eventInfo: {
       name: 'Giga Koks Turbo Event',
       category: {

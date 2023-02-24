@@ -1,0 +1,9 @@
+.event-list-owned {
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 16px;
+    padding: 8px;
+  }
+}
