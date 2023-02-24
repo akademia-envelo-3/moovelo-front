@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { ErrorComponent } from '@shared/error.component';
+import { useStore } from '@shared/inject-hooks/user-store';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
-import { switchMap, take } from 'rxjs';
-import { AppState } from 'src/app/app.module';
+import { switchMap, take, tap } from 'rxjs';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { EventListOwnedService } from './event-list-owned.service';
 
@@ -21,13 +20,14 @@ import { EventListOwnedService } from './event-list-owned.service';
 export default class EventListOwnedComponent {
   private eventListOwnedService = inject(EventListOwnedService);
   private errorService = inject(ErrorhandlerService);
-  private store = inject<Store<AppState>>(Store);
 
+  store = useStore();
   error$ = this.errorService.error$;
   userId$ = this.store.select(state => state.user);
 
   eventListOwned$ = this.userId$.pipe(
     take(1),
-    switchMap(result => this.eventListOwnedService.getOwnedEvents(result.id))
+    switchMap(result => this.eventListOwnedService.getOwnedEvents(result.id)),
+    tap(console.log)
   );
 }
