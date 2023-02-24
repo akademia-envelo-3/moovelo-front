@@ -50,6 +50,10 @@ import { IsNotAdminGuard } from '../auth/guards/is-not-admin.guard';
             loadChildren: () => import('../create-group/create-group.module'),
             canActivate: [IsNotAdminGuard],
           },
+          {
+            path: 'owned-events',
+            loadComponent: () => import('../event/event-list-owned/event-list-owned.component'),
+          },
         ],
       },
     ]),

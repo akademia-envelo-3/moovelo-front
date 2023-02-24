@@ -5,7 +5,7 @@ const users = {
   },
   user: {
     titles: ['Wydarzenia', 'Wydarzenia, którymi zarządzasz', 'Grupy', 'Grupy, którymi zarządzasz'],
-    routes: ['', 'my-events', 'groups', 'owned-groups'],
+    routes: ['', 'owned-events', 'groups', 'owned-groups'],
   },
 };
 export default users;
