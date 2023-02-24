@@ -9,8 +9,8 @@
 
   &__heading {
     width: 80%;
+    overflow-wrap: break-word;
     text-align: center;
-    word-break: break-all;
   }
 
   &__group-private-label {
