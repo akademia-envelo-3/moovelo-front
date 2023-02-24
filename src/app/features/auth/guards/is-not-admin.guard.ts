@@ -1,27 +1,17 @@
-import { inject, Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable, of, switchMap } from 'rxjs';
-import { AppState } from 'src/app/app.module';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { useStore } from '@shared/inject-hooks/user-store';
+import { map } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class IsNotAdminGuard implements CanActivate {
-  private store = inject<Store<AppState>>(Store);
-  private router = inject(Router);
+export const isNotAdminGuard = () => {
+  const router = inject(Router);
+  const store = useStore();
 
-  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.store
-      .select(state => state.user.type)
-      .pipe(
-        switchMap(result => {
-          if (result === 'admin') {
-            this.router.navigate(['/']);
-            return of(false);
-          }
-          return of(true);
-        })
-      );
-  }
-}
+  return store
+    .select(state => state.user.type)
+    .pipe(
+      map(userType => {
+        return userType === 'admin' ? router.navigate(['/']) : true;
+      })
+    );
+};
