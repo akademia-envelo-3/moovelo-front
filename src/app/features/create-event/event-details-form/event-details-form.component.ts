@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { map, Observable, startWith, takeUntil } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { HourErrorStateMatcher } from './hourErrorStateMatcher';
 import { CreateEventFormService } from '../create-event-form.service';
 import { CreateEventService } from '../create-event.service';
@@ -9,8 +9,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { pattern } from '@shared/patterns/patterns';
-import { useDestroyToken } from '@shared/injection-hooks/useDestroyToken';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-event-details-form',
   templateUrl: './event-details-form.component.html',
@@ -22,7 +23,6 @@ export class EventDetailsFormComponent implements OnInit {
   private createEventService = inject(CreateEventService);
   private errorService = inject(ErrorhandlerService);
 
-  private unsubscribe$$ = useDestroyToken();
   private allHashtags: string[] = [];
 
   errorClientServer$ = this.errorService.error$;
@@ -46,11 +46,11 @@ export class EventDetailsFormComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.isConfirmationRequiredCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
+    this.isConfirmationRequiredCtrl.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
       value ? this.limitedPlacesGroup.enable() : this.limitedPlacesGroup.disable();
     });
 
-    this.isLimitedPlacesCtrl.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(value => {
+    this.isLimitedPlacesCtrl.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
       value ? this.limitedPlacesCtrl.enable() : this.limitedPlacesCtrl.disable();
     });
     if (this.isGroup) {
