@@ -30,13 +30,14 @@
     <menu class="menu-list">
       <li *ngFor="let category of categories">
         <button
-          (click)="chooseCategory(category.name); $event.stopPropagation()"
+          (click)="chooseCategory(category.name)"
+          stopEventPropagation
           [disabled]="category.name === getEventPayload.category">
           {{ category.name }}
         </button>
       </li>
       <li class="menu-list__reset">
-        <button (click)="resetCategory(); $event.stopPropagation()">Resetuj kategorię</button>
+        <button (click)="resetCategory()" stopEventPropagation>Resetuj kategorię</button>
       </li>
     </menu>
   </mat-tab>

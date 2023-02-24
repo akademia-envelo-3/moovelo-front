@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   background-color: mat.get-color-from-palette(palette.$gray-palette, 100);
-  padding-bottom: 8px;
   &__input {
     width: 100%;
     max-width: 320px;
@@ -27,4 +26,12 @@
 // deleting input bottom space
 ::ng-deep .search-bar__input > .mat-mdc-form-field-subscript-wrapper {
   display: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .search-bar {
+    &__input {
+      min-width: 100%;
+    }
+  }
 }

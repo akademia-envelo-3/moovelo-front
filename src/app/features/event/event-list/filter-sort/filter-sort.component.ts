@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
 import { FormControl, NonNullableFormBuilder } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
 import { AppState } from 'src/app/app.module';
 import { Category } from '../../single-event/single-event.interface';
 import { FilterValue, GetEventPayload, SortValue } from '../event-list.interface';
@@ -9,20 +9,19 @@ import { EventListActions } from '../store/event-list.actions';
 import { selectEventList } from '../store/event-list.selectors';
 import { filterOptions, sortOptions } from './../filterSortOptions';
 
+@UntilDestroy()
 @Component({
   selector: 'app-filter-sort[isFiltersHidden][categories]',
   templateUrl: './filter-sort.component.html',
   styleUrls: ['./filter-sort.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterSortComponent {
+export class FilterSortComponent implements OnInit {
   @Input() isFiltersHidden!: boolean;
   @Input() categories!: Category[];
 
   private store = inject<Store<AppState>>(Store);
   private builder = inject(NonNullableFormBuilder);
-
-  private unsubscribe$$ = new Subject<void>();
 
   eventListState$ = this.store.select(selectEventList);
 
@@ -42,7 +41,7 @@ export class FilterSortComponent {
   ngOnInit() {
     filterOptions.forEach(() => this.formArray.push(this.builder.control(false)));
 
-    this.formArray.valueChanges.pipe(takeUntil(this.unsubscribe$$)).subscribe(() => (this.hasFilterChanged = true));
+    this.formArray.valueChanges.pipe(untilDestroyed(this)).subscribe(() => (this.hasFilterChanged = true));
   }
 
   sort(value: SortValue) {
