@@ -1,0 +1,17 @@
+<form
+  [formGroup]="commentForm"
+  #formGroupDirective="ngForm"
+  (ngSubmit)="submitForm(commentForm, formGroupDirective)"
+  class="commentsForm">
+  <h3 class="text-heading-3">Dodaj komentarz</h3>
+  <mat-form-field color="primary">
+    <mat-label>Wpisz tekst</mat-label>
+    <textarea matInput formControlName="text" #comment class="commentsForm__input"></textarea>
+    <mat-hint>{{ comment.value.length }} / 255</mat-hint>
+    <mat-error *ngIf="commentCtrl.text.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+      <ng-container *ngIf="errors['maxlength']">Za dużo znaków!</ng-container>
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="commentsForm__button">Dodaj</button>
+</form>
