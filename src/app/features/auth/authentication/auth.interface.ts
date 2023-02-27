@@ -1,13 +1,15 @@
+import { Role } from '../store/user.interface';
+
 export interface LoginData {
   accessToken: string;
   user: {
-    type: string;
+    type: Role;
     id: number;
   };
 }
 
 export interface LoggedUserData {
   email: string;
-  type: string;
+  type: Role;
   id: number;
 }

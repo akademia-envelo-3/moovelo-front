@@ -43,7 +43,7 @@ import { EventSurveyComponent } from '../features/event/event-survey/event-surve
 export default class ThemeComponent {
   group: GroupListItem = {
     groupOwner: {
-      basicUserId: 1,
+      userId: 1,
     },
     isUserMember: false,
     id: 1,
