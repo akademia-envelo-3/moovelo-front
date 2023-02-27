@@ -1,6 +1,6 @@
 <app-cow-loader></app-cow-loader>
 <ng-container *ngIf="singleEvent$ | async as singleEvent; else error">
-  <div class="event">
+  <div class="event main-container">
     <ng-container *ngIf="singleEvent.eventInfo.group">
       <div class="event__group-private-label">
         <div class="event__group-private-label-text">
@@ -26,7 +26,9 @@
       </div>
     </ng-container>
     <div class="event__heading">
-      <h1 class="$heading-1">{{ singleEvent.eventInfo.name | titlecase }}</h1>
+      <div class="event__title-container">
+        <h1 class="$heading-1">{{ singleEvent.eventInfo.name | titlecase }}</h1>
+      </div>
       <ng-container *ngIf="eventMenu$ | async as eventMenu">
         <app-settings class="event__settings" [options]="eventMenu"></app-settings>
       </ng-container>
