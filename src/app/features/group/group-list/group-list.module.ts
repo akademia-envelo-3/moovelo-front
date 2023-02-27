@@ -6,6 +6,7 @@ import { GroupItemComponent } from '../group-list-item/group-list-item.component
 import { MatButtonModule } from '@angular/material/button';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { ErrorComponent } from '@shared/error.component';
+import { singleGroupResolver } from '../single-group/single-group.resolver';
 
 @NgModule({
   declarations: [GroupListComponent],
@@ -18,6 +19,7 @@ import { ErrorComponent } from '@shared/error.component';
       {
         path: ':id',
         loadComponent: () => import('../single-group/single-group.component'),
+        resolve: { singleGroupResolver },
       },
       {
         path: ':id/users',

@@ -27,7 +27,9 @@
     </ng-container>
     <div class="event__heading">
       <h1 class="$heading-1">{{ singleEvent.eventInfo.name | titlecase }}</h1>
-      <app-settings class="event__settings" [eventOwnerId]="singleEvent.eventOwner.userId"></app-settings>
+      <ng-container *ngIf="eventMenu$ | async as eventMenu">
+        <app-settings class="event__settings" [options]="eventMenu"></app-settings>
+      </ng-container>
     </div>
     <ng-container *ngIf="singleEvent.eventInfo.isConfirmationRequired">
       <div class="event__required-confirmation">

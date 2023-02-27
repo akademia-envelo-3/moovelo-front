@@ -1,39 +1,8 @@
-<ng-container *ngIf="user$$ | async as user">
-  <ng-container *ngIf="isSettingsVisible">
-    <button mat-fab color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>settings</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <ng-container *ngIf="eventOwnerId; else groupSettings">
-        <ng-container *ngIf="role === 'eventOwner' && menuVariants.event.eventOwner as menu">
-          <button *ngFor="let option of menu" mat-menu-item>
-            <span>{{ option }}</span>
-          </button>
-        </ng-container>
-
-        <ng-container *ngIf="role === 'admin' && menuVariants.event.admin as menu">
-          <button *ngFor="let option of menu" mat-menu-item>
-            <span>{{ option }}</span>
-          </button>
-        </ng-container>
-      </ng-container>
-      <ng-template #groupSettings>
-        <ng-container *ngIf="role === 'groupOwner' && menuVariants.group.groupOwner as menu">
-          <button *ngFor="let option of menu" mat-menu-item>
-            <span>{{ option }}</span>
-          </button>
-        </ng-container>
-        <ng-container *ngIf="role === 'admin' && menuVariants.group.admin as menu">
-          <button *ngFor="let option of menu" mat-menu-item>
-            <span>{{ option }}</span>
-          </button>
-        </ng-container>
-        <ng-container *ngIf="role === 'user' && menuVariants.group.user as menu">
-          <button *ngFor="let option of menu" mat-menu-item>
-            <span>{{ option }}</span>
-          </button>
-        </ng-container>
-      </ng-template>
-    </mat-menu>
-  </ng-container>
-</ng-container>
+<button mat-fab color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>settings</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button *ngFor="let option of options" mat-menu-item>
+    <span>{{ option }}</span>
+  </button>
+</mat-menu>

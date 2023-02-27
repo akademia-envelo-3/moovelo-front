@@ -1,3 +1,5 @@
+import { Role } from '../../auth/store/user.interface';
+
 export interface EventInfo {
   isConfirmationRequired: boolean;
   limitedPlaces: number;
@@ -54,4 +56,8 @@ export interface Location {
 export interface SingleHashtag {
   id: string;
   value: string;
+}
+
+export interface EventOptions extends Record<Role, string[]> {
+  eventOwner: string[];
 }

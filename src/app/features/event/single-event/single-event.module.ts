@@ -10,6 +10,7 @@ import { SingleEventComponent } from './single-event.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { ErrorComponent } from '@shared/error.component';
 import { SettingsComponent } from '@shared/settings/settings.component';
+import { singleEventResolver } from './single-event.resolver';
 
 @NgModule({
   declarations: [SingleEventComponent],
@@ -26,6 +27,7 @@ import { SettingsComponent } from '@shared/settings/settings.component';
       {
         path: '',
         component: SingleEventComponent,
+        resolve: { singleEventResolver },
       },
     ]),
   ],

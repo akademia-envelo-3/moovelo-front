@@ -33,8 +33,8 @@ export default class SingleGroupComponent {
   private groupId = this.route.snapshot.params['id'];
 
   errorClientServer$ = this.errorService.error$;
-
-  singleGroup$ = this.singleGroupService.getGroupInfo(this.groupId);
+  singleGroup$ = this.singleGroupService.group$;
+  groupMenu$ = this.singleGroupService.getGroupMenu();
 
   navigateToUsers() {
     this.router.navigate([`groups/${this.groupId}/users`]);

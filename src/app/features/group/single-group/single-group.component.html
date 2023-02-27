@@ -3,7 +3,9 @@
   <div class="main-container">
     <header class="header blue-container">
       <h2 class="font-heading-2">{{ singleGroup.name }}</h2>
-      <app-settings class="header__settings" [groupOwnerId]="singleGroup.groupOwner.basicUserId"></app-settings>
+      <ng-container *ngIf="groupMenu$ | async as groupMenu">
+        <app-settings class="header__settings" [options]="groupMenu"></app-settings>
+      </ng-container>
     </header>
     <div class="group-info">
       <div class="group-info__users">
