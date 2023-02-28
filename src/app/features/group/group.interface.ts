@@ -1,3 +1,4 @@
+import { Role } from '../auth/store/user.interface';
 import { EventCard } from '../event';
 
 export interface GroupListItem {
@@ -10,7 +11,7 @@ export interface GroupListItem {
 }
 
 export interface GroupOwner {
-  basicUserId: number;
+  userId: number;
 }
 
 export interface GroupListError {
@@ -28,7 +29,7 @@ export interface SingleGroup {
 }
 
 export interface SingleGroupOwner {
-  basicUserId: number;
+  userId: number;
 }
 
 export interface SingleGroupMembers {
@@ -36,7 +37,12 @@ export interface SingleGroupMembers {
   firstName: string;
   lastName: string;
 }
+
 export interface GroupMembersExtended {
   id: number;
   groupMembers: SingleGroupMembers[];
+}
+
+export interface GroupOptions extends Record<Role, string[]> {
+  groupOwner: string[];
 }

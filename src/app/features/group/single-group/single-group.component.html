@@ -1,12 +1,21 @@
 <app-cow-loader></app-cow-loader>
 <ng-container *ngIf="singleGroup$ | async as singleGroup; else error">
   <div class="main-container">
-    <header class="blue-container">
-      <h2 class="font-heading-2">{{ singleGroup.name }}</h2>
-    </header>
+    <div class="blue-container">
+      <div class="header">
+        <div class="header__title-container">
+          <h2 class="font-heading-2">{{ singleGroup.name }}</h2>
+        </div>
+        <ng-container *ngIf="groupMenu$ | async as groupMenu">
+          <app-settings class="header__settings" [options]="groupMenu"></app-settings>
+        </ng-container>
+      </div>
+    </div>
     <div class="group-info">
       <div class="group-info__users">
-        <h3 class="users-number font-heading-3">Członkowie grupy ({{ singleGroup.groupMembers.length }})</h3>
+        <div class="group-title__container">
+          <h3 class="users-number font-heading-3">Członkowie grupy ({{ singleGroup.groupMembers.length }})</h3>
+        </div>
         <ng-container *ngIf="!singleGroup.groupMembers.length; else groupMembers">
           <p class="group-info__warn font-text-1">Nikt nie należy do tej group</p>
         </ng-container>
