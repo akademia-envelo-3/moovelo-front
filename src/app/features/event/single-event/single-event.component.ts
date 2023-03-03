@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SingleEventService } from './single-event.service';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.module';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
-import { ActivatedRoute } from '@angular/router';
+import { useStore } from '@shared/inject-hooks/user-store';
 
 @Component({
   selector: 'app-single-event',
@@ -14,16 +12,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SingleEventComponent {
   private singleEventService = inject(SingleEventService);
-  private store = inject<Store<AppState>>(Store);
+  private store = useStore();
   private errorService = inject(ErrorhandlerService);
-  private route = inject(ActivatedRoute);
-  private eventId = this.route.snapshot.params['id'];
 
   errorClientServer$ = this.errorService.error$;
-
-  eventInfo$ = this.store.select(store => store.singleEvent.eventInfo);
-
-  ngOnInit() {
-    this.singleEventService.getSingleEvent(this.eventId);
-  }
+  singleEvent$ = this.store.select(store => store.singleEvent);
+  eventMenu$ = this.singleEventService.getEventMenu();
 }

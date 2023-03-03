@@ -1,3 +1,21 @@
+.header {
+  width: 100%;
+  text-align: center;
+  word-break: break-all;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title-container {
+    width: 100%;
+    margin-left: 72px;
+  }
+
+  &__settings {
+    padding: 8px;
+  }
+}
+
 .group-info {
   display: flex;
   flex-direction: column;
