@@ -3,13 +3,19 @@
 
 .event-card {
   box-shadow: 0 1px 2px 2px mat.get-color-from-palette(palette.$gray-palette, 500);
-  width: 80vw;
+
+  &:hover {
+    .event-card__hashtags-container:has(.event-card__hashtag:nth-child(4)) {
+      animation: slide 10s linear infinite;
+    }
+  }
+  // max-width: 300px;
   border-radius: 8px;
   &__img {
     background-image: url('/assets/eventpicture.png');
     background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
     width: 100%;
-    height: 25vh;
+    min-height: 150px;
     position: relative;
     background-position: center;
     background-repeat: no-repeat;
@@ -105,30 +111,34 @@
   }
 
   &__hashtags {
-    display: flex;
-    justify-content: center;
+    // justify-content: center;
     padding-top: 8px;
     padding-bottom: 8px;
-    gap: 8px;
-    flex-wrap: wrap;
+    display: flex;
+    width: max-content;
+    overflow: hidden;
   }
+
+  &__hashtags-container {
+    display: flex;
+    width: max-content;
+  }
+
   &__hashtag {
     border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
     padding: 4px 16px;
     border-radius: 8px;
     color: mat.get-color-from-palette(palette.$blue-palette, 500);
     word-break: break-all;
+    min-width: fit-content;
   }
 }
 
-@media (min-width: 600px) {
-  .event-card {
-    width: 40vw;
+@keyframes slide {
+  0% {
+    transform: translateX(0);
   }
-}
-
-@media (min-width: 1050px) {
-  .event-card {
-    width: 25vw;
+  100% {
+    transform: translateX(-100%);
   }
 }

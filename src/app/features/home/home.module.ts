@@ -13,6 +13,7 @@ import { NavbarComponent } from 'src/app/features/home/user-navbar/navbar.compon
 import { ErrorComponent } from '@shared/error.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { FooterComponent } from '@shared/footer/footer.component';
+import { isNotAdminGuard } from '../auth/guards/is-not-admin.guard';
 
 @NgModule({
   declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
@@ -28,10 +29,13 @@ import { FooterComponent } from '@shared/footer/footer.component';
             loadChildren: () => import('../event/event-list/event-list.module'),
           },
           {
-            path: 'events/1',
+            path: 'events/:id',
             loadChildren: () => import('../event/single-event/single-event.module'),
           },
-
+          {
+            path: 'owned-groups',
+            loadComponent: () => import('../group/group-list-owned/group-list-owned.component'),
+          },
           {
             path: 'groups',
             loadChildren: () => import('../group/group-list/group-list.module'),
@@ -39,6 +43,16 @@ import { FooterComponent } from '@shared/footer/footer.component';
           {
             path: 'create-event',
             loadChildren: () => import('../create-event/create-event.module'),
+            canActivate: [isNotAdminGuard],
+          },
+          {
+            path: 'create-group',
+            loadChildren: () => import('../create-group/create-group.module'),
+            canActivate: [isNotAdminGuard],
+          },
+          {
+            path: 'owned-events',
+            loadComponent: () => import('../event/event-list-owned/event-list-owned.component'),
           },
         ],
       },
