@@ -1,0 +1,5 @@
+<div class="category-item">
+  <p class="font-text-1 category-item__name">{{ categoryItem.name | titlecase }}</p>
+  <button mat-button class="btn-round" mat-flat-button color="primary">Edytuj</button>
+  <mat-slide-toggle [formControl]="toggleCtrl" [checked]="categoryItem.isVisible" color="primary"></mat-slide-toggle>
+</div>

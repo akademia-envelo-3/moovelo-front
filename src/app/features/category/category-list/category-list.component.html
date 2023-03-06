@@ -1,0 +1,18 @@
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="categoryList$ | async as categoryList; else error">
+  <div class="main-container">
+    <div class="category-list">
+      <app-category-list-item
+        *ngFor="let category of categoryList; let isLast = last"
+        [ngClass]="{ 'border-radius': isLast }"
+        [categoryItem]="category"></app-category-list-item>
+    </div>
+    <button class="category-list__button" mat-fab extended color="primary" routerLink="/create-category">
+      <p>Dodaj</p>
+      <p>kategorię</p>
+    </button>
+  </div>
+</ng-container>
+<ng-template #error>
+  <app-error></app-error>
+</ng-template>

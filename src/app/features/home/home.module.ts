@@ -51,8 +51,16 @@ import { isNotAdminGuard } from '../auth/guards/is-not-admin.guard';
             canActivate: [isNotAdminGuard],
           },
           {
+            path: 'create-category',
+            loadComponent: () => import('../create-category/create-category.component'),
+          },
+          {
             path: 'owned-events',
             loadComponent: () => import('../event/event-list-owned/event-list-owned.component'),
+          },
+          {
+            path: 'categories',
+            loadComponent: () => import('../category/category-list/category-list.component'),
           },
         ],
       },
