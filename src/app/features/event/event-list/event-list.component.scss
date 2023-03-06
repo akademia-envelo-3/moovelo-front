@@ -3,11 +3,11 @@
 
 .event-list {
   display: grid;
-  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  // grid-template-columns: 1fr;
   gap: 32px;
+  padding: 16px 8px;
   align-items: center;
+
   &__button {
     position: sticky;
     bottom: 2%;
@@ -17,31 +17,5 @@
 
   & > * {
     height: 100%;
-    width: 100%;
-  }
-}
-@media (min-width: 600px) {
-  .event-list {
-    display: grid;
-    justify-content: center;
-    // grid-template-columns: 1fr 1fr;
-    // grid-template-rows: 1fr 1fr;
-    gap: 32px;
-    // grid-template-areas:
-    //   '. .'
-    //   '. .';
-  }
-}
-
-@media (min-width: 1050px) {
-  .event-list {
-    display: grid;
-    justify-content: center;
-    // grid-template-columns: 1fr 1fr 1fr;
-    // grid-template-rows: 1fr 1fr 1fr;
-    gap: 32px;
-    // grid-template-areas:
-    //   '. . .'
-    //   '. . .';
   }
 }

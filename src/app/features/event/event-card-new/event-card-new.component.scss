@@ -2,14 +2,28 @@
 @use '../../../styles/palettes' as palette;
 
 .event-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   box-shadow: 0 1px 2px 2px mat.get-color-from-palette(palette.$gray-palette, 500);
+  transition: box-shadow 0.2s ease-in;
+  margin: 0 auto;
 
   &:hover {
-    .event-card__hashtags-container:has(.event-card__hashtag:nth-child(4)) {
-      animation: slide 10s linear infinite;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.2s ease-in;
+  }
+
+  &--carousel {
+    &:hover {
+      .event-card__hashtags-container {
+        animation-play-state: running;
+      }
     }
   }
-  // max-width: 300px;
+  max-width: 360px;
   border-radius: 8px;
   &__img {
     background-image: url('/assets/eventpicture.png');
@@ -27,6 +41,10 @@
   &__date,
   &__number {
     display: flex;
+  }
+
+  &__number {
+    margin-left: 4px;
   }
 
   &__category {
@@ -92,6 +110,10 @@
 
   &__title {
     text-transform: uppercase;
+    overflow: hidden;
+    max-width: calc(100%);
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__header {
@@ -110,8 +132,12 @@
     padding: 8px;
   }
 
+  &__hashtags-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
   &__hashtags {
-    // justify-content: center;
     padding-top: 8px;
     padding-bottom: 8px;
     display: flex;
@@ -120,8 +146,11 @@
   }
 
   &__hashtags-container {
+    animation: slide 7s linear infinite both;
+    animation-play-state: paused;
     display: flex;
     width: max-content;
+    list-style-type: none;
   }
 
   &__hashtag {
@@ -130,7 +159,24 @@
     border-radius: 8px;
     color: mat.get-color-from-palette(palette.$blue-palette, 500);
     word-break: break-all;
-    min-width: fit-content;
+  }
+}
+
+@media (pointer: coarse) {
+  .event-card {
+    &__hashtags-wrapper {
+      overflow: scroll;
+    }
+
+    &__hashtags {
+      &--doubled {
+        display: none;
+      }
+    }
+
+    &__hashtags-container {
+      animation: none !important;
+    }
   }
 }
 
