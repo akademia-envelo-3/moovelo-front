@@ -4,9 +4,10 @@ import { ErrorComponent } from '@shared/error.component';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import CategoryListItemComponent from '../category-list-item/category-list-item.component';
-import { CategoryListService } from './category-list.service';
+import { CategoryListApiService } from './category-list.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { CategoryItemResponse } from '../category.interface';
 
 @Component({
   selector: 'app-category-list',
@@ -27,9 +28,13 @@ import { RouterLink } from '@angular/router';
   ],
 })
 export default class CategoryListComponent {
-  private categoryService = inject(CategoryListService);
+  private categoryService = inject(CategoryListApiService);
   private errorService = inject(ErrorhandlerService);
 
   categoryList$ = this.categoryService.getCategories();
   errorHandler$ = this.errorService.error$;
+
+  editCategoryName(newCategoryName: CategoryItemResponse) {
+    this.categoryService.patchCategoryName(newCategoryName.id, newCategoryName.name).subscribe(console.log);
+  }
 }

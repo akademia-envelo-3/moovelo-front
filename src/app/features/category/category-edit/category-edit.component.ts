@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CreateCategoryFormComponent } from '../../create-category/create-category-form/create-category-form.component';
 import { AddCategory } from '../../create-category/create-category.interface';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,13 +26,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     NgIf,
   ],
 })
-export default class CategoryEditComponent {
-  constructor(
-    public dialogRef: MatDialogRef<CategoryEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string }
-  ) {}
-
+export default class CategoryEditComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
+  private dialogRef = inject(MatDialogRef);
+  private data = inject(MAT_DIALOG_DATA);
 
   editCategory = this.createForm();
 

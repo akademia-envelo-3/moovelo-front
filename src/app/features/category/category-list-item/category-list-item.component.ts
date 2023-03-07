@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { CategoryItemResponse } from '../category.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgIf, TitleCasePipe } from '@angular/common';
-import { CategoryListService } from '../category-list/category-list.service';
+import { CategoryListApiService } from '../category-list/category-list.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -21,9 +21,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export default class CategoryListItemComponent implements OnInit {
   @Input() categoryItem!: CategoryItemResponse;
+  @Output() editCategoryName = new EventEmitter<CategoryItemResponse>();
 
-  private categoryService = inject(CategoryListService);
-  private cdr = inject(ChangeDetectorRef);
+  private categoryService = inject(CategoryListApiService);
   private dialog = inject(MatDialog);
 
   toggleCtrl = new FormControl(false, { nonNullable: true });
@@ -36,12 +36,8 @@ export default class CategoryListItemComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return;
-      this.categoryService.patchCategoryName(this.categoryItem.id, result).subscribe({
-        next: () => {
-          this.categoryItem.name = result;
-          this.cdr.detectChanges();
-        },
-      });
+      if (result === this.categoryItem.name) return;
+      this.editCategoryName.emit({ id: this.categoryItem.id, name: result, isVisible: this.categoryItem.isVisible });
     });
   }
 

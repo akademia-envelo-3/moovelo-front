@@ -6,7 +6,7 @@ import { CategoryItemResponse } from '../category.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryListService {
+export class CategoryListApiService {
   private http = inject(HttpClient);
   private apiUrl = inject(API_URL);
 

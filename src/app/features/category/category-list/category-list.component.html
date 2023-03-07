@@ -1,9 +1,14 @@
 <app-cow-loader></app-cow-loader>
-<ng-container *ngIf="categoryList$ | async as categoryList; else error">
+<ng-container *ngIf="errorHandler$ | async as error">
+  <app-error></app-error>
+</ng-container>
+<ng-container *ngIf="categoryList$ | async as categoryList">
   <div class="main-container">
     <div class="category-list">
       <app-category-list-item
         *ngFor="let category of categoryList; let isLast = last"
+        (editCategoryName)="editCategoryName($event)"
+        (editCategoryName)="categoryList[$event.id - 1] = $event"
         [ngClass]="{ 'border-radius': isLast }"
         [categoryItem]="category"></app-category-list-item>
     </div>
@@ -13,6 +18,3 @@
     </button>
   </div>
 </ng-container>
-<ng-template #error>
-  <app-error></app-error>
-</ng-template>
