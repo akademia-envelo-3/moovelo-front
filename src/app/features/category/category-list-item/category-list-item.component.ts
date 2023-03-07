@@ -8,7 +8,9 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import CategoryEditComponent from '../category-edit/category-edit.component';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: './app-category-list-item[categoryItem]',
   templateUrl: './category-list-item.component.html',
@@ -47,6 +49,7 @@ export default class CategoryListItemComponent implements OnInit {
     this.toggleCtrl.setValue(this.categoryItem.isVisible);
     this.toggleCtrl.valueChanges
       .pipe(
+        untilDestroyed(this),
         debounceTime(1000),
         distinctUntilChanged(),
         switchMap(visible => this.categoryService.patchCategoryVisibility(this.categoryItem.id, visible))
