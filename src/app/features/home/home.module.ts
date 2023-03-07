@@ -54,6 +54,7 @@ import { isAdminGuard } from '../auth/guards/is-admin.guard';
           {
             path: 'create-category',
             loadComponent: () => import('../create-category/create-category.component'),
+            canActivate: [isAdminGuard],
           },
           {
             path: 'owned-events',
