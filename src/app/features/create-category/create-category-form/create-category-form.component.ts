@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ErrorComponent } from '@shared/error.component';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
@@ -18,8 +18,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, ErrorComponent, MatInputModule, MatFormFieldModule, NgIf, AsyncPipe, RouterLink],
 })
-export class CreateCategoryFormComponent implements OnInit {
-  @Input() categoryName?: string;
+export class CreateCategoryFormComponent {
   @Output() handleSubmitEmit = new EventEmitter<CategoryData>();
 
   private builder = inject(NonNullableFormBuilder);
@@ -47,19 +46,10 @@ export class CreateCategoryFormComponent implements OnInit {
     return this.addCategory.controls.name;
   }
 
-  handleCategoryInput() {
-    if (!this.categoryName) return;
-    this.addCategory.controls.name.setValue(this.categoryName);
-  }
-
   submitForm() {
     this.addCategory.markAllAsTouched();
     if (this.addCategory.invalid) return;
 
     this.handleSubmitEmit.emit(this.addCategory.getRawValue());
-  }
-
-  ngOnInit() {
-    this.handleCategoryInput();
   }
 }
