@@ -11,6 +11,7 @@ import {
 import { EventCard } from '../event.interfaces';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
 
 export interface GroupItem {
   id: number;
@@ -22,7 +23,7 @@ export interface GroupItem {
   selector: 'app-event-card-new[eventCard]',
   standalone: true,
   templateUrl: './event-card-new.component.html',
-  imports: [CommonModule, MatIconModule, MatTooltipModule],
+  imports: [CommonModule, MatIconModule, MatTooltipModule, RouterModule],
   styleUrls: ['./event-card-new.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,4 +1,8 @@
-<div #card class="event-card" [ngClass]="{ 'event-card--carousel': !isFullWidth }" routerLink="">
+<a
+  #card
+  class="event-card"
+  [ngClass]="{ 'event-card--carousel': !isFullWidth }"
+  routerLink="/events/{{ eventCard.id }}">
   <div class="event-card__img">
     <div class="event-card__category">{{ eventCard.eventInfo.category.name }}</div>
     <div class="event-card__confirmation" *ngIf="eventCard.eventInfo.isConfirmationRequired">
@@ -55,4 +59,4 @@
       </div>
     </div>
   </ng-container>
-</div>
+</a>
