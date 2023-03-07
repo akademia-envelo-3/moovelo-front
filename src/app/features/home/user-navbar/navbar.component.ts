@@ -3,10 +3,12 @@ import { NavbarScrollService } from './services/navbar-scroll.service';
 import users from './mock/users.config';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/authentication/auth.service';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.module';
 import { EventListActions } from '../../event/event-list/store/event-list.actions';
+import { selectUserType } from '../../auth/store/user.selectors';
+import { useStore } from '@shared/inject-hooks/user-store';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,16 +16,21 @@ import { EventListActions } from '../../event/event-list/store/event-list.action
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit {
-  private store = inject<Store<AppState>>(Store);
+  private store = useStore();
   private router = inject(Router);
-
+  private navbarScroll = inject(NavbarScrollService);
+  private authService = inject(AuthService);
   private userState = 'user';
+
+  constructor() {
+    this.store
+      .select(selectUserType)
+      .pipe(untilDestroyed(this))
+      .subscribe(result => (this.userState = result));
+  }
 
   menu = false;
   navbarList: string[][] = [[]];
-
-  private navbarScroll = inject(NavbarScrollService);
-  private authService = inject(AuthService);
 
   ngOnInit() {
     this.navbarScroll.scrollDetection();

@@ -17,4 +17,8 @@ export class CategoryListService {
   patchCategoryVisibility(categoryId: number, visibility: boolean) {
     return this.http.patch<CategoryItemResponse>(this.apiUrl + `/categories/${categoryId}`, { isVisible: visibility });
   }
+
+  patchCategoryName(categoryId: number, name: string) {
+    return this.http.patch<CategoryItemResponse>(this.apiUrl + `/categories/${categoryId}`, { name });
+  }
 }
