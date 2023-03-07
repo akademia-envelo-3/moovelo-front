@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventListComponent } from './event-list.component';
 import { RouterModule } from '@angular/router';
-import { EventCardComponent } from '../event-card/event-card.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorComponent } from '@shared/error.component';
@@ -15,7 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { EventListEffects } from './store/event-list.effects';
 import { FilterSortComponent } from './filter-sort/filter-sort.component';
 import { StopEventPropagationDirective } from '@shared/directives/stop-event-propagation.directive';
-import { EventCardNewComponent } from '../event-card-new/event-card-new.component';
+import { EventCardComponent } from '../event-card/event-card.component';
 
 @NgModule({
   declarations: [EventListComponent, FilterSortComponent],
@@ -38,7 +37,7 @@ import { EventCardNewComponent } from '../event-card-new/event-card-new.componen
     MatCheckboxModule,
     ReactiveFormsModule,
     StopEventPropagationDirective,
-    EventCardNewComponent,
+    EventCardComponent,
   ],
   providers: [],
 })
