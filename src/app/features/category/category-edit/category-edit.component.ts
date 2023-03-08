@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CreateCategoryFormComponent } from '../../create-category/create-category-form/create-category-form.component';
-import { AddCategory } from '../../create-category/create-category.interface';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgIf } from '@angular/common';
@@ -10,6 +9,7 @@ import { trimValidator } from '@shared/validators/space-trim.validator';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddCategory } from '../../create-category/create-category.interface';
 
 @Component({
   selector: 'app-category-edit',

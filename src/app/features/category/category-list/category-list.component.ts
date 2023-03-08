@@ -35,6 +35,6 @@ export default class CategoryListComponent {
   errorHandler$ = this.errorService.error$;
 
   editCategoryName(newCategoryName: CategoryItemResponse) {
-    this.categoryService.patchCategoryName(newCategoryName.id, newCategoryName.name).subscribe(console.log);
+    this.categoryService.patchCategoryName(newCategoryName.id, newCategoryName.name).subscribe();
   }
 }
