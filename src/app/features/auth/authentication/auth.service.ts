@@ -5,7 +5,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { userActions } from '../store/user.action';
 import { AppState } from 'src/app/app.module';
-import { LoginData } from './auth.interface';
+import { LoggedUserData, LoginData } from './auth.interface';
 import { API_URL } from '@core/env.token';
 import { TokenService } from '../token.service';
 
@@ -54,6 +54,10 @@ export class AuthService {
         })
       )
       .subscribe();
+  }
+
+  getLoggedUser(id: string) {
+    return this.http.get<LoggedUserData>(this.apiUrl + `/users/${id}`);
   }
 
   logout() {

@@ -44,3 +44,13 @@ export interface Group {
 export interface EventCategories {
   name: string;
 }
+
+export interface CategoryPropositionForm {
+  name: string;
+  description: string;
+}
+
+export interface Hashtag {
+  id: number;
+  value: string;
+}

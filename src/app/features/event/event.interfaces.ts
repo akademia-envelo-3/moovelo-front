@@ -1,6 +1,11 @@
 export interface EventCard {
   id: number;
   eventInfo: EventCardInfo;
+  eventOwner: EventOwner;
+}
+
+export interface EventOwner {
+  userId: number;
 }
 
 export interface EventCardInfo {

@@ -1,37 +1,41 @@
-<nav class="nav-bar main-container">
-  <div class="nav-bar__container">
-    <a routerLink="/">
-      <header class="nav-bar__logo">
-        <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav-bar__image" />
-        <p class="nav-bar__padding">Moovelo</p>
-      </header>
-    </a>
-    <div class="nav-icons">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="notyfikacje"
-        fontIcon="notifications"
-        class="nav-icons__notifications"></mat-icon>
-      <mat-icon
-        aria-hidden="false"
-        aria-label="menu"
-        class="nav-icons__menu"
-        [fontIcon]="menu ? 'clearSharp' : 'menu'"
-        (click)="showMenu()"></mat-icon>
+<div class="nav-bar__wrapper">
+  <header class="nav-bar main-container">
+    <div class="nav-bar__container">
+      <a class="nav-bar__link" routerLink="/">
+        <div class="nav-bar__logo">
+          <img src="./assets/cow-grey.svg" alt="logo aplikacji moovelo" class="nav-bar__image" />
+          <p class="nav-bar__padding">Moovelo</p>
+        </div>
+      </a>
+      <app-search-bar
+        [ngClass]="menu ? 'search-bar--hidden' : 'search-bar--visible'"
+        class="search-bar"></app-search-bar>
+      <div class="nav-icons">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="notyfikacje"
+          fontIcon="notifications"
+          class="nav-icons__notifications"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="menu"
+          class="nav-icons__menu"
+          [fontIcon]="menu ? 'clearSharp' : 'menu'"
+          (click)="showMenu()"></mat-icon>
+      </div>
     </div>
-  </div>
-  <div class="main-container" [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
-    <ul>
-      <li class="nav-menu__list" *ngFor="let value of navbarList[0]; let i = index">
-        <button class="nav-menu__button" (click)="navigateAndHideMenu(navbarList[1][i])">
-          {{ value }}
-        </button>
-      </li>
-      <li class="nav-menu__list">
-        <button class="nav-menu__button" (click)="handleLogout()">Wyloguj</button>
-      </li>
-    </ul>
-  </div>
-  <app-search-bar [ngClass]="menu ? 'search-bar--hidden' : 'search-bar--visible'" class="search-bar"></app-search-bar>
-</nav>
-<div [class.nav-menu--blur]="menu" (click)="showMenu()"></div>
+    <nav class="main-container" [ngClass]="menu ? 'nav-menu' : 'nav-menu--hide'">
+      <ul class="menu-list">
+        <li *ngFor="let value of navbarList[0]; let i = index">
+          <button (click)="navigateAndHideMenu(navbarList[1][i])">
+            {{ value }}
+          </button>
+        </li>
+        <li class="nav-menu__list">
+          <button class="nav-menu__button" (click)="handleLogout()">Wyloguj</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<div [ngClass]="menu ? 'nav-menu--blur' : 'nav-menu--no-blur'" (click)="showMenu()"></div>

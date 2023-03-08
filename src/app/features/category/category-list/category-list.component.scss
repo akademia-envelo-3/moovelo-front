@@ -1,0 +1,31 @@
+.category-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  & > * {
+    border-bottom: 1px solid black;
+  }
+
+  &__button {
+    position: sticky;
+    bottom: 2%;
+    left: 100%;
+    margin-right: 16px;
+    z-index: 997;
+  }
+}
+
+.border-radius {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 701px) {
+  .category-list {
+    & > * {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+  }
+}

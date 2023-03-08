@@ -1,0 +1,44 @@
+<form
+  [formGroup]="proposeCategoryForm"
+  #formGroupDirective="ngForm"
+  (ngSubmit)="submitForm(proposeCategoryForm, formGroupDirective)"
+  class="form font-text-1">
+  <mat-form-field color="primary" class="form__field">
+    <mat-label>Nazwa kategorii</mat-label>
+    <input matInput formControlName="name" class="font-text-1" />
+    <mat-error *ngIf="nameCtrl.errors as errors">
+      <ng-container *ngIf="errors['required']; else errorMinLength">To pole jest obowiązkowe!</ng-container>
+      <ng-template #errorMinLength>
+        <ng-container *ngIf="errors['minlength'] as minLength; else errorMaxLength"
+          >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.
+        </ng-container>
+      </ng-template>
+      <ng-template #errorMaxLength>
+        <ng-container *ngIf="errors['maxlength'] as maxLength; else errorSymbols"
+          >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.
+        </ng-container>
+      </ng-template>
+      <ng-template #errorSymbols>
+        <ng-container *ngIf="errors['pattern'] as pattern">Niedozwolne znaki specjalne.</ng-container>
+      </ng-template>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="form__field">
+    <mat-label>Opis kategorii</mat-label>
+    <textarea class="form__field--textarea font-text-1" formControlName="description" matInput></textarea>
+    <mat-error *ngIf="descriptionCtrl.errors as errors">
+      <ng-container *ngIf="errors['required']">To pole jest obowiązkowe!</ng-container>
+      <ng-container *ngIf="errors['minlength'] as minLength"
+        >Min. liczba znaków: {{ minLength.actualLength }}/{{ minLength.requiredLength }}.</ng-container
+      >
+      <ng-container *ngIf="errors['maxlength'] as maxLength"
+        >Maks. liczba znaków: {{ maxLength.actualLength }}/{{ maxLength.requiredLength }}.</ng-container
+      >
+    </mat-error>
+    <mat-hint>Liczba znaków: {{ descriptionCtrl.value.length }}/255 </mat-hint>
+  </mat-form-field>
+  <button mat-button class="btn-round" mat-flat-button color="primary">Wyślij</button>
+  <ng-container *ngIf="error$ | async as error">
+    <app-error></app-error>
+  </ng-container>
+</form>

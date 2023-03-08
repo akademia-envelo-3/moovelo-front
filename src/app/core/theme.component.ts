@@ -13,6 +13,8 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
 import { EventCommentsComponent } from '../features/event/event-comment/event-comments.component';
+import CategoryListItemComponent from '../features/category/category-list-item/category-list-item.component';
+import { CategoryItemResponse } from '../features/category/category.interface';
 
 @Component({
   selector: 'app-theme',
@@ -24,6 +26,7 @@ import { EventCommentsComponent } from '../features/event/event-comment/event-co
     VisitorFormComponent,
     EventParticipantsComponent,
     EventSurveyComponent,
+    CategoryListItemComponent,
     EventCommentsComponent,
   ],
   standalone: true,
@@ -47,6 +50,9 @@ import { EventCommentsComponent } from '../features/event/event-comment/event-co
 
     <h2>Ankiety</h2>
     <app-event-survey></app-event-survey>
+
+    <h2>Category list Item</h2>
+    <app-category-list-item [categoryItem]="categoryList"></app-category-list-item>
 
     <h2>Komentarze</h2>
     <app-event-comments></app-event-comments>
@@ -95,7 +101,7 @@ export default class ThemeComponent {
 
   group: GroupListItem = {
     groupOwner: {
-      basicUserId: 1,
+      userId: 1,
     },
     isUserMember: false,
     id: 1,
@@ -106,6 +112,9 @@ export default class ThemeComponent {
 
   event: EventCard = {
     id: 1,
+    eventOwner: {
+      userId: 1,
+    },
     eventInfo: {
       name: 'Giga Koks Turbo Event',
       category: {
@@ -130,5 +139,11 @@ export default class ThemeComponent {
       city: 'Warszawa',
       acceptedStatusUsers: 10,
     },
+  };
+
+  categoryList: CategoryItemResponse = {
+    id: 1,
+    isVisible: false,
+    name: 'Modlitwa',
   };
 }
