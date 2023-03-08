@@ -1,0 +1,14 @@
+.category-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-around;
+  overflow-wrap: break-word;
+  padding: 8px;
+
+  &__name {
+    text-align: center;
+    overflow-wrap: break-word;
+    width: 50%;
+  }
+}

@@ -25,6 +25,6 @@ export class EventListService {
   }
 
   getCategories() {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories?visibility=true`);
+    return this.http.get<Category[]>(`${this.apiUrl}/categories?isVisible=true`);
   }
 }

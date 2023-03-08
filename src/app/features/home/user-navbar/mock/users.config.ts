@@ -1,7 +1,7 @@
 const users = {
   admin: {
     titles: ['Wydarzenia', 'Propozycje kategorii', 'Kategorie', 'Grupy', 'Hashtsagi'],
-    routes: ['', 'category-proposition', 'category', 'groups', 'hashtags'],
+    routes: ['', 'category-proposition', 'categories', 'groups', 'hashtags'],
   },
   user: {
     titles: ['Wydarzenia', 'Wydarzenia, którymi zarządzasz', 'Grupy', 'Grupy, którymi zarządzasz'],
