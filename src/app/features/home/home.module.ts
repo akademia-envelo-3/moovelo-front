@@ -14,6 +14,7 @@ import { ErrorComponent } from '@shared/error.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { FooterComponent } from '@shared/footer/footer.component';
 import { isNotAdminGuard } from '../auth/guards/is-not-admin.guard';
+import { isAdminGuard } from '../auth/guards/is-admin.guard';
 
 @NgModule({
   declarations: [SearchBarComponent, HomeComponent, NavbarComponent],
@@ -51,8 +52,18 @@ import { isNotAdminGuard } from '../auth/guards/is-not-admin.guard';
             canActivate: [isNotAdminGuard],
           },
           {
+            path: 'create-category',
+            loadComponent: () => import('../create-category/create-category.component'),
+            canActivate: [isAdminGuard],
+          },
+          {
             path: 'owned-events',
             loadComponent: () => import('../event/event-list-owned/event-list-owned.component'),
+          },
+          {
+            path: 'categories',
+            loadComponent: () => import('../category/category-list/category-list.component'),
+            canActivate: [isAdminGuard],
           },
         ],
       },

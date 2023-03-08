@@ -27,7 +27,6 @@ export default class EventListOwnedComponent {
 
   eventListOwned$ = this.userId$.pipe(
     take(1),
-    switchMap(result => this.eventListOwnedService.getOwnedEvents(result.id)),
-    tap(console.log)
+    switchMap(result => this.eventListOwnedService.getOwnedEvents(result.id))
   );
 }
