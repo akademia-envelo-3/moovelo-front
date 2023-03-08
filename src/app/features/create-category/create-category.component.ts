@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CreateCategoryFormComponent } from './create-category-form/create-category-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CreateCategoryService } from './create-category-service';
+
 import { Router } from '@angular/router';
 import { CategoryData } from './create-category.interface';
+import { CreateCategoryService } from './create-category-service';
 
 @Component({
   selector: 'app-create-category',
   templateUrl: 'create-category.component.html',
-  styleUrls: ['./create-category.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CreateCategoryFormComponent, MatSnackBarModule],
@@ -19,12 +19,12 @@ export default class CreateCategoryComponent {
   private createCategoryService = inject(CreateCategoryService);
   private router = inject(Router);
 
-  private milisecondsInSeconds = 1000;
-  private numberOfSeconds = 5;
+  private MILISECONDS_IN_SECOND = 1000;
+  private NUMBER_OF_SECONDS = 5;
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: this.numberOfSeconds * this.milisecondsInSeconds,
+      duration: this.NUMBER_OF_SECONDS * this.MILISECONDS_IN_SECOND,
       panelClass: 'white-snackbar',
     });
   }

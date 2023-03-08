@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ErrorComponent } from '@shared/error.component';
 import { ErrorhandlerService } from '@shared/Interceptor/errorhandler.service';
-import { AddCategory, CategoryData } from '../create-category.interface';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { pattern } from '@shared/patterns/patterns';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { trimValidator } from '@shared/validators/space-trim.validator';
 import { RouterLink } from '@angular/router';
+import { AddCategory, CategoryData } from '../create-category.interface';
 
 @Component({
   selector: 'app-create-category-form',
