@@ -22,4 +22,8 @@ export default class GroupParticipantsComponent {
 
   errorClientServer$ = this.errorService.error$;
   users$ = this.groupUsersService.getParticipants(this.groupId);
+
+  ngOnInit() {
+    console.log('ffasfsa');
+  }
 }
