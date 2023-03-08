@@ -1,24 +1,24 @@
 <app-cow-loader></app-cow-loader>
 <ng-container *ngIf="eventListState$ | async as eventListState; else error">
   <ng-container *ngIf="categories$ | async as categories; else error">
-    <div class="event-list main-container">
+    <div class="main-container">
       <app-filter-sort [isFiltersHidden]="eventListState.isFiltersHidden" [categories]="categories"></app-filter-sort>
-      <div class="event-list__events">
+      <div class="event-list">
         <app-event-card *ngFor="let event of eventListState.events" [eventCard]="event"></app-event-card>
       </div>
+      <ng-container *ngIf="userType$ | async as userType">
+        <button
+          *ngIf="userType !== 'admin'"
+          class="event-list__button"
+          mat-fab
+          extended
+          color="primary"
+          routerLink="/create-event">
+          <p>Stwórz</p>
+          <p>wydarzenie</p>
+        </button>
+      </ng-container>
     </div>
-    <ng-container *ngIf="userType$ | async as userType">
-      <button
-        *ngIf="userType !== 'admin'"
-        class="event-list__button"
-        mat-fab
-        extended
-        color="primary"
-        routerLink="/create-event">
-        <p>Stwórz</p>
-        <p>wydarzenie</p>
-      </button>
-    </ng-container>
   </ng-container>
 </ng-container>
 <ng-template #error>
