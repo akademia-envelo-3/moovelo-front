@@ -1,5 +1,7 @@
 <div class="comment">
-  <p class="comment__name font-text-1">{{ comment.user.firstname }} {{ comment.user.lastName }}</p>
-  <p class="comment__text font-text-1">{{ comment.text }}</p>
+  <div class="comment__container">
+    <h3 class="comment__name font-text-1">{{ comment.user.firstname }} {{ comment.user.lastName }}</h3>
+    <p class="comment__text font-text-1">{{ comment.text }}</p>
+  </div>
   <p class="comment__date font-text-2">{{ comment.date }}</p>
 </div>

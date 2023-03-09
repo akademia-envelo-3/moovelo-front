@@ -92,6 +92,14 @@
         <li *ngFor="let hashtags of singleEvent.eventInfo.hashtags">#{{ hashtags.value }}</li>
       </ol>
     </div>
+    <ng-container *ngIf="comments$ | async as comments">
+      <ng-container *ngIf="comments.length; else emptyComments">
+        <app-event-comments-single *ngFor="let comment of comments" [comment]="comment"></app-event-comments-single>
+      </ng-container>
+      <ng-template #emptyComments>
+        <p>To wydarzenie nie ma jeszcze żadnych komentarzy.</p>
+      </ng-template>
+    </ng-container>
   </div>
 </ng-container>
 <ng-template #error>

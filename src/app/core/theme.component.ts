@@ -12,7 +12,6 @@ import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
-import { EventCommentsComponent } from '../features/event/event-comment/event-comments.component';
 import CategoryListItemComponent from '../features/category/category-list-item/category-list-item.component';
 import { CategoryItemResponse } from '../features/category/category.interface';
 
@@ -27,7 +26,6 @@ import { CategoryItemResponse } from '../features/category/category.interface';
     EventParticipantsComponent,
     EventSurveyComponent,
     CategoryListItemComponent,
-    EventCommentsComponent,
   ],
   standalone: true,
   template: `
@@ -55,7 +53,6 @@ import { CategoryItemResponse } from '../features/category/category.interface';
     <app-category-list-item [categoryItem]="categoryList"></app-category-list-item>
 
     <h2>Komentarze</h2>
-    <app-event-comments></app-event-comments>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
