@@ -11,6 +11,7 @@ import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { ErrorComponent } from '@shared/error.component';
 import { SettingsComponent } from '@shared/settings/settings.component';
 import { singleEventResolver } from './single-event.resolver';
+import { EventCommentsSingleComponent } from '../event-comment/event-comment-single/event-comments-single.component';
 
 @NgModule({
   declarations: [SingleEventComponent],
@@ -22,6 +23,7 @@ import { singleEventResolver } from './single-event.resolver';
     MatButtonModule,
     MatIconModule,
     SettingsComponent,
+    EventCommentsSingleComponent,
     StoreModule.forFeature('singleEvent', singleEventReducer),
     RouterModule.forChild([
       {

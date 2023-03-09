@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/palettes' as palette;
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 230px;
+  padding: 8px;
+
+  &__container {
+    padding: 8px 16px 8px 16px;
+    border: 1px solid mat.get-color-from-palette(palette.$gray-palette, 900);
+    background-color: mat.get-color-from-palette(palette.$gray-palette, 500);
+    border-radius: 8px;
+  }
+
+  &__name {
+    flex-wrap: wrap;
+    font-weight: bold;
+  }
+  &__text {
+    border-radius: 8px;
+  }
+  &__date {
+    padding-left: 16px;
+  }
+}
