@@ -1,5 +1,5 @@
 <app-cow-loader></app-cow-loader>
-<ng-container *ngIf="singleEvent$ | async as singleEvent; else error">
+<ng-container *ngIf="singleEvent$ | async as singleEvent">
   <div class="event main-container">
     <ng-container *ngIf="singleEvent.eventInfo.group">
       <div class="event__group-private-label">
@@ -69,33 +69,6 @@
         <p class="font-text-1">Kategoria: {{ singleEvent.eventInfo.category.name }}</p>
       </div>
     </div>
-    <div class="event__join-event">
-      <button mat-button class="accepted">
-        <mat-icon class="event__white-icon" fontIcon="check"></mat-icon>
-      </button>
-      <button mat-button class="pending">
-        <mat-icon class="event__white-icon" fontIcon="question_mark"></mat-icon>
-      </button>
-      <button mat-button class="rejected">
-        <mat-icon class="event__white-icon" fontIcon="close"></mat-icon>
-      </button>
-    </div>
-    <ng-container *ngIf="singleEvent.eventInfo.isPrivate">
-      <button mat-raised-button color="primary"><a>skopiuj link</a></button>
-    </ng-container>
-    <div class="event__description">
-      <p class="event__description-title">Opis:</p>
-      <p class="font-text-1">{{ singleEvent.eventInfo.description }}</p>
-    </div>
-    <div class="event__hashtags">
-      <ol>
-        <li *ngFor="let hashtags of singleEvent.eventInfo.hashtags">#{{ hashtags.value }}</li>
-      </ol>
-    </div>
+    <app-event-map [coordinates]="singleEvent.eventInfo.location"></app-event-map>
   </div>
 </ng-container>
-<ng-template #error>
-  <div *ngIf="errorClientServer$ | async">
-    <app-error></app-error>
-  </div>
-</ng-template>

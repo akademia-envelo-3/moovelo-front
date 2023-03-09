@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__frame {
+    border: 2px solid mat.get-color-from-palette(palette.$blue-palette, 500);
+    margin: 32px;
+    height: 50vh;
+    width: 80vw;
+  }
+  &__map {
+    height: 100%;
+  }
+  &__error {
+    padding: 32px;
+  }
+}

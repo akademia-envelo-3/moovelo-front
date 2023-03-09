@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SingleEventComponent } from './single-event.component';
 import { CowLoaderComponent } from '@shared/loader/cow-loader.component';
 import { ErrorComponent } from '@shared/error.component';
+import { EventMapComponent } from '../event-map/event-map.component';
 import { SettingsComponent } from '@shared/settings/settings.component';
 import { singleEventResolver } from './single-event.resolver';
 
@@ -30,6 +31,7 @@ import { singleEventResolver } from './single-event.resolver';
         resolve: { singleEventResolver },
       },
     ]),
+    EventMapComponent,
   ],
 })
 export default class SingleEventModule {}

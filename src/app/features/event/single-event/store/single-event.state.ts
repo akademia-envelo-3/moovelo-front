@@ -28,8 +28,8 @@ export const initialSingleEventState: SingleEventStateInterface = {
     hour: '',
     location: {
       id: '',
-      altitude: 0,
-      latitude: 0,
+      altitude: null,
+      latitude: null,
       postCode: '',
       city: '',
       street: '',
