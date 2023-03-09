@@ -1,0 +1,15 @@
+<app-cow-loader></app-cow-loader>
+<ng-container *ngIf="users$ | async as users">
+  <div class="main-container group">
+    <div class="blue-container">
+      <h1 class="font-heading-3">Członkowie grupy ({{users.groupMembers.length}})</h1>
+    </div>
+    <div class="group-members" *ngFor="let groupMember of users.groupMembers">
+      <p>{{groupMember.firstName}}</p>
+      <p>{{groupMember.lastName}}</p>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="errorClientServer$ | async">
+  <app-error></app-error>
+</ng-container>

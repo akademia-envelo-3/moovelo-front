@@ -10,8 +10,8 @@ import { GroupUsersService } from './group-participants.service';
   standalone: true,
   selector: 'app-group-participants',
   imports: [CommonModule, CowLoaderComponent, ErrorComponent],
-  templateUrl: './group-participants.html',
-  styleUrls: ['./group-participants.scss'],
+  templateUrl: './group-participants.component.html',
+  styleUrls: ['./group-participants.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class GroupParticipantsComponent {
@@ -22,8 +22,4 @@ export default class GroupParticipantsComponent {
 
   errorClientServer$ = this.errorService.error$;
   users$ = this.groupUsersService.getParticipants(this.groupId);
-
-  ngOnInit() {
-    console.log('ffasfsa');
-  }
 }
