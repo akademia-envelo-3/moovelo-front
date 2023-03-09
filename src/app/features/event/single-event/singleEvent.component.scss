@@ -10,7 +10,7 @@
   &__heading {
     width: 100%;
     text-align: center;
-    word-break: break-all;
+    overflow-wrap: break-word;
     display: flex;
     justify-content: space-between;
     align-items: center;
