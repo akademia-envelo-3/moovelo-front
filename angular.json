@@ -10,8 +10,8 @@
           "changeDetection": "OnPush",
           "skipTests": true,
           "style": "scss",
-          "inlineTemplate": true,
-          "inlineStyle": true,
+          "inlineTemplate": false,
+          "inlineStyle": false,
           "flat": true
         },
         "@schematics/angular:pipe": {

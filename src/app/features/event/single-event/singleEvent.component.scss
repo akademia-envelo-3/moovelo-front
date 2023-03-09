@@ -8,16 +8,28 @@
   gap: 16px;
 
   &__heading {
-    width: 80%;
+    width: 100%;
     text-align: center;
-    word-break: break-all;
+    overflow-wrap: break-word;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title-container {
+    width: 100%;
+    margin-left: 72px;
+  }
+
+  &__settings {
+    padding: 8px;
   }
 
   &__group-private-label {
     background-color: mat.get-color-from-palette(palette.$blue-palette, 500);
     color: mat.get-color-from-palette(palette.$gray-palette, 100);
     padding: 4px 16px;
-    width: 80%;
+    width: 100%;
 
     &-text {
       word-break: break-all;
@@ -61,7 +73,7 @@
     }
   }
   &__information-container {
-    width: 80%;
+    width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -76,14 +88,14 @@
   }
 
   &__join-event {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    gap: 10vw;
+    justify-content: space-around;
   }
 
   &__description {
     text-align: justify;
-    width: 80vw;
+    width: 100%;
 
     &-title {
       padding-bottom: 16px;

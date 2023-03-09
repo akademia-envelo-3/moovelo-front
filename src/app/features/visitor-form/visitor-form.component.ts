@@ -19,13 +19,13 @@ export class VisitorFormComponent {
 
   joinEventForm = this.builder.group({
     name: this.builder.control('', {
-      validators: [Validators.required, Validators.maxLength(20)],
+      validators: [Validators.required, Validators.maxLength(30), Validators.min(2)],
     }),
     lastName: this.builder.control('', {
-      validators: [Validators.required, Validators.maxLength(20)],
+      validators: [Validators.required, Validators.maxLength(50), Validators.min(2)],
     }),
     email: this.builder.control('', {
-      validators: [Validators.required, Validators.maxLength(30), Validators.pattern(pattern.emailValidatorRegex)],
+      validators: [Validators.required, Validators.maxLength(50), Validators.pattern(pattern.emailValidatorRegex)],
     }),
   });
 

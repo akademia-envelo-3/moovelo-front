@@ -1,3 +1,5 @@
+import { Role } from '../../auth/store/user.interface';
+
 export interface EventInfo {
   isConfirmationRequired: boolean;
   limitedPlaces: number;
@@ -13,24 +15,33 @@ export interface EventInfo {
   description: string;
   hashtags: SingleHashtag[];
 }
+
+export interface EventOwner {
+  userId: number;
+}
+
 export interface EventParticipationStats {
   accepted: number;
   pending: number;
   rejected: number;
 }
+
 export interface Group {
   id: string;
   name: string;
 }
 
 export interface SingleEventStateInterface {
+  eventOwner: EventOwner;
   id: string;
   eventInfo: EventInfo;
 }
+
 export interface Category {
   id: string;
   name: string;
 }
+
 export interface Location {
   id: string;
   altitude: number | null;
@@ -41,7 +52,12 @@ export interface Location {
   streetNumber: string;
   apartmentNumber: string;
 }
+
 export interface SingleHashtag {
   id: string;
   value: string;
+}
+
+export interface EventOptions extends Record<Role, string[]> {
+  eventOwner: string[];
 }

@@ -1,13 +1,21 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
 .event-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 32px;
-  padding: 8px;
+  padding: 16px 8px;
+  align-items: center;
 
   &__button {
     position: sticky;
     bottom: 2%;
     left: 100%;
     margin-right: 16px;
+  }
+
+  & > * {
+    height: 100%;
   }
 }

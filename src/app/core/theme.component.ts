@@ -6,6 +6,8 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { VisitorFormComponent } from '../features/visitor-form/visitor-form.component';
 import { GroupListItem } from '../features/group';
 import { EventSurveyComponent } from '../features/event/event-survey/event-survey.component';
+import CategoryListItemComponent from '../features/category/category-list-item/category-list-item.component';
+import { CategoryItemResponse } from '../features/category/category.interface';
 
 @Component({
   selector: 'app-theme',
@@ -16,6 +18,7 @@ import { EventSurveyComponent } from '../features/event/event-survey/event-surve
     FooterComponent,
     VisitorFormComponent,
     EventSurveyComponent,
+    CategoryListItemComponent,
   ],
   standalone: true,
   template: `
@@ -36,6 +39,9 @@ import { EventSurveyComponent } from '../features/event/event-survey/event-surve
     <h2>Widok ankiety dla usera</h2>
     <app-event-survey></app-event-survey>
 
+    <h2>Category list Item</h2>
+    <app-category-list-item [categoryItem]="categoryList"></app-category-list-item>
+
     <h2>Footer</h2>
     <app-footer></app-footer>
   `,
@@ -43,7 +49,7 @@ import { EventSurveyComponent } from '../features/event/event-survey/event-surve
 export default class ThemeComponent {
   group: GroupListItem = {
     groupOwner: {
-      basicUserId: 1,
+      userId: 1,
     },
     isUserMember: false,
     id: 1,
@@ -54,6 +60,9 @@ export default class ThemeComponent {
 
   event: EventCard = {
     id: 1,
+    eventOwner: {
+      userId: 1,
+    },
     eventInfo: {
       name: 'Giga Koks Turbo Event',
       category: {
@@ -126,4 +135,10 @@ export default class ThemeComponent {
       yourAnswersIds: [],
     },
   ];
+
+  categoryList: CategoryItemResponse = {
+    id: 1,
+    isVisible: false,
+    name: 'Modlitwa',
+  };
 }
