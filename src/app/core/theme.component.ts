@@ -6,6 +6,7 @@ import {
   EventParticipant,
   EventParticipantsStatus,
   EventSurveyComponent,
+  EventComment,
 } from '../features/event';
 import { GroupItemComponent } from '../features/group';
 import { CowLoaderComponent } from '../shared/loader/cow-loader.component';
@@ -14,6 +15,7 @@ import { VisitorFormComponent } from '../features/visitor-form/visitor-form.comp
 import { GroupListItem } from '../features/group';
 import CategoryListItemComponent from '../features/category/category-list-item/category-list-item.component';
 import { CategoryItemResponse } from '../features/category/category.interface';
+import { EventCommentsSingleComponent } from '../features/event/event-comment/event-comment-single/event-comments-single.component';
 
 @Component({
   selector: 'app-theme',
@@ -26,6 +28,7 @@ import { CategoryItemResponse } from '../features/category/category.interface';
     EventParticipantsComponent,
     EventSurveyComponent,
     CategoryListItemComponent,
+    EventCommentsSingleComponent,
   ],
   standalone: true,
   template: `
@@ -53,6 +56,7 @@ import { CategoryItemResponse } from '../features/category/category.interface';
     <app-category-list-item [categoryItem]="categoryList"></app-category-list-item>
 
     <h2>Komentarze</h2>
+    <app-event-comments-single [comment]="comment"></app-event-comments-single>
 
     <h2>Footer</h2>
     <app-footer></app-footer>
@@ -142,5 +146,16 @@ export default class ThemeComponent {
     id: 1,
     isVisible: false,
     name: 'Modlitwa',
+  };
+
+  comment: EventComment = {
+    id: 1,
+    user: {
+      firstname: 'K.',
+      lastName: 'Wojkowski',
+    },
+    date: '23-12-22',
+    text: 'Kocham jabłko, ajfony są da best!',
+    attachments: [],
   };
 }
