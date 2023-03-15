@@ -25,7 +25,6 @@ import { CanLoginGuard } from './features/auth/guards/can-login.guard';
 import { fetchedLoggedUser } from './features/auth/fetchLoggedUser';
 import { userReducer } from './features/auth/store/user.reducer';
 import { EventListState } from './features/event/event-list/event-list.interface';
-import { HashtagComponent } from './features/event-list/hashtag.component';
 
 export interface AppState {
   user: UserState;
@@ -36,7 +35,7 @@ export interface AppState {
   singleEvent: SingleEventStateInterface;
 }
 @NgModule({
-  declarations: [AppComponent, HashtagComponent],
+  declarations: [AppComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

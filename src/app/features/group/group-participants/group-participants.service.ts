@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { GroupMembersExtended } from '../../group.interface';
+import { GroupMembersExtended } from '../group.interface';
 
 @Injectable({
   providedIn: 'root',

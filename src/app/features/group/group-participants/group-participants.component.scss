@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@use '../../../styles/palettes' as palette;
+
+.group-members {
+  border-bottom: 1px solid mat.get-color-from-palette(palette.$blue-palette, 900);
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+}
+
+@media (min-width: 701px) {
+  .group-members {
+    border-left: 1px solid mat.get-color-from-palette(palette.$blue-palette, 900);
+    border-right: 1px solid mat.get-color-from-palette(palette.$blue-palette, 900);
+  }
+}

@@ -23,7 +23,7 @@ import { singleGroupResolver } from '../single-group/single-group.resolver';
       },
       {
         path: ':id/users',
-        loadComponent: () => import('../single-group/group-participants/group-participants.component'),
+        loadComponent: () => import('../group-participants/group-participants.component'),
       },
     ]),
     GroupItemComponent,
